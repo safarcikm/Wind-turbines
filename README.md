@@ -11,3 +11,6 @@ possible manufactured in-house.
 - [02 – Design basis and requirements](docs/02-design-basis.md): Icelandic
   design envelope, IEC Class S parameters, design load cases and
   requirements for every category.
+- [03 – Rotor concept study](docs/03-rotor-concept.md): rotor diameter,
+  tip speed, blade shape, aerofoils and pitch schedule
+  (model in [analysis/rotor](analysis/rotor/)).

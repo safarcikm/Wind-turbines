@@ -131,7 +131,7 @@ paths) need a site-specific load assessment before installation.
 |---|---|
 | Type | Horizontal axis, upwind, 3 blades |
 | Rated electrical power | 12 kW at the output terminals of the power module |
-| Rotor diameter | 7.0 to 8.0 m (to be fixed by the rotor study; larger rotor gives more energy in low wind but higher extreme loads) |
+| Rotor diameter | **7.5 m** (chosen in the rotor concept study, doc 03) |
 | Regulation | **Active pitch**, independent per blade or collective (to be decided in category 3), with fail-safe return to feather on any power or controller loss |
 | Drivetrain | Direct drive, no gearbox |
 | Generator | Permanent magnet synchronous, NdFeB magnets |
@@ -209,9 +209,10 @@ is a target to be confirmed by design studies.
   in operation under the design ice class.
 
 ### 6.3 Hub, pitch and yaw (cat. 3)
-- **R3.1** Pitch system shall move all blades to feather within **2 s or
-  less** (TBC by load simulation) on any fault, using stored energy (spring
-  or supercapacitor), without grid or controller power.
+- **R3.1** On any fault, the pitch system shall move all blades to at
+  least **45° within 2 s** and to full feather within 6 s (TBC by load
+  simulation), using stored energy (spring or supercapacitor), without grid
+  or controller power. (Revised after the rotor study, doc 03.)
 - **R3.2** Pitch and yaw mechanisms shall operate at −30 °C and survive
   −40 °C; lubricants and seals rated accordingly.
 - **R3.3** Pitch bearings and pitch drive shall be protected against ice

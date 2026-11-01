@@ -1,0 +1,265 @@
+{
+  "assumptions": {
+    "rho": 1.225,
+    "P_rated_elec": 12000.0,
+    "P_aero_rated": 13600.0,
+    "eta_prop": 0.891,
+    "P_fixed": 120.0,
+    "tip_speed_max": 70.0,
+    "tsr_design": 6.5,
+    "cl_design": 1.0,
+    "storm": [
+      25.0,
+      30.0,
+      0.4
+    ],
+    "availability": 0.97,
+    "V_e50": 77.0,
+    "rho_cold": 1.35,
+    "cd_broadside": 1.8
+  },
+  "tsr_sweep": [
+    {
+      "tsr": 5.5,
+      "c_max": 0.471,
+      "blade_area": 1.169,
+      "cp_clean": 0.473,
+      "cp_rough": 0.448,
+      "tip_speed_at_11ms": 60.5
+    },
+    {
+      "tsr": 6.0,
+      "c_max": 0.4,
+      "blade_area": 0.99,
+      "cp_clean": 0.476,
+      "cp_rough": 0.449,
+      "tip_speed_at_11ms": 66.0
+    },
+    {
+      "tsr": 6.5,
+      "c_max": 0.343,
+      "blade_area": 0.849,
+      "cp_clean": 0.478,
+      "cp_rough": 0.448,
+      "tip_speed_at_11ms": 71.5
+    },
+    {
+      "tsr": 7.0,
+      "c_max": 0.298,
+      "blade_area": 0.736,
+      "cp_clean": 0.479,
+      "cp_rough": 0.447,
+      "tip_speed_at_11ms": 77.0
+    },
+    {
+      "tsr": 7.5,
+      "c_max": 0.261,
+      "blade_area": 0.644,
+      "cp_clean": 0.48,
+      "cp_rough": 0.446,
+      "tip_speed_at_11ms": 82.5
+    },
+    {
+      "tsr": 8.0,
+      "c_max": 0.23,
+      "blade_area": 0.568,
+      "cp_clean": 0.48,
+      "cp_rough": 0.444,
+      "tip_speed_at_11ms": 88.0
+    }
+  ],
+  "rotors": [
+    {
+      "D": 7.0,
+      "polar": "clean",
+      "rated_wind": 11.0,
+      "cut_in": 2.5,
+      "rated_rpm": 191.0,
+      "rated_torque_Nm": 680,
+      "max_steady_thrust_N": 2092,
+      "max_steady_flap_Nm": 1389,
+      "pitch_at_25": 26.6,
+      "pitch_at_30": 32.9,
+      "c_max": 0.321,
+      "c_tip": 0.149,
+      "blade_area": 0.735,
+      "twist_root": 18.0,
+      "parked_broadside_force_N": 5295,
+      "parked_broadside_root_moment_Nm": 7330,
+      "aep_kWh": {
+        "5.0": 18050,
+        "6.0": 28046,
+        "7.0": 37927,
+        "8.0": 46847,
+        "10.0": 60827
+      },
+      "aep_hard_cutout25_kWh": {
+        "5.0": 18050,
+        "6.0": 28046,
+        "7.0": 37924,
+        "8.0": 46816,
+        "10.0": 60368
+      }
+    },
+    {
+      "D": 7.0,
+      "polar": "rough",
+      "rated_wind": 11.0,
+      "cut_in": 2.5,
+      "rated_rpm": 191.0,
+      "rated_torque_Nm": 680,
+      "max_steady_thrust_N": 2029,
+      "max_steady_flap_Nm": 1362,
+      "pitch_at_25": 25.5,
+      "pitch_at_30": 32.1,
+      "c_max": 0.321,
+      "c_tip": 0.149,
+      "blade_area": 0.735,
+      "twist_root": 18.0,
+      "parked_broadside_force_N": 5295,
+      "parked_broadside_root_moment_Nm": 7330,
+      "aep_kWh": {
+        "5.0": 17043,
+        "6.0": 26758,
+        "7.0": 36511,
+        "8.0": 45421,
+        "10.0": 59550
+      },
+      "aep_hard_cutout25_kWh": {
+        "5.0": 17043,
+        "6.0": 26758,
+        "7.0": 36508,
+        "8.0": 45389,
+        "10.0": 59091
+      }
+    },
+    {
+      "D": 7.5,
+      "polar": "clean",
+      "rated_wind": 10.5,
+      "cut_in": 2.5,
+      "rated_rpm": 178.3,
+      "rated_torque_Nm": 729,
+      "max_steady_thrust_N": 2180,
+      "max_steady_flap_Nm": 1570,
+      "pitch_at_25": 26.9,
+      "pitch_at_30": 33.0,
+      "c_max": 0.343,
+      "c_tip": 0.16,
+      "blade_area": 0.849,
+      "twist_root": 18.6,
+      "parked_broadside_force_N": 6118,
+      "parked_broadside_root_moment_Nm": 9189,
+      "aep_kWh": {
+        "5.0": 20350,
+        "6.0": 30907,
+        "7.0": 41005,
+        "8.0": 49902,
+        "10.0": 63509
+      },
+      "aep_hard_cutout25_kWh": {
+        "5.0": 20350,
+        "6.0": 30906,
+        "7.0": 41002,
+        "8.0": 49870,
+        "10.0": 63051
+      }
+    },
+    {
+      "D": 7.5,
+      "polar": "rough",
+      "rated_wind": 10.5,
+      "cut_in": 2.5,
+      "rated_rpm": 178.3,
+      "rated_torque_Nm": 729,
+      "max_steady_thrust_N": 2136,
+      "max_steady_flap_Nm": 1554,
+      "pitch_at_25": 25.8,
+      "pitch_at_30": 32.2,
+      "c_max": 0.343,
+      "c_tip": 0.16,
+      "blade_area": 0.849,
+      "twist_root": 18.6,
+      "parked_broadside_force_N": 6118,
+      "parked_broadside_root_moment_Nm": 9189,
+      "aep_kWh": {
+        "5.0": 19259,
+        "6.0": 29566,
+        "7.0": 39576,
+        "8.0": 48494,
+        "10.0": 62284
+      },
+      "aep_hard_cutout25_kWh": {
+        "5.0": 19259,
+        "6.0": 29566,
+        "7.0": 39573,
+        "8.0": 48462,
+        "10.0": 61826
+      }
+    },
+    {
+      "D": 8.0,
+      "polar": "clean",
+      "rated_wind": 10.0,
+      "cut_in": 2.5,
+      "rated_rpm": 167.1,
+      "rated_torque_Nm": 777,
+      "max_steady_thrust_N": 2238,
+      "max_steady_flap_Nm": 1739,
+      "pitch_at_25": 27.2,
+      "pitch_at_30": 33.1,
+      "c_max": 0.366,
+      "c_tip": 0.17,
+      "blade_area": 0.972,
+      "twist_root": 19.1,
+      "parked_broadside_force_N": 7001,
+      "parked_broadside_root_moment_Nm": 11339,
+      "aep_kWh": {
+        "5.0": 22638,
+        "6.0": 33651,
+        "7.0": 43879,
+        "8.0": 52699,
+        "10.0": 65906
+      },
+      "aep_hard_cutout25_kWh": {
+        "5.0": 22638,
+        "6.0": 33651,
+        "7.0": 43876,
+        "8.0": 52667,
+        "10.0": 65447
+      }
+    },
+    {
+      "D": 8.0,
+      "polar": "rough",
+      "rated_wind": 10.0,
+      "cut_in": 2.5,
+      "rated_rpm": 167.1,
+      "rated_torque_Nm": 777,
+      "max_steady_thrust_N": 2267,
+      "max_steady_flap_Nm": 1762,
+      "pitch_at_25": 26.2,
+      "pitch_at_30": 32.3,
+      "c_max": 0.366,
+      "c_tip": 0.17,
+      "blade_area": 0.972,
+      "twist_root": 19.1,
+      "parked_broadside_force_N": 7001,
+      "parked_broadside_root_moment_Nm": 11339,
+      "aep_kWh": {
+        "5.0": 21500,
+        "6.0": 32308,
+        "7.0": 42489,
+        "8.0": 51358,
+        "10.0": 64770
+      },
+      "aep_hard_cutout25_kWh": {
+        "5.0": 21500,
+        "6.0": 32308,
+        "7.0": 42486,
+        "8.0": 51326,
+        "10.0": 64311
+      }
+    }
+  ]
+}
