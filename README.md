@@ -8,3 +8,6 @@ possible manufactured in-house.
 
 - [01 – Project categories](docs/01-project-categories.md): work breakdown,
   Iceland-specific challenges, in-house feasibility and dependencies.
+- [02 – Design basis and requirements](docs/02-design-basis.md): Icelandic
+  design envelope, IEC Class S parameters, design load cases and
+  requirements for every category.
