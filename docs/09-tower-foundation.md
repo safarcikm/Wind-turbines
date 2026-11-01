@@ -229,8 +229,8 @@ designs per soil, and re-tensioning after freeze–thaw.
 
 ## 10. Next steps
 
-1. Blade structural layup study (blade mass and flap frequency feed the
-   tower top mass and the 3P/flap interaction).
+1. ~~Blade structural layup study.~~ Done in [doc 10](10-blade-structure.md):
+   20.5 kg carbon-cap blade, flap 13.2 Hz.
 2. Controller design: exclusion zone logic, constant power above rated,
    vibration trip and commissioning frequency measurement.
 3. Geotechnical data per region (frost depth, typical soils) to fix the

@@ -33,3 +33,6 @@ possible manufactured in-house.
   tilt-up monopoles for 18 m and 24 m, frequency strategy with a speed
   exclusion zone, rotor balance requirement, foundations for every ground
   type (models in [analysis/tower](analysis/tower/)).
+- [10 – Blade materials and structure](docs/10-blade-structure.md): material
+  options, layup sizing for glass and carbon spar caps, frequencies, root
+  joint (model in [analysis/blade](analysis/blade/)).
