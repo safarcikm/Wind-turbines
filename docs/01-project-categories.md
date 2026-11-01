@@ -1,6 +1,6 @@
 # 12 kW Wind Turbine for Iceland: Project Categories
 
-Status: **Draft, revision 2** · 2026-11-01
+Status: **Draft, revision 3** · 2026-11-01
 
 This document splits the project into work categories. For each category it
 gives the scope, the challenges that are specific to Icelandic conditions, how
@@ -14,6 +14,10 @@ much can be manufactured in-house, and what the category depends on.
 | Use case | **All use cases**: grid-tied, off-grid with batteries, direct heating | One turbine with interchangeable power conversion modules |
 | Goal | **A product for sale** | Full type certification, CE marking, production quality system, service organisation |
 | Manufacturing | **All manufacturing capabilities are available** | Design is not limited by workshop tools; make/buy is decided by cost, quality and certification, not capability |
+| Overspeed control | **Active pitch** | Fail-safe pitch to feather is the primary survival system |
+| Magnets | **Bought NdFeB** | Compact, light generator; in-house ferrite dropped for now |
+| Market | **Iceland only, for now** | Icelandic grid operators, Icelandic language documentation, Icelandic permits; export kept as a later option |
+| Price | **5 million ISK** sale price | See the cost budget in section 1.5 |
 
 ---
 
@@ -46,7 +50,7 @@ worst case across site types.
 | Rotor speed | ~150 to 200 rpm at rated | Tip speed ratio ≈ 6 to 7 |
 | Drivetrain | Direct drive, no gearbox | Fewer parts, no gear oil in the cold |
 | Generator | Permanent magnet synchronous, multi-pole | Matches direct drive |
-| Overspeed protection | **Active pitch recommended**, plus fail-safe mechanical brake | For a product facing 70 m/s gusts anywhere, pitch gives controlled power shedding and lower structural loads than furling |
+| Overspeed protection | **Active pitch** (decided), plus fail-safe mechanical brake | Controlled power shedding and lower structural loads than furling at 70 m/s gusts |
 | Hub height | 18 and 24 m tower options, tilt-up | Service without a crane |
 | Design standard | IEC 61400-2 Class S, type certified | Required to sell |
 | Design life | 20 years | Industry norm |
@@ -76,13 +80,50 @@ making them is a separate industry rather than a workshop process:
 
 | Item | Option A: make | Option B: buy | Recommendation |
 |---|---|---|---|
-| Permanent magnets | Ferrite magnets can be pressed and sintered in-house; NdFeB needs rare earth alloy and sintering lines | Standard catalogue magnets from many suppliers | Buy NdFeB at first; consider in-house ferrite later (heavier generator, no rare earth dependency) |
+| Permanent magnets | Ferrite magnets can be pressed and sintered in-house; NdFeB needs rare earth alloy and sintering lines | Standard catalogue magnets from many suppliers | **Decided: buy NdFeB** |
 | Rolling bearings | Possible with heat treatment and precision grinding | Standard catalogue bearings, certified load ratings | Buy; certification bodies expect rated bearings |
 | Power semiconductors and chips | Not realistic (needs a semiconductor fab) | Multiple suppliers | Buy; design boards so parts from several makers fit |
 
 Everything else (blades, hub, generator, shafts, castings, nacelle, tower,
 electronics boards, enclosures, firmware, cables assembly, tooling) is
 planned as in-house.
+
+
+### 1.5 Cost budget for a 5 million ISK sale price
+
+**Assumption (to confirm):** 5,000,000 ISK is the sale price to the customer
+excluding 24 % VAT, for turbine, 18 m tower and one power module. Foundation
+work and installation are quoted separately. This is about €34,000 or roughly
+417,000 ISK per kW.
+
+A healthy small manufacturer needs the factory cost of one unit to be about
+**55 % of the sale price**, leaving the rest for sales, overheads, R&D and
+certification payback, and profit. That gives a target unit cost of
+**about 2.75 million ISK**, split as a starting budget:
+
+| Subsystem | Share | Budget (ISK) |
+|---|---|---|
+| Rotor and blades (3 blades, LEP) | 12 % | 330,000 |
+| Hub and pitch system | 10 % | 275,000 |
+| Generator (incl. NdFeB magnets) | 15 % | 410,000 |
+| Nacelle, shaft, bearings, brake, yaw | 10 % | 275,000 |
+| Tower 18 m with guys and anchors | 18 % | 495,000 |
+| Power electronics (front end + one module) | 15 % | 410,000 |
+| Controller, sensors, remote monitoring | 7 % | 195,000 |
+| Assembly, end-of-line test, packaging | 8 % | 220,000 |
+| Warranty reserve | 5 % | 140,000 |
+| **Unit cost total** | **100 %** | **2,750,000** |
+
+Things that move this budget most:
+
+- **Volume.** Type certification, accredited testing and tooling are one-off
+  costs, likely tens of millions of ISK. Spread over 50 units that is far more
+  per unit than over 500. The annual sales volume is the key number for the
+  business case.
+- **Options.** The cold climate package, the 24 m tower and extra power
+  modules are priced as extras on top of 5 million ISK.
+- **Designing for the worst case.** C5 corrosion and Class S loads as
+  standard add cost to every unit; this is accepted to keep one product.
 
 ---
 
@@ -153,8 +194,8 @@ strategy).
 
 ### 3. Hub, pitch and yaw
 
-**Scope:** hub casting or weldment, active pitch system (recommended, see
-section 1.2) with fail-safe return to feather (spring or stored energy), yaw
+**Scope:** hub casting or weldment, active pitch system (decided, see
+section 0) with fail-safe return to feather (spring or stored energy), yaw
 system (tail vane or active yaw drive), yaw bearing, yaw brake or damper.
 
 **Iceland-specific challenges:**
@@ -358,12 +399,12 @@ certification body.
 **Scope:** target customers and segments (farms, summer houses, remote
 industry, telecom, fish farms, municipalities), product variants and options
 (section 1.3), price and unit cost targets, warranty terms, sales channels,
-export markets beyond Iceland (other Nordic and Arctic regions share the same
-conditions), product roadmap.
+product roadmap. Iceland is the only market for now; Nordic and Arctic
+export is a later option and the design should not rule it out.
 
 **Iceland-specific challenges:**
-- Small home market, so the design should also suit export to similar
-  climates.
+- Small home market, so certification and tooling costs are spread over few
+  units; volume assumptions drive the price.
 - Cheap grid electricity makes payback against grid power long; heating and
   off-grid value propositions matter more.
 
@@ -441,10 +482,7 @@ the start.
 
 ## 6. Open questions
 
-1. **Overspeed control:** agree to active pitch, or keep furling in the
-   comparison?
-2. **Magnets:** start with bought NdFeB, or design for in-house ferrite from
-   the start (heavier, no rare earth dependency)?
-3. **Markets:** Iceland only, or also Nordic and Arctic export from day one?
-   (Affects grid codes, languages and certification scope.)
-4. **Price target:** is there a target sale price or unit cost?
+1. **Price scope:** does 5 million ISK exclude VAT, and does it include the
+   tower but not foundation and installation (as assumed in section 1.5)?
+2. **Volume:** how many units per year do we expect to sell in Iceland? This
+   decides how certification and tooling costs are paid back.
