@@ -17,3 +17,6 @@ possible manufactured in-house.
 - [04 – Generator concept study](docs/04-generator-concept.md): topology,
   size, poles/slots, magnets and Iceland-specific protection
   (model in [analysis/generator](analysis/generator/)).
+- [05 – Generator FEA and thermal check](docs/05-generator-fea-thermal.md):
+  2D finite element results (back-EMF, cogging, torque, demagnetisation) and
+  thermal network; leads to N40UH magnets and a mandatory cooling package.

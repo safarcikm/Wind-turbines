@@ -5,6 +5,11 @@ Owner: Category 4 (Generator)
 Builds on: [02 – Design basis](02-design-basis.md), [03 – Rotor concept](03-rotor-concept.md)
 Model: [`analysis/generator/`](../analysis/generator/)
 
+> **Update (doc 05, FEA and thermal check):** magnet grade changed to
+> **N40UH**, a **cooling package is mandatory**, rated current density is
+> 3.32 A/mm² (slots to be deepened), efficiency ≈ 93.5 %. See
+> [05 – Generator FEA and thermal check](05-generator-fea-thermal.md).
+
 ## Summary
 
 | Decision | Recommendation |
