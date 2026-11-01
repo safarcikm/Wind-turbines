@@ -1,69 +1,109 @@
 # 12 kW Wind Turbine for Iceland: Project Categories
 
-Status: **Draft for review** · 2026-11-01
+Status: **Draft, revision 2** · 2026-11-01
 
 This document splits the project into work categories. For each category it
 gives the scope, the challenges that are specific to Icelandic conditions, how
-realistic in-house manufacturing is, and what the category depends on. It is a
-starting point for discussion, not a final design.
+much can be manufactured in-house, and what the category depends on.
+
+## 0. Decisions so far
+
+| Question | Decision (Martin, 2026-11-01) | What it means for the design |
+|---|---|---|
+| Site | **Every Icelandic environment**: coast, inland lowland and highland | Design to the worst case of each: salt of the coast, icing and cold of the highlands, wind of exposed headlands |
+| Use case | **All use cases**: grid-tied, off-grid with batteries, direct heating | One turbine with interchangeable power conversion modules |
+| Goal | **A product for sale** | Full type certification, CE marking, production quality system, service organisation |
+| Manufacturing | **All manufacturing capabilities are available** | Design is not limited by workshop tools; make/buy is decided by cost, quality and certification, not capability |
 
 ---
 
-## 1. Working design assumptions
+## 1. Design basis
 
-These are placeholders so the categories can be discussed concretely. Every
-one of them is open for change (see [Open questions](#6-open-questions)).
+### 1.1 Environmental envelope (all Icelandic sites)
+
+One design must survive anywhere in Iceland, so each parameter takes the
+worst case across site types.
+
+| Parameter | Design value | Driving site |
+|---|---|---|
+| Wind class | IEC 61400-2 **Class S**, reference wind speed V_ref ≈ 50 m/s, 3 s survival gust ≈ 70 m/s (to be confirmed from Met Office data) | Exposed headlands, mountain passes |
+| Turbulence | High turbulence category (IEC category A or site-specific higher) | Fjords, terrain near mountains |
+| Operating temperature | −30 °C to +30 °C | Highlands |
+| Survival temperature | −40 °C | Highlands, north and east |
+| Icing | Rime ice, wet snow and freezing rain; ice class to be defined (IEA Task 19 method) | Highlands (rime), coast (wet snow) |
+| Corrosion | ISO 12944 **C5** for coastal salt; plus H₂S resistance near geothermal areas | Coast, geothermal areas |
+| Erosion | Volcanic ash and sand storms on blades and seals | South and interior |
+| Seismic | Peak ground acceleration per Eurocode 8 Icelandic annex, highest zone | South Iceland seismic zone |
+| Air density | 1.20 to 1.35 kg/m³ | Cold, sea-level sites give the high end |
+
+### 1.2 Product configuration
 
 | Item | Working assumption | Why |
 |---|---|---|
 | Rated power | 12 kW electrical | Project goal |
 | Configuration | Horizontal axis, 3 blades, upwind | Proven, best efficiency, easiest to certify |
-| Rotor diameter | ~6.5 to 8 m (swept area ~35 to 50 m²) | 12 kW at ~11 to 12 m/s rated wind with Cp ≈ 0.40 and ~85 % electrical efficiency; cold Icelandic air (≈1.3 kg/m³) helps |
+| Rotor diameter | ~6.5 to 8 m (swept area ~35 to 50 m²) | 12 kW at ~11 to 12 m/s rated wind with Cp ≈ 0.40 and ~85 % electrical efficiency |
 | Rotor speed | ~150 to 200 rpm at rated | Tip speed ratio ≈ 6 to 7 |
-| Drivetrain | Direct drive, no gearbox | Fewer parts, no gear oil in the cold, simpler to build in-house |
+| Drivetrain | Direct drive, no gearbox | Fewer parts, no gear oil in the cold |
 | Generator | Permanent magnet synchronous, multi-pole | Matches direct drive |
-| Overspeed protection | Active pitch or furling (to be decided) plus mechanical brake | Gusts make this the most important safety decision |
-| Hub height | 15 to 24 m, tilt-up tower | Can be lowered for service without a crane |
-| Design standard | IEC 61400-2 (small wind turbines, swept area < 200 m²), Class I or Class S | Iceland's extreme winds likely exceed standard classes |
-| Design temperature | −30 °C operating, −40 °C survival | Highland and north-coast sites |
+| Overspeed protection | **Active pitch recommended**, plus fail-safe mechanical brake | For a product facing 70 m/s gusts anywhere, pitch gives controlled power shedding and lower structural loads than furling |
+| Hub height | 18 and 24 m tower options, tilt-up | Service without a crane |
+| Design standard | IEC 61400-2 Class S, type certified | Required to sell |
 | Design life | 20 years | Industry norm |
 
-### "Make everything ourselves": a realistic boundary
+### 1.3 One platform, several variants
 
-Building everything from raw material is possible for most of the turbine, but
-a few items cannot sensibly be made in a workshop. The proposed rule:
+To fit every site and every use case without over-building each unit, the
+product is designed as one **core turbine** with options:
 
-- **Make in-house:** all design, blades, hub, nacelle frame, generator (winding,
-  assembly, rotor), tower, foundation design, power electronics boards
-  (design and assembly), control software, tooling and moulds.
-- **Buy as raw material or commodity parts:** steel, aluminium, fibreglass and
-  resin, copper magnet wire, electrical steel laminations (or sheet to cut),
-  fasteners.
-- **Buy as components (no realistic alternative):** NdFeB or ferrite magnets,
-  rolling bearings, power semiconductors (MOSFETs/IGBTs), microcontrollers,
-  sensors, capacitors, cables, slip ring.
+- **Core turbine:** rotor, hub with pitch, nacelle, generator, controller.
+  Designed to the full wind and temperature envelope and C5 corrosion as
+  standard (cheaper than managing two corrosion grades in production).
+- **Cold climate package:** blade heating or ice-phobic coating, heated
+  nacelle electronics, ice detection with automatic stop. Needed for
+  highland and icing-prone sites.
+- **Tower options:** guyed tilt-up tower for most sites, freestanding tower
+  where guys are not possible; foundation variants for rock, soil and
+  permafrost-like ground.
+- **Power modules** (see category 7): grid-tie inverter, battery charger,
+  heating controller, or a hybrid combining them.
 
-Everything in the third group is a standard catalogue part from several
-suppliers, so it does not create dependence on one manufacturer.
+### 1.4 Make or buy
+
+With full manufacturing capability, the turbine can be made in-house from raw
+material almost entirely. Three items are still worth discussing, because
+making them is a separate industry rather than a workshop process:
+
+| Item | Option A: make | Option B: buy | Recommendation |
+|---|---|---|---|
+| Permanent magnets | Ferrite magnets can be pressed and sintered in-house; NdFeB needs rare earth alloy and sintering lines | Standard catalogue magnets from many suppliers | Buy NdFeB at first; consider in-house ferrite later (heavier generator, no rare earth dependency) |
+| Rolling bearings | Possible with heat treatment and precision grinding | Standard catalogue bearings, certified load ratings | Buy; certification bodies expect rated bearings |
+| Power semiconductors and chips | Not realistic (needs a semiconductor fab) | Multiple suppliers | Buy; design boards so parts from several makers fit |
+
+Everything else (blades, hub, generator, shafts, castings, nacelle, tower,
+electronics boards, enclosures, firmware, cables assembly, tooling) is
+planned as in-house.
 
 ---
 
 ## 2. Category overview
 
-| # | Category | In-house feasibility | Main Iceland driver |
+| # | Category | In-house | Main Iceland driver |
 |---|---|---|---|
 | 1 | Systems engineering and requirements | Full | Defining extreme wind and icing loads |
-| 2 | Rotor and blades | High | Gusts, icing, ash erosion |
-| 3 | Hub, pitch and yaw | High (bearings bought) | Fast gust response, cold lubrication |
-| 4 | Generator | Medium to high (magnets bought) | Cold, humidity, salt in windings |
-| 5 | Nacelle, shaft and bearings | High (bearings bought) | Sealing against salt, ash, driven snow |
-| 6 | Tower and foundation | High | Extreme wind loads, frost heave, earthquakes |
-| 7 | Power electronics and grid connection | Medium | Cold start, grid rules, dump loads |
+| 2 | Rotor and blades | Full | Gusts, icing, ash erosion |
+| 3 | Hub, pitch and yaw | Full (bearings bought) | Fast gust response, cold lubrication |
+| 4 | Generator | Full (magnets bought at first) | Cold, humidity, salt in windings |
+| 5 | Nacelle, shaft and bearings | Full (bearings bought) | Sealing against salt, ash, driven snow |
+| 6 | Tower and foundation | Full | Extreme wind loads, frost heave, earthquakes |
+| 7 | Power electronics and power modules | Full (semiconductors bought) | Cold start, grid rules, heating use |
 | 8 | Control, safety and monitoring | Full | Storm shutdown, ice detection, remote sites |
-| 9 | Materials, corrosion and environmental protection | Full (as engineering), coatings bought | Salt, volcanic ash, H₂S, UV, freeze–thaw |
-| 10 | Manufacturing and tooling | Full (this category *is* the in-house capability) | Workshop climate for composites |
-| 11 | Testing and validation | High | Using Icelandic weather as a test bench |
-| 12 | Certification, permits and documentation | Engineering in-house, certification external | Local permits, grid operator approval |
+| 9 | Materials, corrosion and environmental protection | Full | Salt, volcanic ash, H₂S, UV, freeze–thaw |
+| 10 | Manufacturing, production and quality | Full | Series production, imported raw materials |
+| 11 | Testing and validation | Full (accredited tests external) | Using Icelandic weather as a test bench |
+| 12 | Certification, compliance and documentation | Engineering in-house, certification external | Type certification, CE, grid codes |
+| 13 | Product management and business | Full | Market across all site types and uses |
+| 14 | Installation, service and lifecycle | Full | Remote sites, winter access |
 
 ---
 
@@ -102,10 +142,10 @@ moulds.
 - Volcanic ash and sand storms erode leading edges quickly.
 - Low temperatures make composites brittle and affect resin curing.
 
-**In-house:** High. Fibreglass/epoxy blades of 3 to 4 m length are well within
-workshop capability using CNC-machined plugs and hand layup or vacuum infusion.
-Wood/epoxy cores are a proven alternative. Leading edge protection tape or
-coating is bought.
+**In-house:** Full. Fibreglass/epoxy blades of 3 to 4 m length made by
+vacuum infusion or resin transfer moulding in CNC-machined moulds, including
+leading edge protection and optional heating elements (cold climate package).
+Blades must pass static and fatigue tests for certification.
 
 **Depends on:** 1 (loads), 3 (pitch or fixed root design), 9 (materials),
 10 (moulds). **Feeds:** 4 (torque and speed), 6 (thrust loads), 8 (control
@@ -113,20 +153,18 @@ strategy).
 
 ### 3. Hub, pitch and yaw
 
-**Scope:** hub casting or weldment, overspeed regulation method (active pitch,
-passive pitch, or furling), yaw system (tail vane or active yaw drive), yaw
-bearing, yaw brake or damper.
+**Scope:** hub casting or weldment, active pitch system (recommended, see
+section 1.2) with fail-safe return to feather (spring or stored energy), yaw
+system (tail vane or active yaw drive), yaw bearing, yaw brake or damper.
 
 **Iceland-specific challenges:**
-- This is the key survival decision. The rotor must shed power within seconds
-  when a gust hits. Furling is simple but rough on the structure in gusty
-  wind; active pitch is smoother but more complex.
+- The rotor must shed power within seconds when a gust hits, at any site.
+  Fail-safe pitch to feather on loss of power is the key survival function.
 - Lubricants and seals must work at −30 °C.
 - Ice can jam pitch and yaw mechanisms.
 
-**In-house:** High for the hub, linkages, tail and frames (welding and CNC).
-Slewing or yaw bearings and pitch bearings are bought. Pitch actuators can be
-built from bought motors or springs.
+**In-house:** Full for hub (casting or weldment), pitch mechanism and
+actuators, yaw system and frames. Pitch and yaw bearings bought (section 1.4).
 
 **Depends on:** 1, 2, 5. **Feeds:** 8 (control), 6 (top mass and loads).
 
@@ -142,11 +180,10 @@ magnets, insulation system, cooling, temperature sensing.
 - Cold makes magnet adhesives and insulation brittle; thermal cycling.
 - Very high wind means frequent operation at full load and overspeed events.
 
-**In-house:** Medium to high. Axial-flux or outer-rotor radial-flux machines
-of this size are built by small workshops worldwide. Winding coils, casting
-in resin and machining rotor discs are all doable. Magnets must be bought.
-Laminations can be laser-cut from bought electrical steel (radial flux) or
-avoided entirely (axial flux with air-cored coils).
+**In-house:** Full: lamination stamping, coil winding, vacuum pressure
+impregnation, rotor manufacture and magnet assembly. Magnets bought at first
+(NdFeB), with in-house ferrite as a later option (section 1.4). Topology
+(axial flux vs outer-rotor radial flux) is a design trade to be made early.
 
 **Depends on:** 2 (speed and torque curve), 7 (voltage level), 9.
 **Feeds:** 5 (mass and mounting), 7 (electrical characteristics).
@@ -163,8 +200,8 @@ drainage.
 - Bearing grease must be rated for low temperatures.
 - Easy access for service in bad weather (or tilt-down design).
 
-**In-house:** High. Frames, shafts and covers are standard welding, turning
-and composite work. Bearings, seals and the brake caliper are bought.
+**In-house:** Full: frames, shafts, castings, covers, seals and brake.
+Main bearings bought (section 1.4).
 
 **Depends on:** 2, 3, 4. **Feeds:** 6 (top-head mass and interface).
 
@@ -180,34 +217,41 @@ tilt-up mechanism, anchors, foundation, grounding and lightning protection.
 - Iceland is seismically active; earthquake loads must be checked.
 - Lightning is relatively rare but still needs a grounding system.
 
-**In-house:** High. Steel tube or lattice towers are welding and
-galvanizing work (hot-dip galvanizing usually outsourced, or use bought
-galvanized tube). Foundations are poured locally.
+**In-house:** Full: tower fabrication, hot-dip galvanizing or coating, guy
+and anchor hardware, standard foundation designs per ground type. Foundations
+are poured on site by the installer to our drawings.
 
 **Depends on:** 1 (loads), 2 and 3 (thrust and top mass), 9 (corrosion).
 **Feeds:** 11 (test site), 12 (permits).
 
-### 7. Power electronics and grid connection
+### 7. Power electronics and power modules
 
-**Scope:** rectifier, DC link, maximum power point tracking, inverter
-(grid-tied) or charge controller (battery/off-grid), dump load, protection,
-cabling, metering.
+**Scope:** a common front end (rectifier, DC link, maximum power point
+tracking, protection) plus plug-in output modules so one turbine serves every
+use case:
+
+- **Grid-tie module:** 1-phase or 3-phase 230/400 V 50 Hz inverter.
+- **Battery module:** charge controller for 48 V class battery banks
+  (off-grid farms, cabins, telecom sites).
+- **Heating module:** direct resistive heating of water tanks or space
+  heaters, also acting as the dump load.
+- **Hybrid:** any combination, with priority logic (for example battery
+  first, then heating, then grid).
 
 **Iceland-specific challenges:**
 - Components must start and run at −30 °C (electrolytic capacitors and
   batteries suffer in the cold).
 - Grid connection needs approval from the local distribution operator (for
-  example RARIK, HS Veitur, Veitur or Orkubú Vestfjarða depending on region).
-- Electricity in Iceland is cheap, so using surplus power for **heating**
-  (water or space heating via dump load) may be more valuable than grid
-  export.
+  example RARIK, HS Veitur, Veitur or Orkubú Vestfjarða depending on region)
+  and compliance with EN 50549-1.
+- Electricity in Iceland is cheap, so heating and off-grid use are likely a
+  large part of the market.
 
-**In-house:** Medium. Designing and assembling the boards, enclosure and
-firmware is realistic. Semiconductors, capacitors, magnetics cores and
-connectors are bought. A grid-tied inverter is the hardest item to certify;
-an off-grid/heating system is much easier.
+**In-house:** Full design and production of boards, magnetics, enclosures and
+firmware. Semiconductors, capacitors and chips are bought. The grid-tie
+module carries the most certification work.
 
-**Depends on:** 4, the use case decision. **Feeds:** 8, 12.
+**Depends on:** 4. **Feeds:** 8, 12, 13.
 
 ### 8. Control, safety and monitoring
 
@@ -247,11 +291,13 @@ specialty materials are bought; applying them can be done in-house.
 
 **Depends on:** site selection. **Feeds:** 2, 4, 5, 6, 7.
 
-### 10. Manufacturing and tooling
+### 10. Manufacturing, production and quality
 
-**Scope:** workshop setup, process plans, jigs, blade moulds, coil winding
-machine, CNC machining, welding procedures, composite workshop, quality
-control, build documentation, cost per unit.
+**Scope:** production layout, process plans, jigs, blade moulds, coil winding,
+CNC machining, welding procedures (certified welders, EN ISO 3834), composite
+production, end-of-line testing, ISO 9001 quality system, traceability of
+every serial number, supply chain for raw materials and bought parts, cost per
+unit and production volume planning.
 
 **Iceland-specific challenges:**
 - Composites need a heated, humidity-controlled space for proper curing.
@@ -259,11 +305,12 @@ control, build documentation, cost per unit.
   matters.
 - Geothermal heat is cheap, which helps heat curing rooms and ovens.
 
-**In-house:** This category *is* the in-house capability. Key equipment:
-CNC router (moulds, plugs), metal lathe and mill, MIG/TIG welding, coil
-winder, vacuum pump for infusion and impregnation, curing oven.
+**In-house:** Full; all manufacturing capabilities are assumed available.
+The work here is turning prototype methods into repeatable, certified
+production.
 
-**Depends on:** design outputs from 2 to 8. **Feeds:** all hardware.
+**Depends on:** design outputs from 2 to 8. **Feeds:** all hardware, 12
+(certification audits factory quality), 13 (unit cost).
 
 ### 11. Testing and validation
 
@@ -277,29 +324,68 @@ load and vibration measurement, long-term reliability monitoring.
 - Cold-chamber testing of electronics and lubricants before field use.
 - Test site access in winter.
 
-**In-house:** High. Test rigs (generator test bench, blade static test frame)
-can be built in-house. A calibrated anemometer mast is bought.
+**In-house:** Full for test rigs (generator dynamometer, blade static and
+fatigue rigs, climate chamber) and an own test field. Power curve, noise and
+load measurements used for certification must be done or witnessed by an
+accredited lab.
 
 **Depends on:** 6 (test site), 8 (data logging), all hardware.
 **Feeds:** 12 and design iteration in every category.
 
-### 12. Certification, permits and documentation
+### 12. Certification, compliance and documentation
 
-**Scope:** IEC 61400-2 compliance, electrical safety and EMC (CE marking for
-sale in the EEA), grid operator approval, building and planning permits from
-the municipality, noise assessment, user and service manuals.
+**Scope:** IEC 61400-2 type certification (design evaluation, type tests,
+manufacturing evaluation), IEC 61400-11 noise and IEC 61400-12-1 power curve
+measurement, CE marking for sale in the EEA (EU Machinery Regulation
+2023/1230, Low Voltage and EMC directives), grid code compliance (EN 50549-1),
+technical file, risk assessment, user, installation and service manuals in
+Icelandic and English. Guidance for customers on municipal building permits.
 
 **Iceland-specific challenges:**
-- Municipal planning permission (deiliskipulag/building permit) for towers.
-- Grid connection rules of the local distribution operator.
-- Possibly visual impact and bird considerations depending on site.
+- Showing compliance with a Class S design that covers the full Icelandic
+  envelope, including icing.
+- Grid connection rules differ between distribution operators.
+- Municipal planning and building permits for each installation.
 
-**In-house:** Engineering documentation and self-assessment in-house.
-Formal certification (if the turbine is to be sold) requires an accredited
-external body.
+**In-house:** Engineering documentation, analysis and pre-compliance testing
+in-house. Type certification and accredited measurements require an external
+certification body.
 
-**Depends on:** 1, 7, 8, 11. **Feeds:** project go/no-go for sale or
-grid connection.
+**Depends on:** 1, 7, 8, 10, 11. **Feeds:** right to sell; 13.
+
+### 13. Product management and business
+
+**Scope:** target customers and segments (farms, summer houses, remote
+industry, telecom, fish farms, municipalities), product variants and options
+(section 1.3), price and unit cost targets, warranty terms, sales channels,
+export markets beyond Iceland (other Nordic and Arctic regions share the same
+conditions), product roadmap.
+
+**Iceland-specific challenges:**
+- Small home market, so the design should also suit export to similar
+  climates.
+- Cheap grid electricity makes payback against grid power long; heating and
+  off-grid value propositions matter more.
+
+**In-house:** Full.
+
+**Depends on:** 7, 10, 12. **Feeds:** 1 (requirements and cost targets).
+
+### 14. Installation, service and lifecycle
+
+**Scope:** installation method and kit (tilt-up gin pole, winch),
+foundation instructions per ground type, commissioning procedure, installer
+training, remote monitoring service, maintenance schedule, spare parts,
+warranty handling, end-of-life recycling (especially blades).
+
+**Iceland-specific challenges:**
+- Remote sites with winter-only or weather-limited access; the turbine must
+  be serviceable by lowering it, without cranes.
+- Service intervals should avoid winter work where possible.
+
+**In-house:** Full.
+
+**Depends on:** 6, 8, 10. **Feeds:** 1 (serviceability requirements), 13.
 
 ---
 
@@ -321,42 +407,44 @@ flowchart TD
     C5 --> C6
     C3 --> C8[8 Control and safety]
     C7 --> C8
-    C10[10 Manufacturing and tooling] -.-> C2
+    C10[10 Manufacturing and quality] -.-> C2
     C10 -.-> C4
     C10 -.-> C5
     C10 -.-> C6
     C8 --> C11[11 Testing]
     C6 --> C11
-    C11 --> C12[12 Certification and permits]
+    C11 --> C12[12 Certification]
+    C10 --> C12
     C11 -.->|iteration| C1
+    C12 --> C13[13 Product and business]
+    C13 -.->|requirements, cost targets| C1
+    C6 --> C14[14 Installation and service]
+    C8 --> C14
+    C14 -.->|serviceability| C1
 ```
 
 ## 5. Suggested order of work
 
-1. **Decide the basics:** site, use case (grid, off-grid, heating), pitch vs
-   furling. (Category 1)
-2. **Rotor and generator concept** together, since they set speed and torque.
-   (2, 3, 4)
-3. **Structure:** nacelle, tower and foundation. (5, 6)
-4. **Electrical and control.** (7, 8)
-5. **Tooling and first prototype build.** (10)
-6. **Test, iterate, then certify.** (11, 12)
+1. **Design basis:** confirm the environmental envelope from Met Office
+   data, set the IEC Class S parameters, cost and price targets. (1, 13)
+2. **Rotor, pitch and generator concept** together, since they set speed
+   and torque. (2, 3, 4)
+3. **Structure:** nacelle, tower and foundation variants. (5, 6)
+4. **Electrical and control:** common front end first, then power modules.
+   (7, 8)
+5. **Prototype build and test field**, with production methods in mind
+   from the start. (10, 11)
+6. **Certification campaign, pilot series, service setup.** (12, 14)
 
-Category 9 (materials) runs alongside all of these from the start.
+Categories 9 (materials) and 13 (product) run alongside all of these from
+the start.
 
 ## 6. Open questions
 
-These decisions change the design the most:
-
-1. **Site:** coastal, inland lowland or highland? (Sets icing, salt and wind
-   class.)
-2. **Use case:** grid-tied export, off-grid with batteries, or direct heating?
-3. **Overspeed control:** active pitch (smoother, more complex) or furling
-   (simpler, harsher loads)?
-4. **Goal:** one turbine for own use, or a product for sale? (Sets how far
-   certification must go.)
-5. **Workshop:** which tools and skills are already available (CNC, welding,
-   composites, electronics)?
-6. **Make/buy boundary:** is the boundary in section 1 acceptable, or should
-   we try harder on items like magnets (ferrite instead of NdFeB) or
-   bearings?
+1. **Overspeed control:** agree to active pitch, or keep furling in the
+   comparison?
+2. **Magnets:** start with bought NdFeB, or design for in-house ferrite from
+   the start (heavier, no rare earth dependency)?
+3. **Markets:** Iceland only, or also Nordic and Arctic export from day one?
+   (Affects grid codes, languages and certification scope.)
+4. **Price target:** is there a target sale price or unit cost?
