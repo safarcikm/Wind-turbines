@@ -14,3 +14,6 @@ possible manufactured in-house.
 - [03 – Rotor concept study](docs/03-rotor-concept.md): rotor diameter,
   tip speed, blade shape, aerofoils and pitch schedule
   (model in [analysis/rotor](analysis/rotor/)).
+- [04 – Generator concept study](docs/04-generator-concept.md): topology,
+  size, poles/slots, magnets and Iceland-specific protection
+  (model in [analysis/generator](analysis/generator/)).
