@@ -1,6 +1,6 @@
 # 12 kW Wind Turbine for Iceland: Project Categories
 
-Status: **Draft, revision 3** · 2026-11-01
+Status: **Draft, revision 4** · 2026-11-01
 
 This document splits the project into work categories. For each category it
 gives the scope, the challenges that are specific to Icelandic conditions, how
@@ -17,7 +17,7 @@ much can be manufactured in-house, and what the category depends on.
 | Overspeed control | **Active pitch** | Fail-safe pitch to feather is the primary survival system |
 | Magnets | **Bought NdFeB** | Compact, light generator; in-house ferrite dropped for now |
 | Market | **Iceland only, for now** | Icelandic grid operators, Icelandic language documentation, Icelandic permits; export kept as a later option |
-| Price | **5 million ISK** sale price | See the cost budget in section 1.5 |
+| Priority | **Quality first, no shortcuts.** Pricing is out of scope for now | Every design choice favours reliability, safety and lifetime; cost optimisation comes in a later phase |
 
 ---
 
@@ -89,42 +89,6 @@ electronics boards, enclosures, firmware, cables assembly, tooling) is
 planned as in-house.
 
 
-### 1.5 Cost budget for a 5 million ISK sale price
-
-**Assumption (to confirm):** 5,000,000 ISK is the sale price to the customer
-excluding 24 % VAT, for turbine, 18 m tower and one power module. Foundation
-work and installation are quoted separately. This is about €34,000 or roughly
-417,000 ISK per kW.
-
-A healthy small manufacturer needs the factory cost of one unit to be about
-**55 % of the sale price**, leaving the rest for sales, overheads, R&D and
-certification payback, and profit. That gives a target unit cost of
-**about 2.75 million ISK**, split as a starting budget:
-
-| Subsystem | Share | Budget (ISK) |
-|---|---|---|
-| Rotor and blades (3 blades, LEP) | 12 % | 330,000 |
-| Hub and pitch system | 10 % | 275,000 |
-| Generator (incl. NdFeB magnets) | 15 % | 410,000 |
-| Nacelle, shaft, bearings, brake, yaw | 10 % | 275,000 |
-| Tower 18 m with guys and anchors | 18 % | 495,000 |
-| Power electronics (front end + one module) | 15 % | 410,000 |
-| Controller, sensors, remote monitoring | 7 % | 195,000 |
-| Assembly, end-of-line test, packaging | 8 % | 220,000 |
-| Warranty reserve | 5 % | 140,000 |
-| **Unit cost total** | **100 %** | **2,750,000** |
-
-Things that move this budget most:
-
-- **Volume.** Type certification, accredited testing and tooling are one-off
-  costs, likely tens of millions of ISK. Spread over 50 units that is far more
-  per unit than over 500. The annual sales volume is the key number for the
-  business case.
-- **Options.** The cold climate package, the 24 m tower and extra power
-  modules are priced as extras on top of 5 million ISK.
-- **Designing for the worst case.** C5 corrosion and Class S loads as
-  standard add cost to every unit; this is accepted to keep one product.
-
 ---
 
 ## 2. Category overview
@@ -153,7 +117,7 @@ Things that move this budget most:
 ### 1. Systems engineering and requirements
 
 **Scope:** site wind data, design load cases, overall architecture, power curve
-and energy yield targets, mass and cost budget, interfaces between all other
+and energy yield targets, mass budget, interfaces between all other
 categories, requirement tracking.
 
 **Iceland-specific challenges:**
@@ -398,19 +362,19 @@ certification body.
 
 **Scope:** target customers and segments (farms, summer houses, remote
 industry, telecom, fish farms, municipalities), product variants and options
-(section 1.3), price and unit cost targets, warranty terms, sales channels,
+(section 1.3), warranty terms, sales channels,
 product roadmap. Iceland is the only market for now; Nordic and Arctic
 export is a later option and the design should not rule it out.
 
 **Iceland-specific challenges:**
 - Small home market, so certification and tooling costs are spread over few
-  units; volume assumptions drive the price.
+  units. Pricing and cost optimisation are deferred to a later phase.
 - Cheap grid electricity makes payback against grid power long; heating and
   off-grid value propositions matter more.
 
 **In-house:** Full.
 
-**Depends on:** 7, 10, 12. **Feeds:** 1 (requirements and cost targets).
+**Depends on:** 7, 10, 12. **Feeds:** 1 (requirements).
 
 ### 14. Installation, service and lifecycle
 
@@ -458,7 +422,7 @@ flowchart TD
     C10 --> C12
     C11 -.->|iteration| C1
     C12 --> C13[13 Product and business]
-    C13 -.->|requirements, cost targets| C1
+    C13 -.->|requirements| C1
     C6 --> C14[14 Installation and service]
     C8 --> C14
     C14 -.->|serviceability| C1
@@ -467,7 +431,7 @@ flowchart TD
 ## 5. Suggested order of work
 
 1. **Design basis:** confirm the environmental envelope from Met Office
-   data, set the IEC Class S parameters, cost and price targets. (1, 13)
+   data, set the IEC Class S parameters and quality requirements. (1)
 2. **Rotor, pitch and generator concept** together, since they set speed
    and torque. (2, 3, 4)
 3. **Structure:** nacelle, tower and foundation variants. (5, 6)
@@ -482,7 +446,11 @@ the start.
 
 ## 6. Open questions
 
-1. **Price scope:** does 5 million ISK exclude VAT, and does it include the
-   tower but not foundation and installation (as assumed in section 1.5)?
-2. **Volume:** how many units per year do we expect to sell in Iceland? This
-   decides how certification and tooling costs are paid back.
+None blocking. Pricing, cost optimisation and sales volume are deferred until
+the design is mature.
+
+## 7. Next step
+
+Detailed work starts with category 1 (design basis): confirming the
+environmental envelope from Icelandic Met Office data and writing the
+requirements specification that every other category designs against.
