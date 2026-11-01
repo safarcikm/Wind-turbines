@@ -17,14 +17,23 @@ import matplotlib.pyplot as plt
 
 from fem import Geometry, Model, MU0
 
-OUT = Path(__file__).parent / "results"
-OUT.mkdir(exist_ok=True)
+import sys
+
+# Design iterations. "iter1" = docs/05 round 1; "iter2" = round 2 (docs/06).
+VARIANTS = {
+    "iter1": dict(geo={}, hcj20=1592e3, magnet="N42SH"),
+    "iter2": dict(geo=dict(br20=1.26, hm=0.0077, d_slot=0.065), hcj20=1990e3, magnet="N40UH"),
+}
+VARIANT = sys.argv[1] if len(sys.argv) > 1 else "iter1"
+OUT = Path(__file__).parent / "results" / ("" if VARIANT == "iter1" else VARIANT)
+OUT.mkdir(parents=True, exist_ok=True)
 
 N_RATED = 178.0
 T_TARGET = 802.0                      # Nm, sizing torque (rated x 1.1)
 A_LOAD = 30_000.0                     # A/m rms electric loading from sizing
 E_LINE_TARGET = 380.0                 # V rms line, rated speed, hot magnets
-HCJ20 = 1592e3                        # N42SH intrinsic coercivity at 20 C [A/m] (>= 20 kOe)
+HCJ20 = VARIANTS[VARIANT]["hcj20"]    # intrinsic coercivity at 20 C [A/m] (SH >= 20 kOe, UH >= 25 kOe)
+RHO_CU_75 = 2.08e-8
 HCJ_TC = -0.0055                      # 1/K, typical for SH grade (datasheet to confirm)
 P15_50, HYST_SHARE, BUILD, RHO_LAM = 2.7, 0.7, 1.5, 7650
 
@@ -37,11 +46,11 @@ def fourier(y, n):
 
 
 def main():
-    geo = Geometry()
+    geo = Geometry(**VARIANTS[VARIANT]["geo"])
     M = Model(geo)
     p = geo.poles // 2
     deg = math.pi / 180
-    res = dict(geometry={k: getattr(geo, k) for k in
+    res = dict(variant=VARIANT, magnet=VARIANTS[VARIANT]["magnet"], geometry={k: getattr(geo, k) for k in
                          ["poles", "slots", "L", "r_s", "g", "sleeve", "hm", "h_ry", "alpha_m",
                           "w_t", "b0", "h_tip", "h_wedge", "d_slot", "h_sy", "br20", "t_mag"]},
                mesh=dict(nodes=int(M.mesh.n_nodes), elements=int(len(M.mesh.area)),
@@ -193,6 +202,15 @@ def main():
         tr.append(M.torque())
     tr = np.array(tr)
     J_cu = NI_t / math.sqrt(2) / (M.side_area[0, 0] * 0.45) / 1e6
+    cu_total = geo.slots * 2 * M.side_area[0, 0] * 0.45
+    l_half_turn = geo.L + 1.3 * 2 * math.pi * geo.r_s / geo.slots
+    p_cu75 = RHO_CU_75 * (J_cu * 1e6) ** 2 * cu_total * l_half_turn
+    p_shaft = 729 * N_RATED * 2 * math.pi / 60
+    p_fe_load = p_fe * 1.15
+    p_tot = p_cu75 + p_fe_load + 40 + 70
+    res["losses_rated"] = dict(copper_75C_W=round(p_cu75), iron_W=round(p_fe_load), rotor_W=40, stray_W=70,
+                               total_W=round(p_tot), efficiency_75C=round(1 - p_tot / p_shaft, 4),
+                               copper_area_total_m2=round(cu_total, 5), slot_area_mm2=round(2 * M.side_area[0, 0] * 1e6))
     res["rated_load"] = dict(
         design_ampere_turns_per_side_rms=round(NI_rms_side),
         torque_at_design_loading_Nm=round(t0, 1),

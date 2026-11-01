@@ -20,3 +20,5 @@ possible manufactured in-house.
 - [05 – Generator FEA and thermal check](docs/05-generator-fea-thermal.md):
   2D finite element results (back-EMF, cogging, torque, demagnetisation) and
   thermal network; leads to N40UH magnets and a mandatory cooling package.
+- [06 – Generator simulation round 2](docs/06-generator-round2.md): confirms
+  the fixes (all checks pass) and freezes the generator concept data.

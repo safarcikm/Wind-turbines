@@ -9,6 +9,10 @@ Model: [`analysis/generator/`](../analysis/generator/)
 > **N40UH**, a **cooling package is mandatory**, rated current density is
 > 3.32 A/mm² (slots to be deepened), efficiency ≈ 93.5 %. See
 > [05 – Generator FEA and thermal check](05-generator-fea-thermal.md).
+>
+> **Update (doc 06, round 2):** all checks pass with N40UH 7.7 mm magnets;
+> stack length fixed at **74 mm**. Current data freeze is in
+> [06 – Generator simulation round 2](06-generator-round2.md).
 
 ## Summary
 

@@ -1,0 +1,102 @@
+{
+  "variant": "iter2",
+  "magnet": "N40UH",
+  "geometry": {
+    "poles": 40,
+    "slots": 45,
+    "L": 0.069,
+    "r_s": 0.299,
+    "g": 0.002,
+    "sleeve": 0.0005,
+    "hm": 0.0077,
+    "h_ry": 0.012,
+    "alpha_m": 0.8,
+    "w_t": 0.0223,
+    "b0": 0.004,
+    "h_tip": 0.002,
+    "h_wedge": 0.002,
+    "d_slot": 0.065,
+    "h_sy": 0.0114,
+    "br20": 1.26,
+    "t_mag": 100.0
+  },
+  "mesh": {
+    "nodes": 76320,
+    "elements": 149760,
+    "section_deg": 72.0
+  },
+  "no_load_flux": {
+    "gap_Br_peak_T": 0.922,
+    "gap_Br_fundamental_T": 0.988,
+    "stator_B_p50_T": 0.95,
+    "stator_B_p95_T": 1.68,
+    "rotor_yoke_B_p95_T": 1.4
+  },
+  "back_emf": {
+    "psi1_per_turn_full_machine_Wb": 0.0286,
+    "turns_per_coil": 29,
+    "coils_per_phase_series": 15,
+    "line_emf_rated_hot_V": 378.7,
+    "line_emf_overspeed_cold_V": 580.3,
+    "line_emf_overspeed_cold_peak_V": 820.6,
+    "phase_emf_THD_pct": 11.45,
+    "line_emf_THD_pct": 0.54,
+    "emf_harmonics_pct": {
+      "2": 0.0,
+      "3": 11.44,
+      "4": 0.0,
+      "5": 0.47,
+      "6": 0.0,
+      "7": 0.2,
+      "8": 0.0,
+      "9": 0.02,
+      "10": 0.0,
+      "11": 0.15,
+      "12": 0.0,
+      "13": 0.1
+    }
+  },
+  "iron_loss_no_load_W": 190,
+  "cogging": {
+    "period_deg_mech": 1.0,
+    "peak_to_peak_Nm": 0.85,
+    "peak_to_peak_pct_rated": 0.116,
+    "two_step_skew_pp_Nm": 0.083,
+    "three_step_skew_pp_Nm": 0.015
+  },
+  "losses_rated": {
+    "copper_75C_W": 496,
+    "iron_W": 219,
+    "rotor_W": 40,
+    "stray_W": 70,
+    "total_W": 825,
+    "efficiency_75C": 0.9393,
+    "copper_area_total_m2": 0.01887,
+    "slot_area_mm2": 932
+  },
+  "rated_load": {
+    "design_ampere_turns_per_side_rms": 626,
+    "torque_at_design_loading_Nm": 749.1,
+    "ampere_turns_per_side_rms_for_802Nm": 672,
+    "current_density_for_802Nm_A_per_mm2": 3.2,
+    "phase_current_rms_A": 23.2,
+    "mean_torque_Nm": 803.1,
+    "ripple_pp_Nm": 15.1,
+    "ripple_pp_pct": 1.88
+  },
+  "short_circuit_demag": {
+    "magnet_temp_C": 120,
+    "Ld_mH": 13.95,
+    "steady_short_circuit_current_peak_A": 60.3,
+    "transient_current_peak_A": 120.7,
+    "min_H_in_magnet_kA_per_m": -643.0,
+    "H_1pct_worst_kA_per_m": -585.2,
+    "Hcj_120C_kA_per_m": 895.5,
+    "margin_to_Hcj_pct": 28.2
+  },
+  "short_circuit_demag_N40UH": {
+    "min_H_in_magnet_kA_per_m": -643.0,
+    "Hcj_120C_kA_per_m": 895.5,
+    "margin_to_Hcj_pct": 28.2
+  }
+}

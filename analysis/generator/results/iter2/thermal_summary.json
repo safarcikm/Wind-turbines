@@ -1,0 +1,146 @@
+{
+  "inputs": {
+    "P_cu_75": 496,
+    "P_fe": 218,
+    "P_rotor": 40.0,
+    "P_stray": 70.0
+  },
+  "cases": {
+    "hot_day_rated_10.5ms": {
+      "T_amb": 30,
+      "V_wind": 10.5,
+      "load": 1.0,
+      "h_out": 22.9,
+      "P_cu": 680,
+      "T_winding": 169.2,
+      "T_end_winding": 169.5,
+      "T_hotspot": 170.9,
+      "T_core": 163.9,
+      "T_internal_air": 105.8,
+      "T_rotor_magnets": 72.3,
+      "rise_winding_K": 139.2
+    },
+    "hot_day_rated_wake_calm_nacelle": {
+      "T_amb": 30,
+      "V_wind": 10.5,
+      "load": 1.0,
+      "h_out": 18.8,
+      "P_cu": 693,
+      "T_winding": 176.1,
+      "T_end_winding": 176.4,
+      "T_hotspot": 177.9,
+      "T_core": 170.7,
+      "T_internal_air": 112.4,
+      "T_rotor_magnets": 78.7,
+      "rise_winding_K": 146.1
+    },
+    "hot_day_110pct_overload": {
+      "T_amb": 30,
+      "V_wind": 12.0,
+      "load": 1.1,
+      "h_out": 24.4,
+      "P_cu": 894,
+      "T_winding": 199.3,
+      "T_end_winding": 199.7,
+      "T_hotspot": 201.7,
+      "T_core": 192.3,
+      "T_internal_air": 120.2,
+      "T_rotor_magnets": 78.5,
+      "rise_winding_K": 169.3
+    },
+    "typical_iceland_rated_10C": {
+      "T_amb": 10,
+      "V_wind": 12.0,
+      "load": 1.0,
+      "h_out": 24.4,
+      "P_cu": 616,
+      "T_winding": 136.3,
+      "T_end_winding": 136.5,
+      "T_hotspot": 137.9,
+      "T_core": 131.6,
+      "T_internal_air": 76.8,
+      "T_rotor_magnets": 45.3,
+      "rise_winding_K": 126.3
+    },
+    "cold_rated_minus30C": {
+      "T_amb": -30,
+      "V_wind": 15.0,
+      "load": 1.0,
+      "h_out": 37.4,
+      "P_cu": 490,
+      "T_winding": 72.1,
+      "T_end_winding": 72.2,
+      "T_hotspot": 73.3,
+      "T_core": 68.5,
+      "T_internal_air": 20.4,
+      "T_rotor_magnets": -7.1,
+      "rise_winding_K": 102.1
+    },
+    "IMPROVED_hot_day_rated_10.5ms": {
+      "T_amb": 30,
+      "V_wind": 10.5,
+      "load": 1.0,
+      "h_out": 22.9,
+      "P_cu": 526,
+      "T_winding": 90.6,
+      "T_end_winding": 90.4,
+      "T_hotspot": 91.7,
+      "T_core": 87.6,
+      "T_internal_air": 60.8,
+      "T_rotor_magnets": 55.7,
+      "rise_winding_K": 60.6
+    },
+    "IMPROVED_hot_day_rated_wake_calm_nacelle": {
+      "T_amb": 30,
+      "V_wind": 10.5,
+      "load": 1.0,
+      "h_out": 18.8,
+      "P_cu": 534,
+      "T_winding": 94.4,
+      "T_end_winding": 94.3,
+      "T_hotspot": 95.6,
+      "T_core": 91.4,
+      "T_internal_air": 64.8,
+      "T_rotor_magnets": 59.6,
+      "rise_winding_K": 64.4
+    },
+    "IMPROVED_hot_day_110pct_overload": {
+      "T_amb": 30,
+      "V_wind": 12.0,
+      "load": 1.1,
+      "h_out": 24.4,
+      "P_cu": 659,
+      "T_winding": 100.0,
+      "T_end_winding": 99.9,
+      "T_hotspot": 101.4,
+      "T_core": 96.2,
+      "T_internal_air": 64.5,
+      "T_rotor_magnets": 58.4,
+      "rise_winding_K": 70.0
+    },
+    "IMPROVED_typical_iceland_rated_10C": {
+      "T_amb": 10,
+      "V_wind": 12.0,
+      "load": 1.0,
+      "h_out": 24.4,
+      "P_cu": 474,
+      "T_winding": 64.0,
+      "T_end_winding": 63.8,
+      "T_hotspot": 65.0,
+      "T_core": 61.5,
+      "T_internal_air": 36.0,
+      "T_rotor_magnets": 31.2,
+      "rise_winding_K": 54.0
+    }
+  },
+  "anti_condensation_heating_W": {
+    "parked_-30C_2.0ms": 26,
+    "parked_-30C_10.0ms": 29,
+    "parked_0C_5.0ms": 28
+  },
+  "limits": {
+    "class_H_C": 180,
+    "design_hotspot_C": 130,
+    "magnet_design_C": 100
+  }
+}

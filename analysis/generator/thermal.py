@@ -13,9 +13,12 @@ import json
 import math
 from pathlib import Path
 
+import sys
+
 import numpy as np
 
-OUT = Path(__file__).parent / "results"
+VARIANT = sys.argv[1] if len(sys.argv) > 1 else "iter1"
+OUT = Path(__file__).parent / "results" / ("" if VARIANT == "iter1" else VARIANT)
 
 # ---- geometry (recommended design, docs/04)
 L = 0.069                  # stack length
@@ -131,13 +134,17 @@ def heating_power_for_margin(T_amb, V_wind, margin_K=5.0, **kw):
 
 
 def main():
-    global P_CU_75, P_FE
+    global P_CU_75, P_FE, SLOT_DEPTH
     fea = OUT / "fea_summary.json"
     if fea.exists():
         d = json.loads(fea.read_text())
         P_FE = float(d.get("iron_loss_no_load_W", P_FE)) * 1.15   # +15 % under load
-        J_ratio = d["rated_load"]["current_density_for_802Nm_A_per_mm2"] / 3.0
-        P_CU_75 = 435.0 * J_ratio ** 2
+        SLOT_DEPTH = d["geometry"]["d_slot"]
+        if "losses_rated" in d:
+            P_CU_75 = d["losses_rated"]["copper_75C_W"]
+        else:
+            J_ratio = d["rated_load"]["current_density_for_802Nm_A_per_mm2"] / 3.0
+            P_CU_75 = 435.0 * J_ratio ** 2
     # Baseline: plain drum, steel stator support, rotor-stirred internal air.
     # Improved: aluminium stator carrier into a hollow spindle cooled by nacelle air
     # (support_R 0.40 K/W incl. ventilated spindle bore), internal fan blades on the rotor end cover (h 40),
