@@ -9,7 +9,7 @@ Models: [`analysis/tower/`](../analysis/tower/)
 
 | Item | Recommendation |
 |---|---|
-| Tower type | **Freestanding tapered steel monopole, tilt-up on a base hinge with a removable gin pole.** A guyed tube is lighter but needs a 22 to 29 m diameter guy circle and puts guys in Icelandic ice storms (section 6) |
+| Tower type | **Standard product: freestanding tapered steel monopole, tilt-up on a base hinge with a removable gin pole. A guyed variant for open farm sites follows later** (decision 2026-11-01, section 6) |
 | 18 m tower | Base Ø 550 mm × 10 mm, top Ø 320 mm × 8 mm, two 9 m sections, **≈ 1.9 t** steel |
 | 24 m tower | Base Ø 600 mm × 12 mm, top Ø 320 mm × 8 mm, three 8 m sections, **≈ 3.1 t** steel |
 | Steel and protection | S355NL (impact tested at −50 °C), EN 1090 EXC3, hot-dip galvanized plus duplex paint (R6.5) |
@@ -179,9 +179,11 @@ fits every foundation type.
 | Iceland exposure | Nothing to ice up but the tube | Iced guys add load and can gallop in wet-snow storms; guys need re-tensioning after freeze–thaw; hazard to livestock, snowmobiles and farm machinery |
 | Service | Inspect bolts | Inspect bolts, guys, terminations and anchors; re-tension |
 
-Because the brief is all environments with quality first and cost later,
-the freestanding monopole is the recommended main product. The guyed tower
-remains a lower-cost variant to revisit in the cost phase.
+**Decision (Martin, 2026-11-01): offer both.** The freestanding monopole is
+the standard product. A guyed variant for open farm sites will be designed
+later, reusing the same hinge, gin pole, exclusion zone logic and rotor
+balance requirement. Its open items are guy icing and galloping, anchor
+designs per soil, and re-tensioning after freeze–thaw.
 
 ## 7. Tilt-up
 
