@@ -25,3 +25,7 @@ possible manufactured in-house.
 - [07 – Nacelle, spindle and bearings](docs/07-nacelle-spindle-bearings.md):
   layout, concept loads, main bearings, spindle, generator cooling path,
   brake and yaw (model in [analysis/nacelle](analysis/nacelle/)).
+- [08 – Load verification](docs/08-load-verification.md): IEC 61400-2
+  Simplified Load Model and a 94-case aeroelastic simulation; design load
+  recommendation, design overspeed 250 rpm, tower frequency and parked
+  stability findings (models in [analysis/loads](analysis/loads/)).

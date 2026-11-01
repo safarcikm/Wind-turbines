@@ -89,6 +89,12 @@ first-principles storm, fault, ice and gyroscopic cases. Partial safety
 factor 1.35 applied. **These will be replaced by aeroelastic DLC results**
 (design basis, section 5).
 
+> **Update (doc 08):** the aeroelastic simulation and the IEC 61400-2
+> Simplified Load Model confirm the storm, brake and ice loads below. The
+> worst hub moment is 27 % higher (8.2 kNm design) and operating thrust about
+> twice these values; spindle and bearings still pass with large margin. See
+> [08 – Load verification](08-load-verification.md), section 5.
+
 | Case | What happens | Hub moment | Front bearing | Rear bearing | Axial |
 |---|---|---|---|---|---|
 | U1 Operating gust | 1.5 × max steady thrust, one-blade aerodynamic imbalance | 2.5 kNm | 10.5 kN | 12.6 kN | 4.3 kN |
@@ -210,7 +216,7 @@ independent braking system, used for parking and service.
 | Hold against one blade stuck at fine pitch (others feathered) | 0.7 kNm |
 | All blades at fine pitch, storm (theoretical worst, stalled rotor) | 2.1 kNm |
 | **Brake design torque (1.5 × worst)** | **8.7 kNm** |
-| Kinetic energy at 230 rpm overspeed | 63 kJ |
+| Kinetic energy at 250 rpm design overspeed (doc 08) | 74 kJ |
 
 **Concept:** two spring-applied, hydraulically released calipers on a steel
 disc at the drum, radius 0.30 m. Each needs about 21 kN clamp force, which is
@@ -264,8 +270,9 @@ This is required for personnel safety regardless of the brake.
 
 ## 11. Next steps
 
-1. Implement the IEC 61400-2 Simplified Load Model as an independent
-   cross-check of these loads, then the aeroelastic model.
+1. ~~Implement the IEC 61400-2 Simplified Load Model as an independent
+   cross-check of these loads, then the aeroelastic model.~~ Done in
+   [doc 08](08-load-verification.md).
 2. Blade structural layup study to confirm the 20 kg blade mass (it drives
    the ice, inertia and gravity loads).
 3. Detail design of spindle (shoulders, flange, bore insert) with FEA of

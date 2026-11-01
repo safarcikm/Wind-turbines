@@ -43,7 +43,7 @@ From the rotor study and design basis:
 | Rated speed | 178 rpm |
 | Rated shaft torque | 729 Nm (sized at 802 Nm, +10 % continuous margin) |
 | Shaft power | 13.6 kW |
-| Speed range | ≈ 40 to 178 rpm, design overspeed 230 rpm |
+| Speed range | ≈ 40 to 178 rpm, design overspeed 250 rpm (raised from 230 rpm in doc 08) |
 | Efficiency | ≥ 93 % at rated (R4.5) |
 | Temperature | −30 °C operation, −40 °C survival, +30 °C hot day (R4.1, R4.3) |
 | Environment | Salt, condensation, ash, H₂S (R4.2, R4.4) |
@@ -166,7 +166,7 @@ at about 3 m/s, helped by pitching the blades to a starting angle.
 | Condition | Line voltage (rms) |
 |---|---|
 | Rated speed, hot magnets | ≈ 380 V (design choice, set by turns per coil) |
-| Overspeed 230 rpm, cold magnets (−40 °C) | ≈ 600 V (≈ 850 V peak) |
+| Overspeed 230 rpm, cold magnets (−40 °C) | ≈ 600 V (≈ 850 V peak); ≈ 890 V peak at the new 250 rpm design overspeed (doc 08) |
 
 The power electronics (category 7) must withstand about 850 V peak on the
 generator side, which points to 1200 V class semiconductors. An **active

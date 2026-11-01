@@ -1,0 +1,257 @@
+{
+  "gamma_f": 1.35,
+  "ultimate_envelope": {
+    "thrust": {
+      "characteristic": 4913.6,
+      "design": 6633.3,
+      "governing": "DLC 1.3 at 18 m/s, yaw 0, azimuth 0"
+    },
+    "Mflap0": {
+      "characteristic": 4872.8,
+      "design": 6578.3,
+      "governing": "DLC 7.1-parked-stuck-fine at 44.0 m/s, yaw 0, azimuth 0"
+    },
+    "Medge0": {
+      "characteristic": 6289.3,
+      "design": 8490.6,
+      "governing": "DLC 6.x-parked-Vref at 55.0 m/s, yaw 90, azimuth 0"
+    },
+    "Mres0": {
+      "characteristic": 6308.0,
+      "design": 8515.9,
+      "governing": "DLC 6.x-parked-Vref at 55.0 m/s, yaw 90, azimuth 0"
+    },
+    "Mtilt": {
+      "characteristic": 6056.2,
+      "design": 8175.8,
+      "governing": "DLC 7.1-parked-stuck-fine at 44.0 m/s, yaw 8, azimuth 0"
+    },
+    "Myaw": {
+      "characteristic": 5489.1,
+      "design": 7410.3,
+      "governing": "DLC 2.1-runaway at 12 m/s, yaw 0, azimuth 0"
+    },
+    "Mbase": {
+      "characteristic": 74239.7,
+      "design": 100223.6,
+      "governing": "DLC 1.1 at 8 m/s, yaw 0, azimuth 0"
+    },
+    "Qaero": {
+      "characteristic": 5779.0,
+      "design": 7801.6,
+      "governing": "DLC 6.x-parked-Vref at 55.0 m/s, yaw 30, azimuth 60"
+    },
+    "Qgen": {
+      "characteristic": 9642.0,
+      "design": 13016.7,
+      "governing": "DLC 1.3 at 14 m/s, yaw 0, azimuth 0"
+    },
+    "rpm": {
+      "characteristic": 231.3,
+      "design": 231.3,
+      "governing": "DLC 1.3 at 18 m/s, yaw 0, azimuth 0"
+    },
+    "Fimb": {
+      "characteristic": 8840.0,
+      "design": 11934.0,
+      "governing": "DLC 1.5-ice at 12 m/s, yaw 0, azimuth 0"
+    }
+  },
+  "per_dlc_max": {
+    "1.1": {
+      "thrust": 3201.1,
+      "Mflap0": 2906.7,
+      "Medge0": 1103.0,
+      "Mres0": 2919.1,
+      "Mtilt": 3687.7,
+      "Myaw": 3550.9,
+      "Mbase": 74239.7,
+      "Qaero": 2367.1,
+      "Qgen": 912.0,
+      "rpm": 205.3,
+      "Fimb": 0
+    },
+    "1.3": {
+      "thrust": 4913.6,
+      "Mflap0": 3845.6,
+      "Medge0": 1208.4,
+      "Mres0": 3883.3,
+      "Mtilt": 4647.7,
+      "Myaw": 4853.5,
+      "Mbase": 70076.1,
+      "Qaero": 3215.6,
+      "Qgen": 9642.0,
+      "rpm": 231.3,
+      "Fimb": 0
+    },
+    "1.4-EOG": {
+      "thrust": 2803.7,
+      "Mflap0": 2099.1,
+      "Medge0": 619.0,
+      "Mres0": 2177.6,
+      "Mtilt": 461.7,
+      "Myaw": 236.4,
+      "Mbase": 56189.1,
+      "Qaero": 1360.3,
+      "Qgen": 912.0,
+      "rpm": 191.8,
+      "Fimb": 0
+    },
+    "1.5-ice": {
+      "thrust": 3193.7,
+      "Mflap0": 2793.4,
+      "Medge0": 954.5,
+      "Mres0": 2875.5,
+      "Mtilt": 2231.3,
+      "Myaw": 2313.3,
+      "Mbase": 56739.1,
+      "Qaero": 1659.5,
+      "Qgen": 912.0,
+      "rpm": 194.8,
+      "Fimb": 8840.0
+    },
+    "2.1-runaway": {
+      "thrust": 3170.2,
+      "Mflap0": 4065.2,
+      "Medge0": 1110.1,
+      "Mres0": 4066.1,
+      "Mtilt": 4552.2,
+      "Myaw": 5489.1,
+      "Mbase": 68337.1,
+      "Qaero": 2045.1,
+      "Qgen": 9642.0,
+      "rpm": 190.4,
+      "Fimb": 0
+    },
+    "2.2-loss-torque-EOG": {
+      "thrust": 2007.4,
+      "Mflap0": 1482.5,
+      "Medge0": 964.0,
+      "Mres0": 1535.1,
+      "Mtilt": 461.7,
+      "Myaw": 236.4,
+      "Mbase": 47587.5,
+      "Qaero": 2581.6,
+      "Qgen": 8730.0,
+      "rpm": 192.4,
+      "Fimb": 0
+    },
+    "2.2-loss-torque": {
+      "thrust": 2606.8,
+      "Mflap0": 2037.7,
+      "Medge0": 958.4,
+      "Mres0": 2164.0,
+      "Mtilt": 2864.3,
+      "Myaw": 2375.5,
+      "Mbase": 51690.7,
+      "Qaero": 1851.5,
+      "Qgen": 8730.0,
+      "rpm": 188.6,
+      "Fimb": 0
+    },
+    "2.3-stuck-blade-stop": {
+      "thrust": 2342.7,
+      "Mflap0": 2280.5,
+      "Medge0": 1034.6,
+      "Mres0": 2281.1,
+      "Mtilt": 3003.1,
+      "Myaw": 3055.1,
+      "Mbase": 51898.6,
+      "Qaero": 1979.5,
+      "Qgen": 9642.0,
+      "rpm": 190.7,
+      "Fimb": 0
+    },
+    "5.1-estop": {
+      "thrust": 2526.2,
+      "Mflap0": 2476.4,
+      "Medge0": 1076.7,
+      "Mres0": 2599.7,
+      "Mtilt": 3494.9,
+      "Myaw": 3433.8,
+      "Mbase": 50855.7,
+      "Qaero": 2602.3,
+      "Qgen": 9642.0,
+      "rpm": 195.6,
+      "Fimb": 0
+    },
+    "6.x-parked-Vref": {
+      "thrust": 876.5,
+      "Mflap0": 1281.7,
+      "Medge0": 6289.3,
+      "Mres0": 6308.0,
+      "Mtilt": 1809.7,
+      "Myaw": 730.4,
+      "Mbase": 18792.5,
+      "Qaero": 5779.0,
+      "Qgen": 0,
+      "rpm": 0,
+      "Fimb": 0
+    },
+    "7.1-parked-stuck-fine": {
+      "thrust": 3497.4,
+      "Mflap0": 4872.8,
+      "Medge0": 2913.1,
+      "Mres0": 4877.1,
+      "Mtilt": 6056.2,
+      "Myaw": 5167.9,
+      "Mbase": 72191.2,
+      "Qaero": 3484.6,
+      "Qgen": 0,
+      "rpm": 0,
+      "Fimb": 0
+    }
+  },
+  "fatigue_DEL": {
+    "Mflap0": {
+      "m": 10,
+      "DEL_1e7": 3187.2
+    },
+    "Medge0": {
+      "m": 10,
+      "DEL_1e7": 1224.6
+    },
+    "thrust": {
+      "m": 4,
+      "DEL_1e7": 2825.4
+    },
+    "Mtilt": {
+      "m": 4,
+      "DEL_1e7": 5869.7
+    },
+    "Myaw": {
+      "m": 4,
+      "DEL_1e7": 5880.7
+    },
+    "Mbase": {
+      "m": 4,
+      "DEL_1e7": 51052.2
+    },
+    "Qaero": {
+      "m": 4,
+      "DEL_1e7": 1767.0
+    }
+  },
+  "mean_power_W_by_wind": {
+    "4": 980.0,
+    "6": 3129.0,
+    "8": 7009.0,
+    "10": 11104.0,
+    "12": 13444.0,
+    "14": 14218.0,
+    "16": 14532.0,
+    "18": 14706.0,
+    "20": 14792.0,
+    "22": 14811.0,
+    "24": 14795.0
+  },
+  "unintended_trips_in_DLC_1_1_1_3": [
+    "1.3 14 seed 100",
+    "1.3 14 seed 101",
+    "1.3 18 seed 100",
+    "1.3 18 seed 101",
+    "1.3 24 seed 100",
+    "1.3 24 seed 101"
+  ],
+  "n_runs": 94
+}

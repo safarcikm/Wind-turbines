@@ -209,10 +209,14 @@ is a target to be confirmed by design studies.
   in operation under the design ice class.
 
 ### 6.3 Hub, pitch and yaw (cat. 3)
-- **R3.1** On any fault, the pitch system shall move all blades to at
-  least **45° within 2 s** and to full feather within 6 s (TBC by load
-  simulation), using stored energy (spring or supercapacitor), without grid
-  or controller power. (Revised after the rotor study, doc 03.)
+- **R3.1** On any fault, the pitch system shall move all blades at
+  **30 °/s** (45° within 1.5 s) to full feather, using stored energy (spring
+  or supercapacitor), without grid or controller power. Normal pitch rate
+  shall be at least **15 °/s**. (Revised after the rotor study, doc 03, and
+  confirmed by load simulation, doc 08.)
+- **R3.1a** Design overspeed is **250 rpm** (140 % of rated). The overspeed
+  trip is set at 210 rpm; on an emergency stop the converter applies up to
+  1.25 × rated torque while the blades feather (doc 08).
 - **R3.2** Pitch and yaw mechanisms shall operate at −30 °C and survive
   −40 °C; lubricants and seals rated accordingly.
 - **R3.3** Pitch bearings and pitch drive shall be protected against ice

@@ -1,0 +1,73 @@
+{
+  "inputs": {
+    "A_proj_B_m2": 0.849,
+    "m_B": 20.0,
+    "R_cog": 1.55,
+    "m_r": 200.0,
+    "Q_design_Nm": 730,
+    "lambda_design": 6.66,
+    "n_design_rpm": 178.0,
+    "n_max_rpm": 250.0,
+    "V_ave": 10.0,
+    "V_e50": 77.0
+  },
+  "A_fatigue_ranges_kN_kNm": {
+    "dF_zB": 21.54,
+    "dM_xB": 0.85,
+    "dM_yB": 1.62,
+    "dF_x_shaft": 1.94,
+    "dM_x_shaft": 0.8,
+    "dM_shaft": 1.69,
+    "cycles_20y": 1871136000.0
+  },
+  "ultimate_design_values_gamma_3_kN_kNm": {
+    "B_yaw": {
+      "M_yB": 3.1,
+      "M_shaft": 5.35
+    },
+    "D_max_thrust": {
+      "F_x_shaft": 25.37
+    },
+    "E_max_speed": {
+      "F_zB": 63.74,
+      "M_shaft": 1.63
+    },
+    "F_short_circuit": {
+      "M_x_shaft": 4.38,
+      "M_xB": 2.37
+    },
+    "G_shutdown": {
+      "M_x_shaft": 28.38,
+      "M_xB": 10.37
+    },
+    "H_parked": {
+      "M_yB": 26.02,
+      "F_x_shaft": 41.64
+    }
+  },
+  "characteristic_values_kN_kNm": {
+    "B_yaw": {
+      "M_yB": 1.03,
+      "M_shaft": 1.78
+    },
+    "D_max_thrust": {
+      "F_x_shaft": 8.46
+    },
+    "E_max_speed": {
+      "F_zB": 21.25,
+      "M_shaft": 0.54
+    },
+    "F_short_circuit": {
+      "M_x_shaft": 1.46,
+      "M_xB": 0.79
+    },
+    "G_shutdown": {
+      "M_x_shaft": 9.46,
+      "M_xB": 3.46
+    },
+    "H_parked": {
+      "M_yB": 8.67,
+      "F_x_shaft": 13.88
+    }
+  }
+}

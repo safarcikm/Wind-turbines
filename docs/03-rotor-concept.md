@@ -208,7 +208,7 @@ roughness is recommended before tooling (quality-first rule).
 
 | To | Value | Note |
 |---|---|---|
-| Generator (cat. 4) | Rated 178 rpm, 729 Nm shaft torque, 13.6 kW shaft power | Design overspeed **230 rpm** (1.3 × rated) for the protection system margin, TBC |
+| Generator (cat. 4) | Rated 178 rpm, 729 Nm shaft torque, 13.6 kW shaft power | Design overspeed **250 rpm** (1.4 × rated), set by load simulation in doc 08 (was 230 rpm) |
 | Generator (cat. 4) | Variable speed range ≈ 40 to 178 rpm | Cut-in at ≈ 40 rpm |
 | Hub and pitch (cat. 3) | Pitch range −2° to 90°, root diameter ≈ 0.2 m, pitch bearing radius ≈ 0.4 m | Root moment ≥ 9.2 kNm parked (steady estimate, before safety factors and dynamics) |
 | Tower (cat. 6) | Max operating steady thrust 2.1 kN; parked worst case dominated by broadside blade drag (≥ 6 kN per blade) plus nacelle and tower drag | Tower sizing awaits aeroelastic DLC 6.x results |

@@ -75,7 +75,7 @@ winding, for about 5 kg. Turns per coil should be checked again
 | Slot depth / slot area | 65 mm / 932 mm² |
 | Winding | ≈ 27 to 28 turns per coil (to confirm), 15 coils per phase in series, star, class H, VPI plus potted end windings |
 | Rated | 802 Nm design torque, 178 rpm, ≈ 23 A rms, ≈ 380 V line |
-| Worst-case voltage | ≈ 820 V peak (cold overspeed) |
+| Worst-case voltage | ≈ 820 V peak at 230 rpm; **≈ 890 V peak at the 250 rpm design overspeed** set in doc 08 (still < 1000 V) |
 | Efficiency | ≈ 94 % at rated |
 | Cooling | Aluminium stator carrier into ventilated hollow spindle, internal fan, drum fins and ribs; fully sealed |
 

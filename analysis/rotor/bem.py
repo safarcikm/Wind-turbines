@@ -57,16 +57,24 @@ class Polar:
             cl_post = a1 * np.sin(2 * ar) + a2 * np.cos(ar) ** 2 / np.sin(ar)
             cd_post = b1 * np.sin(ar) ** 2 + b2 * np.cos(ar)
 
-        post = a > a_s
-        neg_stall = a < -10.0  # simple negative stall
+        post = (a > a_s) & (a <= 90)
         cl = np.where(post, cl_post, cl_lin)
         cd = np.where(post, cd_post, cd_lin)
-        cl = np.where(neg_stall, self.cl0 + self.cla * -10.0 + 0.0 * a, cl)
-        cd = np.where(neg_stall, cd_lin + 0.02 * (-10.0 - a), cd)
-        # beyond 90 deg treat as flat plate
-        far = np.abs(a) > 90
-        cl = np.where(far, 2 * 0.5 * np.sin(2 * ar), cl)
-        cd = np.where(far, self.cdmax * np.sin(ar) ** 2, cd)
+        # flat plate (consistent with the Viterna limit at 90 deg: Cl = cdmax/2 sin 2a,
+        # Cd = cdmax sin^2 a) for |a| > 90 deg and on the negative side
+        cl_fp = 0.5 * self.cdmax * np.sin(2 * ar)
+        cd_fp = self.cd0 + self.cdmax * np.sin(ar) ** 2
+        cl = np.where(np.abs(a) > 90, cl_fp, cl)
+        cd = np.where(np.abs(a) > 90, cd_fp, cd)
+        # negative stall: linear down to -10 deg, blend to flat plate by -20 deg
+        a_n1, a_n2 = -10.0, -20.0
+        cl_n1 = self.cl0 + self.cla * a_n1
+        cd_n1 = self.cd0 + self.kd * (cl_n1 - self.cl_cdmin) ** 2
+        w = np.clip((a_n1 - a) / (a_n1 - a_n2), 0, 1)
+        w = w * w * (3 - 2 * w)
+        neg = (a < a_n1) & (a >= -90)
+        cl = np.where(neg, (1 - w) * cl_n1 + w * cl_fp, cl)
+        cd = np.where(neg, (1 - w) * cd_n1 + w * cd_fp, cd)
         return cl, np.maximum(cd, self.cd0)
 
     def design_point(self, cl_design: float) -> tuple[float, float]:
