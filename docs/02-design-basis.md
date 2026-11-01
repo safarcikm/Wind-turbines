@@ -137,7 +137,7 @@ paths) need a site-specific load assessment before installation.
 | Generator | Permanent magnet synchronous, NdFeB magnets |
 | Yaw | To be decided in category 3: active yaw is preferred for a pitch-regulated rotor in turbulent wind; tail vane remains a candidate for simplicity |
 | Brake | Mechanical brake able to stop the rotor from overspeed alone, independent of pitch |
-| Tower | Tilt-up, 18 m and 24 m hub height options |
+| Tower | Tilt-up freestanding tapered steel monopole (doc 09), 18 m and 24 m hub height options |
 | Design life | 20 years, with no structural component replacement |
 
 ---
@@ -252,14 +252,23 @@ is a target to be confirmed by design studies.
 - **R6.1** Tower and foundation shall be designed to the DLC envelope,
   Eurocode 3 and 7 with Icelandic national annexes, and seismic loads per
   Eurocode 8.
-- **R6.2** Tower natural frequency shall be separated from 1P and 3P rotor
-  frequencies across the full speed range by at least ±10 %.
+- **R6.2** (Revised in doc 09: the 1P and 3P bands overlap, so no tower can
+  clear both.) The tower first natural frequency shall lie between 1.1 × 1P
+  at minimum operating speed and 3P at minimum operating speed / 1.1
+  (0.73 to 1.82 Hz) in all foundation and ice conditions. The controller
+  shall exclude rotor speeds within ±10 % of the speed where 1P equals the
+  tower frequency, and the tower frequency shall be measured at
+  commissioning to set that zone.
 - **R6.3** Foundation designs shall be provided for: rock (rock anchors),
   firm soil, soft volcanic soil, and frost-susceptible ground (frost depth
   per local data).
 - **R6.4** Tilt-up shall be possible with a gin pole and winch, no crane.
 - **R6.5** All steel shall be hot-dip galvanized (EN ISO 1461) plus a duplex
   paint system meeting C5 very high durability.
+- **R6.6** (New, doc 09.) Residual rotor imbalance shall not exceed
+  0.2 kg·m (ISO 21940-11 G6.3, blades supplied as sets matched by static
+  moment within 0.5 %). A vibration trip on the side-side 1P amplitude shall
+  stop the turbine at the equivalent of 0.5 kg·m.
 
 ### 6.7 Power electronics and power modules (cat. 7)
 - **R7.1** One common front end (rectifier, DC link, MPPT, protection) shall

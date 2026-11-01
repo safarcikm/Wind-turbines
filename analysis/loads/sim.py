@@ -46,6 +46,9 @@ class Turbine:
     rho: float = 1.225
     P_aero_rated: float = 13_600.0
     rpm_rated: float = 178.0
+    rpm_min: float = 0.0           # minimum operating speed (region 1.5), 0 = none; doc 09 uses 80 rpm
+    excl_rpm: tuple | None = None   # speed exclusion zone (rpm_lo, rpm_hi) around a tower resonance (doc 09)
+    pitch_err: tuple = (0.0, 0.0, 0.0)   # deg, per-blade pitch misalignment (aerodynamic imbalance)
     rpm_trip: float = 210.0        # overspeed trip (118 %) -> emergency stop; design overspeed 250 rpm (doc 08)
     k_overspeed: float = 400.0     # Nm per rad/s above rated speed
     pitch_min: float = -0.5
@@ -192,6 +195,12 @@ def simulate(tb: Turbine, sc: Scenario, dt=0.01, record_every=2):
     mode = "parked" if sc.parked else ("idle" if sc.idle else "run")
     t_estop = None
     torque_lost = False
+    zone = None
+    if tb.excl_rpm:
+        om_L, om_H = (x * 2 * math.pi / 60 for x in tb.excl_rpm)
+        Q_L, Q_H = tb.k_opt * om_L ** 2, tb.k_opt * om_H ** 2
+        Ks = (Q_H - Q_L) / (0.02 * om_L)
+        zone = "high" if om >= om_H else "low"
     mu_b = np.tile(mu, (nb, 1))
     if sc.ice_blade_mass > 0:
         # IEC distribution: linear to R/2 then constant
@@ -241,7 +250,7 @@ def simulate(tb: Turbine, sc: Scenario, dt=0.01, record_every=2):
         vtan = om * r[None, :] - v_t_wind
         W2 = vax ** 2 + vtan ** 2
         ph = np.arctan2(vax, vtan)
-        theta = np.radians(tb.twist0[None, :] + pitch[:, None])
+        theta = np.radians(tb.twist0[None, :] + pitch[:, None] + np.asarray(tb.pitch_err)[:, None])
         alpha = np.degrees(ph - theta)
         cl = np.empty_like(alpha); cd = np.empty_like(alpha)
         for i in range(nb):
@@ -286,7 +295,36 @@ def simulate(tb: Turbine, sc: Scenario, dt=0.01, record_every=2):
         # ---------------- generator / brake torque
         om_rpm = om * 60 / (2 * math.pi)
         if mode == "run" and not torque_lost:
-            if om < 0.95 * tb.omega_rated:
+            om_min = tb.rpm_min * 2 * math.pi / 60
+            Qz = None
+            if zone is not None:
+                # speed exclusion zone: hold the lower edge, then cross quickly in either direction
+                if zone == "low" and om >= om_L:
+                    Qz = min(Q_L + Ks * (om - om_L), Q_H)
+                    if Qz >= Q_H and om > 1.02 * om_L:
+                        zone = "up"
+                if zone == "up":
+                    Qz = 0.25 * Q_L                 # unload the generator so the rotor crosses quickly
+                    if om >= om_H:
+                        zone, Qz = "high", None
+                    elif om < 0.99 * om_L:          # gust died before crossing: fall back
+                        zone, Qz = "low", None
+                if zone == "high" and om < om_H:
+                    Qz = max(Q_H - Ks * (om_H - om), Q_L)
+                    if Qz <= Q_L and om < 0.98 * om_H:
+                        zone = "down"
+                if zone == "down":
+                    Qz = 2.0 * Q_H                  # extra torque so the rotor crosses down quickly
+                    if om <= om_L:
+                        zone, Qz = "low", None
+                    elif om > 1.01 * om_H:
+                        zone, Qz = "high", None
+            if Qz is not None:
+                Qg = Qz
+            elif om_min > 0 and om < 1.05 * om_min:
+                # region 1.5: steep torque ramp holds the rotor at or above the minimum speed
+                Qg = tb.k_opt * (1.05 * om_min) ** 2 * max(0.0, (om - om_min) / (0.05 * om_min))
+            elif om < 0.95 * tb.omega_rated:
                 Qg = tb.k_opt * om ** 2
             elif pitch.mean() < 1.0 and om < tb.omega_rated:
                 Q95 = tb.k_opt * (0.95 * tb.omega_rated) ** 2

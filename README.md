@@ -29,3 +29,7 @@ possible manufactured in-house.
   Simplified Load Model and a 94-case aeroelastic simulation; design load
   recommendation, design overspeed 250 rpm, tower frequency and parked
   stability findings (models in [analysis/loads](analysis/loads/)).
+- [09 – Tower and foundation](docs/09-tower-foundation.md): freestanding
+  tilt-up monopoles for 18 m and 24 m, frequency strategy with a speed
+  exclusion zone, rotor balance requirement, foundations for every ground
+  type (models in [analysis/tower](analysis/tower/)).

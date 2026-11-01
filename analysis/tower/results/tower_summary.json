@@ -1,0 +1,507 @@
+{
+  "ops_source": {
+    "18 m": "run_tower_loads.py (monopole_18m)",
+    "24 m": "run_tower_loads.py (monopole_24m)"
+  },
+  "towers": {
+    "monopole_18m": {
+      "mass_kg": 1940.0,
+      "D_over_t_max": 55.0,
+      "util_max": 0.847,
+      "util_SLM": 1.627,
+      "util_tilt_up": 0.403,
+      "tilt_up_base_moment_kNm": 308.9,
+      "winch_line_pull_kN_ginpole_033H": 52.0,
+      "governing": "parked V_e50",
+      "M_base_design_kNm": {
+        "operation and faults (simulation)": 221.0,
+        "parked V_e50": 649.3,
+        "parked V_e1 + ice": 521.4,
+        "earthquake 0.5 g (ground D) + operation": 579.0
+      },
+      "M_base_SLM_kNm": 1247.5,
+      "f1_rigid_Hz": 1.22,
+      "f2_rigid_Hz": 6.75,
+      "f1_soft_ice_Hz": 1.09,
+      "geometry": {
+        "H": 18.0,
+        "D_base": 0.55,
+        "D_top": 0.32,
+        "t_mm": [
+          10,
+          8
+        ],
+        "sections": 2,
+        "section_length_m": 9.0
+      },
+      "f1_by_soil_Hz": {
+        "firm soil (dense gravel, moraine)": 1.21,
+        "soft volcanic soil (loose ash, pumice sand)": 1.21,
+        "frost-susceptible silt (thawed)": 1.21,
+        "rock (anchored plinth)": 1.21
+      },
+      "exclusion_zone_rpm": [
+        66.5,
+        80.5
+      ],
+      "fatigue_damage": {
+        "z=0.0 m": 0.2206,
+        "z=9.0 m": 0.2301
+      },
+      "resonance": {
+        "V_ave 6.0 m/s, imbalance 0.2 kg m, exclusion zone True": {
+          "f1": 1.21,
+          "f2": 6.66,
+          "zone_rpm": [
+            65.7,
+            79.5
+          ],
+          "side_side_peak_base_moment_amp_kNm": 20.6,
+          "damage_side_side_1P": 0.0,
+          "damage_mode2_3P": 0.002,
+          "rpm_mode2_crossing": 133.0
+        },
+        "V_ave 6.0 m/s, imbalance 0.2 kg m, exclusion zone False": {
+          "f1": 1.21,
+          "f2": 6.66,
+          "zone_rpm": null,
+          "side_side_peak_base_moment_amp_kNm": 20.6,
+          "damage_side_side_1P": 0.026,
+          "damage_mode2_3P": 0.002,
+          "rpm_mode2_crossing": 133.0
+        },
+        "V_ave 6.0 m/s, imbalance 1.0 kg m, exclusion zone True": {
+          "f1": 1.21,
+          "f2": 6.66,
+          "zone_rpm": [
+            65.7,
+            79.5
+          ],
+          "side_side_peak_base_moment_amp_kNm": 103.2,
+          "damage_side_side_1P": 1.087,
+          "damage_mode2_3P": 0.002,
+          "rpm_mode2_crossing": 133.0
+        },
+        "V_ave 6.0 m/s, imbalance 1.0 kg m, exclusion zone False": {
+          "f1": 1.21,
+          "f2": 6.66,
+          "zone_rpm": null,
+          "side_side_peak_base_moment_amp_kNm": 103.2,
+          "damage_side_side_1P": 23.135,
+          "damage_mode2_3P": 0.002,
+          "rpm_mode2_crossing": 133.0
+        },
+        "V_ave 10.0 m/s, imbalance 0.2 kg m, exclusion zone True": {
+          "f1": 1.21,
+          "f2": 6.66,
+          "zone_rpm": [
+            65.7,
+            79.5
+          ],
+          "side_side_peak_base_moment_amp_kNm": 20.6,
+          "damage_side_side_1P": 0.0,
+          "damage_mode2_3P": 0.002,
+          "rpm_mode2_crossing": 133.0
+        },
+        "V_ave 10.0 m/s, imbalance 0.2 kg m, exclusion zone False": {
+          "f1": 1.21,
+          "f2": 6.66,
+          "zone_rpm": null,
+          "side_side_peak_base_moment_amp_kNm": 20.6,
+          "damage_side_side_1P": 0.013,
+          "damage_mode2_3P": 0.002,
+          "rpm_mode2_crossing": 133.0
+        },
+        "V_ave 10.0 m/s, imbalance 1.0 kg m, exclusion zone True": {
+          "f1": 1.21,
+          "f2": 6.66,
+          "zone_rpm": [
+            65.7,
+            79.5
+          ],
+          "side_side_peak_base_moment_amp_kNm": 103.2,
+          "damage_side_side_1P": 0.513,
+          "damage_mode2_3P": 0.002,
+          "rpm_mode2_crossing": 133.0
+        },
+        "V_ave 10.0 m/s, imbalance 1.0 kg m, exclusion zone False": {
+          "f1": 1.21,
+          "f2": 6.66,
+          "zone_rpm": null,
+          "side_side_peak_base_moment_amp_kNm": 103.2,
+          "damage_side_side_1P": 11.295,
+          "damage_mode2_3P": 0.002,
+          "rpm_mode2_crossing": 133.0
+        }
+      },
+      "flanges": {
+        "z=0 m (base, to hinge frame)": {
+          "M_design_kNm": 649.3,
+          "D_m": 0.55,
+          "bolts": 24,
+          "size": "M24 10.9",
+          "circle_m": 0.65,
+          "F_bolt_kN": 216.4,
+          "F_t_Rd_kN": 254.2
+        },
+        "z=9 m": {
+          "M_design_kNm": 258.5,
+          "D_m": 0.435,
+          "bolts": 12,
+          "size": "M24 10.9",
+          "circle_m": 0.54,
+          "F_bolt_kN": 209.4,
+          "F_t_Rd_kN": 254.2
+        }
+      }
+    },
+    "monopole_24m": {
+      "mass_kg": 3074.0,
+      "D_over_t_max": 51.4,
+      "util_max": 0.919,
+      "util_SLM": 1.753,
+      "util_tilt_up": 0.493,
+      "tilt_up_base_moment_kNm": 540.3,
+      "winch_line_pull_kN_ginpole_033H": 68.2,
+      "governing": "parked V_e50",
+      "M_base_design_kNm": {
+        "operation and faults (simulation)": 335.6,
+        "parked V_e50": 1006.2,
+        "parked V_e1 + ice": 816.8,
+        "earthquake 0.5 g (ground D) + operation": 763.2
+      },
+      "M_base_SLM_kNm": 1919.8,
+      "f1_rigid_Hz": 0.88,
+      "f2_rigid_Hz": 4.27,
+      "f1_soft_ice_Hz": 0.78,
+      "geometry": {
+        "H": 24.0,
+        "D_base": 0.6,
+        "D_top": 0.32,
+        "t_mm": [
+          12,
+          10,
+          8
+        ],
+        "sections": 3,
+        "section_length_m": 8.0
+      },
+      "f1_by_soil_Hz": {
+        "firm soil (dense gravel, moraine)": 0.87,
+        "soft volcanic soil (loose ash, pumice sand)": 0.87,
+        "frost-susceptible silt (thawed)": 0.87,
+        "rock (anchored plinth)": 0.87
+      },
+      "exclusion_zone_rpm": [
+        48.0,
+        58.1
+      ],
+      "fatigue_damage": {
+        "z=0.0 m": 0.3215,
+        "z=8.0 m": 0.2338,
+        "z=16.0 m": 0.4512
+      },
+      "resonance": {
+        "V_ave 6.0 m/s, imbalance 0.2 kg m, exclusion zone True": {
+          "f1": 0.87,
+          "f2": 4.23,
+          "zone_rpm": [
+            47.4,
+            57.3
+          ],
+          "side_side_peak_base_moment_amp_kNm": 14.3,
+          "damage_side_side_1P": 0.0,
+          "damage_mode2_3P": 0.0,
+          "rpm_mode2_crossing": 85.0
+        },
+        "V_ave 6.0 m/s, imbalance 0.2 kg m, exclusion zone False": {
+          "f1": 0.87,
+          "f2": 4.23,
+          "zone_rpm": null,
+          "side_side_peak_base_moment_amp_kNm": 14.3,
+          "damage_side_side_1P": 0.001,
+          "damage_mode2_3P": 0.0,
+          "rpm_mode2_crossing": 85.0
+        },
+        "V_ave 6.0 m/s, imbalance 1.0 kg m, exclusion zone True": {
+          "f1": 0.87,
+          "f2": 4.23,
+          "zone_rpm": [
+            47.4,
+            57.3
+          ],
+          "side_side_peak_base_moment_amp_kNm": 71.5,
+          "damage_side_side_1P": 0.017,
+          "damage_mode2_3P": 0.0,
+          "rpm_mode2_crossing": 85.0
+        },
+        "V_ave 6.0 m/s, imbalance 1.0 kg m, exclusion zone False": {
+          "f1": 0.87,
+          "f2": 4.23,
+          "zone_rpm": null,
+          "side_side_peak_base_moment_amp_kNm": 71.5,
+          "damage_side_side_1P": 2.574,
+          "damage_mode2_3P": 0.0,
+          "rpm_mode2_crossing": 85.0
+        },
+        "V_ave 10.0 m/s, imbalance 0.2 kg m, exclusion zone True": {
+          "f1": 0.87,
+          "f2": 4.23,
+          "zone_rpm": [
+            47.4,
+            57.3
+          ],
+          "side_side_peak_base_moment_amp_kNm": 14.3,
+          "damage_side_side_1P": 0.0,
+          "damage_mode2_3P": 0.0,
+          "rpm_mode2_crossing": 85.0
+        },
+        "V_ave 10.0 m/s, imbalance 0.2 kg m, exclusion zone False": {
+          "f1": 0.87,
+          "f2": 4.23,
+          "zone_rpm": null,
+          "side_side_peak_base_moment_amp_kNm": 14.3,
+          "damage_side_side_1P": 0.0,
+          "damage_mode2_3P": 0.0,
+          "rpm_mode2_crossing": 85.0
+        },
+        "V_ave 10.0 m/s, imbalance 1.0 kg m, exclusion zone True": {
+          "f1": 0.87,
+          "f2": 4.23,
+          "zone_rpm": [
+            47.4,
+            57.3
+          ],
+          "side_side_peak_base_moment_amp_kNm": 71.5,
+          "damage_side_side_1P": 0.007,
+          "damage_mode2_3P": 0.0,
+          "rpm_mode2_crossing": 85.0
+        },
+        "V_ave 10.0 m/s, imbalance 1.0 kg m, exclusion zone False": {
+          "f1": 0.87,
+          "f2": 4.23,
+          "zone_rpm": null,
+          "side_side_peak_base_moment_amp_kNm": 71.5,
+          "damage_side_side_1P": 1.072,
+          "damage_mode2_3P": 0.0,
+          "rpm_mode2_crossing": 85.0
+        }
+      },
+      "flanges": {
+        "z=0 m (base, to hinge frame)": {
+          "M_design_kNm": 1006.2,
+          "D_m": 0.6,
+          "bolts": 32,
+          "size": "M24 10.9",
+          "circle_m": 0.7,
+          "F_bolt_kN": 233.6,
+          "F_t_Rd_kN": 254.2
+        },
+        "z=8 m": {
+          "M_design_kNm": 553.7,
+          "D_m": 0.507,
+          "bolts": 20,
+          "size": "M24 10.9",
+          "circle_m": 0.61,
+          "F_bolt_kN": 237.3,
+          "F_t_Rd_kN": 254.2
+        },
+        "z=16 m": {
+          "M_design_kNm": 220.4,
+          "D_m": 0.413,
+          "bolts": 12,
+          "size": "M24 10.9",
+          "circle_m": 0.51,
+          "F_bolt_kN": 186.0,
+          "F_t_Rd_kN": 254.2
+        }
+      }
+    },
+    "guyed_18m_stiff": null,
+    "guyed_18m_soft": {
+      "geometry": {
+        "H": 18.0,
+        "D": 0.3239,
+        "t_mm": 8.0,
+        "guy_height_m": 12.1,
+        "anchor_radius_m": 10.8,
+        "guy_length_m": 16.2,
+        "rope_mm": 18,
+        "pretension_kN": 21.4
+      },
+      "mass_tube_kg": 1265,
+      "mass_guys_kg": 84,
+      "util_max": 0.858,
+      "guy_T_max_kN": 97.2,
+      "guy_MBL_kN": 214,
+      "guy_util": 0.909,
+      "anchor_uplift_kN": 72.4,
+      "anchor_horizontal_kN": 64.9,
+      "cases": {
+        "parked V_e50": {
+          "M_max_kNm": 155.5,
+          "guy_T_kN": 97.2,
+          "N_kN": 143.3,
+          "util": 0.858
+        },
+        "parked V_e1 + ice": {
+          "M_max_kNm": 120.8,
+          "guy_T_kN": 82.9,
+          "N_kN": 132.7,
+          "util": 0.686
+        },
+        "operation and faults (simulation)": {
+          "M_max_kNm": 73.7,
+          "guy_T_kN": 49.0,
+          "N_kN": 107.4,
+          "util": 0.442
+        },
+        "earthquake 0.5 g (ground D) + operation": {
+          "M_max_kNm": 138.3,
+          "guy_T_kN": 51.0,
+          "util": 0.681
+        }
+      },
+      "f1_Hz": 1.78,
+      "f2_Hz": 5.13,
+      "f1_ice_one_guy_Hz": 1.47,
+      "util_tilt_up": 0.098,
+      "D_over_t": 40.5
+    },
+    "guyed_24m_stiff": null,
+    "guyed_24m_soft": {
+      "geometry": {
+        "H": 24.0,
+        "D": 0.273,
+        "t_mm": 10.0,
+        "guy_height_m": 19.9,
+        "anchor_radius_m": 14.4,
+        "guy_length_m": 24.6,
+        "rope_mm": 18,
+        "pretension_kN": 21.4
+      },
+      "mass_tube_kg": 1777,
+      "mass_guys_kg": 127,
+      "util_max": 0.962,
+      "guy_T_max_kN": 93.7,
+      "guy_MBL_kN": 214,
+      "guy_util": 0.876,
+      "anchor_uplift_kN": 75.9,
+      "anchor_horizontal_kN": 54.9,
+      "cases": {
+        "parked V_e50": {
+          "M_max_kNm": 96.7,
+          "guy_T_kN": 93.7,
+          "N_kN": 157.8,
+          "util": 0.962
+        },
+        "parked V_e1 + ice": {
+          "M_max_kNm": 74.6,
+          "guy_T_kN": 81.6,
+          "N_kN": 148.0,
+          "util": 0.817
+        },
+        "operation and faults (simulation)": {
+          "M_max_kNm": 49.1,
+          "guy_T_kN": 46.5,
+          "N_kN": 119.6,
+          "util": 0.601
+        },
+        "earthquake 0.5 g (ground D) + operation": {
+          "M_max_kNm": 106.7,
+          "guy_T_kN": 61.7,
+          "util": 0.598
+        }
+      },
+      "f1_Hz": 1.57,
+      "f2_Hz": 2.28,
+      "f1_ice_one_guy_Hz": 1.35,
+      "util_tilt_up": 0.187,
+      "D_over_t": 27.3
+    }
+  },
+  "foundations": {
+    "monopole_18m": {
+      "firm soil (dense gravel, moraine)": {
+        "B": 3.8,
+        "depth": 1.6,
+        "concrete_m3": 9.5,
+        "weight_kN": 513.8,
+        "e_char_over_B": 0.25,
+        "bearing_kPa": 211.5,
+        "q_rd_kPa": 300.0,
+        "K_theta_MNm_per_rad": 2332.0
+      },
+      "soft volcanic soil (loose ash, pumice sand)": {
+        "B": 4.3,
+        "depth": 1.6,
+        "concrete_m3": 11.9,
+        "weight_kN": 559.9,
+        "e_char_over_B": 0.202,
+        "bearing_kPa": 93.1,
+        "q_rd_kPa": 100.0,
+        "K_theta_MNm_per_rad": 910.0
+      },
+      "frost-susceptible silt (thawed)": {
+        "B": 4.0,
+        "depth": 1.6,
+        "concrete_m3": 10.4,
+        "weight_kN": 550.6,
+        "e_char_over_B": 0.221,
+        "bearing_kPa": 131.0,
+        "q_rd_kPa": 150.0,
+        "K_theta_MNm_per_rad": 976.0
+      },
+      "rock (anchored plinth)": {
+        "plinth_m": "1.6 x 1.6 x 0.8",
+        "anchors": 8,
+        "circle_m": 1.2,
+        "T_design_kN": 262.3,
+        "bar_mm": 28,
+        "bond_length_m": 3.0,
+        "concrete_m3": 2.0
+      }
+    },
+    "monopole_24m": {
+      "firm soil (dense gravel, moraine)": {
+        "B": 4.4,
+        "depth": 1.6,
+        "concrete_m3": 12.4,
+        "weight_kN": 689.3,
+        "e_char_over_B": 0.243,
+        "bearing_kPa": 188.6,
+        "q_rd_kPa": 300.0,
+        "K_theta_MNm_per_rad": 3620.0
+      },
+      "soft volcanic soil (loose ash, pumice sand)": {
+        "B": 4.9,
+        "depth": 1.6,
+        "concrete_m3": 15.2,
+        "weight_kN": 727.8,
+        "e_char_over_B": 0.207,
+        "bearing_kPa": 97.8,
+        "q_rd_kPa": 100.0,
+        "K_theta_MNm_per_rad": 1346.0
+      },
+      "frost-susceptible silt (thawed)": {
+        "B": 4.6,
+        "depth": 1.6,
+        "concrete_m3": 13.5,
+        "weight_kN": 728.9,
+        "e_char_over_B": 0.22,
+        "bearing_kPa": 129.4,
+        "q_rd_kPa": 150.0,
+        "K_theta_MNm_per_rad": 1485.0
+      },
+      "rock (anchored plinth)": {
+        "plinth_m": "1.6 x 1.6 x 0.8",
+        "anchors": 8,
+        "circle_m": 1.2,
+        "T_design_kN": 409.8,
+        "bar_mm": 40,
+        "bond_length_m": 3.0,
+        "concrete_m3": 2.0
+      }
+    }
+  }
+}

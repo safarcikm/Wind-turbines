@@ -279,7 +279,8 @@ the cost optimisation phase.
 1. Buy IEC 61400-2:2013 and check the SLM equations in `slm.py`.
 2. Blade structural layup study for the SLM envelope: confirm blade mass
    (20 kg assumed), flap frequency (6 Hz assumed) and root design.
-3. Tower study with the frequency placement options in 4.4.
+3. ~~Tower study with the frequency placement options in 4.4.~~ Done in
+   [doc 09](09-tower-foundation.md): soft-stiff tower with a 1P exclusion zone.
 4. Dynamic stall and edgewise mode in the simulator, then the parked
    stability check (4.3).
 5. OpenFAST model of the same turbine as an independent check.
