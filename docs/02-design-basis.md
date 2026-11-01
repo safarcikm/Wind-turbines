@@ -337,7 +337,7 @@ is a target to be confirmed by design studies.
 |---|---|---|
 | 50-year 10-min and gust extremes per station | Icelandic Met Office (Veðurstofa Íslands) station records and extreme value analysis | Confirm V_ref = 55 m/s, site check method |
 | Turbulence intensity at farm and coastal sites | IMO 10-min and gust records, own measurement mast | Confirm I_15 = 0.20 |
-| Ice loads and frequency | Landsnet test span reports, IMO icing studies | Set ice class and Annex L parameters |
+| Ice loads and frequency | Landsnet test span reports, IMO icing studies | Set ice class and ice mass parameters |
 | Seismic zone map | ÍST EN 1998-1 national annex | Confirm 0.5 g |
 | Frost depth and soil types | Vegagerðin, geotechnical data | Foundation designs |
 | Noise limits | Icelandic noise regulation | Confirm R2.7 |
