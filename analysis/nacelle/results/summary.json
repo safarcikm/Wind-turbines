@@ -1,0 +1,126 @@
+{
+  "mass_budget_kg": {
+    "blades": 60.0,
+    "hub_and_pitch": 80.0,
+    "generator_rotor_drum": 60.0,
+    "generator_stator_and_carrier": 75.0,
+    "spindle": 45.0,
+    "bedplate": 70.0,
+    "yaw_system": 45.0,
+    "cover_and_electrics": 20.0,
+    "misc": 25.0,
+    "tower_top_total": 480.0
+  },
+  "rotor_inertia_kgm2": 216,
+  "ultimate_cases_design_values": {
+    "U1_operating_gust": {
+      "Fx_kN": 3.2,
+      "Fy_kN": 0.0,
+      "Fz_kN": -1.96,
+      "M_hub_kNm": 2.45,
+      "front_bearing_radial_kN": 10.46,
+      "rear_bearing_radial_kN": 12.63,
+      "axial_kN": 4.33
+    },
+    "U2_one_blade_stuck_fine_Ve1": {
+      "Fx_kN": 3.47,
+      "Fy_kN": 0.0,
+      "Fz_kN": -1.96,
+      "M_hub_kNm": 6.43,
+      "front_bearing_radial_kN": 32.17,
+      "rear_bearing_radial_kN": 34.82,
+      "axial_kN": 4.69
+    },
+    "U3_parked_broadside_Ve50": {
+      "Fx_kN": 0.0,
+      "Fy_kN": 7.95,
+      "Fz_kN": -1.96,
+      "M_hub_kNm": 0.18,
+      "front_bearing_radial_kN": 16.84,
+      "rear_bearing_radial_kN": 5.84,
+      "axial_kN": 0.0
+    },
+    "U4_ice_one_blade_operating": {
+      "Fx_kN": 3.2,
+      "Fy_kN": 0.0,
+      "Fz_kN": -14.27,
+      "M_hub_kNm": 2.15,
+      "front_bearing_radial_kN": 16.77,
+      "rear_bearing_radial_kN": 2.49,
+      "axial_kN": 4.33
+    },
+    "U5_gyroscopic_yaw_fault": {
+      "Fx_kN": 3.2,
+      "Fy_kN": 0.0,
+      "Fz_kN": -1.96,
+      "M_hub_kNm": 2.34,
+      "front_bearing_radial_kN": 13.45,
+      "rear_bearing_radial_kN": 13.12,
+      "axial_kN": 4.33
+    }
+  },
+  "storm_and_fault_inputs": {
+    "parked_Ve50_holding_torque_kNm": 5.82,
+    "parked_Ve50_inplane_force_kN": 7.95,
+    "one_blade_fine_Ve1_root_flap_kNm": 5.21,
+    "ice_mass_one_blade_kg": 15.1,
+    "ice_mu_tip_kg_per_m": 5.44,
+    "ice_imbalance_centrifugal_kN": 12.16,
+    "gyroscopic_moment_5deg_s_kNm": 0.35,
+    "max_operating_thrust_steady_kN": 2.14
+  },
+  "bearings": {
+    "arrangement": "pair of single-row tapered roller bearings, back-to-back (O), preloaded",
+    "revolutions_20y_million": 1407.2,
+    "target_L10_million_rev": 2814.4,
+    "front_equivalent_load_kN": 3.0,
+    "rear_equivalent_load_kN": 0.92,
+    "front_C_required_kN": 32.5,
+    "rear_C_required_kN": 10.0,
+    "front_static_design_load_kN": 32.2,
+    "rear_static_design_load_kN": 34.8,
+    "note": "Static safety factor s0 >= 2 on C0 against the design static loads (quality-first choice)"
+  },
+  "spindle": {
+    "material": "42CrMo4+QT",
+    "OD_mm": 140.0,
+    "bore_mm": 90.0,
+    "design_bending_moment_kNm": 7.72,
+    "bending_stress_MPa": 34.6,
+    "yield_MPa": 650.0,
+    "reserve_factor_yield": 17.1
+  },
+  "air_gap_stiffness": {
+    "magnetic_negative_stiffness_kN_per_mm": 1.91,
+    "spindle_stiffness_at_stator_kN_per_mm": 925.2,
+    "ratio": 484.2,
+    "stator_sag_from_own_weight_mm": 0.0008,
+    "requirement": "eccentricity <= 0.2 mm (10 % of gap); structural stiffness >= 10 x magnetic"
+  },
+  "brake": {
+    "concept": "spring-applied, hydraulically released calipers on a disc at the generator drum (r = 0.30 m)",
+    "holding_torque_parked_Ve50_kNm": 5.82,
+    "aero_torque_one_blade_stuck_fine_max_kNm": 0.72,
+    "aero_torque_all_blades_fine_max_kNm": 2.08,
+    "required_brake_torque_kNm": 8.73,
+    "clamp_force_per_caliper_kN": 20.8,
+    "kinetic_energy_at_overspeed_kJ": 62.7
+  },
+  "yaw": {
+    "concept": "active yaw: four-point contact ball slewing ring, 2 geared motors, spring-applied yaw brake with controlled slip",
+    "tilt_moment_at_yaw_bearing_design_kNm": 18.4,
+    "yaw_holding_torque_design_kNm": 8.0,
+    "nacelle_side_drag_Ve50_kN": 5.8,
+    "tower_top_weight_kN": 4.71,
+    "yaw_rate": "0.5 deg/s in operation; 5 deg/s analysed as a fault"
+  },
+  "cooling_path": {
+    "target_K_per_W": 0.4,
+    "carrier_K_per_W": 0.048,
+    "contacts_K_per_W": 0.0048,
+    "spindle_wall_K_per_W": 0.006,
+    "total_plain_bore_10ms_K_per_W": 0.381,
+    "total_finned_insert_10ms_K_per_W": 0.166,
+    "total_finned_insert_5ms_K_per_W": 0.246
+  }
+}
