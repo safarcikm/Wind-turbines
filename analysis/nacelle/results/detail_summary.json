@@ -1,0 +1,251 @@
+{
+  "bearings": {
+    "designation": "32028 X",
+    "d_D_T_mm": [
+      140.0,
+      210.0,
+      45.0
+    ],
+    "C_kN": 280.0,
+    "C0_kN": 430.0,
+    "ratings_note": "typical catalogue values, confirm with supplier",
+    "s0_front": 10.5,
+    "s0_rear": 9.8,
+    "s0_axial_parked": 6.0,
+    "equivalent_load_kN": [
+      9.0,
+      2.76
+    ],
+    "L10_million_rev": [
+      94708,
+      4869636
+    ],
+    "L10_target_million_rev": 2814,
+    "life_factor": [
+      33.7,
+      1730.3
+    ],
+    "fits": {
+      "cups": "Ø210 P7 (rotating outer-ring load): interference 0.006 to 0.079",
+      "front_cone": "Ø140 f6 (stationary inner ring, point load, slides for preload): clearance 0.018 to 0.068",
+      "rear_cone": "Ø140 j6 against shoulder Ø155"
+    },
+    "preload": "axial preload 2 to 4 kN, set as −0.02 to −0.05 mm end play with the KMT 27 nut; verified by bearing rolling torque before seals are fitted"
+  },
+  "spindle": {
+    "sections": {
+      "rear seat Ø140 (x 360)": {
+        "M_kNm": 15.2,
+        "sigma_nom_MPa": 68.0,
+        "Kt": 1.0,
+        "sigma_peak_MPa": 68.0
+      },
+      "cone shoulder Ø155/140 R2.5 (x 382.5)": {
+        "M_kNm": 15.5,
+        "sigma_nom_MPa": 69.6,
+        "Kt": 1.9,
+        "sigma_peak_MPa": 132.2
+      },
+      "flange fillet Ø150 R10 (x 430)": {
+        "M_kNm": 16.2,
+        "sigma_nom_MPa": 56.3,
+        "Kt": 1.45,
+        "sigma_peak_MPa": 81.7
+      },
+      "thread relief M135 (x 80)": {
+        "M_kNm": 0.6,
+        "sigma_nom_MPa": 3.3,
+        "Kt": 2.5,
+        "sigma_peak_MPa": 8.4
+      }
+    },
+    "yield_MPa": 650.0,
+    "static_reserve_min": 4.5,
+    "fatigue": {
+      "endurance_allow_MPa": 197,
+      "worst_amplitude_MPa": 66.1,
+      "reserve": 3.0
+    },
+    "mass_kg": 56.7
+  },
+  "bolted_joints": [
+    {
+      "joint": "spindle flange to bedplate",
+      "bolts": "12x M20 10.9",
+      "pcd_mm": 350,
+      "tightening_Nm": 540,
+      "min_preload_kN": 128.8,
+      "slip_capacity_kN": 309.1,
+      "slip_demand_kN": 33.3,
+      "slip_factor": 9.3,
+      "max_external_axial_per_bolt_kN": 26.6,
+      "separation_factor": 4.8
+    },
+    {
+      "joint": "stator carrier to spindle flange (thermal paste, mu 0.1)",
+      "bolts": "12x M12 10.9",
+      "pcd_mm": 240,
+      "tightening_Nm": 110,
+      "min_preload_kN": 44.1,
+      "slip_capacity_kN": 52.9,
+      "slip_demand_kN": 27.9,
+      "slip_factor": 1.9,
+      "max_external_axial_per_bolt_kN": 0.0,
+      "separation_factor": 44100.0
+    },
+    {
+      "joint": "hub to drum web (doc 13)",
+      "bolts": "12x M16 10.9",
+      "pcd_mm": 400,
+      "tightening_Nm": 280,
+      "min_preload_kN": 110.0,
+      "slip_capacity_kN": 396.0,
+      "slip_demand_kN": 162.0,
+      "slip_factor": 2.4,
+      "max_external_axial_per_bolt_kN": 11.6,
+      "separation_factor": 9.5
+    },
+    {
+      "joint": "brake disc to drum flange ring",
+      "bolts": "24x M12 10.9",
+      "pcd_mm": 662,
+      "tightening_Nm": 110,
+      "min_preload_kN": 44.1,
+      "slip_capacity_kN": 211.7,
+      "slip_demand_kN": 85.8,
+      "slip_factor": 2.5,
+      "max_external_axial_per_bolt_kN": 0.0,
+      "separation_factor": 44100.0
+    },
+    {
+      "joint": "rear cover to drum (non-structural)",
+      "bolts": "24x M10 10.9",
+      "pcd_mm": 644,
+      "tightening_Nm": 65,
+      "min_preload_kN": 30.1,
+      "slip_capacity_kN": 144.5,
+      "slip_demand_kN": 0.5,
+      "slip_factor": 289.0,
+      "max_external_axial_per_bolt_kN": 0.0,
+      "separation_factor": 30100.0
+    }
+  ],
+  "stator_fit": {
+    "lamination_bore_mm": 437.2,
+    "aluminium_carrier_fit_change_at_minus40_mm": -0.3,
+    "aluminium_carrier_fit_change_at_plus80_mm": 0.3,
+    "decision": "steel carrier: same expansion as the laminations, interference 0 to 0.05 at all temperatures"
+  },
+  "cooling_path": {
+    "target_K_per_W": 0.4,
+    "elements_K_per_W": {
+      "stack_to_carrier": 0.0033,
+      "carrier_web": 0.0499,
+      "bolted_face": 0.0074,
+      "spindle_flange": 0.0766
+    },
+    "cases": {
+      "12 m/s": {
+        "h_W_m2K": 63,
+        "R_path_K_per_W": 0.29,
+        "R_incl_air_rise_K_per_W": 0.312,
+        "air_flow_m3_h": 69,
+        "air_rise_K": 26.0,
+        "pressure_drop_Pa": 310,
+        "fan_air_power_W": 5.9
+      },
+      "10 m/s": {
+        "h_W_m2K": 55,
+        "R_path_K_per_W": 0.302,
+        "R_incl_air_rise_K_per_W": 0.328,
+        "air_flow_m3_h": 57,
+        "air_rise_K": 31.2,
+        "pressure_drop_Pa": 215,
+        "fan_air_power_W": 3.4
+      },
+      "7 m/s": {
+        "h_W_m2K": 41,
+        "R_path_K_per_W": 0.328,
+        "R_incl_air_rise_K_per_W": 0.365,
+        "air_flow_m3_h": 40,
+        "air_rise_K": 44.6,
+        "pressure_drop_Pa": 105,
+        "fan_air_power_W": 1.2
+      },
+      "5 m/s": {
+        "h_W_m2K": 31,
+        "R_path_K_per_W": 0.357,
+        "R_incl_air_rise_K_per_W": 0.409,
+        "air_flow_m3_h": 29,
+        "air_rise_K": 62.5,
+        "pressure_drop_Pa": 54,
+        "fan_air_power_W": 0.4
+      }
+    },
+    "note": "doc 07 had 0.17 to 0.25 K/W with an aluminium carrier shrunk directly on the spindle and the full bore length counted; this layout routes heat through the flange, so the spindle works as a fin. Still meets 0.40 K/W; measured on the bench (doc 15, T5)."
+  },
+  "air_gap_budget": {
+    "items_mm": {
+      "bearing run-out (P5 class recommended, preloaded)": 0.01,
+      "spindle seats to flange/spigot run-out": 0.01,
+      "carrier stack seat to bolting face": 0.02,
+      "stack OD run-out to bore (laser cut + bonded)": 0.05,
+      "drum cup seats to magnet seat coaxiality": 0.02,
+      "magnet thickness + bond line variation": 0.05,
+      "spindle + bearing deflection at 9.8 kNm (tilt of drum vs stator)": 0.04,
+      "magnetic pull amplification (1 / (1 - k_mag/k_struct))": 0.005
+    },
+    "worst_case_sum_mm": 0.205,
+    "rss_mm": 0.087,
+    "limit_mm": 0.2,
+    "nominal_gap_mm": 2.0
+  },
+  "magnet_forces": {
+    "average_magnetic_pressure_kPa": 194,
+    "total_radial_attraction_kN": 27,
+    "unbalanced_pull_per_mm_kN": 1.91,
+    "pull_at_1_8mm_offset_kN": 6.3,
+    "note": "the drum must be guided coaxially (tool NP1-T01) before the magnets reach the stator; one magnet piece to a steel surface at 10 mm gap pulls about 50 to 80 N"
+  },
+  "brake": {
+    "disc_od_id_mm": [
+      800.0,
+      640.0
+    ],
+    "effective_radius_m": 0.37,
+    "clamp_per_caliper_kN_at_mu_0_4": 14.7,
+    "energy_from_250rpm_kJ": 74,
+    "disc_bulk_temperature_rise_K": 7.1,
+    "lock_pin_shear_MPa": 53.5,
+    "lock_pin_bearing_MPa": 26.3
+  },
+  "bench_drive": {
+    "rated_mech_power_kW": 14.9,
+    "torque_needed_Nm": 1002,
+    "motor": "37 kW 4-pole induction, 240 Nm, inverter fed",
+    "gearbox_ratio": 6,
+    "output_torque_continuous_Nm": 1397,
+    "output_speed_at_base_rpm": 247,
+    "motor_speed_at_275rpm": 1650,
+    "torque_transducer": "2 kNm flange, accuracy class 0.05 (≈ 0.5 % of rated power error budget for efficiency)",
+    "energy": "common DC bus between drive inverter and generator load inverter; grid supplies losses only"
+  },
+  "masses_kg": {
+    "Spindle NP1-100": 56.7,
+    "Front spacer NP1-101": 0.6,
+    "Rotor drum weldment NP1-210": 96.0,
+    "Seal covers NP1-211 (2)": 4.1,
+    "Drum rear cover NP1-212": 7.3,
+    "Brake disc NP1-230": 22.7,
+    "Magnets NP1-220 (160 pcs)": 6.6,
+    "Main bearings 32028 X (2)": 9.6,
+    "Stator carrier NP1-200": 40.6,
+    "Stator core NP1-201 (laminations)": 48.0,
+    "Stator winding (copper, insulation, potting)": 24.0,
+    "Stator clamp ring NP1-202": 2.2,
+    "Cooling insert NP1-110": 2.6,
+    "total_drivetrain_no_hub": 321.1,
+    "doc07_budget_same_scope": 190,
+    "note": "P1 is machined and fabricated for low risk and short lead time; the cast and FEA-optimised P2 drum, carrier and bedplate must recover most of the difference (tower update pending, doc 13 section 8)"
+  }
+}

@@ -25,6 +25,12 @@ place to be for a 20-year product in Icelandic storms.
 
 ---
 
+> **Update (doc 14):** P1 detail design changes the stator carrier to steel
+> (an aluminium carrier inside the stack loosens by about 0.3 mm at −40 °C),
+> bolts it to an integral spindle flange, moves the brake disc to Ø800, and
+> recalculates the cooling path at 0.31 to 0.33 K/W. See
+> [14 – Nacelle prototype P1](14-nacelle-prototype-p1.md).
+
 ## 1. Layout
 
 ```

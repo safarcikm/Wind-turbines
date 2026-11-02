@@ -47,3 +47,10 @@ possible manufactured in-house.
   pitch duty, ductile iron hub, yaw bearing, drives and slipping brake, and
   the effect of the heavier rotor on the towers (models in
   [analysis/hub](analysis/hub/)).
+- [14 – Nacelle prototype P1](docs/14-nacelle-prototype-p1.md): bench
+  article detail design (spindle, bearings, drum, stator, magnets, brake,
+  cooling, bedplate), detail checks, mass, manufacturing and assembly, with
+  17 parametric drawings (PDF + DXF) and a BOM in [cad/nacelle_p1](cad/nacelle_p1/)
+  (checks in [analysis/nacelle/detail.py](analysis/nacelle/detail.py)).
+- [15 – Nacelle bench test plan](docs/15-nacelle-bench-test-plan.md): rig,
+  instrumentation, test blocks T0 to T10 with pass criteria, schedule.

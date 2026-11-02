@@ -2,3 +2,4 @@ __pycache__/
 *.pyc
 analysis/loads/results/ts_*.npz
 analysis/loads/results/*/ts_*.npz
+cad/nacelle_p1/out/png/
