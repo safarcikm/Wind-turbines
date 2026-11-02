@@ -5,7 +5,8 @@ Used for [docs/08-load-verification.md](../../docs/08-load-verification.md).
 ```
 pip install numpy scipy matplotlib
 python3 slm.py        # IEC 61400-2 Simplified Load Model (seconds), writes results/slm.json
-python3 run_dlcs.py   # 94 design load case simulations (~25 min on 4 cores)
+python3 run_dlcs.py         # doc 08 baseline: 94 design load case simulations (~25 min on 4 cores)
+python3 run_dlcs.py final   # doc 11: final controller, 18 m tower, carbon blade, 103 cases -> results/final/
 ```
 
 - `slm.py`: Simplified Load Model, load cases A (fatigue), B, D, E, F, G, H.

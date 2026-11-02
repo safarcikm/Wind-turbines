@@ -1,12 +1,14 @@
 """Run the design load case set with the in-house time-domain simulator.
 
-Run:  python3 run_dlcs.py        (~15 min on 4 cores; writes results/dlc_*.json, plots)
+Run:  python3 run_dlcs.py          (doc 08 baseline; writes results/dlc_*.json, plots)
+      python3 run_dlcs.py final    (doc 11 controller, doc 09 tower, doc 10 blade; writes results/final/)
 """
 from __future__ import annotations
 
 import json
 import math
 import multiprocessing as mp
+import sys
 from pathlib import Path
 
 import numpy as np
@@ -18,8 +20,15 @@ import matplotlib.pyplot as plt
 from sim import Turbine, Scenario, simulate, damage_sum
 from wind import turbulent_field, uniform_field, eog, sigma_ntm, sigma_etm, V_AVE
 
-OUT = Path(__file__).parent / "results"
-OUT.mkdir(exist_ok=True)
+CONFIG = sys.argv[1] if len(sys.argv) > 1 else "baseline"
+TB_KW = {}
+if CONFIG == "final":
+    # doc 11 controller (constant power, storm control, exclusion zone), doc 09 18 m tower,
+    # doc 10 carbon-cap blade, +-0.3 deg pitch misalignment
+    TB_KW = dict(const_power=True, storm_control=True, f_flap=13.2, m_blade=20.5, f_tower=1.21,
+                 m_tower_modal=305.0, excl_rpm=(66.5, 80.5), pitch_err=(0.3, 0.0, -0.3))
+OUT = Path(__file__).parent / "results" / ("" if CONFIG == "baseline" else CONFIG)
+OUT.mkdir(parents=True, exist_ok=True)
 T_RUN = 600.0
 CHANNELS = ["thrust", "Mflap0", "Medge0", "Mres0", "Mtilt", "Myaw", "Mbase", "Qaero", "Qgen", "rpm", "pitch0", "P", "Fimb"]
 FATIGUE = {"Mflap0": 10, "Medge0": 10, "thrust": 4, "Mtilt": 4, "Myaw": 4, "Mbase": 4, "Qaero": 4}
@@ -30,7 +39,8 @@ V_REF = 55.0
 def build_cases():
     cases = []
     # DLC 1.1 / 1.2: normal turbulence, power production (fatigue + ultimate)
-    for V in range(4, 25, 2):
+    v_max = 31 if CONFIG == "final" else 25          # final: include storm control 26-30 m/s
+    for V in range(4, v_max, 2):
         for seed in range(3):
             cases.append(dict(dlc="1.1", V=V, seed=seed, kind="ntm", T=T_RUN))
     # DLC 1.3: extreme turbulence
@@ -74,7 +84,7 @@ def build_cases():
 
 
 def run_case(cs):
-    tb = Turbine()
+    tb = Turbine(**TB_KW)
     V = cs["V"]
     if cs["kind"] == "ntm":
         field = turbulent_field(V, sigma_ntm(V), T=cs["T"], dt=0.05, seed=cs["seed"])

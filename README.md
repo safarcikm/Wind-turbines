@@ -36,3 +36,6 @@ possible manufactured in-house.
 - [10 – Blade materials and structure](docs/10-blade-structure.md): material
   options, layup sizing for glass and carbon spar caps, frequencies, root
   joint (model in [analysis/blade](analysis/blade/)).
+- [11 – Control and safety system](docs/11-control-safety.md): control and
+  protection architecture, constant power, storm control, exclusion zone,
+  trips and emergency stop, and the full load rerun with the final design.

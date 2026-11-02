@@ -47,6 +47,11 @@ class Turbine:
     P_aero_rated: float = 13_600.0
     rpm_rated: float = 178.0
     rpm_min: float = 0.0           # minimum operating speed (region 1.5), 0 = none; doc 09 uses 80 rpm
+    const_power: bool = False       # above rated: Q = P_ref / omega (doc 11) instead of rated torque + speed term
+    storm_control: bool = False     # 25-30 m/s: speed and power reduced on the 60 s nacelle wind (doc 11)
+    storm_v: tuple = (25.0, 30.0)
+    storm_speed_frac: float = 0.25  # speed reduction at the end of the storm ramp
+    storm_power_frac: float = 0.60  # power reduction at the end of the storm ramp
     excl_rpm: tuple | None = None   # speed exclusion zone (rpm_lo, rpm_hi) around a tower resonance (doc 09)
     pitch_err: tuple = (0.0, 0.0, 0.0)   # deg, per-blade pitch misalignment (aerodynamic imbalance)
     rpm_trip: float = 210.0        # overspeed trip (118 %) -> emergency stop; design overspeed 250 rpm (doc 08)
@@ -196,6 +201,7 @@ def simulate(tb: Turbine, sc: Scenario, dt=0.01, record_every=2):
     t_estop = None
     torque_lost = False
     zone = None
+    v_filt = V0
     if tb.excl_rpm:
         om_L, om_H = (x * 2 * math.pi / 60 for x in tb.excl_rpm)
         Q_L, Q_H = tb.k_opt * om_L ** 2, tb.k_opt * om_H ** 2
@@ -209,6 +215,7 @@ def simulate(tb: Turbine, sc: Scenario, dt=0.01, record_every=2):
         mu_b[0] = mu + mu_i
     m_gen_b = np.sum(mu_b * phi ** 2 * dr, axis=1)
     m_cpl_b = np.sum(mu_b * phi * dr, axis=1)
+    m_bl_tot = float(np.sum(mu_b * dr))
     k_flap0 = m_gen_b * tb.w_flap0 ** 2
     polars = [ROUGH if (sc.ice_blade_mass > 0 and i == 0) else tb.polar for i in range(nb)]
     stuck = sc.events.get("stuck_blade")
@@ -277,11 +284,23 @@ def simulate(tb: Turbine, sc: Scenario, dt=0.01, record_every=2):
             a += dt / tau * (a_qs - a)
         else:
             a *= max(0.0, 1 - dt / 0.5)
-        # ---------------- blade flap dynamics (symplectic Euler)
-        Fgen = np.sum(fn * phi[None, :] * dr[None, :], axis=1) - m_cpl_b * xtdd
+        # ---------------- blade flap and tower fore-aft dynamics
+        # accelerations solved together (implicit inertial coupling), then symplectic Euler;
+        # the explicit coupling used in doc 08 became unstable for stiff blades at dt = 0.01 s
+        Faero_b = np.sum(fn * phi[None, :] * dr[None, :], axis=1)
         k_flap = k_flap0 + m_gen_b * tb.southwell * om ** 2
         c_flap = 2 * tb.zeta_flap * np.sqrt(k_flap * m_gen_b)
-        qdd = (Fgen - c_flap * qd - k_flap * q) / m_gen_b
+        m_t = tb.m_top + tb.m_tower_modal
+        c_t = 2 * tb.zeta_tower * math.sqrt(tb.k_tower * m_t)
+        Amat = np.zeros((nb + 1, nb + 1)); rhs = np.zeros(nb + 1)
+        Amat[np.arange(nb), np.arange(nb)] = m_gen_b
+        Amat[:nb, nb] = m_cpl_b
+        Amat[nb, :nb] = m_cpl_b
+        Amat[nb, nb] = m_t + m_bl_tot
+        rhs[:nb] = Faero_b - c_flap * qd - k_flap * q
+        rhs[nb] = float(np.sum(fn * dr[None, :])) - c_t * xtd - tb.k_tower * xt
+        sol = np.linalg.solve(Amat, rhs)
+        qdd, xtdd = sol[:nb], float(sol[nb])
         qd += dt * qdd
         q += dt * qd
         # root loads
@@ -293,6 +312,12 @@ def simulate(tb: Turbine, sc: Scenario, dt=0.01, record_every=2):
         Medge_aero = np.sum(ft * (r - rh)[None, :] * dr[None, :], axis=1)
         Qaero = float(np.sum(Q_blades))
         # ---------------- generator / brake torque
+        v_filt += dt / 60.0 * (float(np.mean(u)) - v_filt)
+        sf = 0.0
+        if tb.storm_control:
+            sf = min(max((v_filt - tb.storm_v[0]) / (tb.storm_v[1] - tb.storm_v[0]), 0.0), 1.0)
+        om_ref = tb.omega_rated * (1 - tb.storm_speed_frac * sf)
+        P_ref = tb.P_aero_rated * (1 - tb.storm_power_frac * sf)
         om_rpm = om * 60 / (2 * math.pi)
         if mode == "run" and not torque_lost:
             om_min = tb.rpm_min * 2 * math.pi / 60
@@ -324,11 +349,16 @@ def simulate(tb: Turbine, sc: Scenario, dt=0.01, record_every=2):
             elif om_min > 0 and om < 1.05 * om_min:
                 # region 1.5: steep torque ramp holds the rotor at or above the minimum speed
                 Qg = tb.k_opt * (1.05 * om_min) ** 2 * max(0.0, (om - om_min) / (0.05 * om_min))
+            elif tb.const_power and sf > 0 and om > 0.9 * om_ref:
+                Qg = P_ref / max(om, 0.5 * om_ref)
             elif om < 0.95 * tb.omega_rated:
                 Qg = tb.k_opt * om ** 2
             elif pitch.mean() < 1.0 and om < tb.omega_rated:
                 Q95 = tb.k_opt * (0.95 * tb.omega_rated) ** 2
                 Qg = Q95 + (tb.Q_rated - Q95) * (om - 0.95 * tb.omega_rated) / (0.05 * tb.omega_rated)
+            elif tb.const_power:
+                # above rated (or in storm control): constant power, plus the overspeed term
+                Qg = P_ref / max(om, 0.5 * om_ref) + tb.k_overspeed * max(om - 1.05 * om_ref, 0.0)
             else:
                 # above rated: rated torque plus a speed-proportional term that helps the pitch
                 # loop catch gusts (converter and generator rated for 125 % torque)
@@ -362,7 +392,7 @@ def simulate(tb: Turbine, sc: Scenario, dt=0.01, record_every=2):
             psi += dt * om
         # ---------------- pitch control
         if mode == "run":
-            err = om - tb.omega_rated
+            err = om - om_ref
             gk = tb.gain(pitch.mean())
             integ += dt * err
             integ = min(max(integ, tb.pitch_min / max(tb.Ki0 * gk, 1e-9)), 90 / max(tb.Ki0 * gk, 1e-9))
@@ -388,9 +418,6 @@ def simulate(tb: Turbine, sc: Scenario, dt=0.01, record_every=2):
             pitch[stuck] = sc.events["stuck_value"]
         # ---------------- tower fore-aft
         thrust = float(np.sum(Froot))
-        m_t = tb.m_top + tb.m_tower_modal
-        c_t = 2 * tb.zeta_tower * math.sqrt(tb.k_tower * m_t)
-        xtdd = (thrust - c_t * xtd - tb.k_tower * xt) / m_t
         xtd += dt * xtdd
         xt += dt * xtd
         # ---------------- record

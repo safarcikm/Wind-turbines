@@ -233,7 +233,7 @@ about 9.8 Hz, a soft tower below about 0.6 Hz, or a resonance-avoidance
 speed band in the controller (common on small variable-speed turbines).
 This is the main input to the tower design.
 
-### 4.5 Power above rated (controller tuning)
+### 4.5 Power above rated (controller tuning, fixed in doc 11)
 
 Mean shaft power above rated is about 14.8 kW against the 13.6 kW target
 (8 % high), because the torque law keeps rising with speed above rated.
