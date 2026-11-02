@@ -1,0 +1,76 @@
+{
+ "envelope": {
+  "rated": {
+   "rpm": 178.0,
+   "f_el": 59.3,
+   "E_line": 378.7,
+   "I": 20.7,
+   "V_line": 412.4,
+   "V_line_peak": 583.2,
+   "Vdc_min": 641.5
+  },
+  "min_speed": {
+   "rpm": 40.0,
+   "f_el": 13.3,
+   "E_line": 85.1,
+   "I": 1.2,
+   "V_line": 84.5,
+   "V_line_peak": 119.5,
+   "Vdc_min": 131.4
+  },
+  "estop_braking_at_232rpm": {
+   "rpm": 231.6,
+   "f_el": 77.2,
+   "E_line": 492.7,
+   "I": 25.9,
+   "V_line": 567.1,
+   "V_line_peak": 802.1,
+   "Vdc_min": 882.3
+  },
+  "open_circuit_250rpm_cold_peak_V": 892.0,
+  "phase_resistance_ohm": 0.307,
+  "inductance_mH": 13.950000000000001,
+  "reactance_rated_ohm": 5.2
+ },
+ "dc_link": {
+  "needed_by_generator_at_rated_V": 642.0,
+  "needed_by_generator_at_estop_V": 882.0,
+  "needed_by_400V_grid_inverter_V": 684.0,
+  "nominal_V": 750.0,
+  "chopper_on_V": 820.0,
+  "uncontrolled_rectification_250rpm_cold_V": 892.0,
+  "device_class_V": 1200.0,
+  "device_margin_at_worst_pct": 26.0
+ },
+ "ratings": {
+  "generator_side_current_continuous_A_rms": 20.7,
+  "generator_side_current_max_A_rms": 25.9,
+  "recommended_module": "1200 V SiC MOSFET six-pack, >= 60 A (2 x margin on peak current for cold start and faults)",
+  "switching_frequency_kHz": 16.0,
+  "grid_current_400V_A_rms": 17.3,
+  "grid_current_230V_1ph_A_rms": 52.2,
+  "battery_current_48V_A": 250.0
+ },
+ "dump_load": {
+  "rating_continuous_kW": 20.4,
+  "resistance_ohm": 33.0,
+  "energy_emergency_stop_kJ": 76.0,
+  "energy_normal_stop_grid_loss_kJ": 78.0,
+  "note": "rated continuous so it never limits a stop; hardware-triggered by DC link voltage, independent of the controller"
+ },
+ "efficiency_rated": {
+  "generator": 0.9467,
+  "rectifier": 0.9881,
+  "inverter": 0.9848,
+  "front_end_plus_grid_module": 0.9731,
+  "net_output_kW": 12.41
+ },
+ "aep_kWh_net_by_vave": {
+  "5.0": 20844,
+  "6.0": 31810,
+  "7.0": 42289,
+  "8.0": 51515,
+  "10.0": 65620
+ },
+ "rated_wind_for_12kW_net": 10.5
+}

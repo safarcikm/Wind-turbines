@@ -39,3 +39,6 @@ possible manufactured in-house.
 - [11 – Control and safety system](docs/11-control-safety.md): control and
   protection architecture, constant power, storm control, exclusion zone,
   trips and emergency stop, and the full load rerun with the final design.
+- [12 – Power electronics](docs/12-power-electronics.md): active rectifier,
+  750 V DC link, dump load, grid-tie/heating and battery modules, efficiency
+  and annual energy (model in [analysis/power](analysis/power/)).
