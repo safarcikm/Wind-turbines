@@ -90,13 +90,13 @@ def preview(parts):
             continue
         tris = [[(v[i].x, v[i].z) for i in tri] for tri in t]
         ax.add_collection(PolyCollection(tris, facecolors=[p.color], edgecolors="none"))
-    ax.set_xlim(-1300, 450)
-    ax.set_ylim(-120, 1000)
+    ax.set_xlim(-1300, 500)
+    ax.set_ylim(-760, 1000)
     ax.set_aspect("equal")
     ax.grid(alpha=0.2)
     ax.set_xlabel("X rearward from the yaw axis, mm")
     ax.set_ylabel("Z up from the bedplate underside, mm")
-    ax.set_title("Nacelle P1 fit-check model, all parts 1:1, section on the vertical mid-plane")
+    ax.set_title("Nacelle P1 fit-check model down to the tower flange, all parts 1:1, section on the vertical mid-plane")
     fig.savefig(os.path.join(OUT, "preview.png"), dpi=110, bbox_inches="tight")
 
 

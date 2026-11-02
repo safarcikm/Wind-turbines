@@ -78,6 +78,48 @@
    "min_gap_mm": 2.5
   }
  ],
+ "yaw_clearance": [
+  {
+   "nacelle_part": "yaw_brake_caliper_left_envelope",
+   "tower_part": "NP1-400_tower_top_adapter",
+   "min_gap_mm": 3.0
+  },
+  {
+   "nacelle_part": "yaw_brake_caliper_right_envelope",
+   "tower_part": "NP1-400_tower_top_adapter",
+   "min_gap_mm": 3.0
+  },
+  {
+   "nacelle_part": "yaw_drive_left_envelope",
+   "tower_part": "NP1-400_tower_top_adapter",
+   "min_gap_mm": 5.0
+  },
+  {
+   "nacelle_part": "yaw_drive_right_envelope",
+   "tower_part": "NP1-400_tower_top_adapter",
+   "min_gap_mm": 5.0
+  },
+  {
+   "nacelle_part": "NP1-300-2_bedplate_bottom_plate",
+   "tower_part": "yaw_bearing_outer_gear_ring_envelope",
+   "min_gap_mm": 10.0
+  },
+  {
+   "nacelle_part": "yaw_bearing_inner_ring_envelope",
+   "tower_part": "NP1-400_tower_top_adapter",
+   "min_gap_mm": 10.0
+  },
+  {
+   "nacelle_part": "NP1-420_yaw_drive_bracket_left",
+   "tower_part": "yaw_bearing_outer_gear_ring_envelope",
+   "min_gap_mm": 10.0
+  },
+  {
+   "nacelle_part": "NP1-420_yaw_drive_bracket_right",
+   "tower_part": "yaw_bearing_outer_gear_ring_envelope",
+   "min_gap_mm": 10.0
+  }
+ ],
  "assembly_path": [
   {
    "stage": "1 stator",

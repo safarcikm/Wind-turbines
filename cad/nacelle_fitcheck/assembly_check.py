@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import itertools
 import json
+import math
 import os
 
 from shapely.geometry import Polygon
@@ -32,6 +33,12 @@ DESIGNED_CONTACT_TOL = 5.0      # mm^3
 RUNNING_LIMIT = 3.0             # mm, report rotating/stationary gaps below this
 
 
+# Pinion and gear ring mesh by design: their tooth overlap is not a clash.
+MESH_PAIRS = {("yaw_drive_left_envelope", "yaw_bearing_outer_gear_ring_envelope"),
+              ("yaw_drive_right_envelope", "yaw_bearing_outer_gear_ring_envelope")}
+YAW_LIMIT = 15.0                # mm, report nacelle/tower gaps below this
+
+
 # ------------------------------------------------------------------ 3-D checks
 def static_interference(parts):
     res = []
@@ -40,6 +47,8 @@ def static_interference(parts):
         ba, bb = bbs[a.pid], bbs[b.pid]
         if (ba.xmax < bb.xmin or bb.xmax < ba.xmin or ba.ymax < bb.ymin or bb.ymax < ba.ymin
                 or ba.zmax < bb.zmin or bb.zmax < ba.zmin):
+            continue
+        if (a.pid, b.pid) in MESH_PAIRS or (b.pid, a.pid) in MESH_PAIRS:
             continue
         try:
             v = a.solid.intersect(b.solid).Volume()
@@ -50,6 +59,75 @@ def static_interference(parts):
         if v > DESIGNED_CONTACT_TOL:
             res.append(dict(a=a.pid, b=b.pid, volume_mm3=round(v, 1)))
     return res
+
+
+def tower_sections():
+    """(r, z) sections of the tower-side parts about the yaw axis. When the
+    nacelle yaws, every nacelle point sweeps a circle, so the gap over all
+    yaw angles is the (r, z) distance to these sections. The gussets and the
+    gear (tip circle) are taken as their revolved footprint."""
+    A, T = PT.ADAPTER, PT.TOWER
+    (p0, p1), (z0, z1) = A["plate_r"], A["plate_z"]
+    fz0, fz1 = A["flange_z"]
+    g = A["gussets"]
+    Y = G.YAW
+    ra = Y["module"] * Y["gear_z"] / 2 + Y["module"]
+    return {
+        "NP1-400_tower_top_adapter": unary_union([
+            poly([(p0, z0), (p1, z0), (p1, z1), (p0, z1)]),
+            poly([(A["cone_r_top"][0], z0), (A["cone_r_top"][1], z0), (A["cone_r_bot"][1], fz1), (A["cone_r_bot"][0], fz1)]),
+            poly([(T["flange_id"] / 2, fz0), (T["flange_od"] / 2, fz0), (T["flange_od"] / 2, fz1), (T["flange_id"] / 2, fz1)]),
+            poly([(g["r"][0] - 4, z0), (g["r"][1], z0), (g["r"][0] - 4, g["z_low"])])]),
+        "yaw_bearing_outer_gear_ring_envelope": poly([(Y["outer"]["id"] / 2, -70.0), (ra, -70.0), (ra, -10.0),
+                                                      (Y["outer"]["id"] / 2, -10.0)]),
+        "tower_top_flange_stub": poly([(T["flange_id"] / 2, fz0 - 330), (T["flange_od"] / 2, fz0 - 330),
+                                       (T["flange_od"] / 2, fz0), (T["flange_id"] / 2, fz0)]),
+    }
+
+
+def _surface_points(shape, step=12.0):
+    """(r, z) of points spread over the solid's surface (tessellated, then
+    each triangle filled with a barycentric grid of about `step` mm)."""
+    import math as _m
+    v, t = shape.tessellate(0.5, 0.3)
+    P = [(q.x, q.y, q.z) for q in v]
+    pts = []
+    for i, j, k in t:
+        a, b, c = P[i], P[j], P[k]
+        e = max(_m.dist(a, b), _m.dist(b, c), _m.dist(c, a))
+        n = max(1, int(e / step) + 1)
+        for u in range(n + 1):
+            for w in range(n + 1 - u):
+                l1, l2 = u / n, w / n
+                l0 = 1 - l1 - l2
+                x = l0 * a[0] + l1 * b[0] + l2 * c[0]
+                y = l0 * a[1] + l1 * b[1] + l2 * c[1]
+                z = l0 * a[2] + l1 * b[2] + l2 * c[2]
+                pts.append((_m.hypot(x, y), z))
+    return pts
+
+
+def yaw_clearance(parts):
+    """Smallest gap over a full yaw turn between nacelle parts and tower parts."""
+    from shapely.geometry import MultiPoint
+    tw = tower_sections()
+    res = []
+    for p in parts:
+        if p.group == "tower":
+            continue
+        bb = p.solid.BoundingBox()
+        if bb.zmin > 60.0 or math.hypot(max(abs(bb.xmin), abs(bb.xmax)), max(abs(bb.ymin), abs(bb.ymax))) < 100:
+            continue
+        mp = MultiPoint(_surface_points(p.solid))
+        for tname, tsec in tw.items():
+            if p.pid.startswith("yaw_drive") and tname.startswith("yaw_bearing_outer"):
+                continue     # pinion meshes with the gear by design
+            if p.pid.startswith("yaw_bearing_inner") and tname.startswith("yaw_bearing_outer"):
+                continue     # the two rings of one bearing
+            d = mp.distance(tsec)
+            if d < YAW_LIMIT:
+                res.append(dict(nacelle_part=p.pid, tower_part=tname, min_gap_mm=round(d, 1)))
+    return sorted(res, key=lambda x: x["min_gap_mm"])
 
 
 ROTATING_2D = ["NP1-210_rotor_drum", "32028X_front_cup_envelope", "32028X_rear_cup_envelope",
@@ -187,9 +265,11 @@ def main(parts=None):
     sec = section_dict()
     print("running clearances ...")
     rc = running_clearance(sec)
+    print("yaw clearances ...")
+    yc = yaw_clearance(parts)
     print("assembly paths ...")
     ap, st2 = assembly_path(sec)
-    res = dict(static_3d=si, running_clearance=rc, assembly_path=ap, static_section=st2,
+    res = dict(static_3d=si, running_clearance=rc, yaw_clearance=yc, assembly_path=ap, static_section=st2,
                limits=dict(designed_contact_mm3=DESIGNED_CONTACT_TOL, running_gap_mm=RUNNING_LIMIT))
     with open(os.path.join(OUT, "assembly_check.json"), "w") as f:
         json.dump(res, f, indent=1)
@@ -205,6 +285,10 @@ def main(parts=None):
           f"Gaps below {RUNNING_LIMIT} mm (the air gap is 2.5 mm to the magnet face by design):", "",
           "| Rotating | Stationary | Min gap mm |", "|---|---|---|"]
     L += [f"| {r['rotating']} | {r['stationary']} | {r['min_gap_mm']} |" for r in rc] or ["| none | | |"]
+    L += ["", "## 2b. Yaw clearance, nacelle vs tower-top parts over a full yaw turn", "",
+          f"Gaps below {YAW_LIMIT} mm (pinion/gear mesh and the two yaw bearing rings excluded):", "",
+          "| Nacelle part | Tower part | Min gap mm |", "|---|---|---|"]
+    L += [f"| {r['nacelle_part']} | {r['tower_part']} | {r['min_gap_mm']} |" for r in yc] or ["| none | | |"]
     L += ["", "## 3. Assembly path along the spindle axis (doc 14 §7.2 order)", "",
           "| Stage | Step | Arrives from | Result | Blocked by (x range, r range, overlap mm²) |", "|---|---|---|---|---|"]
     for r in ap:

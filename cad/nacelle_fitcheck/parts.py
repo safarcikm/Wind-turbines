@@ -335,6 +335,12 @@ def build_parts():
 
     # ------------------------------------------------------------ brake caliper space claims
     P += caliper_envelopes()
+    P += rotor_caliper_brackets()
+
+    # ------------------------------------------------------------ yaw drives, yaw brake, tower top
+    P += yaw_drive_parts()
+    P += yaw_brake_parts()
+    P += tower_top_parts()
 
     # ------------------------------------------------------------ bench dummy hub
     hub = None
@@ -404,7 +410,9 @@ def bedplate_parts():
 
 def yaw_parts():
     Y = G.YAW
-    inner = cq.Solid.makeCylinder(Y["inner"]["od"] / 2, Y["height"], cq.Vector(0, 0, -Y["height"]))
+    # inner ring 10 mm shorter at the bottom so it clears the tower-top adapter
+    # (outer ring mounting face) while the nacelle yaws
+    inner = cq.Solid.makeCylinder(Y["inner"]["od"] / 2, Y["height"] - 10, cq.Vector(0, 0, -(Y["height"] - 10)))
     inner = inner.cut(cq.Solid.makeCylinder(Y["inner"]["id"] / 2 + PRINT_CLEARANCE, 100, cq.Vector(0, 0, -90)))
     for k in range(16):
         a = math.radians(360.0 * k / 16 + 360.0 / 32)
@@ -447,6 +455,168 @@ def caliper_envelopes():
                         "stationary", "BOM 26 (bought), bracket NP1-310 not drawn", (0.85, 0.2, 0.2),
                         make_buy="buy (envelope)", axis=None,
                         notes=["generic envelope, replace with the chosen caliper's drawing"]))
+    return out
+
+
+# ===================================================== below the bedplate
+# Everything from the bedplate down to the tower mounting point. New design
+# (not in the P1 drawing set yet): proposed here, sized in doc 16 section 7.
+TOWER = dict(
+    tube_od=320.0, tube_t=8.0,                 # doc 09 tower top
+    flange_od=420.0, flange_id=240.0, flange_t=30.0,
+    bolts=dict(n=16, size="M20", pcd=380.0),   # adapter to tower, through bolts + nuts
+)
+ADAPTER = dict(
+    plate_r=(150.0, 420.0), plate_z=(-95.0, -70.0),      # carries the yaw ring and the brake track
+    track_r=(340.0, 420.0),                              # yaw brake friction track, both faces
+    cone_r_top=(186.0, 198.0), cone_r_bot=(154.0, 166.0),   # inside the PCD 440 bolts so they go in from below
+    flange_z=(-360.0, -330.0),
+    gussets=dict(n=8, t=12.0, r=(198.0, 315.0), z_low=-200.0),
+    ring_bolts=dict(n=16, size="M16", pcd=440.0),        # from below into the yaw outer ring
+)
+Z_TOWER_FLANGE_TOP = ADAPTER["flange_z"][0]              # tower mounting point
+
+
+def revolve_z(poly):
+    """Closed (r, z) polygon revolved about the yaw (Z) axis."""
+    return cq.Workplane("XZ").polyline(poly).close().revolve(360, (0, 0, 0), (0, 1, 0)).val()
+
+
+def zholes(solid, n, pcd, dia, z0, z1, start=0.0):
+    for k in range(n):
+        a = math.radians(start + 360.0 * k / n)
+        solid = solid.cut(cq.Solid.makeCylinder(dia / 2, z1 - z0, cq.Vector(pcd / 2 * math.cos(a),
+                                                                              pcd / 2 * math.sin(a), z0)))
+    return solid
+
+
+def tower_top_parts():
+    A, T = ADAPTER, TOWER
+    (p0, p1), (z0, z1) = A["plate_r"], A["plate_z"]
+    fz0, fz1 = A["flange_z"]
+    ad = revolve_z([(p0, z0), (p1, z0), (p1, z1), (p0, z1)])
+    ad = ad.fuse(revolve_z([(A["cone_r_top"][0], z0 + 1), (A["cone_r_top"][1], z0 + 1),
+                            (A["cone_r_bot"][1], fz1), (A["cone_r_bot"][0], fz1)]))
+    ad = ad.fuse(revolve_z([(T["flange_id"] / 2, fz0), (T["flange_od"] / 2, fz0),
+                            (T["flange_od"] / 2, fz1), (T["flange_id"] / 2, fz1)]))
+    g = A["gussets"]
+    tri = [(g["r"][0] - 4, z0 + 1), (g["r"][1], z0 + 1), (g["r"][0] - 4, g["z_low"])]
+    for k in range(g["n"]):
+        gs = cq.Workplane("XZ").polyline(tri).close().extrude(g["t"] / 2, both=True).val()
+        ad = ad.fuse(gs.rotate(cq.Vector(0, 0, 0), cq.Vector(0, 0, 1), 360.0 * k / g["n"] + 11.25))
+    ad = ad.clean()
+    ad = zholes(ad, 16, A["ring_bolts"]["pcd"], CLEAR["M16"], z0 - 1, z1 + 1, start=0.0)
+    ad = zholes(ad, T["bolts"]["n"], T["bolts"]["pcd"], CLEAR["M20"], fz0 - 1, fz1 + 1, start=11.25)
+    # cable / access window in the cone (cable loop inspection)
+    win = box(150, 240, -60, 60, -300, -215)
+    ad = ad.cut(win)
+    adapter = Part("NP1-400_tower_top_adapter", "Tower-top adapter with yaw brake track", ad, "tower",
+                   "NP1-400 / BOM 34 (new design, doc 16 section 7)", (0.35, 0.4, 0.45), axis="yaw",
+                   notes=["S355J2+N weldment: 25 mm plate Ø840 (yaw ring seat and brake track r 340 to 420), 12 mm cone Ø396 to Ø332, "
+                          "30 mm tower flange, 8 gussets kept inside r 315 so the yaw calipers pass",
+                          "16 x M16 10.9 up into the yaw outer ring on PCD 440; 16 x M20 10.9 through bolts to the tower on PCD 380",
+                          "access window 90 x 85 in the cone for the cable loop"])
+    # tower top flange and a 300 mm stub of the Ø320 x 8 tube = the tower mounting point
+    tf = revolve_z([(T["flange_id"] / 2, fz0 - T["flange_t"]), (T["flange_od"] / 2, fz0 - T["flange_t"]),
+                    (T["flange_od"] / 2, fz0), (T["flange_id"] / 2, fz0)])
+    r_o = T["tube_od"] / 2
+    tf = tf.fuse(revolve_z([(r_o - T["tube_t"], fz0 - T["flange_t"] - 300), (r_o, fz0 - T["flange_t"] - 300),
+                            (r_o, fz0 - T["flange_t"] + 1), (r_o - T["tube_t"], fz0 - T["flange_t"] + 1)])).clean()
+    tf = zholes(tf, T["bolts"]["n"], T["bolts"]["pcd"], CLEAR["M20"], fz0 - 40, fz0 + 1, start=11.25)
+    stub = Part("tower_top_flange_stub", "Tower top flange + 300 mm of the Ø320 x 8 tube (mounting point)", tf,
+                "tower", "doc 09 tower top, flange new (doc 16 section 7)", (0.55, 0.55, 0.5), axis="yaw",
+                notes=["tower mounting point: top face of this flange, 360 mm below the bedplate underside",
+                       "flange to be added to the doc 09 tower drawings"])
+    return [adapter, stub]
+
+
+def _gear_profile(z, m, phase=0.0):
+    ra, rf = m * z / 2 + m, m * z / 2 - 1.25 * m
+    pts = []
+    p = 2 * math.pi / z
+    for k in range(z):
+        a0 = p * k + phase
+        for frac, r in ((0.0, rf), (0.18, rf), (0.32, ra), (0.68, ra), (0.82, rf)):
+            pts.append((r * math.cos(a0 + frac * p), r * math.sin(a0 + frac * p)))
+    return pts
+
+
+YAW_DRIVE = dict(r=328.0, angles=(90.0, -90.0), pinion_z=14, module=4.0, pinion_face=(-65.0, -15.0),
+                 gearbox=dict(d=100.0, z=(25.0, 175.0)), motor=dict(d=110.0, z=(175.0, 335.0)))
+
+
+def yaw_drive_parts():
+    Y = YAW_DRIVE
+    out = []
+    for a in Y["angles"]:
+        nm = "left" if a > 0 else "right"
+        cx, cy = Y["r"] * math.cos(math.radians(a)), Y["r"] * math.sin(math.radians(a))
+        # pinion turned half a tooth so it sits in a gear tooth space at the mesh point
+        prof = _gear_profile(Y["pinion_z"], Y["module"], phase=math.radians(a + 180) + math.pi / 14)
+        z0, z1 = Y["pinion_face"]
+        pin = cq.Workplane("XY", origin=(0, 0, z0)).polyline(prof).close().extrude(z1 - z0).val()
+        pin = pin.fuse(cq.Solid.makeCylinder(15.0, Y["gearbox"]["z"][0] - z1 + 1, cq.Vector(0, 0, z1 - 0.5)))
+        pin = pin.fuse(cq.Solid.makeCylinder(Y["gearbox"]["d"] / 2, Y["gearbox"]["z"][1] - Y["gearbox"]["z"][0],
+                                             cq.Vector(0, 0, Y["gearbox"]["z"][0])))
+        pin = pin.fuse(cq.Solid.makeCylinder(Y["motor"]["d"] / 2, Y["motor"]["z"][1] - Y["motor"]["z"][0],
+                                             cq.Vector(0, 0, Y["motor"]["z"][0]))).clean()
+        out.append(Part(f"yaw_drive_{nm}_envelope", f"Yaw gearmotor 0.18 kW 1:1680 with z14 m4 pinion ({nm})",
+                        pin.translate(cq.Vector(cx, cy, 0)), "stationary", "BOM 32 (bought)", (0.3, 0.3, 0.6),
+                        make_buy="buy (envelope)", axis=None,
+                        notes=["envelope: gearbox Ø100 x 150, motor Ø110 x 160, pinion face 50; replace with supplier drawing",
+                               "centre distance 328 = (600 + 56) / 2 to the z150 gear"]))
+        # bracket NP1-420: horizontal plate on the bedplate bottom level + web on the side plate
+        s = 1 if a > 0 else -1
+        hp = box(-90, 90, 260 if s > 0 else -400, 400 if s > 0 else -260, 0, 25)
+        hp = hp.cut(cq.Solid.makeCylinder(17.0, 40, cq.Vector(cx, cy, -5)))
+        for dx in (-40, 40):          # gearbox flange, 4 x M10
+            for dy in (-40, 40):
+                hp = hp.cut(cq.Solid.makeCylinder(TAP["M10"] / 2, 40, cq.Vector(cx + dx, cy + dy, -5)))
+        web = box(-90, 90, 260 if s > 0 else -275, 275 if s > 0 else -260, 25, 170)
+        for dx in (-50, 50):
+            for zz in (70, 140):
+                web = web.cut(cq.Solid.makeCylinder(CLEAR["M16"] / 2, 30, cq.Vector(dx, 250 if s > 0 else -280, zz),
+                                                    cq.Vector(0, 1, 0)))
+        out.append(Part(f"NP1-420_yaw_drive_bracket_{nm}", f"Yaw drive bracket ({nm})", hp.fuse(web).clean(),
+                        "stationary", "NP1-420 (new, doc 16 section 7)", (0.3, 0.45, 0.3), axis=None,
+                        notes=["bolts to the side plate outer face with 4 x M16; gearbox flange on top, pinion below"]))
+    return out
+
+
+YAW_BRAKE = dict(r_pad=(345.0, 415.0), angles=(141.8, -141.8))
+
+
+def yaw_brake_parts():
+    """Two yaw brake calipers with brackets, hanging from the bedplate bottom
+    plate at its front corners and gripping the adapter plate edge from outside."""
+    out = []
+    z0, z1 = ADAPTER["plate_z"]
+    for a in YAW_BRAKE["angles"]:
+        nm = "left" if a > 0 else "right"
+        body = box(330.0, 480.0, -75.0, 75.0, -150.0, 0.0)
+        body = body.cut(box(290.0, 445.0, -80.0, 80.0, z0 - 3.0, z1 + 3.0))
+        body = body.rotate(cq.Vector(0, 0, 0), cq.Vector(0, 0, 1), a)
+        out.append(Part(f"yaw_brake_caliper_{nm}_envelope", f"Yaw brake caliper + bracket space claim ({nm})", body,
+                        "stationary", "BOM 33 (bought), bracket new", (0.85, 0.2, 0.2), make_buy="buy (envelope)",
+                        axis=None,
+                        notes=["spring-applied, hydraulically released; grips the adapter plate edge (track r 345 to 415) "
+                               "from outside; top face bolts under the bedplate bottom plate corner",
+                               "envelope 150 x 150 x 150 incl. bracket, 3 mm running gap each side of the plate"]))
+    return out
+
+
+def rotor_caliper_brackets():
+    """NP1-310 placeholder brackets: side plate outer face to the caliper space claim."""
+    out = []
+    for s, nm in ((1, "left"), (-1, "right")):
+        b = box(-262.0, -150.0, 260.0 if s > 0 else -330.0, 330.0 if s > 0 else -260.0, 505.0, 635.0)
+        for xx in (-195.0, -165.0):
+            for zz in (535.0, 605.0):
+                b = b.cut(cq.Solid.makeCylinder(CLEAR["M16"] / 2, 100, cq.Vector(xx, -50 if s > 0 else 50, zz),
+                                                cq.Vector(0, s, 0)))
+        out.append(Part(f"NP1-310_rotor_caliper_bracket_{nm}", f"Rotor brake caliper bracket ({nm}, placeholder)", b,
+                        "stationary", "NP1-310 / BOM 29 (placeholder until caliper is chosen)", (0.3, 0.45, 0.3),
+                        axis=None, notes=["block bracket 120 x 70 x 130 bolted to the side plate with 4 x M16"]))
     return out
 
 

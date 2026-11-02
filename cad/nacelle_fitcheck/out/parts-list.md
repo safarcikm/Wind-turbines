@@ -1,6 +1,6 @@
 # Nacelle P1 fit-check model: parts list (all 1:1)
 
-33 objects, solid volume 115 L, filament ≈ 44 kg PETG at ~30% solid fraction. Sizes are the part's bounding box, largest first.
+43 objects, solid volume 153 L, filament ≈ 58 kg PETG at ~30% solid fraction. Sizes are the part's bounding box, largest first.
 
 | File | Part | Moves | Make/buy | Size mm | Filament kg | Print changes vs steel part |
 |---|---|---|---|---|---|---|
@@ -32,8 +32,18 @@
 | `NP1-300-3_bedplate_side_plate_left` | Bedplate side plate 20 (left) | stationary | make | 734 x 608 x 20 | 2.3 | – |
 | `NP1-300-3_bedplate_side_plate_right` | Bedplate side plate 20 (right) | stationary | make | 734 x 608 x 20 | 2.3 | – |
 | `NP1-300-4_bedplate_rear_plate` | Bedplate rear plate 20 | stationary | make | 480 x 290 x 20 | 1.06 | – |
-| `yaw_bearing_inner_ring_envelope` | Yaw bearing inner ring (to bedplate) | stationary | buy (envelope) | 350 x 350 x 70 | 1.52 | – |
+| `yaw_bearing_inner_ring_envelope` | Yaw bearing inner ring (to bedplate) | stationary | buy (envelope) | 350 x 350 x 60 | 1.29 | – |
 | `yaw_bearing_outer_gear_ring_envelope` | Yaw bearing outer ring, gear z150 m4 (to tower) | tower | buy (envelope) | 608 x 608 x 60 | 3.93 | – |
 | `brake_caliper_left_envelope` | Brake caliper space claim (left) | stationary | buy (envelope) | 192 x 155 x 130 | 1.12 | – |
 | `brake_caliper_right_envelope` | Brake caliper space claim (right) | stationary | buy (envelope) | 192 x 155 x 130 | 1.12 | – |
+| `NP1-310_rotor_caliper_bracket_left` | Rotor brake caliper bracket (left, placeholder) | stationary | make | 130 x 112 x 70 | 0.39 | – |
+| `NP1-310_rotor_caliper_bracket_right` | Rotor brake caliper bracket (right, placeholder) | stationary | make | 130 x 112 x 70 | 0.39 | – |
+| `yaw_drive_left_envelope` | Yaw gearmotor 0.18 kW 1:1680 with z14 m4 pinion (left) | stationary | buy (envelope) | 400 x 110 x 110 | 1.08 | – |
+| `NP1-420_yaw_drive_bracket_left` | Yaw drive bracket (left) | stationary | make | 180 x 170 x 140 | 0.37 | – |
+| `yaw_drive_right_envelope` | Yaw gearmotor 0.18 kW 1:1680 with z14 m4 pinion (right) | stationary | buy (envelope) | 400 x 110 x 110 | 1.08 | – |
+| `NP1-420_yaw_drive_bracket_right` | Yaw drive bracket (right) | stationary | make | 180 x 170 x 140 | 0.37 | – |
+| `yaw_brake_caliper_left_envelope` | Yaw brake caliper + bracket space claim (left) | stationary | buy (envelope) | 211 x 211 x 150 | 1.08 | – |
+| `yaw_brake_caliper_right_envelope` | Yaw brake caliper + bracket space claim (right) | stationary | buy (envelope) | 211 x 211 x 150 | 1.08 | – |
+| `NP1-400_tower_top_adapter` | Tower-top adapter with yaw brake track | tower | make | 840 x 840 x 290 | 6.94 | – |
+| `tower_top_flange_stub` | Tower top flange + 300 mm of the Ø320 x 8 tube (mounting point) | tower | make | 420 x 420 x 330 | 1.89 | – |
 | `NP1-600_dummy_hub` | Bench dummy hub with Ø100 shaft | bench | make | 742 x 470 x 470 | 3.94 | Ø361 recess moved to the hub face (drawing has the step reversed, see assembly check) |

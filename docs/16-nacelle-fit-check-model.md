@@ -8,11 +8,11 @@ Digital check: [`out/assembly_check.md`](../cad/nacelle_fitcheck/out/assembly_ch
 
 ## Summary
 
-Every P1 nacelle part is modelled **at full size (1:1)** as **its own object**,
+Every P1 nacelle part, from the hub flange down to the tower mounting point, is modelled **at full size (1:1)** as **its own object**,
 one STEP and one STL file per part, not split. All files share one
 coordinate frame, so opening any group of them shows them in their
 assembled position, and the combined `NP1-fitcheck-assembly.step` holds all
-33 objects with names and colours.
+43 objects with names and colours.
 
 Before anything is printed, the same solids are run through a digital fit
 check: interference in the assembled position, running gaps between
@@ -24,11 +24,11 @@ plastic, and certainly before the steel.
 | Item | Value |
 |---|---|
 | Scale | 1:1, all parts |
-| Objects | 33 (make parts, bedplate plates, and envelopes of bought parts and end windings) |
+| Objects | 43 (make parts, bedplate plates, tower-top adapter and tower flange, and envelopes of bought parts and end windings) |
 | Files | `out/step/*.step`, `out/stl/*.stl`, `out/NP1-fitcheck-assembly.step`, `out/parts-list.md` |
-| Largest parts | brake disc Ø800, drum Ø690 × 412, rear cover Ø690, bedplate plates up to 741 × 609 |
-| Plastic | ≈ 115 L solid volume, **≈ 44 kg PETG** at about 30 % solid fraction |
-| Printer needed | build volume ≥ 800 × 800 mm for the disc; ≥ 700 mm for drum, rear cover and bedplate plates (large-format printer or print service) |
+| Largest parts | tower-top adapter Ø840 × 290, brake disc Ø800, drum Ø690 × 412, rear cover Ø690, bedplate plates up to 741 × 609 |
+| Plastic | ≈ 153 L solid volume, **≈ 58 kg PETG** at about 30 % solid fraction |
+| Printer needed | build volume ≥ 840 × 840 mm for the adapter and disc; ≥ 700 mm for drum, rear cover and bedplate plates (large-format printer or print service) |
 
 ![Section through the assembled 1:1 model](../cad/nacelle_fitcheck/out/preview.png)
 
@@ -68,6 +68,7 @@ steel part is generated as [`out/parts-list.md`](../cad/nacelle_fitcheck/out/par
 | Rotating | drum NP1-210 (all bolt and lock holes), front and rear seal covers NP1-211, rear cover NP1-212, magnet layer NP1-220 (one ring with 40 pole gaps), brake disc NP1-230 |
 | Bedplate NP1-300 | front plate, bottom plate, left and right side plates, rear plate: separate objects, like the plates of the weldment |
 | Bought, as envelopes | 32028 X cones (with rollers) and cups, KMT 27 locknut, yaw bearing inner ring and outer gear ring (z150 m4), two brake caliper space claims |
+| Yaw and tower top (section 7) | tower-top adapter NP1-400, tower flange stub, 2 yaw drives with brackets NP1-420, 2 yaw brake calipers, 2 rotor caliper brackets NP1-310 |
 | Bench | dummy hub NP1-600 with the Ø100 shaft |
 
 ### Changes from the steel parts
@@ -166,11 +167,43 @@ with a photo.
 | 10 | Bedplate plates: tape or clamp together, then spindle flange to the front plate, 12 × M20 from inside | Torque wrench reach through the open top; flange face to plate contact (finding 5); gap rear cover to plate |
 | 11 | Calipers (envelopes or real units) on mock brackets | Disc clearance, bracket bolt access, pad change path, hydraulic hose route |
 | 12 | Lock pin | Can it reach the lock holes from either side (finding 6)? |
-| 13 | Yaw rings under the bottom plate; gearmotor mock-ups on the gear | Pinion centre distance 328 mm, motor clearance to the bedplate and calipers |
+| 13 | Yaw rings under the bottom plate, adapter NP1-400 under the outer ring, tower flange stub under the adapter; yaw drives and brackets, yaw calipers | Pinions engage the gear; turn the nacelle a full revolution on the adapter; bolt access to 16 × M16 and 16 × M20; cable loop through the cone window |
 | 14 | Dummy hub onto drum | Spigot enters the recess (finding 7) |
 | 15 | Disassemble in reverse | Every part comes off without cutting; note any trapped parts |
 
-## 6. Next steps
+## 7. Below the bedplate, down to the tower mounting point (new design)
+
+The P1 drawing set stops at the bedplate and the yaw bearing (NP1-310 and
+NP1-400 were waiting for supplier drawings). To close the model down to
+the tower, the missing parts are designed here as a **proposal**, with
+the same 1:1 rules. The **tower mounting point** is the top face of the
+tower flange, **360 mm below the bedplate underside** (930 mm below the
+rotor centre).
+
+| Part | Design | Basis |
+|---|---|---|
+| **NP1-400 tower-top adapter** | S355J2+N weldment: 25 mm plate Ø840 / Ø300 that is both the yaw ring seat and the **yaw brake track (r 340 to 420, both faces)**; 12 mm cone from Ø396 down to Ø332 (inside the PCD 440 bolts, so a Ø30 socket reaches all 16 from below); 30 mm flange Ø420; 8 gussets kept **inside r 315** so the yaw calipers can pass all the way round; 90 × 85 window for the cable loop | Doc 14 §4.6: yaw brake ring outside the gear at r ≈ 0.38 m |
+| Adapter to yaw outer ring | 16 × M16 10.9 from below on PCD 440 | Bolt load 15.7 kN at the SLM tilt moment, preload ≈ 90 kN |
+| **Tower top flange + 300 mm stub** | Flange Ø420 / Ø240 × 30 on the Ø320 × 8 tower tube; **16 × M20 10.9 through bolts on PCD 380** | Doc 09 tower top Ø320; moment at the flange 24.3 kNm + 41.6 kN × 0.36 m = 39.3 kNm → 25.8 kN per bolt against ≈ 110 kN minimum preload; slip factor ≈ 4 for 41.6 kN shear + 8 kNm yaw-brake torque |
+| **Yaw drives** (envelopes) | 2 gearmotors at **±90° (left and right of the yaw axis)**, pinion z14 m4 at centre distance 328 mm, gearbox Ø100, motor Ø110, 400 mm tall | Doc 13: 0.18 kW, 1:1680. Inside the bedplate there is no room (the side plates are at ±240 and the pinion circle is r 328), so the drives sit outside the side plates |
+| **NP1-420 yaw drive brackets** | Horizontal 25 mm plate at bedplate-bottom level carrying the gearbox flange (4 × M10), plus a 15 mm web bolted to the side plate (4 × M16) | New |
+| **Yaw brake calipers** (space claims incl. bracket) | 2 units under the two **front corners** of the bedplate (±141.8°), gripping the adapter plate edge from outside, 150 × 150 × 150 mm, 3 mm running gap each side | Slip 8 kNm with μ 0.4 on r 0.38 m needs 13.2 kN clamp per caliper (doc 14: ≈ 14 kN) |
+| **NP1-310 rotor caliper brackets** | Placeholder blocks 120 × 70 × 130 on the side plates, 4 × M16 each | Final shape after the caliper is chosen and finding 7 is solved |
+| Yaw bearing inner ring | Envelope now 60 mm high, so it stands 10 mm clear of the adapter while yawing | Real slewing rings offset the two mounting faces the same way |
+
+**Yaw check.** The digital check now also turns the nacelle through a
+full yaw revolution against the tower-side parts (adapter with gussets,
+gear ring, tower flange). Everything is clear. The smallest gaps are
+the intended ones: 3 mm from the brake pads to the track, 5 mm from the
+pinions to the adapter plate, and 10 mm from the bedplate, inner ring and
+drive brackets to the gear ring and adapter (`assembly_check.md` §2b).
+
+**What the print should check:** spanner access to the 16 × M16 adapter
+bolts (from below, between the gussets) and the 16 × M20 tower bolts
+(through the window and from outside), cable loop room in the cone,
+yaw caliper pad change, and the drive pinions engaging the gear.
+
+## 8. Next steps
 
 1. Decide the fixes for the findings in section 3 and update
    `cad/nacelle_p1/geometry.py` and the drawings; rerun both scripts until
@@ -180,3 +213,6 @@ with a photo.
    lock pin access, caliper brackets).
 3. Replace the envelopes as supplier drawings arrive (bearings, calipers,
    yaw bearing, gearmotors).
+4. Add the tower top flange (section 7) to the doc 09 tower drawings, and
+   draw NP1-400 and NP1-420 properly once the slewing ring and gearmotor
+   drawings are in.

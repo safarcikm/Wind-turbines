@@ -31,6 +31,21 @@ Gaps below 3.0 mm (the air gap is 2.5 mm to the magnet face by design):
 | NP1-211_rear_seal_cover | 32028X_rear_cone_envelope | 2.5 |
 | NP1-220_magnet_ring | NP1-201_stator_core | 2.5 |
 
+## 2b. Yaw clearance, nacelle vs tower-top parts over a full yaw turn
+
+Gaps below 15.0 mm (pinion/gear mesh and the two yaw bearing rings excluded):
+
+| Nacelle part | Tower part | Min gap mm |
+|---|---|---|
+| yaw_brake_caliper_left_envelope | NP1-400_tower_top_adapter | 3.0 |
+| yaw_brake_caliper_right_envelope | NP1-400_tower_top_adapter | 3.0 |
+| yaw_drive_left_envelope | NP1-400_tower_top_adapter | 5.0 |
+| yaw_drive_right_envelope | NP1-400_tower_top_adapter | 5.0 |
+| NP1-300-2_bedplate_bottom_plate | yaw_bearing_outer_gear_ring_envelope | 10.0 |
+| yaw_bearing_inner_ring_envelope | NP1-400_tower_top_adapter | 10.0 |
+| NP1-420_yaw_drive_bracket_left | yaw_bearing_outer_gear_ring_envelope | 10.0 |
+| NP1-420_yaw_drive_bracket_right | yaw_bearing_outer_gear_ring_envelope | 10.0 |
+
 ## 3. Assembly path along the spindle axis (doc 14 §7.2 order)
 
 | Stage | Step | Arrives from | Result | Blocked by (x range, r range, overlap mm²) |
