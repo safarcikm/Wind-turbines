@@ -5,6 +5,12 @@ Owner: Category 6 (Tower and foundation), with Category 8 (Control)
 Builds on: [02 – Design basis](02-design-basis.md), [07 – Nacelle](07-nacelle-spindle-bearings.md), [08 – Load verification](08-load-verification.md)
 Models: [`analysis/tower/`](../analysis/tower/)
 
+> **Update (doc 13):** the sized hub and pitch system raises the tower top
+> from 480 to about 600 kg. 18 m: f1 1.13 Hz (rigid), exclusion zone about
+> 62–75 rpm. 24 m: f1 on soft soil with ice is 0.737 Hz against the 0.734 Hz
+> limit, so the 24 m tower needs a small stiffening in the next update. Gin
+> pole line pull 57 / 73 kN. See [13 – Hub, pitch and yaw](13-hub-pitch-yaw.md), section 8.
+
 ## Summary
 
 | Item | Recommendation |

@@ -42,3 +42,8 @@ possible manufactured in-house.
 - [12 – Power electronics](docs/12-power-electronics.md): active rectifier,
   750 V DC link, dump load, grid-tie/heating and battery modules, efficiency
   and annual energy (model in [analysis/power](analysis/power/)).
+- [13 – Hub, pitch and yaw](docs/13-hub-pitch-yaw.md): independent electric
+  pitch with supercapacitors, pitch bearing and drive sizing from simulated
+  pitch duty, ductile iron hub, yaw bearing, drives and slipping brake, and
+  the effect of the heavier rotor on the towers (models in
+  [analysis/hub](analysis/hub/)).

@@ -1,0 +1,1336 @@
+{
+ "pitch_moments": {
+  "0.25": {
+   "operating": [
+    {
+     "V": 12,
+     "pitch": 4.0,
+     "M_aero": 15.4,
+     "M_ctm": -5.9
+    },
+    {
+     "V": 15,
+     "pitch": 10.0,
+     "M_aero": 15.9,
+     "M_ctm": -8.0
+    },
+    {
+     "V": 20,
+     "pitch": 17.0,
+     "M_aero": 16.8,
+     "M_ctm": -10.0
+    },
+    {
+     "V": 25,
+     "pitch": 22.0,
+     "M_aero": 17.3,
+     "M_ctm": -11.0
+    }
+   ],
+   "feather_sweep_250rpm": [
+    {
+     "pitch": 20,
+     "M_aero": 34.5,
+     "M_ctm": -21.0
+    },
+    {
+     "pitch": 25,
+     "M_aero": 35.5,
+     "M_ctm": -22.7
+    },
+    {
+     "pitch": 30,
+     "M_aero": 21.2,
+     "M_ctm": -23.7
+    },
+    {
+     "pitch": 35,
+     "M_aero": 6.3,
+     "M_ctm": -24.0
+    },
+    {
+     "pitch": 40,
+     "M_aero": -2.9,
+     "M_ctm": -23.6
+    },
+    {
+     "pitch": 45,
+     "M_aero": -9.6,
+     "M_ctm": -22.4
+    },
+    {
+     "pitch": 50,
+     "M_aero": -17.1,
+     "M_ctm": -20.6
+    },
+    {
+     "pitch": 55,
+     "M_aero": -25.2,
+     "M_ctm": -18.1
+    },
+    {
+     "pitch": 60,
+     "M_aero": -33.9,
+     "M_ctm": -15.1
+    },
+    {
+     "pitch": 65,
+     "M_aero": -43.4,
+     "M_ctm": -11.6
+    },
+    {
+     "pitch": 70,
+     "M_aero": -53.8,
+     "M_ctm": -7.8
+    },
+    {
+     "pitch": 75,
+     "M_aero": -64.8,
+     "M_ctm": -3.7
+    },
+    {
+     "pitch": 80,
+     "M_aero": -76.2,
+     "M_ctm": 0.4
+    },
+    {
+     "pitch": 85,
+     "M_aero": -87.8,
+     "M_ctm": 4.6
+    },
+    {
+     "pitch": 90,
+     "M_aero": -99.5,
+     "M_ctm": 8.6
+    }
+   ],
+   "worst_resisting_operating_Nm": 0.0,
+   "worst_resisting_feather_Nm": -90.9,
+   "storm_hold_Nm": 344.4,
+   "storm_hold_dir_deg": 126.0
+  },
+  "0.3": {
+   "operating": [
+    {
+     "V": 12,
+     "pitch": 4.0,
+     "M_aero": 6.7,
+     "M_ctm": -5.9
+    },
+    {
+     "V": 15,
+     "pitch": 10.0,
+     "M_aero": 7.9,
+     "M_ctm": -8.0
+    },
+    {
+     "V": 20,
+     "pitch": 17.0,
+     "M_aero": 8.8,
+     "M_ctm": -10.0
+    },
+    {
+     "V": 25,
+     "pitch": 22.0,
+     "M_aero": 8.2,
+     "M_ctm": -11.0
+    }
+   ],
+   "feather_sweep_250rpm": [
+    {
+     "pitch": 20,
+     "M_aero": 28.4,
+     "M_ctm": -21.0
+    },
+    {
+     "pitch": 25,
+     "M_aero": 38.4,
+     "M_ctm": -22.7
+    },
+    {
+     "pitch": 30,
+     "M_aero": 27.8,
+     "M_ctm": -23.7
+    },
+    {
+     "pitch": 35,
+     "M_aero": 14.3,
+     "M_ctm": -24.0
+    },
+    {
+     "pitch": 40,
+     "M_aero": 7.0,
+     "M_ctm": -23.6
+    },
+    {
+     "pitch": 45,
+     "M_aero": 2.5,
+     "M_ctm": -22.4
+    },
+    {
+     "pitch": 50,
+     "M_aero": -3.0,
+     "M_ctm": -20.6
+    },
+    {
+     "pitch": 55,
+     "M_aero": -9.0,
+     "M_ctm": -18.1
+    },
+    {
+     "pitch": 60,
+     "M_aero": -15.7,
+     "M_ctm": -15.1
+    },
+    {
+     "pitch": 65,
+     "M_aero": -23.4,
+     "M_ctm": -11.6
+    },
+    {
+     "pitch": 70,
+     "M_aero": -32.1,
+     "M_ctm": -7.8
+    },
+    {
+     "pitch": 75,
+     "M_aero": -41.5,
+     "M_ctm": -3.7
+    },
+    {
+     "pitch": 80,
+     "M_aero": -51.6,
+     "M_ctm": 0.4
+    },
+    {
+     "pitch": 85,
+     "M_aero": -62.1,
+     "M_ctm": 4.6
+    },
+    {
+     "pitch": 90,
+     "M_aero": -72.8,
+     "M_ctm": 8.6
+    }
+   ],
+   "worst_resisting_operating_Nm": -2.9,
+   "worst_resisting_feather_Nm": -64.1,
+   "storm_hold_Nm": 293.6,
+   "storm_hold_dir_deg": 130.0
+  },
+  "0.35": {
+   "operating": [
+    {
+     "V": 12,
+     "pitch": 4.0,
+     "M_aero": -2.1,
+     "M_ctm": -5.9
+    },
+    {
+     "V": 15,
+     "pitch": 10.0,
+     "M_aero": -0.0,
+     "M_ctm": -8.0
+    },
+    {
+     "V": 20,
+     "pitch": 17.0,
+     "M_aero": 0.8,
+     "M_ctm": -10.0
+    },
+    {
+     "V": 25,
+     "pitch": 22.0,
+     "M_aero": -1.0,
+     "M_ctm": -11.0
+    }
+   ],
+   "feather_sweep_250rpm": [
+    {
+     "pitch": 20,
+     "M_aero": 22.4,
+     "M_ctm": -21.0
+    },
+    {
+     "pitch": 25,
+     "M_aero": 41.3,
+     "M_ctm": -22.7
+    },
+    {
+     "pitch": 30,
+     "M_aero": 34.4,
+     "M_ctm": -23.7
+    },
+    {
+     "pitch": 35,
+     "M_aero": 22.3,
+     "M_ctm": -24.0
+    },
+    {
+     "pitch": 40,
+     "M_aero": 16.9,
+     "M_ctm": -23.6
+    },
+    {
+     "pitch": 45,
+     "M_aero": 14.6,
+     "M_ctm": -22.4
+    },
+    {
+     "pitch": 50,
+     "M_aero": 11.1,
+     "M_ctm": -20.6
+    },
+    {
+     "pitch": 55,
+     "M_aero": 7.2,
+     "M_ctm": -18.1
+    },
+    {
+     "pitch": 60,
+     "M_aero": 2.4,
+     "M_ctm": -15.1
+    },
+    {
+     "pitch": 65,
+     "M_aero": -3.4,
+     "M_ctm": -11.6
+    },
+    {
+     "pitch": 70,
+     "M_aero": -10.3,
+     "M_ctm": -7.8
+    },
+    {
+     "pitch": 75,
+     "M_aero": -18.2,
+     "M_ctm": -3.7
+    },
+    {
+     "pitch": 80,
+     "M_aero": -27.0,
+     "M_ctm": 0.4
+    },
+    {
+     "pitch": 85,
+     "M_aero": -36.3,
+     "M_ctm": 4.6
+    },
+    {
+     "pitch": 90,
+     "M_aero": -46.1,
+     "M_ctm": 8.6
+    }
+   ],
+   "worst_resisting_operating_Nm": -12.0,
+   "worst_resisting_feather_Nm": -37.4,
+   "storm_hold_Nm": 244.5,
+   "storm_hold_dir_deg": 134.0
+  }
+ },
+ "pitch_bearing": {
+  "load_sets": {
+   "SLM H parked flap (gamma 3.0)": {
+    "M": 26020.0,
+    "Fa": 0.0,
+    "Fr": 13880.0
+   },
+   "SLM E overspeed centrifugal (gamma 3.0)": {
+    "M": 0.0,
+    "Fa": 63740.0,
+    "Fr": 0.0
+   },
+   "SLM G shutdown edge (gamma 3.0)": {
+    "M": 10370.0,
+    "Fa": 20238.7,
+    "Fr": 0.0
+   },
+   "Simulated envelope (gamma 1.35)": {
+    "M": 8510.3,
+    "Fa": 25232.1,
+    "Fr": 1926.3
+   }
+  },
+  "M_eq_kNm": 1.09,
+  "F_eq_kN": 11.05,
+  "revs_20y": 2014175,
+  "candidates": [
+   {
+    "Dpw": 0.2,
+    "Dw": 0.0159,
+    "Z": 35,
+    "static": {
+     "SLM H parked flap (gamma 3.0)": {
+      "Q_kN": 24.09,
+      "p_MPa": 4856,
+      "s0": 0.56,
+      "ok": false
+     },
+     "SLM E overspeed centrifugal (gamma 3.0)": {
+      "Q_kN": 2.58,
+      "p_MPa": 2305,
+      "s0": 5.23,
+      "ok": true
+     },
+     "SLM G shutdown edge (gamma 3.0)": {
+      "Q_kN": 9.97,
+      "p_MPa": 3619,
+      "s0": 1.35,
+      "ok": true
+     },
+     "Simulated envelope (gamma 1.35)": {
+      "Q_kN": 8.69,
+      "p_MPa": 3456,
+      "s0": 1.55,
+      "ok": true
+     }
+    },
+    "Ca_kN": 66.1,
+    "Pa_kN": 24.66,
+    "L10_revs": 19241380,
+    "revs_required": 4028350,
+    "ok": false
+   },
+   {
+    "Dpw": 0.2,
+    "Dw": 0.019,
+    "Z": 29,
+    "static": {
+     "SLM H parked flap (gamma 3.0)": {
+      "Q_kN": 29.08,
+      "p_MPa": 4615,
+      "s0": 0.65,
+      "ok": false
+     },
+     "SLM E overspeed centrifugal (gamma 3.0)": {
+      "Q_kN": 3.11,
+      "p_MPa": 2190,
+      "s0": 6.09,
+      "ok": true
+     },
+     "SLM G shutdown edge (gamma 3.0)": {
+      "Q_kN": 12.04,
+      "p_MPa": 3439,
+      "s0": 1.57,
+      "ok": true
+     },
+     "Simulated envelope (gamma 1.35)": {
+      "Q_kN": 10.49,
+      "p_MPa": 3285,
+      "s0": 1.81,
+      "ok": true
+     }
+    },
+    "Ca_kN": 84.1,
+    "Pa_kN": 24.66,
+    "L10_revs": 39724834,
+    "revs_required": 4028350,
+    "ok": false
+   },
+   {
+    "Dpw": 0.2,
+    "Dw": 0.0222,
+    "Z": 25,
+    "static": {
+     "SLM H parked flap (gamma 3.0)": {
+      "Q_kN": 33.73,
+      "p_MPa": 4394,
+      "s0": 0.75,
+      "ok": false
+     },
+     "SLM E overspeed centrifugal (gamma 3.0)": {
+      "Q_kN": 3.61,
+      "p_MPa": 2086,
+      "s0": 7.06,
+      "ok": true
+     },
+     "SLM G shutdown edge (gamma 3.0)": {
+      "Q_kN": 13.96,
+      "p_MPa": 3275,
+      "s0": 1.82,
+      "ok": true
+     },
+     "Simulated envelope (gamma 1.35)": {
+      "Q_kN": 12.16,
+      "p_MPa": 3128,
+      "s0": 2.09,
+      "ok": true
+     }
+    },
+    "Ca_kN": 104.8,
+    "Pa_kN": 24.66,
+    "L10_revs": 76718885,
+    "revs_required": 4028350,
+    "ok": false
+   },
+   {
+    "Dpw": 0.2,
+    "Dw": 0.0254,
+    "Z": 22,
+    "static": {
+     "SLM H parked flap (gamma 3.0)": {
+      "Q_kN": 38.33,
+      "p_MPa": 4215,
+      "s0": 0.85,
+      "ok": false
+     },
+     "SLM E overspeed centrifugal (gamma 3.0)": {
+      "Q_kN": 4.1,
+      "p_MPa": 2000,
+      "s0": 8.0,
+      "ok": true
+     },
+     "SLM G shutdown edge (gamma 3.0)": {
+      "Q_kN": 15.87,
+      "p_MPa": 3141,
+      "s0": 2.06,
+      "ok": true
+     },
+     "Simulated envelope (gamma 1.35)": {
+      "Q_kN": 13.82,
+      "p_MPa": 3000,
+      "s0": 2.37,
+      "ok": true
+     }
+    },
+    "Ca_kN": 126.5,
+    "Pa_kN": 24.66,
+    "L10_revs": 135135637,
+    "revs_required": 4028350,
+    "ok": false
+   },
+   {
+    "Dpw": 0.225,
+    "Dw": 0.0159,
+    "Z": 39,
+    "static": {
+     "SLM H parked flap (gamma 3.0)": {
+      "Q_kN": 19.33,
+      "p_MPa": 4499,
+      "s0": 0.7,
+      "ok": false
+     },
+     "SLM E overspeed centrifugal (gamma 3.0)": {
+      "Q_kN": 2.31,
+      "p_MPa": 2216,
+      "s0": 5.88,
+      "ok": true
+     },
+     "SLM G shutdown edge (gamma 3.0)": {
+      "Q_kN": 8.04,
+      "p_MPa": 3358,
+      "s0": 1.69,
+      "ok": true
+     },
+     "Simulated envelope (gamma 1.35)": {
+      "Q_kN": 7.05,
+      "p_MPa": 3214,
+      "s0": 1.93,
+      "ok": true
+     }
+    },
+    "Ca_kN": 68.8,
+    "Pa_kN": 23.15,
+    "L10_revs": 26314004,
+    "revs_required": 4028350,
+    "ok": false
+   },
+   {
+    "Dpw": 0.225,
+    "Dw": 0.019,
+    "Z": 33,
+    "static": {
+     "SLM H parked flap (gamma 3.0)": {
+      "Q_kN": 22.85,
+      "p_MPa": 4243,
+      "s0": 0.84,
+      "ok": false
+     },
+     "SLM E overspeed centrifugal (gamma 3.0)": {
+      "Q_kN": 2.73,
+      "p_MPa": 2090,
+      "s0": 7.01,
+      "ok": true
+     },
+     "SLM G shutdown edge (gamma 3.0)": {
+      "Q_kN": 9.5,
+      "p_MPa": 3167,
+      "s0": 2.01,
+      "ok": true
+     },
+     "Simulated envelope (gamma 1.35)": {
+      "Q_kN": 8.33,
+      "p_MPa": 3031,
+      "s0": 2.3,
+      "ok": true
+     }
+    },
+    "Ca_kN": 89.1,
+    "Pa_kN": 23.15,
+    "L10_revs": 56944805,
+    "revs_required": 4028350,
+    "ok": false
+   },
+   {
+    "Dpw": 0.225,
+    "Dw": 0.0222,
+    "Z": 28,
+    "static": {
+     "SLM H parked flap (gamma 3.0)": {
+      "Q_kN": 26.93,
+      "p_MPa": 4060,
+      "s0": 0.96,
+      "ok": false
+     },
+     "SLM E overspeed centrifugal (gamma 3.0)": {
+      "Q_kN": 3.22,
+      "p_MPa": 2000,
+      "s0": 8.0,
+      "ok": true
+     },
+     "SLM G shutdown edge (gamma 3.0)": {
+      "Q_kN": 11.19,
+      "p_MPa": 3030,
+      "s0": 2.3,
+      "ok": true
+     },
+     "Simulated envelope (gamma 1.35)": {
+      "Q_kN": 9.82,
+      "p_MPa": 2900,
+      "s0": 2.62,
+      "ok": true
+     }
+    },
+    "Ca_kN": 109.9,
+    "Pa_kN": 23.15,
+    "L10_revs": 106915470,
+    "revs_required": 4028350,
+    "ok": false
+   },
+   {
+    "Dpw": 0.225,
+    "Dw": 0.0254,
+    "Z": 24,
+    "static": {
+     "SLM H parked flap (gamma 3.0)": {
+      "Q_kN": 31.41,
+      "p_MPa": 3925,
+      "s0": 1.06,
+      "ok": false
+     },
+     "SLM E overspeed centrifugal (gamma 3.0)": {
+      "Q_kN": 3.76,
+      "p_MPa": 1934,
+      "s0": 8.85,
+      "ok": true
+     },
+     "SLM G shutdown edge (gamma 3.0)": {
+      "Q_kN": 13.06,
+      "p_MPa": 2930,
+      "s0": 2.54,
+      "ok": true
+     },
+     "Simulated envelope (gamma 1.35)": {
+      "Q_kN": 11.45,
+      "p_MPa": 2804,
+      "s0": 2.9,
+      "ok": true
+     }
+    },
+    "Ca_kN": 130.5,
+    "Pa_kN": 23.15,
+    "L10_revs": 179157801,
+    "revs_required": 4028350,
+    "ok": false
+   },
+   {
+    "Dpw": 0.25,
+    "Dw": 0.0159,
+    "Z": 44,
+    "static": {
+     "SLM H parked flap (gamma 3.0)": {
+      "Q_kN": 15.51,
+      "p_MPa": 4171,
+      "s0": 0.88,
+      "ok": false
+     },
+     "SLM E overspeed centrifugal (gamma 3.0)": {
+      "Q_kN": 2.05,
+      "p_MPa": 2124,
+      "s0": 6.68,
+      "ok": true
+     },
+     "SLM G shutdown edge (gamma 3.0)": {
+      "Q_kN": 6.48,
+      "p_MPa": 3118,
+      "s0": 2.11,
+      "ok": true
+     },
+     "Simulated envelope (gamma 1.35)": {
+      "Q_kN": 5.72,
+      "p_MPa": 2990,
+      "s0": 2.39,
+      "ok": true
+     }
+    },
+    "Ca_kN": 72.4,
+    "Pa_kN": 21.94,
+    "L10_revs": 35944745,
+    "revs_required": 4028350,
+    "ok": false
+   },
+   {
+    "Dpw": 0.25,
+    "Dw": 0.019,
+    "Z": 36,
+    "static": {
+     "SLM H parked flap (gamma 3.0)": {
+      "Q_kN": 18.96,
+      "p_MPa": 3976,
+      "s0": 1.02,
+      "ok": false
+     },
+     "SLM E overspeed centrifugal (gamma 3.0)": {
+      "Q_kN": 2.5,
+      "p_MPa": 2025,
+      "s0": 7.71,
+      "ok": true
+     },
+     "SLM G shutdown edge (gamma 3.0)": {
+      "Q_kN": 7.92,
+      "p_MPa": 2972,
+      "s0": 2.44,
+      "ok": true
+     },
+     "Simulated envelope (gamma 1.35)": {
+      "Q_kN": 6.99,
+      "p_MPa": 2851,
+      "s0": 2.76,
+      "ok": true
+     }
+    },
+    "Ca_kN": 91.7,
+    "Pa_kN": 21.94,
+    "L10_revs": 72941994,
+    "revs_required": 4028350,
+    "ok": false
+   },
+   {
+    "Dpw": 0.25,
+    "Dw": 0.0222,
+    "Z": 31,
+    "static": {
+     "SLM H parked flap (gamma 3.0)": {
+      "Q_kN": 22.02,
+      "p_MPa": 3784,
+      "s0": 1.18,
+      "ok": false
+     },
+     "SLM E overspeed centrifugal (gamma 3.0)": {
+      "Q_kN": 2.91,
+      "p_MPa": 1927,
+      "s0": 8.95,
+      "ok": true
+     },
+     "SLM G shutdown edge (gamma 3.0)": {
+      "Q_kN": 9.19,
+      "p_MPa": 2828,
+      "s0": 2.83,
+      "ok": true
+     },
+     "Simulated envelope (gamma 1.35)": {
+      "Q_kN": 8.11,
+      "p_MPa": 2713,
+      "s0": 3.21,
+      "ok": true
+     }
+    },
+    "Ca_kN": 114.4,
+    "Pa_kN": 21.94,
+    "L10_revs": 141997294,
+    "revs_required": 4028350,
+    "ok": false
+   },
+   {
+    "Dpw": 0.25,
+    "Dw": 0.0254,
+    "Z": 27,
+    "static": {
+     "SLM H parked flap (gamma 3.0)": {
+      "Q_kN": 25.28,
+      "p_MPa": 3637,
+      "s0": 1.33,
+      "ok": true
+     },
+     "SLM E overspeed centrifugal (gamma 3.0)": {
+      "Q_kN": 3.34,
+      "p_MPa": 1852,
+      "s0": 10.07,
+      "ok": true
+     },
+     "SLM G shutdown edge (gamma 3.0)": {
+      "Q_kN": 10.55,
+      "p_MPa": 2719,
+      "s0": 3.19,
+      "ok": true
+     },
+     "Simulated envelope (gamma 1.35)": {
+      "Q_kN": 9.32,
+      "p_MPa": 2608,
+      "s0": 3.61,
+      "ok": true
+     }
+    },
+    "Ca_kN": 137.6,
+    "Pa_kN": 21.94,
+    "L10_revs": 246702974,
+    "revs_required": 4028350,
+    "ok": true
+   },
+   {
+    "Dpw": 0.275,
+    "Dw": 0.0159,
+    "Z": 48,
+    "static": {
+     "SLM H parked flap (gamma 3.0)": {
+      "Q_kN": 13.0,
+      "p_MPa": 3925,
+      "s0": 1.06,
+      "ok": false
+     },
+     "SLM E overspeed centrifugal (gamma 3.0)": {
+      "Q_kN": 1.88,
+      "p_MPa": 2060,
+      "s0": 7.33,
+      "ok": true
+     },
+     "SLM G shutdown edge (gamma 3.0)": {
+      "Q_kN": 5.45,
+      "p_MPa": 2938,
+      "s0": 2.52,
+      "ok": true
+     },
+     "Simulated envelope (gamma 1.35)": {
+      "Q_kN": 4.84,
+      "p_MPa": 2824,
+      "s0": 2.84,
+      "ok": true
+     }
+    },
+    "Ca_kN": 74.8,
+    "Pa_kN": 20.95,
+    "L10_revs": 45534013,
+    "revs_required": 4028350,
+    "ok": false
+   },
+   {
+    "Dpw": 0.275,
+    "Dw": 0.019,
+    "Z": 40,
+    "static": {
+     "SLM H parked flap (gamma 3.0)": {
+      "Q_kN": 15.6,
+      "p_MPa": 3718,
+      "s0": 1.25,
+      "ok": false
+     },
+     "SLM E overspeed centrifugal (gamma 3.0)": {
+      "Q_kN": 2.25,
+      "p_MPa": 1951,
+      "s0": 8.62,
+      "ok": true
+     },
+     "SLM G shutdown edge (gamma 3.0)": {
+      "Q_kN": 6.54,
+      "p_MPa": 2783,
+      "s0": 2.97,
+      "ok": true
+     },
+     "Simulated envelope (gamma 1.35)": {
+      "Q_kN": 5.81,
+      "p_MPa": 2675,
+      "s0": 3.34,
+      "ok": true
+     }
+    },
+    "Ca_kN": 95.8,
+    "Pa_kN": 20.95,
+    "L10_revs": 95802783,
+    "revs_required": 4028350,
+    "ok": false
+   },
+   {
+    "Dpw": 0.275,
+    "Dw": 0.0222,
+    "Z": 34,
+    "static": {
+     "SLM H parked flap (gamma 3.0)": {
+      "Q_kN": 18.35,
+      "p_MPa": 3551,
+      "s0": 1.43,
+      "ok": true
+     },
+     "SLM E overspeed centrifugal (gamma 3.0)": {
+      "Q_kN": 2.65,
+      "p_MPa": 1863,
+      "s0": 9.89,
+      "ok": true
+     },
+     "SLM G shutdown edge (gamma 3.0)": {
+      "Q_kN": 7.7,
+      "p_MPa": 2658,
+      "s0": 3.41,
+      "ok": true
+     },
+     "Simulated envelope (gamma 1.35)": {
+      "Q_kN": 6.83,
+      "p_MPa": 2555,
+      "s0": 3.84,
+      "ok": true
+     }
+    },
+    "Ca_kN": 118.7,
+    "Pa_kN": 20.95,
+    "L10_revs": 181952376,
+    "revs_required": 4028350,
+    "ok": true
+   },
+   {
+    "Dpw": 0.275,
+    "Dw": 0.0254,
+    "Z": 30,
+    "static": {
+     "SLM H parked flap (gamma 3.0)": {
+      "Q_kN": 20.8,
+      "p_MPa": 3398,
+      "s0": 1.63,
+      "ok": true
+     },
+     "SLM E overspeed centrifugal (gamma 3.0)": {
+      "Q_kN": 3.0,
+      "p_MPa": 1783,
+      "s0": 11.29,
+      "ok": true
+     },
+     "SLM G shutdown edge (gamma 3.0)": {
+      "Q_kN": 8.72,
+      "p_MPa": 2543,
+      "s0": 3.89,
+      "ok": true
+     },
+     "Simulated envelope (gamma 1.35)": {
+      "Q_kN": 7.75,
+      "p_MPa": 2445,
+      "s0": 4.38,
+      "ok": true
+     }
+    },
+    "Ca_kN": 144.1,
+    "Pa_kN": 20.95,
+    "L10_revs": 325511160,
+    "revs_required": 4028350,
+    "ok": true
+   },
+   {
+    "Dpw": 0.3,
+    "Dw": 0.0159,
+    "Z": 52,
+    "static": {
+     "SLM H parked flap (gamma 3.0)": {
+      "Q_kN": 11.06,
+      "p_MPa": 3714,
+      "s0": 1.25,
+      "ok": false
+     },
+     "SLM E overspeed centrifugal (gamma 3.0)": {
+      "Q_kN": 1.73,
+      "p_MPa": 2002,
+      "s0": 7.97,
+      "ok": true
+     },
+     "SLM G shutdown edge (gamma 3.0)": {
+      "Q_kN": 4.66,
+      "p_MPa": 2784,
+      "s0": 2.97,
+      "ok": true
+     },
+     "Simulated envelope (gamma 1.35)": {
+      "Q_kN": 4.16,
+      "p_MPa": 2681,
+      "s0": 3.32,
+      "ok": true
+     }
+    },
+    "Ca_kN": 76.9,
+    "Pa_kN": 20.12,
+    "L10_revs": 55744655,
+    "revs_required": 4028350,
+    "ok": false
+   },
+   {
+    "Dpw": 0.3,
+    "Dw": 0.019,
+    "Z": 44,
+    "static": {
+     "SLM H parked flap (gamma 3.0)": {
+      "Q_kN": 13.07,
+      "p_MPa": 3499,
+      "s0": 1.49,
+      "ok": true
+     },
+     "SLM E overspeed centrifugal (gamma 3.0)": {
+      "Q_kN": 2.05,
+      "p_MPa": 1886,
+      "s0": 9.54,
+      "ok": true
+     },
+     "SLM G shutdown edge (gamma 3.0)": {
+      "Q_kN": 5.51,
+      "p_MPa": 2622,
+      "s0": 3.55,
+      "ok": true
+     },
+     "Simulated envelope (gamma 1.35)": {
+      "Q_kN": 4.92,
+      "p_MPa": 2526,
+      "s0": 3.97,
+      "ok": true
+     }
+    },
+    "Ca_kN": 99.6,
+    "Pa_kN": 20.12,
+    "L10_revs": 121446943,
+    "revs_required": 4028350,
+    "ok": true
+   },
+   {
+    "Dpw": 0.3,
+    "Dw": 0.0222,
+    "Z": 37,
+    "static": {
+     "SLM H parked flap (gamma 3.0)": {
+      "Q_kN": 15.55,
+      "p_MPa": 3353,
+      "s0": 1.7,
+      "ok": true
+     },
+     "SLM E overspeed centrifugal (gamma 3.0)": {
+      "Q_kN": 2.44,
+      "p_MPa": 1808,
+      "s0": 10.83,
+      "ok": true
+     },
+     "SLM G shutdown edge (gamma 3.0)": {
+      "Q_kN": 6.55,
+      "p_MPa": 2513,
+      "s0": 4.03,
+      "ok": true
+     },
+     "Simulated envelope (gamma 1.35)": {
+      "Q_kN": 5.85,
+      "p_MPa": 2421,
+      "s0": 4.51,
+      "ok": true
+     }
+    },
+    "Ca_kN": 122.7,
+    "Pa_kN": 20.12,
+    "L10_revs": 226556627,
+    "revs_required": 4028350,
+    "ok": true
+   },
+   {
+    "Dpw": 0.3,
+    "Dw": 0.0254,
+    "Z": 33,
+    "static": {
+     "SLM H parked flap (gamma 3.0)": {
+      "Q_kN": 17.43,
+      "p_MPa": 3196,
+      "s0": 1.96,
+      "ok": true
+     },
+     "SLM E overspeed centrifugal (gamma 3.0)": {
+      "Q_kN": 2.73,
+      "p_MPa": 1723,
+      "s0": 12.52,
+      "ok": true
+     },
+     "SLM G shutdown edge (gamma 3.0)": {
+      "Q_kN": 7.34,
+      "p_MPa": 2395,
+      "s0": 4.66,
+      "ok": true
+     },
+     "Simulated envelope (gamma 1.35)": {
+      "Q_kN": 6.56,
+      "p_MPa": 2307,
+      "s0": 5.21,
+      "ok": true
+     }
+    },
+    "Ca_kN": 150.3,
+    "Pa_kN": 20.12,
+    "L10_revs": 416643906,
+    "revs_required": 4028350,
+    "ok": true
+   }
+  ],
+  "chosen": {
+   "Dpw": 0.25,
+   "Dw": 0.0254,
+   "Z": 27,
+   "static": {
+    "SLM H parked flap (gamma 3.0)": {
+     "Q_kN": 25.28,
+     "p_MPa": 3637,
+     "s0": 1.33,
+     "ok": true
+    },
+    "SLM E overspeed centrifugal (gamma 3.0)": {
+     "Q_kN": 3.34,
+     "p_MPa": 1852,
+     "s0": 10.07,
+     "ok": true
+    },
+    "SLM G shutdown edge (gamma 3.0)": {
+     "Q_kN": 10.55,
+     "p_MPa": 2719,
+     "s0": 3.19,
+     "ok": true
+    },
+    "Simulated envelope (gamma 1.35)": {
+     "Q_kN": 9.32,
+     "p_MPa": 2608,
+     "s0": 3.61,
+     "ok": true
+    }
+   },
+   "Ca_kN": 137.6,
+   "Pa_kN": 21.94,
+   "L10_revs": 246702974,
+   "revs_required": 4028350,
+   "ok": true
+  },
+  "outer_diameter": 0.355,
+  "inner_bore": 0.15,
+  "height": 0.05,
+  "mass_kg": 20.8,
+  "friction_Nm": {
+   "warm": {
+    "emergency_SLM_G": 166.2,
+    "emergency_sim": 73.1,
+    "operating_mean": 33.8,
+    "operating_eq": 36.8
+   },
+   "-30 C": {
+    "emergency_SLM_G": 346.5,
+    "emergency_sim": 160.3,
+    "operating_mean": 81.7,
+    "operating_eq": 87.7
+   }
+  }
+ },
+ "pitch_drive": {
+  "x_axis": 0.3,
+  "gear": {
+   "module_mm": 3,
+   "z_ring": 48,
+   "z_pinion": 14,
+   "i1": 3.43,
+   "i2": 100.0,
+   "i_total": 343
+  },
+  "inertia": {
+   "J_blade": 0.107,
+   "J_reflected": 29.39,
+   "T_inertia_Nm": 77.2
+  },
+  "torque_cases_Nm": {
+   "Emergency feather at -30 C, SLM G edge moment": 433.0,
+   "Emergency feather at -30 C, simulated e-stop moment": 246.8,
+   "Normal pitching, warm, mean load": 36.7,
+   "Normal pitching, -30 C, equivalent load": 90.6
+  },
+  "T_peak_Nm": 510.3,
+  "T_cont_Nm": 90.6,
+  "hold_Nm": 440.4,
+  "motor": {
+   "speed_rpm_at_30dps": 1714,
+   "T_peak_motor_Nm": 2.05,
+   "T_cont_motor_Nm": 0.36,
+   "P_peak_mech_W": 367,
+   "brake_motor_Nm": 1.28
+  },
+  "teeth": {
+   "peak drive": {
+    "Ft_kN": 7.09,
+    "sigma_MPa": 337,
+    "allow_MPa": 450,
+    "ok": true
+   },
+   "storm hold": {
+    "Ft_kN": 6.12,
+    "sigma_MPa": 291,
+    "allow_MPa": 450,
+    "ok": true
+   },
+   "SLM G friction lock": {
+    "Ft_kN": 7.22,
+    "sigma_MPa": 344,
+    "allow_MPa": 450,
+    "ok": true
+   }
+  },
+  "supercap": {
+   "E_stroke_J": 1224,
+   "E_required_J": 3060,
+   "V_window": [
+    56.0,
+    24.0
+   ],
+   "C_required_F": 2.4,
+   "C_chosen_F": 16.7,
+   "E_usable_chosen_J": 21376,
+   "strokes_at_EOL": 14.0,
+   "chosen": "one module per axis: 21 cells x 2.7 V / 350 F in series (56.7 V, 16.7 F), active balancing, heater pad"
+  },
+  "feather_time_s": 3.0
+ },
+ "hub": {
+  "material": "EN-GJS-400-18U-LT",
+  "wall_checks": [
+   {
+    "t_mm": 8.0,
+    "static_MPa": 69,
+    "static_allow": 218,
+    "fatigue_range_MPa": 22,
+    "fatigue_allow": 55,
+    "ok": true
+   },
+   {
+    "t_mm": 10.0,
+    "static_MPa": 55,
+    "static_allow": 218,
+    "fatigue_range_MPa": 18,
+    "fatigue_allow": 55,
+    "ok": true
+   },
+   {
+    "t_mm": 12.0,
+    "static_MPa": 46,
+    "static_allow": 218,
+    "fatigue_range_MPa": 15,
+    "fatigue_allow": 55,
+    "ok": true
+   },
+   {
+    "t_mm": 15.0,
+    "static_MPa": 37,
+    "static_allow": 218,
+    "fatigue_range_MPa": 12,
+    "fatigue_allow": 55,
+    "ok": true
+   }
+  ],
+  "wall_mm": 10.0,
+  "sphere_R": 0.22,
+  "neck_len": 0.204,
+  "mass": {
+   "shell": 54.7,
+   "pitch_flanges": 19.0,
+   "rear_flange": 10.9,
+   "ribs": 5.5,
+   "total": 90.0
+  },
+  "joint_loads": {
+   "M_Nm": 8610,
+   "T_Nm": 28380,
+   "Fx_N": 41640
+  },
+  "joint": {
+   "n_bolts": 12,
+   "size": "M16 10.9",
+   "pcd": 0.4,
+   "Ft_per_bolt_kN": 10.6,
+   "preload_kN": 110,
+   "slip_capacity_kN": 292.0,
+   "shear_demand_kN": 141.9
+  }
+ },
+ "yaw": {
+  "load_sets": {
+   "SLM H parked (gamma 3.0)": {
+    "M_tilt_kNm": 24.28,
+    "Fa_kN": 6.7,
+    "Fr_kN": 41.64
+   },
+   "Simulated envelope (gamma 1.35)": {
+    "M_tilt_kNm": 13.19,
+    "Fa_kN": 6.7,
+    "Fr_kN": 5.78
+   }
+  },
+  "M_grav_Nm": 2067,
+  "bearing": {
+   "Dpw": 0.36,
+   "Dw": 0.019,
+   "Z": 53,
+   "Q_kN": 10.3,
+   "p_MPa": 3217,
+   "s0": 1.92
+  },
+  "Myaw_op_p95_Nm": 1588,
+  "Myaw_op_mean_Nm": 14,
+  "friction_Nm": {
+   "warm": 103.4,
+   "-30 C": 231.1
+  },
+  "residual_brake_Nm": 500.0,
+  "T_drive_Nm": 1532,
+  "slip_setting_Nm": 8000,
+  "brake_clamp_total_kN": 41.7,
+  "gear": {
+   "i_ring": 10.71,
+   "i_gearbox": 1680.0
+  },
+  "motor_T_Nm": 0.07,
+  "P_mech_W": 13.4,
+  "battery": {
+   "yaw_duty": 0.2,
+   "P_yaw_W": 120.0,
+   "P_base_W": 54,
+   "E_72h_Wh": 5616,
+   "note": "48 V LiFePO4, heated; sized x1.5 for cold and ageing"
+  },
+  "battery_kWh_installed": 8.4
+ },
+ "masses": {
+  "per_pitch_axis": 33.8,
+  "hub_and_pitch": 199.4,
+  "budget_doc07": 80.0,
+  "delta": 119.4,
+  "tower_top_new": 599,
+  "rotor_assembly": 321
+ },
+ "tower_effect_18m": {
+  "f1_old": 1.21,
+  "f1_new": 1.127,
+  "exclusion_zone_rpm": [
+   62.0,
+   75.0
+  ]
+ },
+ "rotor_inertia_increase_kgm2": 7.5,
+ "duty": {
+  "pitch_travel_revs_20y": 2014174.824865352,
+  "pitch_reversals_20y": 229042080.4061638,
+  "frac_time_fine_in_production": 0.5601647155145131,
+  "M_eq_motion_weighted_kNm": 1.0891302270489291,
+  "F_eq_motion_weighted_kN": 11.045714846264142,
+  "M_mean_motion_weighted_kNm": 0.8637590965023337,
+  "F_mean_motion_weighted_kN": 10.97027556069636,
+  "Mres_DEL_m3_1e7_kNm": 5.297837743053201,
+  "Mres_DEL_m5_1e7_kNm": 3.030019770774217
+ }
+}

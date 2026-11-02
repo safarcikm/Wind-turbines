@@ -65,6 +65,11 @@ rear bearing 0.36 m, drum centre of gravity 0.30 m, stator 0.38 m, yaw axis
 
 ## 2. Mass budget (estimate)
 
+> **Update (doc 13):** the sized hub and pitch system is about 200 kg, not
+> 80 kg, so the tower top is about 600 kg. The yaw bearing design tilt
+> moment is 24.3 kNm (SLM thrust case), not 18.4 kNm. See
+> [13 – Hub, pitch and yaw](13-hub-pitch-yaw.md), sections 7 and 8.
+
 | Item | Mass |
 |---|---|
 | Blades (3 × 20 kg, TBC by layup study) | 60 kg |

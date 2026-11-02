@@ -132,10 +132,10 @@ paths) need a site-specific load assessment before installation.
 | Type | Horizontal axis, upwind, 3 blades |
 | Rated electrical power | 12 kW at the output terminals of the power module |
 | Rotor diameter | **7.5 m** (chosen in the rotor concept study, doc 03) |
-| Regulation | **Active pitch**, independent per blade or collective (to be decided in category 3), with fail-safe return to feather on any power or controller loss |
+| Regulation | **Active pitch**, three independent electric pitch drives with supercapacitor stores (doc 13), with fail-safe return to feather on any power or controller loss |
 | Drivetrain | Direct drive, no gearbox |
 | Generator | Permanent magnet synchronous, NdFeB magnets |
-| Yaw | To be decided in category 3: active yaw is preferred for a pitch-regulated rotor in turbulent wind; tail vane remains a candidate for simplicity |
+| Yaw | Active yaw: slewing ring, two gearmotors, spring-applied brake with controlled slip at 8 kNm (doc 13) |
 | Brake | Mechanical brake able to stop the rotor from overspeed alone, independent of pitch |
 | Tower | Tilt-up freestanding tapered steel monopole (doc 09), 18 m and 24 m hub height options |
 | Design life | 20 years, with no structural component replacement |
@@ -224,6 +224,17 @@ is a target to be confirmed by design studies.
 - **R3.4** Yaw system shall keep the rotor facing the wind within
   ±10° average error in turbulent wind, and shall be able to hold or
   free-yaw safely during grid loss (DLC 6.2).
+- **R3.5** The pitch bearing and grease shall be qualified for oscillating
+  duty: 2 million revolutions and 230 million reversals in 20 years, with
+  long dwells at the fine-pitch stop under rotating root moment. The
+  controller shall make a 0 → 10° lubrication sweep after every 24 h at fine
+  pitch (doc 13).
+- **R3.6** Each pitch axis shall feather on loss of the safety chain, of
+  slip-ring power or of its watchdog, using only its own stored energy, and
+  shall report its stored energy for the weekly test (doc 13).
+- **R3.7** The yaw brake shall slip above 8 kNm and the yaw drives shall not
+  be self-locking, so a side gust cannot overload the gear train or the
+  tower top (doc 13).
 
 ### 6.4 Generator (cat. 4)
 - **R4.1** Generator shall deliver rated power continuously at rated speed
