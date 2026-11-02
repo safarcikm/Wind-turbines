@@ -1,0 +1,34 @@
+file,name,group,make_buy,source,size_mm,volume_cm3,filament_kg_est,print_mods,notes
+NP1-100_spindle,Spindle,stationary,make,NP1-100 / BOM 1,451 x 401 x 400,7185.8,2.74,"M135x2 thread printed as a plain Ø135 seat (use the locknut envelope); tapped holes printed at tap-drill size (M12 Ø10.2, M20 Ø17.5)",
+NP1-101_front_spacer,Front spacer / seal counterface,stationary,make,NP1-101 / BOM 2,161 x 160 x 31,80.9,0.03,bore +0.2 mm radial (slides on the printed spindle),
+NP1-110_cooling_insert,Spindle cooling insert (finned),stationary,make,NP1-110 / BOM 5,426 x 126 x 90,929.6,0.35,"OD -0.2 mm radial (shrink fit in steel, slide fit in print)",
+KMT27_locknut_envelope,Precision locknut KMT 27 (envelope),stationary,buy (envelope),BOM 4 (bought),176 x 174 x 43,262.6,0.1,"plain bore, no thread",
+32028X_front_cone_envelope,Front bearing cone + rollers (envelope),stationary,buy (envelope),BOM 3 (bought),191 x 191 x 61,524.9,0.2,bore +0.2 mm radial,envelope estimated for 32028 X: replace with the supplier drawing before trusting the carrier-bore check
+32028X_rear_cone_envelope,Rear bearing cone + rollers (envelope),stationary,buy (envelope),BOM 3 (bought),191 x 191 x 61,524.9,0.2,bore +0.2 mm radial,envelope estimated for 32028 X: replace with the supplier drawing before trusting the carrier-bore check
+32028X_front_cup_envelope,Front bearing cup (envelope),rotating,buy (envelope),BOM 3 (bought),212 x 210 x 52,229.1,0.09,OD -0.2 mm radial (P7 press fit in steel),raceway estimated: replace with the supplier drawing
+32028X_rear_cup_envelope,Rear bearing cup (envelope),rotating,buy (envelope),BOM 3 (bought),212 x 210 x 52,229.1,0.09,OD -0.2 mm radial (P7 press fit in steel),raceway estimated: replace with the supplier drawing
+NP1-200_stator_carrier,Stator carrier,stationary,make,NP1-200 / BOM 7,456 x 456 x 135,5077.1,1.93,M8 clamp-ring holes at tap-drill size Ø6.8,
+NP1-201_stator_core,"Stator core (bonded lamination stack, 45 slots)",stationary,make,NP1-201 / BOM 8,602 x 598 x 126,6436.5,2.45,bore +0.2 mm radial (shrink fit in steel); printed as one solid stack 74 mm,
+stator_key_090,"Stator key 10x8, 73.5 long (BOM says 90) at 90 deg",stationary,buy (envelope),BOM 10,74 x 14 x 10,5.6,0.0,0.1 mm smaller each side; 73.5 mm long to fit the 73.5 mm seat (BOM line 10 says 90),
+stator_key_210,"Stator key 10x8, 73.5 long (BOM says 90) at 210 deg",stationary,buy (envelope),BOM 10,74 x 19 x 12,5.6,0.0,0.1 mm smaller each side; 73.5 mm long to fit the 73.5 mm seat (BOM line 10 says 90),
+stator_key_330,"Stator key 10x8, 73.5 long (BOM says 90) at 330 deg",stationary,buy (envelope),BOM 10,74 x 19 x 12,5.6,0.0,0.1 mm smaller each side; 73.5 mm long to fit the 73.5 mm seat (BOM line 10 says 90),
+NP1-202_stator_clamp_ring,Stator front clamp ring,stationary,make,NP1-202 / BOM 9,458 x 457 x 48,276.2,0.11,,
+stator_end_winding_front_envelope,"End windings, front (envelope)",stationary,make,doc 14 4.4 (22 mm overhang estimate),584 x 582 x 72,1810.8,0.69,,space claim of the potted tooth-coil end turns
+stator_end_winding_rear_envelope,"End windings, rear (envelope)",stationary,make,doc 14 4.4 (22 mm overhang estimate),584 x 582 x 72,1810.8,0.69,,space claim of the potted tooth-coil end turns
+NP1-210_rotor_drum,Rotor drum weldment,rotating,make,NP1-210 / BOM 15,690 x 689 x 412,12060.8,4.6,cup seats Ø210 printed at nominal; the cup envelopes are reduced instead; tapped holes at tap-drill size,
+NP1-211_front_seal_cover,Front bearing seal cover,rotating,make,NP1-211 / BOM 16,240 x 240 x 31,246.3,0.09,,
+NP1-211_rear_seal_cover,Rear bearing seal cover,rotating,make,NP1-211 / BOM 16,240 x 240 x 31,270.9,0.1,,as drawn its Ø152 bore overlaps the Ø155 cone shoulder: see assembly check
+NP1-212_drum_rear_cover,Drum rear cover with Ø400 seal carrier,rotating,make,NP1-212 / BOM 19,690 x 688 x 76,2676.7,1.02,,
+NP1-220_magnet_ring,"Magnet layer, 40 poles (dummy, no magnets)",rotating,make,NP1-220 / BOM 22,622 x 619 x 128,919.0,0.35,one ring instead of 160 segments; pole gaps as grooves; do not put real magnets in a printed drum,
+NP1-230_brake_disc,Brake disc Ø800,rotating,make,NP1-230 / BOM 25,800 x 798 x 86,2745.9,1.05,,
+NP1-320_lock_pin,Rotor lock pin Ø25 (engaged),stationary,make,NP1-320 / BOM 30,131 x 37 x 30,74.8,0.03,Ø25 nose -0.2 mm radial,shown engaged through the disc and drum flange ring at the top (90 deg) lock hole; holder bracket not drawn yet
+NP1-300-1_bedplate_front_plate,Bedplate front plate 40 (square to spindle),stationary,make,NP1-300 / BOM 28,738 x 500 x 104,13264.1,5.05,Ø200 bore +0.2 mm radial,"placed as drawn (front face at x = 476, 6 mm behind the spindle flange face)"
+NP1-300-2_bedplate_bottom_plate,Bedplate bottom plate 40 (yaw flange),stationary,make,NP1-300 / BOM 28,660 x 520 x 40,12044.6,4.59,,
+NP1-300-3_bedplate_side_plate_left,Bedplate side plate 20 (left),stationary,make,NP1-300 / BOM 28,734 x 608 x 20,6044.2,2.3,,
+NP1-300-3_bedplate_side_plate_right,Bedplate side plate 20 (right),stationary,make,NP1-300 / BOM 28,734 x 608 x 20,6044.2,2.3,,
+NP1-300-4_bedplate_rear_plate,Bedplate rear plate 20,stationary,make,NP1-300 / BOM 28,480 x 290 x 20,2784.0,1.06,,
+yaw_bearing_inner_ring_envelope,Yaw bearing inner ring (to bedplate),stationary,buy (envelope),BOM 31 (bought),350 x 350 x 70,3978.0,1.52,,preliminary doc 13 dimensions; the slewing ring supplier drawing replaces this
+yaw_bearing_outer_gear_ring_envelope,"Yaw bearing outer ring, gear z150 m4 (to tower)",tower,buy (envelope),BOM 31 (bought),608 x 608 x 60,10310.4,3.93,,preliminary doc 13 dimensions; the slewing ring supplier drawing replaces this; 16 holes on PCD 440 assumed
+brake_caliper_left_envelope,Brake caliper space claim (left),stationary,buy (envelope),"BOM 26 (bought), bracket NP1-310 not drawn",192 x 155 x 130,2952.0,1.12,,"generic envelope, replace with the chosen caliper's drawing"
+brake_caliper_right_envelope,Brake caliper space claim (right),stationary,buy (envelope),"BOM 26 (bought), bracket NP1-310 not drawn",192 x 155 x 130,2952.0,1.12,,"generic envelope, replace with the chosen caliper's drawing"
+NP1-600_dummy_hub,Bench dummy hub with Ø100 shaft,bench,make,NP1-600 / BOM 41,742 x 470 x 470,10338.7,3.94,"Ø361 recess moved to the hub face (drawing has the step reversed, see assembly check)",
