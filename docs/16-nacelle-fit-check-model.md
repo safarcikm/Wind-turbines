@@ -6,6 +6,11 @@ Builds on: [14 – Nacelle prototype P1](14-nacelle-prototype-p1.md) and its dra
 Model and scripts: [`cad/nacelle_fitcheck/`](../cad/nacelle_fitcheck/) (one command, `python3 build.py`)
 Digital check: [`out/assembly_check.md`](../cad/nacelle_fitcheck/out/assembly_check.md)
 
+> **Update 2026-11-03:** all nine findings in section 3 are fixed in the P1
+> geometry **Rev B** and the digital check is clean; see
+> [doc 17 §2](17-working-printed-prototype.md#2-fit-check-findings-fixed-geometry-rev-b).
+> The files in `cad/nacelle_fitcheck/out` are regenerated from Rev B.
+
 ## Summary
 
 Every P1 nacelle part, from the hub flange down to the tower mounting point, is modelled **at full size (1:1)** as **its own object**,

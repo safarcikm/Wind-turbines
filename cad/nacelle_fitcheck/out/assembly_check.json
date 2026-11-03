@@ -1,81 +1,35 @@
 {
- "static_3d": [
-  {
-   "a": "NP1-100_spindle",
-   "b": "NP1-211_rear_seal_cover",
-   "volume_mm3": 723.4
-  },
-  {
-   "a": "NP1-210_rotor_drum",
-   "b": "NP1-320_lock_pin",
-   "volume_mm3": 7917.5
-  },
-  {
-   "a": "NP1-210_rotor_drum",
-   "b": "brake_caliper_left_envelope",
-   "volume_mm3": 16877.0
-  },
-  {
-   "a": "NP1-210_rotor_drum",
-   "b": "brake_caliper_right_envelope",
-   "volume_mm3": 16877.0
-  },
-  {
-   "a": "NP1-212_drum_rear_cover",
-   "b": "NP1-320_lock_pin",
-   "volume_mm3": 4752.9
-  },
-  {
-   "a": "NP1-212_drum_rear_cover",
-   "b": "brake_caliper_left_envelope",
-   "volume_mm3": 19882.8
-  },
-  {
-   "a": "NP1-212_drum_rear_cover",
-   "b": "brake_caliper_right_envelope",
-   "volume_mm3": 19882.8
-  }
- ],
+ "static_3d": [],
  "running_clearance": [
-  {
-   "rotating": "NP1-211_rear_seal_cover",
-   "stationary": "NP1-100_spindle",
-   "min_gap_mm": 0.0
-  },
   {
    "rotating": "NP1-211_front_seal_cover",
    "stationary": "NP1-101_front_spacer",
-   "min_gap_mm": 1.0
+   "min_gap_mm": 1.5,
+   "designed": true
   },
   {
-   "rotating": "NP1-212_drum_rear_cover",
-   "stationary": "NP1-300-1_bedplate_front_plate",
-   "min_gap_mm": 1.0
+   "rotating": "NP1-211_rear_seal_cover",
+   "stationary": "NP1-102_rear_seal_sleeve",
+   "min_gap_mm": 1.5,
+   "designed": true
   },
   {
    "rotating": "32028X_front_cup_envelope",
    "stationary": "32028X_front_cone_envelope",
-   "min_gap_mm": 1.57
+   "min_gap_mm": 1.57,
+   "designed": true
   },
   {
    "rotating": "32028X_rear_cup_envelope",
    "stationary": "32028X_rear_cone_envelope",
-   "min_gap_mm": 1.57
-  },
-  {
-   "rotating": "NP1-211_front_seal_cover",
-   "stationary": "KMT27_locknut_envelope",
-   "min_gap_mm": 2.0
-  },
-  {
-   "rotating": "NP1-211_rear_seal_cover",
-   "stationary": "32028X_rear_cone_envelope",
-   "min_gap_mm": 2.5
+   "min_gap_mm": 1.57,
+   "designed": true
   },
   {
    "rotating": "NP1-220_magnet_ring",
    "stationary": "NP1-201_stator_core",
-   "min_gap_mm": 2.5
+   "min_gap_mm": 2.5,
+   "designed": true
   }
  ],
  "yaw_clearance": [
@@ -151,228 +105,97 @@
   },
   {
    "stage": "2 rotor",
-   "step": "brake disc onto drum (from the front)",
+   "step": "rear seal cover onto the drum housing",
+   "from_side": "rear",
+   "ok": true,
+   "blocked_by": []
+  },
+  {
+   "stage": "2 rotor",
+   "step": "brake disc onto drum from the front (magnets fitted)",
    "from_side": "front",
-   "ok": false,
-   "blocked_by": [
-    {
-     "part": "NP1-210_rotor_drum",
-     "overlap_mm2": 270.0,
-     "x": [
-      335.0,
-      451.0
-     ],
-     "r": [
-      320.0,
-      345.0
-     ]
-    }
-   ]
-  },
-  {
-   "stage": "2 rotor",
-   "step": "brake disc onto drum (from the rear)",
-   "from_side": "rear",
-   "ok": false,
-   "blocked_by": [
-    {
-     "part": "NP1-210_rotor_drum",
-     "overlap_mm2": 350.0,
-     "x": [
-      451.0,
-      465.0
-     ],
-     "r": [
-      320.0,
-      345.0
-     ]
-    }
-   ]
-  },
-  {
-   "stage": "2 rotor",
-   "step": "rear seal cover into drum",
-   "from_side": "rear",
    "ok": true,
    "blocked_by": []
   },
   {
    "stage": "3 spindle",
-   "step": "rear cone onto spindle",
+   "step": "stator assembly onto the bare spindle",
    "from_side": "front",
    "ok": true,
    "blocked_by": []
   },
   {
-   "stage": "4 stator on spindle",
-   "step": "stator assembly over the fitted rear cone",
-   "from_side": "front",
-   "ok": false,
-   "blocked_by": [
-    {
-     "part": "32028X_rear_cone_envelope",
-     "overlap_mm2": 138.1,
-     "x": [
-      341.0,
-      382.5
-     ],
-     "r": [
-      90.0,
-      95.5
-     ]
-    }
-   ]
-  },
-  {
-   "stage": "4 alt",
-   "step": "stator assembly BEFORE the rear cone",
+   "stage": "3 spindle",
+   "step": "rear seal sleeve onto the \u00d8155 shoulder",
    "from_side": "front",
    "ok": true,
    "blocked_by": []
   },
   {
-   "stage": "4 alt",
-   "step": "rear cone after the stator",
+   "stage": "3 spindle",
+   "step": "rear cone after stator and sleeve",
    "from_side": "front",
    "ok": true,
    "blocked_by": []
   },
   {
-   "stage": "5 drum on spindle",
-   "step": "drum with cups, magnets and rear seal cover",
-   "from_side": "front",
-   "ok": false,
-   "blocked_by": [
-    {
-     "part": "NP1-100_spindle",
-     "overlap_mm2": 5.2,
-     "x": [
-      382.5,
-      386.0
-     ],
-     "r": [
-      76.0,
-      77.5
-     ]
-    },
-    {
-     "part": "32028X_rear_cone_envelope",
-     "overlap_mm2": 762.0,
-     "x": [
-      337.5,
-      382.5
-     ],
-     "r": [
-      76.0,
-      95.5
-     ]
-    }
-   ]
-  },
-  {
-   "stage": "5 alt",
-   "step": "drum without the rear seal cover",
+   "stage": "4 drum on spindle",
+   "step": "complete rotor (drum, cups, magnets, rear seal cover, disc)",
    "from_side": "front",
    "ok": true,
    "blocked_by": []
   },
   {
-   "stage": "6 front bearing",
-   "step": "front cone, spacer, locknut",
+   "stage": "5 front bearing",
+   "step": "front cone",
    "from_side": "front",
    "ok": true,
    "blocked_by": []
   },
   {
-   "stage": "6 front bearing",
-   "step": "front seal cover",
+   "stage": "5 front bearing",
+   "step": "spacer",
    "from_side": "front",
-   "ok": false,
-   "blocked_by": [
-    {
-     "part": "KMT27_locknut_envelope",
-     "overlap_mm2": 168.0,
-     "x": [
-      52.0,
-      80.0
-     ],
-     "r": [
-      81.0,
-      87.0
-     ]
-    }
-   ]
+   "ok": true,
+   "blocked_by": []
   },
   {
-   "stage": "7 rear cover",
+   "stage": "5 front bearing",
+   "step": "locknut",
+   "from_side": "front",
+   "ok": true,
+   "blocked_by": []
+  },
+  {
+   "stage": "5 front bearing",
+   "step": "front seal cover after the nut and rolling-torque check",
+   "from_side": "front",
+   "ok": true,
+   "blocked_by": []
+  },
+  {
+   "stage": "6 rear cover",
    "step": "rear cover over the spindle flange",
    "from_side": "rear",
    "ok": true,
    "blocked_by": []
   },
   {
-   "stage": "8 bedplate",
+   "stage": "7 bedplate",
    "step": "front plate onto the spigot",
    "from_side": "rear",
    "ok": true,
    "blocked_by": []
   },
   {
-   "stage": "9 bench",
-   "step": "dummy hub onto drum (as drawn)",
-   "from_side": "front",
-   "ok": false,
-   "blocked_by": [
-    {
-     "part": "NP1-210_rotor_drum",
-     "overlap_mm2": 50.0,
-     "x": [
-      195.0,
-      200.0
-     ],
-     "r": [
-      170.0,
-      232.0
-     ]
-    }
-   ]
-  },
-  {
-   "stage": "9 bench",
-   "step": "dummy hub onto drum (corrected recess)",
+   "stage": "8 bench",
+   "step": "dummy hub onto drum",
    "from_side": "front",
    "ok": true,
    "blocked_by": []
   }
  ],
- "static_section": [
-  {
-   "a": "NP1-100_spindle",
-   "b": "NP1-211_rear_seal_cover",
-   "overlap_mm2": 1.5,
-   "x": [
-    385.0,
-    386.0
-   ],
-   "r": [
-    76.0,
-    77.5
-   ]
-  },
-  {
-   "a": "NP1-210_rotor_drum",
-   "b": "NP1-600_dummy_hub (as drawn)",
-   "overlap_mm2": 50.0,
-   "x": [
-    195.0,
-    200.0
-   ],
-   "r": [
-    170.0,
-    232.0
-   ]
-  }
- ],
+ "static_section": [],
  "limits": {
   "designed_contact_mm3": 5.0,
   "running_gap_mm": 3.0

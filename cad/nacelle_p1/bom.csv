@@ -1,6 +1,7 @@
 item,part_no,description,qty,material_or_spec,make_buy,process_or_source,unit_mass_kg,lead_time_wk_est,notes
 1,NP1-100,Spindle (stationary main shaft),1,42CrMo4+QT open-die forging; KV>=27 J at -40C; UT EN 10228-3 cl.3,make,forging bought; turning + grinding in-house,56.7,6-8,critical part; 3.1 certificate
-2,NP1-101,Front spacer / seal counterface,1,42CrMo4+QT; OD induction hardened 55-60 HRC,make,turning + grinding,0.6,2,
+2,NP1-101,Front spacer / seal counterface Ø180 (Rev B),1,42CrMo4+QT; OD induction hardened 55-60 HRC,make,turning + grinding,1.4,2,Rev B OD 160->180
+2a,NP1-102,Rear seal sleeve Ø155/Ø195 x 15.5 with O-ring 155x3 (Rev B),1,42CrMo4+QT; OD induction hardened 55-60 HRC,make,turning + grinding,1.3,2,new in Rev B (fit-check finding 3)
 3,32028 X,Main bearing tapered roller 140x210x45,2,ISO 355 4DC; P5 or P6X precision recommended,buy,SKF / Timken / Schaeffler / NSK,4.8,4-10,confirm C and C0 ratings; order 1 spare set
 4,KMT 27,Precision locknut M135x2 with locking screws,1,steel,buy,bearing supplier,1.2,2-4,
 5,NP1-110,Spindle cooling insert (finned extrusion),1,EN AW-6082-T6,make,extrusion die (or wire-EDM / machined from bar for P1),2.6,4-8,P1 option: machine from 90 mm bar to avoid die cost
@@ -8,27 +9,27 @@ item,part_no,description,qty,material_or_spec,make_buy,process_or_source,unit_ma
 7,NP1-200,Stator carrier,1,S355J2+N ring forging or plate; stress relieved,make,turning + drilling,40.6,4,
 8,NP1-201,Stator lamination,205,M270-35A 0.35 mm with self-bonding varnish,make,laser cut (P1) / stamping die (series),0.234,3-6,order coil with bonding varnish; +10 spare sheets
 9,NP1-202,Stator front clamp ring,1,1.4404 8 mm plate,make,laser cut + face,2.2,1,
-10,,Stator keys 10x8x90 DIN 6885,3,C45K,buy,standard,0.06,1,
+10,,Stator keys 10x8x70 DIN 6885 (Rev B; seat is 73.5),3,C45K,buy,standard,0.06,1,
 11,,Winding wire (enamelled copper class 200 Grade 2),24,kg; size per winding spec doc 14 sect. 4.4,buy,wire supplier,1,2-4,
 12,,Slot liners / phase separators / wedges,1,set; Nomex-Kapton-Nomex 0.3 mm; glass-epoxy wedges,buy,insulation supplier,1,2,
 13,,VPI resin + end-winding potting compound,1,set; class H epoxy,buy,resin supplier,3,2,
 14,,Winding temperature sensors PT100 (2 per phase) + spare,8,class A thin-film; embedded in slots,buy,sensor supplier,0,1,6 used + 2 spare (doc 11 derate input)
 15,NP1-210,Rotor drum weldment,1,S355J2+N; housing tube S355J2H; welded + stress relieved,make,rolling + welding + boring mill,96.0,6-8,critical part; balance with magnets and disc
 16,NP1-211,Main bearing seal covers front + rear,2,S355J2,make,turning,2.0,1,
-17,,Lip seals 160x190x10 HNBR -40C + V-ring 160,1,set,buy,seal supplier,0.2,2-4,front
-18,,Lip seal 150x180x10 HNBR -40C,1,,buy,seal supplier,0.1,2-4,rear inner
+17,,Lip seal 180x200x10 HNBR -40C + V-ring 180 (Rev B),1,set,buy,seal supplier,0.2,2-4,front
+18,,Lip seal 195x220x12 HNBR -40C (Rev B; runs on NP1-102),1,,buy,seal supplier,0.1,2-4,rear inner
 19,NP1-212,Drum rear cover with seal carrier,1,EN AW-5083-H111,make,laser + weld + turning,7.3,2,
 20,,Lip seal 400x432x15 HNBR -40C (or split seal),2,,buy,seal supplier,0.4,4-6,1 spare
 21,,Desiccant breather M24x1.5,1,,buy,,0.3,1,
 22,NP1-220,Magnet segment N40UH arc,168,NdFeB N40UH NiCuNi + epoxy; 160 + 8 spare,buy,magnet supplier (EU/Japan/China),0.041,8-12,long lead: order first; batch demag curves
 23,,GRP pole comb + 0.5 mm glass/epoxy encapsulation kit,1,set,make,in-house layup,1,2,
 24,,Structural magnet adhesive (150C rated),1,kit,buy,adhesive supplier,0.5,1,
-25,NP1-230,Brake disc,1,C45E+N 16 mm,make,laser/waterjet + grind,22.7,2-3,
-26,,Spring-applied hydraulically released brake caliper (>=15 kN clamp; 16 mm disc),2,-40C rated pads,buy,industrial caliper supplier,12,8-12,long lead; pick before NP1-310
+25,NP1-230,Brake disc Ø880/Ø652 with 12 lock holes (Rev B),1,C45E+N 16 mm,make,laser/waterjet + grind,34.5,2-3,
+26,,Spring-applied hydraulically released brake caliper (>=13.3 kN clamp; 16 mm disc; see doc 17),2,-40C rated pads,buy,industrial caliper supplier,12,8-12,long lead; pick before NP1-310
 27,,Hydraulic power unit (rotor + yaw brakes) with accumulator and proportional valve,1,24 V DC,buy,HPU supplier,15,6-10,shared with yaw brake (doc 13)
 28,NP1-300,Bedplate weldment (fabricated P1 version),1,S355J2+N plates 20/40 mm; stress relieved,make,cutting + welding + boring mill,150,6,cast GJS-400-18U-LT version for P2
 29,NP1-310,Brake caliper brackets,2,S355J2,make,after caliper selection,6,2,drawing after caliper supplier data
-30,NP1-320,Rotor lock pin + holder with proximity switch,1,42CrMo4+QT / S355J2,make,turning,4,1,
+30,NP1-320,Rotor lock pin Ø20 + holder NP1-321 with proximity switch and 2 overspeed sensor seats (Rev B),1,42CrMo4+QT / S355J2,make,turning,4,1,
 31,,Yaw bearing four-point contact D_pw 360 external gear z150 m4,1,per doc 13,buy,slewing ring supplier (Rothe Erde / IMO / Kaydon / LYC),55,10-16,long lead; supplier drawing defines NP1-400
 32,,Yaw drive planetary gearmotor 0.18 kW 1:1680 pinion z14 m4,2,,buy,gearmotor supplier,25,8-12,
 33,,Yaw brake caliper (spring applied),2,,buy,caliper supplier,8,8-12,
