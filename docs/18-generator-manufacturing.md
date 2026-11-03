@@ -32,7 +32,7 @@ the coils in. This document is written for the recommended fix, a
 precision layer-wound directly on its own tooth and the 45 wound segments
 slide into dovetail grooves in the carrier. The magnetic shape (tooth, tips,
 slot, yoke, gap) is unchanged; the lamination and carrier drawings change.
-The other options are in Appendix C.
+**Martin chose this route on 2026-11-03.** The other options are in Appendix C.
 
 **Build in three stages:**
 
@@ -56,7 +56,7 @@ checked for whether it can be made, inspected and repaired. Findings:
 
 | # | Finding | Consequence | Action in this document |
 |---|---|---|---|
-| **M1** | **The one-piece stator cannot be wound.** Tooth tips are 37.7 mm wide on a 22.3 mm tooth, with only a 4.0 mm slot opening. A pre-wound coil cannot pass over the tips. Needle winding through 4 mm with 4 strands of Ø1.66 mm (with enamel) is not possible. Hand drop-in, wire by wire through the opening, reaches about 40 % copper fill of the free space at best, and the design needs **49.7 %** (211 mm² of copper per coil side in 425 mm² free). Precision layer winding uses **90 %** of the 125 positions available (layers of 37, 37, 31, 17, 3 turns), which only works when the tooth is free on all sides | Doc 14 stator cannot be built as drawn | **Segmented stator** (section 5). Decision for Martin (Appendix C) |
+| **M1** | **The one-piece stator cannot be wound.** Tooth tips are 37.7 mm wide on a 22.3 mm tooth, with only a 4.0 mm slot opening. A pre-wound coil cannot pass over the tips. Needle winding through 4 mm with 4 strands of Ø1.66 mm (with enamel) is not possible. Hand drop-in, wire by wire through the opening, reaches about 40 % copper fill of the free space at best, and the design needs **49.7 %** (211 mm² of copper per coil side in 425 mm² free). Precision layer winding uses **90 %** of the 125 positions available (layers of 37, 37, 31, 17, 3 turns), which only works when the tooth is free on all sides | Doc 14 stator cannot be built as drawn | **Segmented stator** (section 5), chosen by Martin 2026-11-03 (Appendix C) |
 | M2 | Segmentation means the stack is no longer shrunk onto the carrier with 3 keys | Carrier rim gets 45 dovetail grooves; keys and the Ø437.25 shrink fit go | New drawings NP1-200 Rev C and NP1-201 Rev C (section 5.1) |
 | M3 | With segments, each sheet can no longer be rotated by 24° to average sheet thickness (doc 14) | Stack height scatter per segment | Sheets counted and stack measured per segment, ±0.1 mm (section 5.3) |
 | M4 | 28 turns (doc 14) versus 27 to 28 (doc 06). Scaling doc 06 to 74 mm gives **392 V line at 100 °C with 28 turns** (target 380 V) and **≈ 920 V peak** at 250 rpm, −40 °C (doc 12 used 892 V). 27 turns gives 378 V and 889 V | Still below the 1100 V DC link capacitors and 1200 V devices, but outside the doc 12 number | Freeze the turn count from the FEA rerun before winding the 45 P1 coils; Q1 coils use 28 (section 5.5) |
@@ -780,7 +780,7 @@ measured values) before the P1 winding starts.
 
 | # | Item | Owner | Due |
 |---|---|---|---|
-| 1 | **Decision on the stator build route (M1)**: segmented (recommended), open slots with magnetic wedges, or drop-in (Appendix C) | Martin | Before drawings |
+| 1 | ~~Decision on the stator build route (M1)~~ **Decided 2026-11-03: segmented stator** | Martin | Done |
 | 2 | FEA rerun with segment joints and tolerance scatter; freeze turns (27 or 28) and the expected EMF | Cat. 4 | Week 1 |
 | 3 | Magnet eddy-loss check, then place the magnet order | Cat. 4 | Week 1 |
 | 4 | Drawings NP1-200 Rev C, NP1-201 Rev C (segment DXF), tools T03 to T10, connection ring | Cat. 4/10 | Weeks 1 to 3 |
@@ -835,7 +835,7 @@ From [`manufacturing_summary.json`](../analysis/generator/results/manufacturing_
 | Hipot / repeat / surge / PDIV | 2.3 kV / 1.8 kV / 3.5 kV peak / ≥ 1.9 kV peak |
 | Balance at 250 rpm | G6.3 ≤ 35,700 g·mm (bare drum stage), G2.5 ≤ 14,200 g·mm (final) |
 
-## Appendix C. Stator build routes compared (decision M1)
+## Appendix C. Stator build routes compared (decision M1, route A chosen)
 
 | | **A. Segmented stator (recommended)** | B. Open slots + magnetic wedges | C. As drawn, drop-in by hand |
 |---|---|---|---|
