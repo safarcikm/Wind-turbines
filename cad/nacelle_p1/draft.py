@@ -170,7 +170,7 @@ class Sheet:
     material: str = ""
     mass: str = ""
     scale_note: str = ""
-    rev: str = "A"
+    rev: str = "B"
     notes: list = field(default_factory=list)
     table: list | None = None            # list of rows (first row = header)
     table_pos: tuple = (12.0, 285.0)
@@ -250,7 +250,7 @@ class Sheet:
         ax.text(x0 + 2, y0 + 33.5, self.title, fontsize=f(3.2), weight="bold", va="top")
         cells = [
             (x0 + 2, y0 + 25, "DRAWING NO.", self.number),
-            (x0 + 62, y0 + 25, "REV / DATE", f"{self.rev} · 2026-11-02"),
+            (x0 + 62, y0 + 25, "REV / DATE", f"{self.rev} · 2026-11-03"),
             (x0 + 122, y0 + 25, "SCALE (A3)", self.scale_note),
             (x0 + 2, y0 + 11, "MATERIAL", self.material),
             (x0 + 62, y0 + 11, "MASS (CALC.)", self.mass),

@@ -13,6 +13,9 @@ Inputs frozen in earlier design docs:
           spindle 140/90 42CrMo4, yaw axis 750 behind the rotor plane)
   doc 08  design loads (spindle moment 9.8 kNm, bearing static 41/44 kN)
   doc 13  hub flange 12 x M16 10.9 on PCD 400, yaw bearing D_pw 360
+
+Rev B (2026-11-03, doc 17): fixes for the doc 16 fit-check findings 1 to 9
+(disc, seals, bedplate face, lock pin, caliper room, dummy hub, key length).
 """
 from __future__ import annotations
 
@@ -69,8 +72,8 @@ SPINDLE_OUTER = [  # (x, r), front to rear
     (80.0, 67.5), (80.0, 70.0),      # spacer + front cone seat Ø140 f6
     (142.5, 70.0), (142.5, 69.0),    # relief Ø138 between seats
     (337.5, 69.0), (337.5, 70.0),    # rear cone seat Ø140 j6
-    (382.5, 70.0), (382.5, 77.5),    # cone abutment shoulder Ø155
-    (386.0, 77.5), (386.0, 75.0),    # seal counterface Ø150 h9, Ra 0.4
+    (382.5, 70.0), (382.5, 77.5),    # cone abutment shoulder Ø155 (Rev B: carries the seal sleeve NP1-102)
+    (400.0, 77.5), (400.0, 75.0),    # Rev B: shoulder lengthened from 3.5 to 17.5 mm (finding 3)
     (430.0, 75.0),
 ] + [  # R10 flange fillet
     (430.0 + 10 * math.sin(a), 85.0 - 10 * math.cos(a))
@@ -90,8 +93,18 @@ SPINDLE = dict(
     dowels=dict(n=2, dia=10.0, pcd=240.0, angles=(45.0, 225.0)),
 )
 
-# Front spacer NP1-101 (between locknut and front cone, lip seal counterface)
-SPACER = dict(x=(80.0, 97.5), d=140.0, od=160.0)
+# Front spacer NP1-101 (between locknut and front cone, lip seal counterface).
+# Rev B (fit-check finding 4): OD 160 -> 180 so the front seal cover, whose lip
+# runs on it, has a bore larger than the KMT 27 nut (Ø174) and goes on last.
+SPACER = dict(x=(80.0, 97.5), d=140.0, od=180.0)
+SPACER_POLY = [(80.0, 70.0), (97.5, 70.0), (97.5, 90.0), (80.0, 90.0)]
+
+# Rear seal sleeve NP1-102 (Rev B, finding 3): stationary hardened sleeve on the
+# lengthened Ø155 shoulder behind the rear cone, O-ring under it. The rear lip
+# seal (195 x 220 x 12) runs on its Ø195 OD, which is larger than the rear cone
+# envelope (Ø191), so the drum can carry the seal cover in over the fitted cone.
+SEAL_SLEEVE = dict(x=(382.5, 398.0), d=155.0, od=195.0)
+SEAL_SLEEVE_POLY = [(382.5, 77.5), (398.0, 77.5), (398.0, 97.5), (382.5, 97.5)]
 
 # ------------------------------------------------------ drum weldment NP1-210
 # Each element is a closed (x, r) section polygon (welded, then finish machined).
@@ -106,28 +119,43 @@ DRUM_PARTS = {
     "shell": [(212.0, 312.0), (335.0, 312.0), (335.0, GEN["r_m2"]), (425.0, GEN["r_m2"]),
               (425.0, 312.0), (451.0, 312.0), (451.0, 318.0), (425.0, 318.0),
               (425.0, 323.0), (335.0, 323.0), (335.0, 318.0), (212.0, 318.0)],
-    "rear flange ring": [(451.0, 312.0), (465.0, 312.0), (465.0, 345.0), (451.0, 345.0)],
+    # Rev B (findings 1 and 7): ring OD 690 -> 710 so the bigger-bore disc can bolt to it
+    "rear flange ring": [(451.0, 312.0), (465.0, 312.0), (465.0, 355.0), (451.0, 355.0)],
 }
 DRUM = dict(
     hub_bolts=dict(n=12, size="M16", pcd=400.0, depth=25.0),   # doc 13, tapped through web
     hub_spigot=360.0,                                          # Ø360 f7 into hub recess
     cup_seat=210.0, cup_fit="P7",
-    rear_cover_bolts=dict(n=24, size="M10", pcd=644.0),
-    disc_bolts=dict(n=24, size="M12", pcd=662.0),
-    lock_holes=dict(n=12, dia=26.0, pcd=662.0, depth=20.0),
+    rear_cover_bolts=dict(n=24, size="M10", pcd=644.0, start=5.0),
+    # Rev B: 24 x M10 10.9 on PCD 678 (slip capacity ≈ 160 kN at μ 0.2 vs 26 kN at 8.7 kNm)
+    disc_bolts=dict(n=24, size="M10", pcd=678.0, start=7.5),
+    # Rev B (finding 6): no lock holes in the ring any more; they are in the disc only
 )
 
-# Main bearing seal covers NP1-211 (rotating, bolted to the housing ends)
-SEAL_COVER_FRONT = [(82.0, 81.0), (92.0, 81.0), (92.0, 120.0), (82.0, 120.0)]
-SEAL_COVER_REAR = [(385.0, 76.0), (395.0, 76.0), (395.0, 120.0), (385.0, 120.0)]
+# Main bearing seal covers NP1-211 (rotating, bolted to the housing ends).
+# Rev B: front cover bore Ø183 (lip 180 x 200 x 10 on the spacer), fitted after the
+# locknut; rear cover bore Ø198 (lip 195 x 220 x 12 on the sleeve NP1-102),
+# fitted to the drum before the drum goes on (findings 3 and 4).
+
+SEAL_COVER_FRONT = [(82.0, 91.5), (92.0, 91.5), (92.0, 120.0), (82.0, 120.0)]
+SEAL_COVER_REAR = [(385.0, 99.0), (397.0, 99.0), (397.0, 120.0), (385.0, 120.0)]
+SEAL_GAP = 1.5     # mm, metal bore of a seal cover to its counterface (the lip bridges it)
 
 # Drum rear cover NP1-212 with seal carrier (Ø400 lip seal on the flange OD)
 REAR_COVER = [(465.0, 216.0), (465.0, 345.0), (475.0, 345.0), (475.0, 216.0)]   # 5083 Al
 REAR_SEAL_CARRIER = [(450.0, 216.0), (465.0, 216.0), (465.0, 236.0), (450.0, 236.0)]
 
-# Brake disc NP1-230
-DISC = dict(x=(435.0, 451.0), id=640.0, od=800.0, pad_r=(345.0, 395.0))
-DISC_POLY = [(435.0, 320.0), (451.0, 320.0), (451.0, 400.0), (435.0, 400.0)]
+# Brake disc NP1-230. Rev B (findings 1, 6, 7): bore Ø640 -> Ø652 so the disc
+# slides on from the front over the magnet shell (Ø646); OD Ø800 -> Ø880 so the
+# pad track (r 385 to 435) is outside the flange ring (r 355) and the calipers
+# have room behind the disc; 12 lock holes Ø22 on PCD 740 between ring and track.
+DISC = dict(x=(435.0, 451.0), id=652.0, od=880.0, pad_r=(385.0, 435.0))
+DISC_POLY = [(435.0, 326.0), (451.0, 326.0), (451.0, 440.0), (435.0, 440.0)]
+LOCK = dict(n=12, hole=22.0, pin=20.0, pcd=740.0, start=90.0,   # 90 deg = top
+            engaged_nose_x=430.0, stroke=40.0)
+BRAKE = dict(torque_Nm=8700.0, mu=0.40, n_calipers=2,
+             r_eff=(DISC["pad_r"][0] + DISC["pad_r"][1]) / 2000.0)
+BRAKE["clamp_kN"] = BRAKE["torque_Nm"] / (BRAKE["n_calipers"] * 2 * BRAKE["mu"] * BRAKE["r_eff"]) / 1000.0
 
 # ------------------------------------------------- stator carrier NP1-200
 CARRIER = [
@@ -150,7 +178,10 @@ INSERT = dict(od=90.0, shell=4.0, tube_od=40.0, tube_id=34.0, fins=16, fin_t=2.5
               length=420.0, x=(46.0, 466.0))
 
 # --------------------------------------------------------- bedplate NP1-300
-BED = dict(front_plate=40.0, side_plate=20.0, bottom_plate=40.0, rear_plate=20.0,
+# Rev B (finding 5): the front plate face is at the spindle flange face x 470
+# on a Ø410 x 10 pad; outside the pad the plate starts at x 480, so the rotating
+# rear cover (rear face x 475) runs 5 mm from it.
+BED = dict(x_front_pad=470.0, x_front=480.0, pad_d=410.0, front_plate=40.0, side_plate=20.0, bottom_plate=40.0, rear_plate=20.0,
            width=520.0, x_bottom=(-330.0, 330.0),      # world X about the yaw axis
            top_above_axis=250.0,
            yaw_inner_bolts=dict(n=16, size="M16", pcd=300.0), yaw_bore=220.0)
@@ -265,7 +296,8 @@ def mass_table():
     sp = revolved_volume(spindle_section()) * st
     holes = (12 * math.pi / 4 * 17.5 ** 2 * 26 + 12 * math.pi / 4 * 10.2 ** 2 * 24) * st
     items.append(MassItem("Spindle NP1-100", sp - holes, "42CrMo4+QT"))
-    items.append(MassItem("Front spacer NP1-101", math.pi / 4 * (160 ** 2 - 140 ** 2) * 17.5 * st))
+    items.append(MassItem("Front spacer NP1-101", revolved_volume(SPACER_POLY) * st))
+    items.append(MassItem("Rear seal sleeve NP1-102", revolved_volume(SEAL_SLEEVE_POLY) * st))
     drum = sum(revolved_volume(p) for p in DRUM_PARTS.values()) * st
     items.append(MassItem("Rotor drum weldment NP1-210", drum, "S355J2+N"))
     items.append(MassItem("Seal covers NP1-211 (2)",

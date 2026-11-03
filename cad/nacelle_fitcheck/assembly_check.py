@@ -31,6 +31,10 @@ OUT = os.path.join(HERE, "out")
 # only if they overlap by more than the print clearance would explain.
 DESIGNED_CONTACT_TOL = 5.0      # mm^3
 RUNNING_LIMIT = 3.0             # mm, report rotating/stationary gaps below this
+# Seal covers: the metal bore runs G.SEAL_GAP from its counterface by design,
+# the lip seal bridges it. Reported as designed, not as a finding.
+SEAL_PAIRS = {("NP1-211_front_seal_cover", "NP1-101_front_spacer"),
+              ("NP1-211_rear_seal_cover", "NP1-102_rear_seal_sleeve")}
 
 
 # Pinion and gear ring mesh by design: their tooth overlap is not a clash.
@@ -133,7 +137,7 @@ def yaw_clearance(parts):
 ROTATING_2D = ["NP1-210_rotor_drum", "32028X_front_cup_envelope", "32028X_rear_cup_envelope",
                "NP1-211_front_seal_cover", "NP1-211_rear_seal_cover", "NP1-212_drum_rear_cover",
                "NP1-220_magnet_ring", "NP1-230_brake_disc"]
-STATIONARY_2D = ["NP1-100_spindle", "NP1-101_front_spacer", "KMT27_locknut_envelope", "32028X_front_cone_envelope",
+STATIONARY_2D = ["NP1-100_spindle", "NP1-101_front_spacer", "NP1-102_rear_seal_sleeve", "KMT27_locknut_envelope", "32028X_front_cone_envelope",
                  "32028X_rear_cone_envelope", "NP1-200_stator_carrier", "NP1-201_stator_core",
                  "NP1-202_stator_clamp_ring", "stator_end_winding_front_envelope",
                  "stator_end_winding_rear_envelope", "NP1-300-1_bedplate_front_plate"]
@@ -148,7 +152,10 @@ def running_clearance(sec):
         for s in STATIONARY_2D:
             d = sec[r].distance(sec[s])
             if d < RUNNING_LIMIT:
-                res.append(dict(rotating=r, stationary=s, min_gap_mm=round(d, 2)))
+                designed = (r, s) in SEAL_PAIRS and d >= G.SEAL_GAP - 0.01
+                designed = designed or (r.startswith("NP1-220") and s.startswith("NP1-201"))   # air gap
+                designed = designed or ("32028X" in r and "32028X" in s)                         # bearing envelopes
+                res.append(dict(rotating=r, stationary=s, min_gap_mm=round(d, 2), designed=designed))
     return sorted(res, key=lambda x: x["min_gap_mm"])
 
 
@@ -182,9 +189,13 @@ def section_dict():
     sec = {k: poly(v) for k, v in S.items() if v is not None}
     sec["NP1-210_rotor_drum"] = drum_section()
     sec["NP1-212_drum_rear_cover"] = unary_union([poly(G.REAR_COVER), poly(G.REAR_SEAL_CARRIER)])
-    sec["NP1-300-1_bedplate_front_plate"] = poly([(476, 100), (516, 100), (516, 250), (476, 250)])
-    sec["NP1-600_dummy_hub (as drawn)"] = unary_union([poly(p) for p in PT.DUMMY_HUB_AS_DRAWN.values()])
-    sec["NP1-600_dummy_hub (corrected)"] = unary_union(
+    B = G.BED
+    sec["NP1-300-1_bedplate_front_plate"] = unary_union([
+        poly([(B["x_front_pad"], 100), (B["x_front"] + 1, 100), (B["x_front"] + 1, B["pad_d"] / 2),
+              (B["x_front_pad"], B["pad_d"] / 2)]),
+        poly([(B["x_front"], 100), (B["x_front"] + B["front_plate"], 100),
+              (B["x_front"] + B["front_plate"], 250), (B["x_front"], 250)])])
+    sec["NP1-600_dummy_hub"] = unary_union(
         [poly(PT.DUMMY_HUB_FIXED_FLANGE), poly(PT.DUMMY_HUB_AS_DRAWN["bell"]), poly(PT.DUMMY_HUB_AS_DRAWN["front"])])
     return sec
 
@@ -194,41 +205,35 @@ def assembly_path(sec):
     def moving(names):
         return unary_union([sec[n] for n in names])
 
-    # doc 14 section 7.2, sub-assemblies first
+    # Rev B assembly order (doc 17 §3.3), sub-assemblies first
+    STATOR = ["NP1-200_stator_carrier", "NP1-201_stator_core", "NP1-202_stator_clamp_ring",
+              "stator_end_winding_front_envelope", "stator_end_winding_rear_envelope"]
+    ROTOR = ["NP1-210_rotor_drum", "32028X_front_cup_envelope", "32028X_rear_cup_envelope",
+             "NP1-220_magnet_ring", "NP1-211_rear_seal_cover", "NP1-230_brake_disc"]
     steps = [
         ("1 stator", "stack onto carrier", ["NP1-201_stator_core"], "front", ["NP1-200_stator_carrier"]),
         ("1 stator", "clamp ring", ["NP1-202_stator_clamp_ring"], "front", ["NP1-200_stator_carrier", "NP1-201_stator_core"]),
         ("2 rotor", "front cup into drum", ["32028X_front_cup_envelope"], "front", ["NP1-210_rotor_drum"]),
         ("2 rotor", "rear cup into drum", ["32028X_rear_cup_envelope"], "rear", ["NP1-210_rotor_drum"]),
-        ("2 rotor", "brake disc onto drum (from the front)", ["NP1-230_brake_disc"], "front", ["NP1-210_rotor_drum"]),
-        ("2 rotor", "brake disc onto drum (from the rear)", ["NP1-230_brake_disc"], "rear", ["NP1-210_rotor_drum"]),
-        ("2 rotor", "rear seal cover into drum", ["NP1-211_rear_seal_cover"], "rear", ["NP1-210_rotor_drum"]),
-        ("3 spindle", "rear cone onto spindle", ["32028X_rear_cone_envelope"], "front", ["NP1-100_spindle"]),
-        ("4 stator on spindle", "stator assembly over the fitted rear cone",
-         ["NP1-200_stator_carrier", "NP1-201_stator_core", "NP1-202_stator_clamp_ring",
-          "stator_end_winding_front_envelope", "stator_end_winding_rear_envelope"], "front",
-         ["NP1-100_spindle", "32028X_rear_cone_envelope"]),
-        ("4 alt", "stator assembly BEFORE the rear cone", ["NP1-200_stator_carrier", "NP1-201_stator_core",
-                                                           "NP1-202_stator_clamp_ring"], "front", ["NP1-100_spindle"]),
-        ("4 alt", "rear cone after the stator", ["32028X_rear_cone_envelope"], "front",
-         ["NP1-100_spindle", "NP1-200_stator_carrier"]),
-        ("5 drum on spindle", "drum with cups, magnets and rear seal cover",
-         ["NP1-210_rotor_drum", "32028X_front_cup_envelope", "32028X_rear_cup_envelope", "NP1-220_magnet_ring",
-          "NP1-211_rear_seal_cover"], "front",
-         ["NP1-100_spindle", "32028X_rear_cone_envelope", "NP1-200_stator_carrier", "NP1-201_stator_core",
-          "NP1-202_stator_clamp_ring", "stator_end_winding_front_envelope", "stator_end_winding_rear_envelope"]),
-        ("5 alt", "drum without the rear seal cover", ["NP1-210_rotor_drum", "32028X_front_cup_envelope",
-                                                       "32028X_rear_cup_envelope", "NP1-220_magnet_ring"], "front",
-         ["NP1-100_spindle", "32028X_rear_cone_envelope", "NP1-200_stator_carrier", "NP1-201_stator_core",
-          "NP1-202_stator_clamp_ring", "stator_end_winding_front_envelope", "stator_end_winding_rear_envelope"]),
-        ("6 front bearing", "front cone, spacer, locknut", ["32028X_front_cone_envelope"], "front", ["NP1-100_spindle"]),
-        ("6 front bearing", "front seal cover", ["NP1-211_front_seal_cover"], "front",
+        ("2 rotor", "rear seal cover onto the drum housing", ["NP1-211_rear_seal_cover"], "rear", ["NP1-210_rotor_drum"]),
+        ("2 rotor", "brake disc onto drum from the front (magnets fitted)", ["NP1-230_brake_disc"], "front",
+         ["NP1-210_rotor_drum", "NP1-220_magnet_ring"]),
+        ("3 spindle", "stator assembly onto the bare spindle", STATOR, "front", ["NP1-100_spindle"]),
+        ("3 spindle", "rear seal sleeve onto the Ø155 shoulder", ["NP1-102_rear_seal_sleeve"], "front",
+         ["NP1-100_spindle"] + STATOR),
+        ("3 spindle", "rear cone after stator and sleeve", ["32028X_rear_cone_envelope"], "front",
+         ["NP1-100_spindle", "NP1-102_rear_seal_sleeve"] + STATOR),
+        ("4 drum on spindle", "complete rotor (drum, cups, magnets, rear seal cover, disc)", ROTOR, "front",
+         ["NP1-100_spindle", "NP1-102_rear_seal_sleeve", "32028X_rear_cone_envelope"] + STATOR),
+        ("5 front bearing", "front cone", ["32028X_front_cone_envelope"], "front", ["NP1-100_spindle"]),
+        ("5 front bearing", "spacer", ["NP1-101_front_spacer"], "front", ["NP1-100_spindle", "32028X_front_cone_envelope"]),
+        ("5 front bearing", "locknut", ["KMT27_locknut_envelope"], "front", ["NP1-100_spindle", "NP1-101_front_spacer"]),
+        ("5 front bearing", "front seal cover after the nut and rolling-torque check", ["NP1-211_front_seal_cover"], "front",
          ["NP1-100_spindle", "NP1-101_front_spacer", "KMT27_locknut_envelope", "32028X_front_cone_envelope"]),
-        ("7 rear cover", "rear cover over the spindle flange", ["NP1-212_drum_rear_cover"], "rear",
-         ["NP1-100_spindle", "NP1-200_stator_carrier"]),
-        ("8 bedplate", "front plate onto the spigot", ["NP1-300-1_bedplate_front_plate"], "rear", ["NP1-100_spindle"]),
-        ("9 bench", "dummy hub onto drum (as drawn)", ["NP1-600_dummy_hub (as drawn)"], "front", ["NP1-210_rotor_drum"]),
-        ("9 bench", "dummy hub onto drum (corrected recess)", ["NP1-600_dummy_hub (corrected)"], "front",
+        ("6 rear cover", "rear cover over the spindle flange", ["NP1-212_drum_rear_cover"], "rear",
+         ["NP1-100_spindle"] + STATOR),
+        ("7 bedplate", "front plate onto the spigot", ["NP1-300-1_bedplate_front_plate"], "rear", ["NP1-100_spindle"]),
+        ("8 bench", "dummy hub onto drum", ["NP1-600_dummy_hub"], "front",
          ["NP1-210_rotor_drum", "NP1-100_spindle", "NP1-211_front_seal_cover", "KMT27_locknut_envelope"]),
     ]
     out = []
@@ -274,7 +279,7 @@ def main(parts=None):
     with open(os.path.join(OUT, "assembly_check.json"), "w") as f:
         json.dump(res, f, indent=1)
 
-    L = ["# Nacelle P1 digital fit check", "",
+    L = ["# Nacelle P1 digital fit check (geometry Rev B)", "",
          "Generated by `assembly_check.py` from the same 1:1 solids that are printed. "
          "Bearing, caliper and yaw-bearing envelopes are estimates until supplier drawings arrive.", "",
          "## 1. Static interference in the assembled position (3-D)", "",
@@ -283,13 +288,14 @@ def main(parts=None):
     L += [f"| {r['a']} | {r['b']} | {r['volume_mm3']} |" for r in si] or ["| none | | |"]
     L += ["", "## 2. Running clearance, rotating vs stationary (revolved sections)", "",
           f"Gaps below {RUNNING_LIMIT} mm (the air gap is 2.5 mm to the magnet face by design):", "",
-          "| Rotating | Stationary | Min gap mm |", "|---|---|---|"]
-    L += [f"| {r['rotating']} | {r['stationary']} | {r['min_gap_mm']} |" for r in rc] or ["| none | | |"]
+          "| Rotating | Stationary | Min gap mm | Status |", "|---|---|---|---|"]
+    L += [f"| {r['rotating']} | {r['stationary']} | {r['min_gap_mm']} | {'by design' if r['designed'] else '**check**'} |"
+          for r in rc] or ["| none | | | |"]
     L += ["", "## 2b. Yaw clearance, nacelle vs tower-top parts over a full yaw turn", "",
           f"Gaps below {YAW_LIMIT} mm (pinion/gear mesh and the two yaw bearing rings excluded):", "",
           "| Nacelle part | Tower part | Min gap mm |", "|---|---|---|"]
     L += [f"| {r['nacelle_part']} | {r['tower_part']} | {r['min_gap_mm']} |" for r in yc] or ["| none | | |"]
-    L += ["", "## 3. Assembly path along the spindle axis (doc 14 §7.2 order)", "",
+    L += ["", "## 3. Assembly path along the spindle axis (Rev B order, doc 17 §3.3)", "",
           "| Stage | Step | Arrives from | Result | Blocked by (x range, r range, overlap mm²) |", "|---|---|---|---|---|"]
     for r in ap:
         b = "; ".join(f"{h['part']} (x {h['x'][0]}–{h['x'][1]}, r {h['r'][0]}–{h['r'][1]}, {h['overlap_mm2']})"

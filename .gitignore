@@ -3,3 +3,4 @@ __pycache__/
 analysis/loads/results/ts_*.npz
 analysis/loads/results/*/ts_*.npz
 cad/nacelle_p1/out/png/
+cad/nacelle_w/out/NW1-assembly.step

@@ -27,7 +27,7 @@ def mirror(poly):
 # ======================================================================
 def ga_drivetrain():
     s = Sheet("NP1-000", "GENERAL ARRANGEMENT · DRIVETRAIN SECTION", "see parts list",
-              "≈ 320 kg (drivetrain, no hub)", "1:4")
+              "≈ 336 kg (drivetrain, no hub)", "1:4")
     v = s.view("GA", 0.25, (180, 172))
     # spindle
     v.poly(G.spindle_section(), hatch=True)
@@ -47,7 +47,8 @@ def ga_drivetrain():
             v.line((xc - 15, 87.5 * sg), (xc + 15, 87.5 * sg), "THIN")
     # spacer, locknut
     for sg in (1, -1):
-        v.poly([(80, 70 * sg), (97.5, 70 * sg), (97.5, 80 * sg), (80, 80 * sg)], hatch=True)
+        v.poly([(x, r * sg) for x, r in G.SPACER_POLY], hatch=True)
+        v.poly([(x, r * sg) for x, r in G.SEAL_SLEEVE_POLY], hatch=True)
         v.poly([(52, 67.5 * sg), (80, 67.5 * sg), (80, 87 * sg), (52, 87 * sg)], layer="OUTLINE")
     # stator: carrier, stack, ring, end windings
     for sg in (1, -1):
@@ -61,25 +62,28 @@ def ga_drivetrain():
     # cooling insert, hub interface, bedplate front plate (phantom)
     for sg in (1, -1):
         v.poly([(46, 20 * sg), (466, 20 * sg), (466, 45 * sg), (46, 45 * sg)], layer="HIDDEN")
-        v.poly([(476, 46 * sg), (516, 46 * sg), (516, 270 * sg), (476, 270 * sg)], layer="PHANTOM")
+        v.poly([(470, 100 * sg), (480, 100 * sg), (480, 205 * sg), (480, 205 * sg), (480, 270 * sg),
+                (520, 270 * sg), (520, 100 * sg)], layer="PHANTOM")
+        v.poly([(470, 100 * sg), (470, 205 * sg), (480, 205 * sg)], closed=False, layer="PHANTOM")
         v.poly([(-10, 200 * sg), (200, 200 * sg), (200, 235 * sg)], closed=False, layer="PHANTOM")
     v.centerline((-20, 0), (560, 0))
     v.line((0, -420), (0, 420), "CENTER")
     v.text((3, 410), "ROTOR PLANE x = 0", 2.2)
     # balloons / leaders
     tags = [((380, 305), "NP1-220 magnets N40UH, air gap 2.0"),
-            ((443, 380), "NP1-230 brake disc Ø800 (2 calipers)"),
+            ((443, 420), "NP1-230 brake disc Ø880 (2 calipers), lock holes PCD 740"),
             ((198, 175), "hub interface 12×M16 10.9 PCD 400, spigot Ø360"),
             ((470, 230), "NP1-212 rear cover, Ø400 lip seal on flange OD"),
             ((380, 260), "NP1-201 stator core 74 mm, 45 slots"),
             ((428, 150), "NP1-200 stator carrier (steel)"),
             ((150, 116), "NP1-210 drum weldment (rotating)"),
             ((120, 100), "32028 X front bearing, O arrangement"),
-            ((89, 75), "NP1-101 spacer + KMT 27 locknut"),
+            ((89, 85), "NP1-101 spacer Ø180 + KMT 27 locknut"),
+            ((390, 90), "NP1-102 rear seal sleeve Ø195"),
             ((60, 52), "NP1-100 spindle 42CrMo4+QT"),
             ((300, -32), "NP1-110 finned cooling insert (U-flow)"),
             ((360, -100), "32028 X rear bearing"),
-            ((495, -150), "NP1-300 bedplate front plate (phantom)")]
+            ((500, -150), "NP1-300 bedplate front plate (phantom), Ø410 pad")]
     for i, (p, t) in enumerate(tags):
         v.leader(p, (-90, 390 - i * 62), t, 2.1)
     # key dimensions
@@ -91,7 +95,8 @@ def ga_drivetrain():
     s.notes = [
         "x is measured rearward from the rotor plane along the spindle axis; the spindle axis is tilted 5° nose up (bedplate NP1-300).",
         "Stationary: spindle, cones, stator carrier, stator, cooling insert, bedplate. Rotating: drum, cups, seal covers, rear cover, magnets, brake disc, hub.",
-        "Bearings: back-to-back (O) tapered roller pair, preload 2 to 4 kN (end play −0.02 to −0.05) set by the KMT 27 locknut, checked by rolling torque before seals are fitted (doc 14, 5.3).",
+        "Bearings: back-to-back (O) tapered roller pair, preload 2 to 4 kN (end play −0.02 to −0.05) set by the KMT 27 locknut, checked by rolling torque before the front seal cover is fitted (doc 14, 5.3; it now goes on after the nut).",
+        "Rev B (doc 17): disc Ø880/Ø652 slides on from the front, lock holes in the disc only, seal sleeve NP1-102 behind the rear cone, spacer Ø180, bedplate face on a Ø410 pad (rear cover runs 5 mm from the plate).",
         "Air gap 2.0 mm nominal; eccentricity ≤ 0.20 mm after assembly, measured with 4 capacitive gap sensors (doc 15).",
         "Sealed generator volume: front by the hub, rear by the Ø400 lip seal + labyrinth, desiccant breather on the rear cover.",
         "Hub, pitch system, nacelle cover and slip ring are not part of P1 bench article (dummy hub NP1-600 instead).",
@@ -126,15 +131,15 @@ def spindle():
     v.turned_half_section(sec, G.SPINDLE_OUTER)
     v.line((40, -45), (476, -45), "HIDDEN")
     v.centerline((40, 0), (476, 0))
-    xs = [40, 52, 80, 142.5, 337.5, 382.5, 386, 430, 440, 470, 476]
+    xs = [40, 52, 80, 142.5, 337.5, 382.5, 400, 430, 440, 470, 476]
     feat = [60, 67.5, 70, 70, 70, 77.5, 75, 75, 200, 200, 100]
     v.ordinate(xs, feat, 214, h=2.0)
     v.ordinate([120, 360], [70, 70], 120, h=2.0, origin=40,
                labels=["80 brg ⊕", "320 brg ⊕"])
     for x, r, t in [(46, 60, "Ø120 h9"), (66, 67.5, "M135×2-6g"), (111, 70, "Ø140 f6"),
-                    (240, 69, "Ø138"), (360, 70, "Ø140 j6"), (408, 75, "Ø150 h9"), (455, 200, "Ø400 h8")]:
+                    (240, 69, "Ø138"), (360, 70, "Ø140 j6"), (415, 75, "Ø150"), (455, 200, "Ø400 h8")]:
         v.dim((x, -r), (x, r), 0, kind="v", prefix="", text=t, h=2.0, tpos=0.18)
-    v.leader((384, -77.5), (330, -150), "Ø155 (cone abutment)", 2.0)
+    v.leader((391, -77.5), (330, -150), "Ø155 k6 × 17.5 (cone abutment + seal sleeve NP1-102)", 2.0)
     v.leader((473, -100), (520, -150), "Ø200 f7 spigot", 2.0)
     v.leader((200, 45), (230, 110), "Ø90 H8 thru, Ra 1.6", 2.0)
     v.leader((433, 80), (520, 150), "R10 rolled, Ra 0.8", 2.0)
@@ -182,20 +187,31 @@ def spindle():
 
 # ======================================================================
 def spacer():
-    s = Sheet("NP1-101", "FRONT SPACER (LIP SEAL COUNTERFACE)", "42CrMo4+QT, surface induction hardened",
+    s = Sheet("NP1-101", "FRONT SPACER + REAR SEAL SLEEVE NP1-102", "42CrMo4+QT, surface induction hardened",
               kg("spacer"), "1:1")
     v = s.view("A", 1.0, (60, 160))
-    sec = [(0, 70), (17.5, 70), (17.5, 80), (0, 80)]
+    sec = [(0, 70), (17.5, 70), (17.5, 90), (0, 90)]
     v.poly(sec, hatch=True)
     v.poly(mirror(sec), layer="OUTLINE")
     v.line((0, -70), (17.5, -70), "HIDDEN")
     v.centerline((-5, 0), (25, 0))
-    v.dim((0, 80), (17.5, 80), 8, kind="h")
+    v.dim((0, 90), (17.5, 90), 8, kind="h")
     v.dim((17.5, 70), (17.5, -70), -14, kind="v", prefix="Ø", text="140 H7")
-    v.dim((0, 80), (0, -80), 14, kind="v", prefix="Ø", text="160 h9")
-    title(v, -10, 105, "SECTION", 3.2)
+    v.dim((0, 90), (0, -90), 14, kind="v", prefix="Ø", text="180 h9")
+    title(v, -10, 105, "NP1-101 SECTION", 3.2)
+    w = s.view("B", 1.0, (220, 160))
+    sl = [(0, 77.5), (15.5, 77.5), (15.5, 97.5), (0, 97.5)]
+    w.poly(sl, hatch=True)
+    w.poly(mirror(sl), layer="OUTLINE")
+    w.centerline((-5, 0), (25, 0))
+    w.dim((0, 97.5), (15.5, 97.5), 8, kind="h")
+    w.dim((15.5, 77.5), (15.5, -77.5), -14, kind="v", prefix="Ø", text="155 H7")
+    w.dim((0, 97.5), (0, -97.5), 14, kind="v", prefix="Ø", text="195 h9")
+    title(w, -10, 120, "NP1-102 REAR SEAL SLEEVE (Rev B)", 3.2)
     s.notes = ["Faces parallel within 0.005 (it sets the bearing preload path).",
-               "Ø160 surface induction hardened 55 to 60 HRC, depth 1 mm, ground Ra 0.2 to 0.4, no lead.",
+               "NP1-102: same material and hardening as NP1-101; O-ring 155 × 3 in a bore groove (static seal); slides onto the Ø155 shoulder before the rear cone, front face against the cone back face.",
+               "Rev B: OD 160 → 180 so the front seal cover clears the KMT 27 nut (doc 17).",
+               "Ø180 surface induction hardened 55 to 60 HRC, depth 1 mm, ground Ra 0.2 to 0.4, no lead.",
                "Bore chamfer 1.5×30° on the cone side."]
     return s
 
@@ -400,8 +416,8 @@ def drum():
                ["magnet seat", "Ø618.40 × 90", "H7, coax. 0.02 to cups"],
                ["shell OD", "Ø646 / Ø636", "magnet zone 13.8 wall"],
                ["shell ID (free)", "Ø624", "clearance to magnets"],
-               ["rear flange ring", "Ø624/Ø690 × 14", "M10 PCD 644, M12 PCD 662"],
-               ["lock holes", "12× Ø26 H8 ↧20", "PCD 662, interleaved"]]
+               ["rear flange ring", "Ø624/Ø710 × 14", "M10 PCD 644 + M10 PCD 678"],
+               ["lock holes", "none (Rev B)", "in the disc only, PCD 740"]]
     s.table_pos = (195, 283)
     s.table_widths = [32, 34, 56]
     title(v, 420, 330, "SECTION A-A (weld preps not shown, note 2)", 3.0)
@@ -409,7 +425,7 @@ def drum():
         "Parts: housing tube (seamless S355J2H or ring forging), hub web 20 mm, outer web 8 mm, shell (rolled 16 mm plate, one longitudinal full-penetration weld, or ring rolled), rear flange ring 14 mm.",
         "Welds: full penetration where the web meets the housing and the shell; ISO 5817 class B; 100 % MT, UT on the shell seam. Stress relieve 580 to 620 °C before machining.",
         "Machine in one set-up after stress relief: cup seats Ø210 P7, magnet seat Ø618.40 H7, hub spigot Ø360 f7, rear flange face. Coaxiality of both cup seats and magnet seat ≤ 0.02; cup shoulder faces square to axis ≤ 0.01.",
-        "Hub web: 12× M16-6H through, PCD 400 (doc 13 joint, 10.9 preloaded). Rear flange ring: 24× M10-6H ↧20 PCD 644 (rear cover) and 24× M12-6H ↧20 PCD 662 + 12× Ø26 H8 ↧20 lock holes PCD 662 interleaved (36 positions at 10°).",
+        "Hub web: 12× M16-6H through, PCD 400 (doc 13 joint, 10.9 preloaded). Rear flange ring Ø710 (Rev B): 24× M10-6H thru PCD 644 from 5° (rear cover) and 24× M10-6H thru PCD 678 from 7.5° (brake disc); no lock holes.",
         "Front and rear housing end faces: 6× M8 ↧16 on PCD 225 for the seal covers NP1-211; 2 grease nipples M10×1 into each bearing space with purge holes opposite.",
         "Balance the finished rotor (drum, magnets, disc) to ISO 21940-11 G2.5 at 250 rpm, correction on the rear flange ring.",
         "Magnet seat: degrease, grit blast Sa 2½ just before bonding; no paint inside. Outside: zinc spray + epoxy (C5) after machining.",
@@ -420,20 +436,21 @@ def drum():
 # ======================================================================
 def seal_covers():
     s = Sheet("NP1-211", "MAIN BEARING SEAL COVERS (FRONT / REAR)", "S355J2", kg("Seal covers"), "1:1")
-    for i, (poly, nm, seal) in enumerate(((G.SEAL_COVER_FRONT, "FRONT", "lip seal 160×190×10 HNBR + V-ring"),
-                                          (G.SEAL_COVER_REAR, "REAR", "lip seal 150×180×10 HNBR"))):
+    for i, (poly, nm, seal) in enumerate(((G.SEAL_COVER_FRONT, "FRONT", "lip seal 180×200×10 HNBR + V-ring"),
+                                          (G.SEAL_COVER_REAR, "REAR", "lip seal 195×220×12 HNBR on NP1-102"))):
         v = s.view(nm, 0.75, (70 + i * 170, 165))
         x0 = poly[0][0]
         q = [(x - x0, r) for x, r in poly]
         v.poly(q, hatch=True)
         v.poly([(x, -r) for x, r in q])
         v.centerline((-10, 0), (20, 0))
-        v.dim((0, q[2][1]), (10, q[2][1]), 8, kind="h", text="10")
-        v.dim((10, q[0][1]), (10, -q[0][1]), -20, kind="v", prefix="Ø", text=f"{2 * q[0][1]:.0f}")
+        v.dim((0, q[2][1]), (q[1][0], q[2][1]), 8, kind="h", text=f"{q[1][0]:.0f}")
+        v.dim((q[1][0], q[0][1]), (q[1][0], -q[0][1]), -20, kind="v", prefix="Ø", text=f"{2 * q[0][1]:.0f}")
         v.dim((0, q[2][1]), (0, -q[2][1]), 15, kind="v", prefix="Ø", text=f"{2 * q[2][1]:.0f}")
         v.text((-20, 158), f"{nm} COVER: {seal}", 2.6)
         v.text((-20, 150), "6× Ø9 PCD 225; seal bore H8, Ra 1.6", 2.4)
-    s.notes = ["Seal lips face the bearing (grease retention); V-ring outside on the front cover runs against the spacer face.",
+    s.notes = ["Rev B (doc 17): both bores are larger than every part they pass. Front cover goes on after the KMT 27 nut and the rolling-torque check; rear cover is bolted to the drum before the drum goes over the fitted rear cone (Ø191 envelope) onto the sleeve NP1-102.",
+               "Seal lips face the bearing (grease retention); V-ring outside on the front cover runs against the spacer face.",
                "Purge: grease exits under the lip; collect with absorbent ring at service.",
                "Pilot on the housing bore Ø210, 2 mm deep (not shown), for concentric seals."]
     return s
@@ -508,26 +525,37 @@ def brake_disc():
     s = Sheet("NP1-230", "BRAKE DISC AND ROTOR LOCK HOLES", "C45E+N (or S355J2+N), 16 mm",
               kg("Brake disc"), "1:4.8")
     v = s.view("A", 0.21, (130, 180))
-    v.circle((0, 0), 400)
-    v.circle((0, 0), 320)
-    v.circle((0, 0), 395, "HIDDEN")
-    v.circle((0, 0), 345, "HIDDEN")
-    for i in range(36):
-        a = math.radians(10 * i)
-        c = (331 * math.cos(a), 331 * math.sin(a))
-        v.circle(c, 13 if i % 3 == 0 else 6.5)
-    v.circle((0, 0), 331, "CENTER")
-    v.centerline((-410, 0), (410, 0))
-    v.centerline((0, -410), (0, 410))
-    v.dim((-400, 0), (400, 0), 88, kind="h", prefix="Ø", text="800")
-    v.dim((-320, 0), (320, 0), -10, kind="h", prefix="Ø", text="640 H9")
-    v.leader((331 * math.cos(math.radians(10)), 331 * math.sin(math.radians(10))), (430, 250),
-             "24× Ø13 thru PCD 662 (M12 10.9, 110 Nm)", 2.0)
-    v.leader((331, 0), (430, 120), "12× Ø26 H8 lock holes, every 3rd position", 2.0)
-    v.leader((0, 370), (430, 380), "pad track r 345 to 395 (eff. r 0.37 m)", 2.0)
-    title(v, -400, 480, "VIEW · 36 positions at 10° on PCD 662 · thickness 16", 3.0)
+    D, L = G.DISC, G.LOCK
+    ro, ri = D["od"] / 2, D["id"] / 2
+    v.circle((0, 0), ro)
+    v.circle((0, 0), ri)
+    v.circle((0, 0), D["pad_r"][1], "HIDDEN")
+    v.circle((0, 0), D["pad_r"][0], "HIDDEN")
+    db = G.DRUM["disc_bolts"]
+    for i in range(db["n"]):
+        a = math.radians(db["start"] + 360.0 * i / db["n"])
+        v.circle((db["pcd"] / 2 * math.cos(a), db["pcd"] / 2 * math.sin(a)), 5.5)
+    for i in range(L["n"]):
+        a = math.radians(L["start"] + 360.0 * i / L["n"])
+        v.circle((L["pcd"] / 2 * math.cos(a), L["pcd"] / 2 * math.sin(a)), L["hole"] / 2)
+    v.circle((0, 0), db["pcd"] / 2, "CENTER")
+    v.circle((0, 0), L["pcd"] / 2, "CENTER")
+    v.centerline((-ro - 10, 0), (ro + 10, 0))
+    v.centerline((0, -ro - 10), (0, ro + 10))
+    v.dim((-ro, 0), (ro, 0), 88, kind="h", prefix="Ø", text=f"{D['od']:.0f}")
+    v.dim((-ri, 0), (ri, 0), -10, kind="h", prefix="Ø", text=f"{D['id']:.0f} H9")
+    a = math.radians(db["start"])
+    v.leader((db["pcd"] / 2 * math.cos(a), db["pcd"] / 2 * math.sin(a)), (470, 120),
+             f"24× Ø11 thru PCD {db['pcd']:.0f} from {db['start']}° (M10 10.9, 65 Nm)", 2.0)
+    a = math.radians(L["start"] - 30)
+    v.leader((L["pcd"] / 2 * math.cos(a), L["pcd"] / 2 * math.sin(a)), (470, 380),
+             f"12× Ø{L['hole']:.0f} H8 lock holes PCD {L['pcd']:.0f}, first at top", 2.0)
+    v.leader((-410 * 0.7, -410 * 0.7), (470, -300),
+             f"pad track r {D['pad_r'][0]:.0f} to {D['pad_r'][1]:.0f} (eff. r {G.BRAKE['r_eff']:.3f} m)", 2.0)
+    title(v, -440, 465, f"VIEW · Rev B · thickness 16 · slides on from the front over the Ø646 drum shell", 3.0)
     s.notes = ["Faces ground parallel 0.03, flatness 0.05, Ra 1.6. Axial run-out mounted on the drum ≤ 0.10.",
-               "Two spring-applied hydraulically released calipers (bought), at 90° and 270° (horizontal), each ≥ 15 kN clamp force on 16 mm disc; brake torque 8.7 kNm at μ 0.4.",
+               f"Two spring-applied hydraulically released calipers (bought), at 90° and 270° (horizontal), each ≥ {G.BRAKE['clamp_kN']:.1f} kN clamp force on 16 mm disc; brake torque 8.7 kNm at μ 0.4.",
+               "Rev B (doc 17): bore Ø640 → Ø652 (fits over the drum shell from the front), OD Ø800 → Ø880 (pad track outside the Ø710 flange ring, room for the caliper behind the disc), lock holes moved here from the ring.",
                "Corrosion: zinc-flake coating outside the pad track; pad track left bare (it is cleaned by the weekly brake test, doc 11)."]
     return s
 
@@ -542,12 +570,14 @@ def bedplate():
     up = (math.sin(t), math.cos(t))            # perpendicular, up
     rc = (-G.X_YAW, G.H_ROTOR + 40.0)          # rotor centre (world, Y up from bedplate bottom)
     P = lambda s_, u: (rc[0] + d[0] * s_ + up[0] * u, rc[1] + d[1] * s_ + up[1] * u)  # noqa: E731
-    pf = P(476.0, 0)
+    xf, xr = G.BED["x_front"], G.BED["x_front"] + G.BED["front_plate"]
+    pf = P(xf, 0)
     tb = -(pf[1] - 40.0) / math.cos(t)
-    front = [P(476, tb), P(476, 250), P(516, 250), P(516, tb - 40 * math.tan(t))]
+    front = [P(xf, tb), P(xf, 250), P(xr, 250), P(xr, tb - 40 * math.tan(t))]
+    v.poly([P(470, -205), P(470, 205), P(xf, 205), P(xf, -205)], hatch=True)
     v.poly(front, hatch=True)
     v.poly([(-330, 0), (330, 0), (330, 40), (-330, 40)], hatch=True)
-    side = [P(516, 250), (330, 330), (330, 40), front[3]]
+    side = [P(xr, 250), (330, 330), (330, 40), front[3]]
     v.poly(side)
     v.poly([(310, 40), (330, 40), (330, 330), (310, 330)], hatch=True)
     # spindle axis
@@ -555,7 +585,7 @@ def bedplate():
     v.line((0, -40), (0, 700), "CENTER")
     v.text((5, 680), "YAW AXIS", 2.4)
     # drivetrain phantom
-    for poly in [G.DISC_POLY, [(212, 323), (465, 323), (465, 345)]]:
+    for poly in [G.DISC_POLY, [(212, 323), (465, 323), (465, 355)]]:
         v.poly([P(x, r) for x, r in poly], closed=False, layer="PHANTOM")
         v.poly([P(x, -r) for x, r in poly], closed=False, layer="PHANTOM")
     v.poly([P(40, 60), P(476, 60), P(476, -60), P(40, -60)], layer="PHANTOM")
@@ -581,7 +611,7 @@ def bedplate():
     w.text((-250, 290), "FRONT PLATE (40), view along spindle axis", 2.6)
     s.notes = [
         "P1 bedplate is a stress-relieved S355J2+N weldment instead of the EN-GJS-400-18U-LT casting (doc 07): no pattern lead time, same interfaces. The cast version follows after P1 strain-gauge data.",
-        "Front plate 40, perpendicular to the spindle axis: Ø200 H7 spigot bore, 12× Ø22 PCD 350 (M20 10.9 from inside, 540 Nm at μ 0.12), 2× Ø32 cable holes PCD 290. Face flatness 0.03, square to the yaw flange within 0.05/400 at 5.00° ±0.05° tilt.",
+        "Front plate 40, perpendicular to the spindle axis, front face x 480 with a machined Ø410 × 10 pad (face x 470 = spindle flange face; Rev B, the rotating rear cover runs 5 mm from the plate outside the pad): Ø200 H7 spigot bore, 12× Ø22 PCD 350 (M20 10.9 from inside, 540 Nm at μ 0.12), 2× Ø32 cable holes PCD 290. Face flatness 0.03, square to the yaw flange within 0.05/400 at 5.00° ±0.05° tilt.",
         "Bottom plate 40 (yaw flange): Ø220 bore, 16× Ø18 PCD 300 for the yaw bearing inner ring (M16 10.9). Flatness 0.05 (slewing ring requirement, confirm with supplier).",
         "Side plates 20 (Z = ±240), rear plate 20, internal gusset under the front plate; top is open for access in P1 (bolted lid).",
         "Brake caliper brackets NP1-310 bolt to side plates at the spindle axis height; yaw drive and yaw brake brackets bolt to the bottom plate (positions after yaw supplier drawing).",
@@ -594,16 +624,17 @@ def bedplate():
 def lock_pin():
     s = Sheet("NP1-320", "ROTOR LOCK PIN AND HOLDER", "pin 42CrMo4+QT; holder S355J2", "≈ 4 kg", "1:1")
     v = s.view("A", 1.0, (60, 170))
-    pin = [(0, 0), (0, 12.5), (40, 12.5), (40, 15), (110, 15), (110, 10), (130, 10), (130, 0)]
+    pin = [(0, 0), (0, 10), (150, 10), (150, 15), (170, 15), (170, 0)]
     v.poly(pin + [(0, 0)], hatch=True)
     v.poly([(x, -r) for x, r in pin])
     v.centerline((-5, 0), (135, 0))
-    v.dim((0, 12.5), (40, 12.5), 10, kind="h", text="40 (engagement)")
-    v.dim((0, 12.5), (0, -12.5), 12, kind="v", prefix="Ø", text="25 f7")
-    v.dim((40, 15), (110, 15), 10, kind="h")
-    v.leader((120, 10), (150, 40), "M20 handle thread", 2.2)
+    v.dim((0, 10), (21, 10), 10, kind="h", text="21 (engagement: disc 16 + 5)")
+    v.dim((0, 10), (0, -10), 12, kind="v", prefix="Ø", text="20 f7")
+    v.dim((0, 15), (170, 15), 22, kind="h")
+    v.leader((160, 15), (190, 40), "knob Ø30, M10 for the handle", 2.2)
     title(v, 0, 60, "LOCK PIN", 3.0)
-    s.notes = ["Shear at 8.7 kNm on PCD 662: 26 kN, τ = 54 MPa (allowable 300). Pin goes through the holder bush on the bedplate bracket into a disc lock hole (20 mm) and the ring behind (20 mm).",
+    s.notes = ["Rev B (doc 17): pin Ø20 at the top (12 o'clock) on PCD 740, entering the disc from behind; holder NP1-321 sits on the top edge of the bedplate front plate and also carries the two overspeed sensors. Shear at 8.7 kNm: 23.5 kN, τ = 75 MPa (allowable 300); bearing on the 16 mm disc 73 MPa.",
+               "Stroke 40: retracted, the nose is 19 mm behind the disc and clear of the Ø710 ring and the rear cover (r ≥ 360).",
                "Holder has a proximity switch that reports 'pin engaged' to the safety chain (no rotor release while engaged, doc 11).",
                "Insert only at standstill with the brake applied."]
     return s
@@ -615,8 +646,7 @@ def dummy_hub():
     s = Sheet("NP1-600", "BENCH DUMMY HUB (DRIVE AND LOAD ADAPTER)", "S355J2+N weldment, stress relieved",
               "≈ 75 kg", "1:3.3")
     v = s.view("A", 0.3, (190, 178))
-    flange = [(175, 172), (200, 172), (200, 180), (200, 235), (175, 235)]
-    flange = [(175, 180.5), (195, 180.5), (195, 170), (200, 170), (200, 235), (175, 235)]
+    flange = [(175, 170), (190, 170), (190, 180.5), (200, 180.5), (200, 235), (175, 235)]   # Rev B: recess at the hub face
     bell = [(25, 155), (175, 155), (175, 170), (25, 170)]
     front = [(0, 50), (25, 50), (25, 170), (0, 170)]
     shaft = [(-520, 50), (0, 50), (0, 0), (-520, 0)]

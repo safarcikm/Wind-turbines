@@ -1,6 +1,6 @@
 # Nacelle P1 fit-check model (1:1 printable parts)
 
-Design document: [docs/16-nacelle-fit-check-model.md](../../docs/16-nacelle-fit-check-model.md).
+Design document: [docs/16-nacelle-fit-check-model.md](../../docs/16-nacelle-fit-check-model.md); geometry Rev B and the working prototype: [docs/17](../../docs/17-working-printed-prototype.md).
 Source geometry: [../nacelle_p1/geometry.py](../nacelle_p1/geometry.py) (P1 single source of truth).
 
 ```

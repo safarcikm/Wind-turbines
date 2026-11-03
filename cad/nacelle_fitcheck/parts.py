@@ -135,7 +135,8 @@ def sections():
     """Full-scale (x, r) section polygons per axisymmetric part, as drawn."""
     S = {}
     S["NP1-100_spindle"] = G.spindle_section()
-    S["NP1-101_front_spacer"] = [(80.0, 70.0), (97.5, 70.0), (97.5, 80.0), (80.0, 80.0)]
+    S["NP1-101_front_spacer"] = G.SPACER_POLY
+    S["NP1-102_rear_seal_sleeve"] = G.SEAL_SLEEVE_POLY
     S["NP1-110_cooling_insert"] = [(G.INSERT["x"][0], 17.0), (G.INSERT["x"][1], 17.0),
                                    (G.INSERT["x"][1], 45.0), (G.INSERT["x"][0], 45.0)]
     S["KMT27_locknut_envelope"] = [(52.0, 67.5), (80.0, 67.5), (80.0, 87.0), (52.0, 87.0)]
@@ -190,10 +191,15 @@ def build_parts():
                   print_mods=["M135x2 thread printed as a plain Ø135 seat (use the locknut envelope)",
                               "tapped holes printed at tap-drill size (M12 Ø10.2, M20 Ø17.5)"]))
 
-    P.append(Part("NP1-101_front_spacer", "Front spacer / seal counterface",
+    P.append(Part("NP1-101_front_spacer", "Front spacer / seal counterface Ø180 (Rev B)",
                   to_world(revolve(open_bore(S["NP1-101_front_spacer"], 70.0, 70.0 + c))),
                   "stationary", "NP1-101 / BOM 2", (0.75, 0.75, 0.8),
                   print_mods=[f"bore +{c} mm radial (slides on the printed spindle)"]))
+    P.append(Part("NP1-102_rear_seal_sleeve", "Rear seal sleeve Ø195 on the Ø155 shoulder (Rev B)",
+                  to_world(revolve(open_bore(S["NP1-102_rear_seal_sleeve"], 77.5, 77.5 + c))),
+                  "stationary", "NP1-102 / BOM 2a", (0.75, 0.75, 0.8),
+                  print_mods=[f"bore +{c} mm radial"],
+                  notes=["the rear lip seal 195 x 220 x 12 runs on its OD; fit before the rear cone"]))
 
     # cooling insert: shell + centre tube + 16 fins (the 0 and 180 deg fins are the partition)
     ins = G.INSERT
@@ -251,12 +257,12 @@ def build_parts():
                   "stationary", "NP1-201 / BOM 8", (0.35, 0.35, 0.4),
                   print_mods=[f"bore +{c} mm radial (shrink fit in steel)", "printed as one solid stack 74 mm"]))
     for a in (90, 210, 330):
-        key = box(343.5, 417.0, -5.0 + c / 2, 5.0 - c / 2,
+        key = box(345.0, 415.0, -5.0 + c / 2, 5.0 - c / 2,
                   G.GEN["r_si"] - 4.0 + c / 2, G.GEN["r_si"] + 4.0 - c / 2)
-        P.append(Part(f"stator_key_{a:03d}", f"Stator key 10x8, 73.5 long (BOM says 90) at {a} deg",
+        P.append(Part(f"stator_key_{a:03d}", f"Stator key 10x8x70 at {a} deg (Rev B BOM)",
                       to_world(key.rotate(cq.Vector(0, 0, 0), cq.Vector(1, 0, 0), a - 90)),
                       "stationary", "BOM 10", (0.6, 0.6, 0.6), make_buy="buy (envelope)", axis=None,
-                      print_mods=[f"{c / 2} mm smaller each side", "73.5 mm long to fit the 73.5 mm seat (BOM line 10 says 90)"]))
+                      print_mods=[f"{c / 2} mm smaller each side", "70 mm long in the 73.5 mm seat (BOM line 10, Rev B)"]))
 
     ring = revolve(S["NP1-202_stator_clamp_ring"])
     ring = bolt_holes(ring, 12, 418.0, CLEAR["M8"], 330, 345, start=15)
@@ -275,10 +281,9 @@ def build_parts():
     drum = drum.clean()
     D = G.DRUM
     drum = bolt_holes(drum, 12, 400.0, TAP["M16"], 190, 225)
-    drum = bolt_holes(drum, 24, 662.0, TAP["M12"], 450, 466,
-                      angles=[a for a in range(0, 360, 10) if a % 30 != 0])
-    drum = bolt_holes(drum, 12, 662.0, 26.0, 450, 466, angles=list(range(0, 360, 30)))
-    drum = bolt_holes(drum, 24, 644.0, TAP["M10"], 450, 466, start=5)
+    db, rb = D["disc_bolts"], D["rear_cover_bolts"]
+    drum = bolt_holes(drum, db["n"], db["pcd"], TAP["M10"], 450, 466, start=db["start"])
+    drum = bolt_holes(drum, rb["n"], rb["pcd"], TAP["M10"], 450, 466, start=rb["start"])
     P.append(Part("NP1-210_rotor_drum", "Rotor drum weldment", to_world(drum), "rotating",
                   "NP1-210 / BOM 15", (0.25, 0.4, 0.6),
                   print_mods=["cup seats Ø210 printed at nominal; the cup envelopes are reduced instead",
@@ -286,9 +291,10 @@ def build_parts():
 
     P.append(Part("NP1-211_front_seal_cover", "Front bearing seal cover", to_world(revolve(S["NP1-211_front_seal_cover"])),
                   "rotating", "NP1-211 / BOM 16", (0.7, 0.7, 0.7)))
-    P.append(Part("NP1-211_rear_seal_cover", "Rear bearing seal cover", to_world(revolve(S["NP1-211_rear_seal_cover"])),
+    P.append(Part("NP1-211_rear_seal_cover", "Rear bearing seal cover, bore Ø198 (Rev B)",
+                  to_world(revolve(S["NP1-211_rear_seal_cover"])),
                   "rotating", "NP1-211 / BOM 16", (0.7, 0.7, 0.7),
-                  notes=["as drawn its Ø152 bore overlaps the Ø155 cone shoulder: see assembly check"]))
+                  notes=["bolted to the drum before the drum goes on; lip seal 195 x 220 x 12 runs on NP1-102"]))
     rc_ = revolve(G.REAR_COVER).fuse(revolve(G.REAR_SEAL_CARRIER)).clean()
     rc_ = bolt_holes(rc_, 24, 644.0, CLEAR["M10"], 460, 480, start=5)
     P.append(Part("NP1-212_drum_rear_cover", "Drum rear cover with Ø400 seal carrier", to_world(rc_), "rotating",
@@ -310,22 +316,14 @@ def build_parts():
                               "do not put real magnets in a printed drum"]))
 
     disc = revolve(G.DISC_POLY)
-    disc = bolt_holes(disc, 24, 662.0, CLEAR["M12"], 430, 455, angles=[a for a in range(0, 360, 10) if a % 30 != 0])
-    disc = bolt_holes(disc, 12, 662.0, 26.0, 430, 455, angles=list(range(0, 360, 30)))
-    P.append(Part("NP1-230_brake_disc", "Brake disc Ø800", to_world(disc), "rotating", "NP1-230 / BOM 25",
-                  (0.6, 0.3, 0.3)))
+    disc = bolt_holes(disc, db["n"], db["pcd"], CLEAR["M10"], 430, 455, start=db["start"])
+    L = G.LOCK
+    disc = bolt_holes(disc, L["n"], L["pcd"], L["hole"], 430, 455, start=L["start"])
+    P.append(Part("NP1-230_brake_disc", "Brake disc Ø880/Ø652 with 12 lock holes (Rev B)", to_world(disc),
+                  "rotating", "NP1-230 / BOM 25", (0.6, 0.3, 0.3),
+                  notes=["W prototype: cut this one from steel plate from the start (a printed disc cannot be braked)"]))
 
-    # rotor lock pin (NP1-320), engaged in the lock hole at 0 deg (lateral)
-    pin_poly = [(0, 0), (0, 12.5 - c), (40, 12.5 - c), (40, 15), (110, 15), (110, 10), (130, 10), (130, 0)]
-    pin = cq.Workplane("XY").polyline(pin_poly).close().revolve(360, (0, 0, 0), (1, 0, 0)).val()
-    # pin nose enters from the rear through the disc and ring: nose at x = 435
-    pin = pin.rotate(cq.Vector(0, 0, 0), cq.Vector(0, 0, 1), 180).translate(cq.Vector(435.0 + 40, 0, 0))
-    y, z = polar(331.0, 90)
-    pin = pin.translate(cq.Vector(0, y, z))
-    P.append(Part("NP1-320_lock_pin", "Rotor lock pin Ø25 (engaged)", to_world(pin), "stationary",
-                  "NP1-320 / BOM 30", (0.9, 0.6, 0.1), axis=None,
-                  print_mods=[f"Ø25 nose -{c} mm radial"],
-                  notes=["shown engaged through the disc and drum flange ring at the top (90 deg) lock hole; holder bracket not drawn yet"]))
+    P += lock_parts()
 
     # ------------------------------------------------------------ bedplate (WORLD frame)
     P += bedplate_parts()
@@ -351,7 +349,7 @@ def build_parts():
     hub = bolt_holes(hub, 12, 400.0, CLEAR["M16"], 170, 205)
     P.append(Part("NP1-600_dummy_hub", "Bench dummy hub with Ø100 shaft", to_world(hub), "bench",
                   "NP1-600 / BOM 41", (0.5, 0.6, 0.45),
-                  print_mods=["Ø361 recess moved to the hub face (drawing has the step reversed, see assembly check)"]))
+                  notes=["Ø361 recess at the hub face (drawing NP1-600 corrected in Rev B)"]))
     return P
 
 
@@ -371,20 +369,27 @@ def _xz_prism(pts, y0, y1):
 def bedplate_parts():
     t = math.radians(TILT)
     B = G.BED
-    pf_z = _P(476.0, 0)[1]
+    pf_z = _P(B["x_front"], 0)[1]
     tb = -(pf_z - 40.0) / math.cos(t)
     parts = []
 
-    # front plate: box in the spindle frame, then to world
-    fp = box(476.0, 476.0 + B["front_plate"], -250.0, 250.0, tb - 40 * math.tan(t) - 2, 250.0)
-    fp = fp.cut(cyl_x(470, 520, 100.0 + PRINT_CLEARANCE))
-    fp = bolt_holes(fp, 12, 350.0, CLEAR["M20"], 470, 520)
-    fp = bolt_holes(fp, 2, 290.0, 32.0, 470, 520, angles=G.SPINDLE["cable_holes"]["angles"])
+    # front plate: box in the spindle frame, then to world. Rev B: plate face at
+    # x 480 with a Ø410 x 10 pad whose face (x 470) meets the spindle flange
+    xf, xr = B["x_front"], B["x_front"] + B["front_plate"]
+    fp = box(xf, xr, -250.0, 250.0, tb - 40 * math.tan(t) - 2, 250.0)
+    fp = fp.fuse(cyl_x(B["x_front_pad"], xf + 1, B["pad_d"] / 2)).clean()
+    fp = fp.cut(cyl_x(460, 540, 100.0 + PRINT_CLEARANCE))
+    fp = bolt_holes(fp, 12, 350.0, CLEAR["M20"], 460, 540)
+    fp = bolt_holes(fp, 2, 290.0, 32.0, 460, 540, angles=G.SPINDLE["cable_holes"]["angles"])
+    # 2 x M12 into the top edge for the lock pin holder NP1-321
+    for yy in (-60.0, 60.0):
+        fp = fp.cut(cq.Solid.makeCylinder(TAP["M12"] / 2, 30, cq.Vector(xf + 20, yy, 222), cq.Vector(0, 0, 1)))
     fp = to_world(fp).cut(box(-1000, 1000, -400, 400, -200, 40.0))   # trim to the bottom plate top
-    parts.append(Part("NP1-300-1_bedplate_front_plate", "Bedplate front plate 40 (square to spindle)", fp,
+    parts.append(Part("NP1-300-1_bedplate_front_plate", "Bedplate front plate 40 with Ø410 pad (Rev B)", fp,
                       "stationary", "NP1-300 / BOM 28", (0.3, 0.45, 0.3), axis=None,
                       print_mods=[f"Ø200 bore +{PRINT_CLEARANCE} mm radial"],
-                      notes=["placed as drawn (front face at x = 476, 6 mm behind the spindle flange face)"]))
+                      notes=["Rev B: pad face x 470 on the spindle flange; plate face x 480 gives the rear cover 5 mm running gap",
+                             "2 x M12 tapped in the top edge for the lock pin holder NP1-321"]))
 
     bp = box(B["x_bottom"][0], B["x_bottom"][1], -B["width"] / 2, B["width"] / 2, 0, B["bottom_plate"])
     bp = bp.cut(cq.Solid.makeCylinder(B["yaw_bore"] / 2, 60, cq.Vector(0, 0, -10)))
@@ -395,8 +400,8 @@ def bedplate_parts():
     parts.append(Part("NP1-300-2_bedplate_bottom_plate", "Bedplate bottom plate 40 (yaw flange)", bp,
                       "stationary", "NP1-300 / BOM 28", (0.3, 0.45, 0.3), axis=None))
 
-    front3 = _P(476 + B["front_plate"], tb - 40 * math.tan(t))
-    side_pts = [_P(476 + B["front_plate"], 250), (330.0, 330.0), (330.0, 40.0), front3]
+    front3 = _P(B["x_front"] + B["front_plate"], tb - 40 * math.tan(t))
+    side_pts = [_P(B["x_front"] + B["front_plate"], 250), (330.0, 330.0), (330.0, 40.0), front3]
     for sgn, nm in ((1, "left"), (-1, "right")):
         y0, y1 = (240.0, 260.0) if sgn > 0 else (-260.0, -240.0)
         sp_ = _xz_prism(side_pts, y0, y1).cut(box(-1000, 1000, -400, 400, -200, 40.0))
@@ -439,22 +444,93 @@ def yaw_parts():
                  notes=note + ["16 holes on PCD 440 assumed"])]
 
 
+# Rotor brake caliper space claim (spindle frame: x axial, y lateral, z up).
+# Generic industrial spring-applied caliper for a 16 mm disc (doc 17 §4.2):
+# 180 tangential x 130 radial x 140 axial, inner edge 15 mm inside the pad
+# track, centred on the disc, at the two lateral positions (3 and 9 o'clock).
+CALIPER = dict(x=(373.0, 513.0), r=(G.DISC["pad_r"][0] - 15.0, G.DISC["pad_r"][0] + 115.0),
+               tang=90.0, slot_x=(431.0, 455.0), slot_r=G.DISC["od"] / 2 + 5.0,
+               mount_x=(513.0, 538.0))
+
+
 def caliper_envelopes():
-    """Space claim for the 2 spring-applied calipers (supplier not chosen).
-    Generic industrial caliper for a 16 mm disc: 180 tangential x 130 radial x
-    140 axial, inner edge 15 mm inside the pad track (r 330), at the two
-    lateral positions."""
+    C = CALIPER
     out = []
     for sgn, nm in ((1, "left"), (-1, "right")):
-        body = box(443.0 - 70, 443.0 + 70, -90, 90, 330.0, 460.0)
-        slot = box(431.0, 455.0, -100, 100, 300, 405)
-        body = body.cut(slot.translate(cq.Vector(0, 0, 0)))
-        # rotate the radial (z) direction to the lateral side
-        body = body.rotate(cq.Vector(0, 0, 0), cq.Vector(1, 0, 0), -90 * sgn)
-        out.append(Part(f"brake_caliper_{nm}_envelope", f"Brake caliper space claim ({nm})", to_world(body),
-                        "stationary", "BOM 26 (bought), bracket NP1-310 not drawn", (0.85, 0.2, 0.2),
+        y0, y1 = C["r"]
+        body = box(C["x"][0], C["x"][1], y0, y1, -C["tang"], C["tang"])
+        body = body.cut(box(C["slot_x"][0], C["slot_x"][1], y0 - 10, C["slot_r"], -C["tang"] - 10, C["tang"] + 10))
+        if sgn < 0:
+            body = body.mirror("XZ")
+        out.append(Part(f"brake_caliper_{nm}_envelope", f"Rotor brake caliper space claim ({nm})", to_world(body),
+                        "stationary", "BOM 26 (bought)", (0.85, 0.2, 0.2),
                         make_buy="buy (envelope)", axis=None,
-                        notes=["generic envelope, replace with the chosen caliper's drawing"]))
+                        notes=[f"generic envelope, r {y0:.0f} to {y1:.0f}; replace with the chosen caliper's drawing",
+                               f"clamp ≥ {G.BRAKE['clamp_kN']:.1f} kN each for 8.7 kNm at μ 0.4 on r_eff {G.BRAKE['r_eff']:.3f} m"]))
+    return out
+
+
+def rotor_caliper_brackets():
+    """NP1-310 Rev B: an L bracket per side. A 25 mm mounting plate behind the
+    caliper (axial bolting, the usual industrial caliper pattern) and a 25 mm
+    web along the bedplate side plate outer face (4 x M16)."""
+    C = CALIPER
+    out = []
+    for s_, nm in ((1, "left"), (-1, "right")):
+        y0, y1 = C["r"]
+        plate = box(C["mount_x"][0], C["mount_x"][1], y0, y1, -C["tang"], C["tang"])
+        for yy in (y0 + 30, y1 - 30):          # 4 x M16 caliper bolts, tapped
+            for zz in (-60.0, 60.0):
+                plate = plate.cut(cyl_x(C["mount_x"][0] - 1, C["mount_x"][1] + 1, TAP["M16"] / 2, yy, zz))
+        web = box(C["mount_x"][0], 680.0, 260.0, 285.0, -C["tang"], C["tang"])
+        web = web.fuse(box(C["mount_x"][0], C["mount_x"][1] + 40, 260.0, y0 + 1, -C["tang"], C["tang"]))
+        for xx in (590.0, 650.0):              # 4 x M16 through into the side plate
+            for zz in (-55.0, 55.0):
+                web = web.cut(cq.Solid.makeCylinder(CLEAR["M16"] / 2, 60, cq.Vector(xx, 230.0, zz), cq.Vector(0, 1, 0)))
+        b = plate.fuse(web).clean()
+        if s_ < 0:
+            b = b.mirror("XZ")
+        out.append(Part(f"NP1-310_rotor_caliper_bracket_{nm}", f"Rotor brake caliper bracket ({nm}, Rev B)", to_world(b),
+                        "stationary", "NP1-310 / BOM 29", (0.3, 0.45, 0.3), axis=None,
+                        notes=["mounting plate 25 behind the caliper with 4 x M16 axial (pattern to match the chosen caliper)",
+                               "web 25 on the side plate outer face, 4 x M16; steel before any full-torque brake test"]))
+    return out
+
+
+def lock_parts():
+    """Rotor lock pin NP1-320 (engaged, top) and holder NP1-321 on the bedplate
+    front plate top edge, with seats for the two overspeed sensors that read
+    the disc lock holes from behind (doc 17 §5)."""
+    L = G.LOCK
+    c = PRINT_CLEARANCE
+    r = L["pcd"] / 2
+    x_nose = L["engaged_nose_x"]
+    pin = cq.Workplane("XY").polyline([(0, 0), (0, L["pin"] / 2 - c), (150, L["pin"] / 2 - c), (150, 15),
+                                       (170, 15), (170, 0)]).close().revolve(360, (0, 0, 0), (1, 0, 0)).val()
+    pin = pin.translate(cq.Vector(x_nose, 0, r))
+    out = [Part("NP1-320_lock_pin", "Rotor lock pin Ø20 (engaged, top)", to_world(pin), "stationary",
+                "NP1-320 / BOM 30", (0.9, 0.6, 0.1), axis=None, print_mods=[f"Ø20 -{c} mm radial"],
+                notes=[f"PCD {L['pcd']:.0f}, through the 16 mm disc from behind; stroke {L['stroke']:.0f} to release"])]
+    xf = G.BED["x_front"]
+    h = box(xf, xf + 80, -130, 130, 250, 410)
+    h = h.cut(cyl_x(xf - 1, xf + 81, L["pin"] / 2 + 0.5, 0, r))
+    sens = []
+    for a in (L["start"] - 15.0, L["start"] + 15.0):
+        yy, zz = r * math.cos(math.radians(a)), r * math.sin(math.radians(a))
+        h = h.cut(cyl_x(xf - 1, xf + 81, 9.0 + 0.3, yy, zz))           # M18 sensor, clearance seat
+        sens.append((a, yy, zz))
+    h = h.cut(box(xf + 20, xf + 60, -40, 40, 270, 300))                   # pocket for the 'pin engaged' switch
+    for yy in (-60.0, 60.0):
+        h = h.cut(cq.Solid.makeCylinder(CLEAR["M12"] / 2, 200, cq.Vector(xf + 20, yy, 240), cq.Vector(0, 0, 1)))
+    out.append(Part("NP1-321_lock_pin_holder", "Lock pin holder with 2 overspeed sensor seats", to_world(h),
+                    "stationary", "NP1-321 (new, doc 17)", (0.3, 0.45, 0.3), axis=None,
+                    notes=["2 x M12 down into the front plate top edge",
+                           "M18 inductive sensors at ±15° of the pin read the 12 lock holes (24 pulses/rev with both, quadrature)"]))
+    for a, yy, zz in sens:
+        s_ = cyl_x(G.DISC["x"][1] + 3.0, G.DISC["x"][1] + 3.0 + 70.0, 9.0, yy, zz)
+        out.append(Part(f"overspeed_sensor_{int(a):03d}_envelope", f"Inductive sensor M18 x 70 at {a:.0f} deg (envelope)",
+                        to_world(s_), "stationary", "doc 17 §5 (bought)", (0.2, 0.2, 0.2), make_buy="buy (envelope)",
+                        axis=None, notes=["sensing face 3 mm behind the disc rear face"]))
     return out
 
 
@@ -602,21 +678,6 @@ def yaw_brake_parts():
                         notes=["spring-applied, hydraulically released; grips the adapter plate edge (track r 345 to 415) "
                                "from outside; top face bolts under the bedplate bottom plate corner",
                                "envelope 150 x 150 x 150 incl. bracket, 3 mm running gap each side of the plate"]))
-    return out
-
-
-def rotor_caliper_brackets():
-    """NP1-310 placeholder brackets: side plate outer face to the caliper space claim."""
-    out = []
-    for s, nm in ((1, "left"), (-1, "right")):
-        b = box(-262.0, -150.0, 260.0 if s > 0 else -330.0, 330.0 if s > 0 else -260.0, 505.0, 635.0)
-        for xx in (-195.0, -165.0):
-            for zz in (535.0, 605.0):
-                b = b.cut(cq.Solid.makeCylinder(CLEAR["M16"] / 2, 100, cq.Vector(xx, -50 if s > 0 else 50, zz),
-                                                cq.Vector(0, s, 0)))
-        out.append(Part(f"NP1-310_rotor_caliper_bracket_{nm}", f"Rotor brake caliper bracket ({nm}, placeholder)", b,
-                        "stationary", "NP1-310 / BOM 29 (placeholder until caliper is chosen)", (0.3, 0.45, 0.3),
-                        axis=None, notes=["block bracket 120 x 70 x 130 bolted to the side plate with 4 x M16"]))
     return out
 
 

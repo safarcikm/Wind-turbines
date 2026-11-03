@@ -54,3 +54,13 @@ possible manufactured in-house.
   (checks in [analysis/nacelle/detail.py](analysis/nacelle/detail.py)).
 - [15 – Nacelle bench test plan](docs/15-nacelle-bench-test-plan.md): rig,
   instrumentation, test blocks T0 to T10 with pass criteria, schedule.
+- [16 – Nacelle fit-check model](docs/16-nacelle-fit-check-model.md): every
+  nacelle part at 1:1 as its own printable object down to the tower flange,
+  and the digital assembly check that found 9 problems in P1
+  ([cad/nacelle_fitcheck](cad/nacelle_fitcheck/)).
+- [17 – Working 3D-printed prototype W1](docs/17-working-printed-prototype.md):
+  the P1 geometry Rev B that fixes those findings, a printed hub, pitch and yaw
+  twins with real balls, real bought actuators, sensors and controller, the
+  swap path from printed to steel, component list
+  ([cad/nacelle_w](cad/nacelle_w/), [bom_w.csv](cad/nacelle_w/bom_w.csv)) and
+  the car-industry evaluation.
