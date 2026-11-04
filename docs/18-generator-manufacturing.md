@@ -1,12 +1,25 @@
 # 12 kW Wind Turbine for Iceland: Generator Manufacturing Instructions (P1)
 
-Status: **Draft A, not yet process-qualified** · 2026-11-03
+Status: **Draft A.1 (pictures added), not yet process-qualified** · 2026-11-04
 Owner: Category 10 (Manufacturing and quality) with 4 (Generator) and 11 (Testing)
 Builds on: [06 – Generator round 2](06-generator-round2.md) (frozen electromagnetic design), [14 – Nacelle prototype P1](14-nacelle-prototype-p1.md) (parts, fits, air gap budget), [17 – Working prototype W1](17-working-printed-prototype.md) (P1 geometry **Rev B** and assembly order), [15 – Bench test plan](15-nacelle-bench-test-plan.md) (T0 to T4)
 Shop numbers: [`analysis/generator/manufacturing.py`](../analysis/generator/manufacturing.py) → [`manufacturing_summary.json`](../analysis/generator/results/manufacturing_summary.json), [`coil_connection.csv`](../analysis/generator/results/coil_connection.csv)
 Geometry: [`cad/nacelle_p1/geometry.py`](../cad/nacelle_p1/geometry.py) (single source of truth, unchanged by this document)
+Pictures: [`cad/generator_mfg/`](../cad/generator_mfg/) (`python3 figures.py` → G01 to G19); illustrated PDF in the project folder
 
 ## Summary
+
+> **How to use the pictures.** Every work step has a picture sheet (G01 to
+> G19) with numbered panels. Do the panels in number order. The words under
+> each panel say what to do; the tables in the text give the exact numbers to
+> check. Colours mean the same thing on every sheet: grey = steel, orange =
+> copper, yellow = insulation, green = resin, light blue = aluminium,
+> tan = glass-epoxy, **red = north magnet, blue = south magnet**. A green tick
+> means "this is right"; a red cross means "never do this". Drawings of real
+> parts (G01, G03, G06, G09, G12, G13, G16) are drawn to scale from the design
+> files.
+
+![G01-overview What we are building](../cad/generator_mfg/out/G01-overview.svg)
 
 This is the complete instruction set for making the steel P1 generator in
 house: the outer-rotor PM generator that replaces W1's printed dummy. It
@@ -48,6 +61,7 @@ Generator ready for the bench about **13 to 14 weeks** after the magnet
 order, which matches the doc 14 schedule.
 
 ---
+
 
 ## 1. Manufacturability review of the frozen design
 
@@ -112,6 +126,8 @@ fixes; M4, M5 and M8 are decisions or checks with a clear owner.
 
 ### 2.4 Safety rules (all generator work)
 
+![G19-safety Safety signs](../cad/generator_mfg/out/G19-safety.svg)
+
 | Hazard | Rule |
 |---|---|
 | **Magnet crushing and pinching** | One magnet piece pulls ≈ 280 N (≈ 28 kg) on thick steel, more on another magnet. Never carry two loose pieces in one hand; keep pieces ≥ 300 mm apart unless in spacers; handle with the jig only near the drum; no rings or watches; cut-resistant gloves and safety glasses (NdFeB chips like glass) |
@@ -142,6 +158,9 @@ Stator assy, VPI, pot                                ■■■■■■
 Rotor magnets, sleeve                                     ■■■■■■
 Join on spindle, tests                                           ■■■■■
 ```
+
+
+![G02-process The order of work](../cad/generator_mfg/out/G02-process.svg)
 
 | Op | Stator track | Op | Rotor track |
 |---|---|---|---|
@@ -239,6 +258,8 @@ spare replaces any tooth.
 
 ### 5.2 S20 Cut laminations
 
+![G03-segment One segment sheet](../cad/generator_mfg/out/G03-segment.svg)
+
 1. Check the coil certificate and incoming tests (4.1). Mark the rolling
    direction on the coil. Segments are cut with the **tooth axis along the
    rolling direction** (lower loss in the tooth, where flux density is
@@ -253,9 +274,11 @@ spare replaces any tooth.
 4. Every 200th sheet: measure tooth width, tip width, dovetail profile with
    the optical comparator or CMM; tolerance ±0.02 mm.
 5. Keep sheets flat, dry and free of oil. Stack in bundles of 205 counted by
-   weight (≈ 1.1 g per sheet, weigh the bundle, ±1 sheet).
+   weight (≈ 5.5 g per sheet, ≈ 1.12 kg per bundle; weigh the bundle, ±1 sheet).
 
 ### 5.3 S30 Bond segment stacks (fixture NP1-T03)
+
+![G04-stacking Stack and bond a segment](../cad/generator_mfg/out/G04-stacking.svg)
 
 1. Clean the fixture: dovetail mandrel, tip locator, release-coated platens.
 2. Load **205 sheets**, burrs all in the same direction. Mix sheets from at
@@ -286,6 +309,8 @@ Make **48 segments** (45 + 3 spare).
 
 ### 5.5 S60 Insulate segments
 
+![G05-insulate Insulate a segment](../cad/generator_mfg/out/G05-insulate.svg)
+
 1. Blow off with dry filtered air, wipe flanks with isopropanol.
 2. Fit **front and rear end caps** (PPS GF40) onto the tooth ends; they
    round the coil corners (R ≥ 3 mm) and carry the coil 3 mm clear of the
@@ -298,6 +323,8 @@ Make **48 segments** (45 + 3 spare).
    around the tooth must not catch.
 
 ### 5.6 S70 Wind coils (chuck NP1-T04)
+
+![G06-winding Wind a coil](../cad/generator_mfg/out/G06-winding.svg)
 
 **Turn count:** 28 for Q1 and P1 unless the FEA rerun (M4) freezes 27. The
 count is set in the winder program and signed off on the traveller.
@@ -338,6 +365,8 @@ at connection (5.9), so all 48 segments are interchangeable.
 
 ### 5.7 Test every coil (before assembly)
 
+![G07-coiltests Test every coil](../cad/generator_mfg/out/G07-coiltests.svg)
+
 | Test | How | Accept |
 |---|---|---|
 | Strand continuity | Each of the 4 strands separately, micro-ohmmeter | Strand resistances within ±2 % of each other (finds a broken or nicked strand) |
@@ -350,6 +379,8 @@ Record results by segment serial. Failed coils are unwound and rewound on
 the same segment after replacing the liner.
 
 ### 5.8 S80 Assemble segments onto the carrier (stand NP1-T05)
+
+![G08-assemble Segments onto the carrier](../cad/generator_mfg/out/G08-assemble.svg)
 
 Prerequisite: carrier NP1-200 Rev C finish-machined, grooves deburred and
 measured (groove position ±0.01°, seat radius ±0.01), cleaned, bolting face
@@ -376,6 +407,8 @@ protected.
    stop; the end windings stay within **x 321 to 439** and **r ≤ 296**.
 
 ### 5.9 S90 Connect the winding
+
+![G09-connection Connect the coils](../cad/generator_mfg/out/G09-connection.svg)
 
 Connection plan: [`coil_connection.csv`](../analysis/generator/results/coil_connection.csv),
 summarised in Appendix A. Each phase has five groups of three adjacent
@@ -406,6 +439,9 @@ For each joint:
 6. PT100 leads: twisted triples, out through the same holes in a separate
    sleeve.
 
+
+![G10-joint Make a brazed joint](../cad/generator_mfg/out/G10-joint.svg)
+
 ### 5.10 Pre-VPI tests
 
 | Test | Accept |
@@ -420,6 +456,8 @@ For each joint:
 start VPI until all pre-VPI tests pass.
 
 ### 5.11 S100 Vacuum-pressure impregnation (frame NP1-T07)
+
+![G11-vpi VPI](../cad/generator_mfg/out/G11-vpi.svg)
 
 1. **Mask** the tooth-tip OD (air gap surface), the carrier bolting face,
    dowel holes, bolt holes, the Ø28 cable holes and lead ends with silicone
@@ -446,6 +484,8 @@ start VPI until all pre-VPI tests pass.
     the minimum rise that showed full impregnation in the section cut).
 
 ### 5.12 S110 Pot the end windings (moulds NP1-T08)
+
+![G12-potting Pot the coil ends](../cad/generator_mfg/out/G12-potting.svg)
 
 1. Pre-heat the stator to 60 °C.
 2. Fit the front and rear silicone moulds; they define the potting envelope:
@@ -500,6 +540,8 @@ Drawing NP1-210 Rev B (doc 17). Process:
 
 ### 6.2 R20 Machine the drum in one set-up
 
+![G13-drum Machine the drum](../cad/generator_mfg/out/G13-drum.svg)
+
 Clamp on the outer web and rough-turn everything, rest 24 h, then
 finish-machine **all of these in one set-up**:
 
@@ -526,6 +568,8 @@ After the magnets are in, the rotor must never go on a balancing machine
 with steel parts near the drum bore.
 
 ### 6.4 R40 Prepare the magnet seat and fit the pole comb
+
+![G14-magnets Magnets and their places](../cad/generator_mfg/out/G14-magnets.svg)
 
 1. Mask everything except the magnet seat (x 335 to 425).
 2. **Grit blast** the seat with clean alumina, Ra 3 to 6 µm. Blow off,
@@ -587,6 +631,9 @@ seat, slides it axially into its channel and lowers it with a fine-pitch
    **post-cure** the drum at **80 °C for 4 h** (ramp ≤ 1 K/min). N40UH is
    unaffected at 80 °C.
 
+
+![G15-insert Put the magnets in](../cad/generator_mfg/out/G15-insert.svg)
+
 ### 6.6 R70 Pole map (scanner NP1-T10)
 
 With the drum on the rotary table, scan the radial field 1.0 mm from the
@@ -603,6 +650,8 @@ Keep the map in the record: it is the reference for the teardown inspection
 (doc 15, T9).
 
 ### 6.7 R80 Mould the encapsulation sleeve (mandrel NP1-T06)
+
+![G16-sleeve Mould the sleeve](../cad/generator_mfg/out/G16-sleeve.svg)
 
 The sleeve closes the magnet pack and defines the rotor bore.
 
@@ -671,6 +720,8 @@ hazard; step 4 is the critical step.
 
 ### 8.1 J40 Lowering the rotor (written procedure, two people plus a supervisor)
 
+![G17-join Rotor over the stator](../cad/generator_mfg/out/G17-join.svg)
+
 1. Clear the zone: no loose steel within 2 m, pacemaker check, all tools
    non-magnetic (NP1-T11).
 2. Fit the guide tool NP1-T01 on the spindle nose. Its guide sleeve centres
@@ -690,6 +741,8 @@ hazard; step 4 is the critical step.
    peak-to-peak, barely noticeable). Any rub: lift and inspect.
 
 ### 8.2 J60 Air gap measurement
+
+![G18-gap Check the air gap](../cad/generator_mfg/out/G18-gap.svg)
 
 Through the inspection port in the rear cover, with **brass or plastic**
 feeler gauges, at **8 positions × 2 axial ends** (turning the rotor by
