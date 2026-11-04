@@ -14,3 +14,14 @@ python3 thermal.py    # thermal network, reads results/fea_summary.json
   periodic section, Newton-Raphson for iron saturation, magnet pattern moved
   on a fixed mesh, Arkkio torque).
 - Results land in `results/` (JSON summaries and plots).
+
+## Manufacturing numbers (doc 18)
+
+```
+python3 manufacturing.py   # slot fill, coil/phase resistance, coil connection plan,
+                           # magnet data, expected EMF, test voltages, balance limits
+```
+
+Reads the P1 geometry from `cad/nacelle_p1/geometry.py`; writes
+`results/manufacturing_summary.json` and `results/coil_connection.csv`.
+No numpy needed.

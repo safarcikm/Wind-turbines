@@ -171,6 +171,11 @@ The finished rotor (drum, magnets, disc, dummy hub) is balanced to G2.5.
 
 ### 4.4 Stator
 
+> **Update (doc 18, manufacturing):** the one-piece stack below cannot be
+> wound (4 mm slot opening, 50 % copper fill needed). Doc 18 recommends a
+> segmented stator (45 tooth segments in carrier dovetails) with the same
+> magnetic shape; see [18 – Generator manufacturing](18-generator-manufacturing.md).
+
 | Item | Specification |
 |---|---|
 | Laminations NP1-201 | M270-35A, 0.35 mm, with self-bonding varnish; ≈ 205 sheets; laser cut for P1 (the DXF is the cutting contour); OD run-out ≤ 0.05 after bonding; 3 key notches |

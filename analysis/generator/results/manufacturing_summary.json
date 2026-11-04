@@ -1,0 +1,106 @@
+{
+  "slot": {
+    "width_top_mm": 18.89,
+    "width_bottom_mm": 9.81,
+    "depth_mm": 65.0,
+    "opening_b0_mm": 4.0,
+    "tooth_tip_width_mm": 37.7,
+    "area_mm2": 933
+  },
+  "fill": {
+    "copper_per_coil_side_mm2": 211.3,
+    "free_area_per_coil_side_mm2": 424.9,
+    "net_copper_fill_of_slot": 0.453,
+    "copper_fill_of_free_area": 0.497,
+    "layered_positions_available": 125,
+    "layered_positions_needed": 112,
+    "layer_turns": [
+      37,
+      37,
+      31,
+      17,
+      3
+    ],
+    "layered_utilisation": 0.896,
+    "current_density_A_mm2": 3.07,
+    "random_dropin_max_copper_fill_typical": 0.4
+  },
+  "winding": {
+    "turns_per_coil": 28,
+    "strands_in_hand": 4,
+    "strand_bare_mm": 1.55,
+    "turn_area_mm2": 7.55,
+    "mean_turn_mm": 226.6,
+    "wire_per_coil_m_per_strand": 6.64,
+    "wire_total_m_per_strand_size": 1196,
+    "copper_kg": 20.1,
+    "copper_to_order_kg": 25.0,
+    "R20_coil_mohm": 14.49,
+    "R20_phase_ohm": 0.2174,
+    "R20_line_line_ohm": 0.4348,
+    "R75_phase_ohm": 0.2644,
+    "copper_loss_75C_W": 427
+  },
+  "connection": {
+    "pattern_first_9": "+A -A +A +C -C +C +B -B +B",
+    "coils_per_phase": {
+      "A": 15,
+      "B": 15,
+      "C": 15
+    }
+  },
+  "magnet": {
+    "grade": "N40UH",
+    "count": 160,
+    "spares": 8,
+    "r_in_mm": 301.5,
+    "r_out_mm": 309.2,
+    "arc_deg": 7.2,
+    "chord_inner_mm": 37.86,
+    "chord_outer_mm": 38.83,
+    "thickness_mm": 7.7,
+    "axial_length_mm": 18.35,
+    "mass_g": 40.9,
+    "total_kg": 6.55,
+    "pull_on_steel_N_est": 284,
+    "pole_gap_at_r305_mm": 9.59
+  },
+  "voltage": {
+    "emf_line_rms_178rpm_100C": 392,
+    "emf_line_rms_178rpm_20C": 430,
+    "emf_constant_V_per_rpm_20C": 2.416,
+    "worst_peak_250rpm_minus40C": 922,
+    "worst_peak_with_27_turns": 889,
+    "emf_with_27_turns_100C": 378,
+    "note": "scaled from doc 06; replace with the FEA rerun of the segmented stator"
+  },
+  "tests": {
+    "rated_voltage_for_tests_V": 630.0,
+    "hipot_new_winding_kV_ac_1min": 2.26,
+    "hipot_repeat_80pc_kV": 1.81,
+    "hipot_dc_equiv_kV": 3.8,
+    "winding_peak_max_kV_doc12": 1.2,
+    "pdiv_min_kV_peak": 1.88,
+    "surge_kV_peak": 3.5,
+    "ir_test_V_dc": 1000,
+    "ir_min_Mohm_40C": 1000,
+    "pi_min": 2.0
+  },
+  "balance": {
+    "G2.5": {
+      "e_um": 95.5,
+      "U_gmm": 14176
+    },
+    "G6.3": {
+      "e_um": 240.6,
+      "U_gmm": 35723
+    },
+    "rotor_mass_kg": 148.5
+  },
+  "laminations": {
+    "sheets_per_stack": 205,
+    "segments": 45,
+    "segment_sheets_total": 9225,
+    "with_5pc_spare": 9687
+  }
+}
