@@ -1,11 +1,11 @@
 # 12 kW Wind Turbine for Iceland: Generator Manufacturing Instructions (P1)
 
-Status: **Draft A.1 (pictures added), not yet process-qualified** · 2026-11-04
+Status: **Draft A.2 (pictures and isometric views added), not yet process-qualified** · 2026-11-04
 Owner: Category 10 (Manufacturing and quality) with 4 (Generator) and 11 (Testing)
 Builds on: [06 – Generator round 2](06-generator-round2.md) (frozen electromagnetic design), [14 – Nacelle prototype P1](14-nacelle-prototype-p1.md) (parts, fits, air gap budget), [17 – Working prototype W1](17-working-printed-prototype.md) (P1 geometry **Rev B** and assembly order), [15 – Bench test plan](15-nacelle-bench-test-plan.md) (T0 to T4)
 Shop numbers: [`analysis/generator/manufacturing.py`](../analysis/generator/manufacturing.py) → [`manufacturing_summary.json`](../analysis/generator/results/manufacturing_summary.json), [`coil_connection.csv`](../analysis/generator/results/coil_connection.csv)
 Geometry: [`cad/nacelle_p1/geometry.py`](../cad/nacelle_p1/geometry.py) (single source of truth, unchanged by this document)
-Pictures: [`cad/generator_mfg/`](../cad/generator_mfg/) (`python3 figures.py` → G01 to G19); illustrated PDF in the project folder
+Pictures: [`cad/generator_mfg/`](../cad/generator_mfg/) (`python3 figures.py` → G01 to G19, `python3 figures_iso.py` → isometric 3D views I01 to I05); illustrated PDF in the project folder
 
 ## Summary
 
@@ -17,9 +17,13 @@ Pictures: [`cad/generator_mfg/`](../cad/generator_mfg/) (`python3 figures.py` �
 > tan = glass-epoxy, **red = north magnet, blue = south magnet**. A green tick
 > means "this is right"; a red cross means "never do this". Drawings of real
 > parts (G01, G03, G06, G09, G12, G13, G16) are drawn to scale from the design
-> files.
+> files. The **I sheets (I01 to I05) are isometric 3D views** of the real
+> parts, drawn from the same design files, so you can see how the parts look
+> and go together before you pick them up.
 
 ![G01-overview What we are building](../cad/generator_mfg/out/G01-overview.svg)
+
+![I01-iso-exploded The generator in 3D, pulled apart](../cad/generator_mfg/out/I01-iso-exploded.svg)
 
 This is the complete instruction set for making the steel P1 generator in
 house: the outer-rotor PM generator that replaces W1's printed dummy. It
@@ -326,6 +330,8 @@ Make **48 segments** (45 + 3 spare).
 
 ![G06-winding Wind a coil](../cad/generator_mfg/out/G06-winding.svg)
 
+![I02-iso-segment One segment in 3D](../cad/generator_mfg/out/I02-iso-segment.svg)
+
 **Turn count:** 28 for Q1 and P1 unless the FEA rerun (M4) freezes 27. The
 count is set in the winder program and signed off on the traveller.
 
@@ -381,6 +387,8 @@ the same segment after replacing the liner.
 ### 5.8 S80 Assemble segments onto the carrier (stand NP1-T05)
 
 ![G08-assemble Segments onto the carrier](../cad/generator_mfg/out/G08-assemble.svg)
+
+![I03-iso-stator Segments into the carrier in 3D](../cad/generator_mfg/out/I03-iso-stator.svg)
 
 Prerequisite: carrier NP1-200 Rev C finish-machined, grooves deburred and
 measured (groove position ±0.01°, seat radius ±0.01), cleaned, bolting face
@@ -634,6 +642,8 @@ seat, slides it axially into its channel and lowers it with a fine-pitch
 
 ![G15-insert Put the magnets in](../cad/generator_mfg/out/G15-insert.svg)
 
+![I04-iso-rotor The rotor drum with its magnets in 3D](../cad/generator_mfg/out/I04-iso-rotor.svg)
+
 ### 6.6 R70 Pole map (scanner NP1-T10)
 
 With the drum on the rotary table, scan the radial field 1.0 mm from the
@@ -721,6 +731,8 @@ hazard; step 4 is the critical step.
 ### 8.1 J40 Lowering the rotor (written procedure, two people plus a supervisor)
 
 ![G17-join Rotor over the stator](../cad/generator_mfg/out/G17-join.svg)
+
+![I05-iso-join Rotor over the stator in 3D](../cad/generator_mfg/out/I05-iso-join.svg)
 
 1. Clear the zone: no loose steel within 2 m, pacemaker check, all tools
    non-magnetic (NP1-T11).
