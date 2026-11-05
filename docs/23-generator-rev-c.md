@@ -56,8 +56,8 @@ sleeve, stator, coils, carrier and the doc 18 process.
   against 1,200 V.
 
 **Questions and suggestions for Martin** are in §10. Martin chose rotor
-fins and passive cooling on 2026-11-05; the open item is the nacelle fit
-check of the outer ribs (Ø676 over the ribs).
+fins and passive cooling on 2026-11-05 and accepted Ø676 over the outer
+ribs.
 
 ![IR01 Exploded generator](../cad/generator_rc/out/iso/IR01-iso-exploded.png)
 
@@ -211,8 +211,8 @@ on their own. The outer ribs are the bigger passive gain.
 
 - 12.5 kg more on the rotor (161 kg). Welded before stress relief and
   machining, so the drum is machined and balanced with them.
-- **Nacelle fit check** for Ø676 over the ribs: hub flange, nacelle
-  cover lip and brake caliper (docs 07, 16). This is open.
+- **Ø676 over the ribs:** accepted by Martin (2026-11-05). Confirm the
+  caliper and cover-lip clearance in the next nacelle model update (docs 07, 16).
 - Rib windage at 178 rpm is a few watts. The ribs are 4 mm flat bars with
   rounded ends, so they whistle less than thin blades.
 - Paint the ribs as the drum (zinc spray + epoxy, C5). Keep the inside
@@ -383,8 +383,7 @@ IR05 segment, IR06 segments into the carrier.
 
 **Questions for Martin:**
 
-1. **Outer ribs fit:** the ribs make the drum Ø676 over 208 mm. Can the
-   nacelle cover and hub take that, or should the ribs be shortened?
+1. ~~Outer ribs fit~~: Ø676 over the ribs accepted by Martin (2026-11-05).
 2. **Magnet supplier:** 30 × 15 × 12 N45SH is less common than
    30 × 15 × 6. Should I prepare a quote request for Neo Narva, VAC and two
    Chinese makers with this drawing?
