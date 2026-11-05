@@ -40,8 +40,10 @@ OUT = Path(__file__).parent / "results"
 # ------------------------------------------------------------------ geometry (mm, deg)
 TH_FINE, TH_FEATHER = -2.0, 92.0          # working range between the limit switches (doc 13: -2 / 91, stops -3 / 93)
 TH_MID = (TH_FINE + TH_FEATHER) / 2
-R_C = 120.0          # crank radius about the pitch axis
-S_P = 130.0          # crank pin plane: distance from the rotor axis along the pitch axis
+R_C = 110.0          # crank radius about the pitch axis
+S_P = 118.0          # link eye plane on the crank pin: distance from the rotor axis along the pitch axis
+PHI0 = 5.0           # crank phase: arc -42..+52 deg about the stroke centre, keeps the pin 8 mm clear of the
+                     # drum bearing housing (x 92) at fine pitch (clash check, cad/hub_c)
 R_Y = 110.0          # yoke arm eye: distance from the rotor axis
 L_LINK = 220.0       # link length between spherical eye centres (turnbuckle +-6 mm = +-3 deg blade setting)
 ETA_LINK = 0.95      # rod ends + guide friction
@@ -51,7 +53,7 @@ T_K = dict(cold=243.15, ref=293.15, hot=313.15)      # -30 C (lowest operating),
 
 def pin(theta):
     """Crank pin centre (x, s, y) in the blade frame. Feathering moves the pin forward (-x)."""
-    a = math.radians(theta - TH_MID)
+    a = math.radians(theta - TH_MID + PHI0)
     return np.array([-R_C * math.sin(a), S_P, -R_C * math.cos(a)])
 
 
@@ -194,7 +196,7 @@ def size():
                  F_compression_max_kN=round(F_link_comp / 1e3, 1), buckling_kN=round(P_cr / 1e3), angle_max_deg=round(float(ang.max()), 1))
     T_crank = F_link_recock * R_C / 1e3                # crank torque against the feather stop while re-cocking
     crank = dict(r_mm=R_C, pin_plane_s_mm=S_P,
-                 form="welded S355 tube Ø168 x 8 from the blade-ring flange (clamped by the 10 blade studs) down to the pin plane, lever 25 thick, pin Ø30",
+                 form="welded S355: flange ring 15 (clamped by the 10 blade studs), tube Ø168 x 4 down to s 160, lever plate 20 (s 140-160), pin Ø30 with the link eye below the lever at s 118",
                  T_recock_Nm=round(T_crank), T_trip_design_Nm=round(T["trip_design"] * 1.2),
                  storm_hold_Nm=round(T["storm_hold"]),
                  storm_note="storm holding: the cylinder's holding brake + screw hold all three blades; one blade's 440 Nm gives "
@@ -279,7 +281,7 @@ def size_supercap(sp):
     th, xy, dxdth, ang = kinematics()
     lever = np.abs(dxdth) / 1e3                        # m per rad
     F_des = 3 * T["trip_design"] / lever / ETA_LINK    # N along the stroke
-    F_rated = float(F_des.max()) * 1.2
+    F_rated = math.ceil(float(F_des.max()) * 1.2 / 500) * 500
     lead, belt, eta_s, eta_back, eta_el = 5.0e-3, 2.0, 0.90, 0.80, 0.85
     w = math.radians(30.0)
     v = lever * w                                      # m/s at 30 deg/s
@@ -313,7 +315,7 @@ def size_supercap(sp):
                P_mech_peak_W=round(float(P_mech.max())), brake_motor_Nm=round(T_brake * 1.2, 1),
                F_storm_on_screw_kN=round(F_storm / 1e3, 1),
                screw="ball screw Ø32 x 5, C_dyn >= 30 kN, C_0 >= 60 kN; 20-year travel " + str(sp["actuator"]["screw_travel_20y_km"]) + " km at small strokes: L10 by supplier",
-               current_limit="force limit 21 kN (current), so an end-stop stall cannot overload links, cranks or stops")
+               current_limit=f"force limit {F_rated/1e3:.1f} kN (current), so an end-stop stall cannot overload links, cranks or stops")
     sc = dict(module="21 x 2.7 V / 350 F in series (56.7 V, 16.7 F), active balancing, heater pad (same module as doc 13, one instead of three)",
               window_V=[V1, V2], E_usable_kJ=round(E_mod / 1e3, 1), E_stroke_kJ=round(E_stroke / 1e3, 2),
               strokes_end_of_life=round(strokes_eol, 1), required=2, I_peak_A=round(I_peak))
@@ -326,7 +328,8 @@ def size_supercap(sp):
     parts = dict(sp["mass"]["parts"])
     for k in ("carriage, latch, solenoid", "gas springs x 2", "damper + end buffer"):
         parts.pop(k)
-    parts["electric cylinder + motor"] = 9.5
+    parts["electric cylinder + motor"] = 11.0          # 25 kN class
+    parts["cranks x 3"] = 3 * 8.0                      # from the 3D model (cad/hub_c)
     parts["supercap module + heater"] = 3.5
     parts["nose housing (Al 6082, welded)"] = 5.0
     m_pitch = sum(parts.values())

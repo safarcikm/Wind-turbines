@@ -5,6 +5,7 @@ Owner: Category 3 (Hub, pitch and yaw)
 Replaces: the pitch system and hub of [13 – Hub, pitch and yaw](13-hub-pitch-yaw.md), sections 2, 5 and 6. Doc 13 still holds for the pitch bearing sizing (§4), the pitch moments (§3) and the yaw system (§7).
 Builds on: [07 – Nacelle](07-nacelle-spindle-bearings.md), [08 – Loads](08-load-verification.md), [11 – Control and safety](11-control-safety.md), [17 – W1 prototype](17-working-printed-prototype.md), [23 – Generator Rev C](23-generator-rev-c.md)
 Models: [`analysis/hub/collective.py`](../analysis/hub/collective.py) (sizing), [`analysis/hub/collective_fig.py`](../analysis/hub/collective_fig.py) (layout figure), with the doc 13 models in [`analysis/hub/hub.py`](../analysis/hub/hub.py)
+3D model: [`cad/hub_c`](../cad/hub_c/) (`model.py` parts, `clash.py` clash check over the stroke, `iso_hub.py` isometric views IH01–IH05)
 
 ## Decisions (Martin, 2026-11-05)
 
@@ -17,24 +18,47 @@ Models: [`analysis/hub/collective.py`](../analysis/hub/collective.py) (sizing), 
 | Item | Selection |
 |---|---|
 | Mechanism | One **electric cylinder** on the rotor axis, in a nose housing inside the spinner. It moves a **three-arm yoke**, and three **links** with spherical eyes turn a **crank** on each blade root. All three blades pitch together |
-| Stroke | Yoke 176 mm for −2° to 92°. Leverage 79 to 123 mm of yoke travel per radian of pitch |
-| Actuator | Ball screw Ø32 × 5 with a 1:2 belt to a parallel **48 V servo with a spring-applied holding brake**. Force limit **21 kN**, which covers the −30 °C trip case of 17.3 kN with 20 % margin. Normal pitching needs ≤ 4.7 kN. **9.2 Nm peak / 2.1 Nm continuous at the motor, 1,540 rpm at 30 °/s, 0.8 kW peak** |
+| Stroke | Yoke 160 mm for −2° to 92°. Leverage 65 to 111 mm of yoke travel per radian of pitch |
+| Actuator | Ball screw Ø32 × 5 with a 1:2 belt to a parallel **48 V servo with a spring-applied holding brake**. Force limit **25.5 kN**, which covers the −30 °C trip case of 20.9 kN with 20 % margin. Normal pitching needs ≤ 5.7 kN. **11.3 Nm peak / 2.5 Nm continuous at the motor, 1,400 rpm at 30 °/s, 0.8 kW peak** |
 | Fail-safe | **One supercap module**: 21 × 350 F, 56.7 V, 16.7 F, the same module as doc 13 but one instead of three. **5.1 emergency strokes at end of life and −30 °C**, against 2 required. The drive feathers on a fixed firmware sequence (PL d) when the safety chain opens, the 48 V supply is lost or its watchdog trips |
 | Second braking system | The two spring-applied rotor brakes (doc 07, **8.7 kNm**). With **all blades stuck at fine pitch**, the aerodynamic torque is at most 3.5 kNm at 32 m/s and 250 rpm (BEM), so the brakes alone stop the rotor with 2.5 × margin |
 | Pitch bearings | Doc 13 four-point slewing rings (Ø355 × 50, Dpw 250, 27 × 25.4 mm), **without gear teeth** |
+| 3D check | Full model of hub, bearings, cranks, links, yoke, cylinder and nose housing on the Rev C drum: **no clashes at 7 positions from −2° to 92°** (`cad/hub_c/clash.py`). The check moved the crank to r 110 with a 5° phase shift: at r 120 the pin hit the drum bearing housing at fine pitch, and the link hit the crank tube |
 | Hub | **Welded S355NL**: shell Ø460 × 10, three necks Ø330 × 10 with full-penetration welds, bearing flanges 25 mm. **117 kg**. Interface to the drum unchanged: **12 × M16 10.9 on PCD 400, Ø361 recess** |
-| Mass, hub + pitch | **≈ 226 kg** with the welded hub, **≈ 205 kg** with the cast hub. Doc 13 was 199 kg |
+| Mass, hub + pitch | **≈ 239 kg** with the welded hub, **≈ 218 kg** with the cast hub. Doc 13 was 199 kg |
 | What goes away against doc 13 | 2 of 3 servo drives, 2 of 3 drive controllers, 2 of 3 supercap modules, 3 ring gears and pinions, 3 blade encoders and 2 limit switch sets |
 
 **The simplification removes parts and electronics. It does not save mass.**
 The three pitch bearings (57 kg) and the hub are sized by the 26 kNm parked
-blade load (SLM H), which does not change. The cranks, yoke and links weigh
-about as much as the gearmotors they replace. The welded hub is 27 kg heavier
+blade load (SLM H), which does not change. The cranks (8 kg each in the
+3D model), yoke and links weigh more than the gearmotors they replace. The welded hub is 27 kg heavier
 than the casting. That is the price of making it in-house without a pattern.
 
 ![Layout](../analysis/hub/results/collective_layout.png)
 
 *Left: section through blade 1 (crank pin and link projected), with the linkage at fine pitch (solid) and feather (dashed). Right: yoke force needed over the stroke.*
+
+### Isometric views (from the 3D model)
+
+![IH01](../cad/hub_c/out/iso/IH01-iso-assembled.png)
+
+*IH01: hub, collective pitch and nose housing on the generator drum, fine pitch. Spinner and blades not shown.*
+
+![IH02](../cad/hub_c/out/iso/IH02-iso-cutaway-fine.png)
+
+*IH02: half section at fine pitch (−2°), yoke rearmost at x −143.*
+
+![IH03](../cad/hub_c/out/iso/IH03-iso-cutaway-feather.png)
+
+*IH03: half section at feather (92°), yoke forward at x −303.*
+
+![IH04](../cad/hub_c/out/iso/IH04-iso-mechanism.png)
+
+*IH04: the pitch mechanism alone at 30° pitch.*
+
+![IH05](../cad/hub_c/out/iso/IH05-iso-weldment.png)
+
+*IH05: welded hub NH-500W from the rear.*
 
 ---
 
@@ -48,28 +72,31 @@ than the casting. That is the price of making it in-house without a pattern.
  │ ball screw cylinder ──rod──┼─────────────┼──► yoke (3 arms, R 110) │     │ (spindle nose)
  │       guide rods 2 × Ø25 ──┼─────────────┼──►                     │     │
  └────────────────────────────┘             └──────────────────────────────┘
-   yoke x −302 (feather)  ◄──── 176 mm ────►  x −127 (fine)
+   yoke x −303 (feather)  ◄──── 160 mm ────►  x −143 (fine)
 ```
 
 - **Direction:** feathering pulls the yoke forward (−x), so the links are in
   **tension** during an emergency feather. Driving to fine pushes them, at
-  ≤ 4.7 kN in normal operation.
-- **Crank:** a welded S355 tube Ø168 × 8 is clamped to the blade-side ring by
-  the 10 blade studs, inside the hub. It reaches down the neck to a lever at
-  130 mm from the rotor axis, with a pin Ø30 at **r 120** from the pitch axis.
-  The crank swings symmetrically, ±47° about 45° pitch.
+  ≤ 5.7 kN in normal operation.
+- **Crank:** a welded S355 part: a 15 mm flange ring clamped to the
+  blade-side ring by the 10 blade studs inside the hub, a tube Ø168 × 4 down
+  the neck, and a 20 mm lever (s 144 to 164 from the rotor axis) with a pin
+  Ø30 at **r 110** from the pitch axis. The link eye sits on the pin *below*
+  the lever, at s 118. The crank swings from −42° to +52° about mid-stroke
+  (a 5° phase shift), so the pin stays 8 mm clear of the drum bearing housing
+  at fine pitch. About 8 kg.
 - **Links:** Ø30 × 4 tube, 220 mm between eye centres, with an M20 turnbuckle
   for the **0° setting of each blade (±3°)**. Steel/steel spherical plain
   bearings, greased from the hub lubricator. PTFE liners are not used: the
   230 million small reversals from doc 13 §4.2 would wear them. The largest link angle to the rotor axis is
-  17.7°.
+  13.5°.
 - **Yoke:** a 20 mm S355 plate with three arms (eyes at R 110), fixed to the
   cylinder rod. It runs on **two guide rods Ø25**, which also take the twisting
   moment from the inclined links.
-- **Clearances:** the yoke at fine pitch (x −127) is 47 mm in front of the
-  slip ring (x −80). At feather (x −302) it sits in the nose housing. The links
-  pass the Ø300 front-plate opening at radius ≤ 100. To be confirmed in the 3D
-  model (§11).
+- **Clearances:** the yoke at fine pitch (x −143) is 63 mm in front of the
+  slip ring (x −80). At feather (x −303) it sits in the nose housing, whose
+  rear ring was opened to Ø316 so the links and eyes pass. All of this is
+  confirmed by the clash check in the 3D model.
 
 ## 2. Loads on the mechanism
 
@@ -77,10 +104,10 @@ The blade torques come from doc 13 (bearing friction model, 30 % chord pitch axi
 
 | Case (per blade) | Torque at the pitch bearing | Yoke force, three blades |
 |---|---|---|
-| **Emergency feather, −30 °C, SLM G edge moment (γ 3.0), −64 Nm aerodynamic × 1.35** | **433 Nm** | **17.3 kN** at fine pitch (lowest leverage) |
-| Emergency feather, −30 °C, simulated e-stop | 247 Nm | 9.9 kN |
-| Normal pitching, −30 °C, equivalent load × 1.35 | 118 Nm | 4.7 kN |
-| Storm, parked, V_e50 (1.5 × 294 Nm), all three blades the same way | 440 Nm | 16.7 kN, held by the motor brake through the back-driven screw |
+| **Emergency feather, −30 °C, SLM G edge moment (γ 3.0), −64 Nm aerodynamic × 1.35** | **433 Nm** | **20.9 kN** at feather (lowest leverage) |
+| Emergency feather, −30 °C, simulated e-stop | 247 Nm | 11.9 kN |
+| Normal pitching, −30 °C, equivalent load × 1.35 | 118 Nm | 5.7 kN |
+| Storm, parked, V_e50 (1.5 × 294 Nm), all three blades the same way | 440 Nm | 20.2 kN, held by the motor brake through the back-driven screw |
 
 Friction dominates, as in doc 13. Aerodynamic and centrifugal pitch moments
 are below 100 Nm. The trip force is highest at the two ends of the stroke,
@@ -91,17 +118,17 @@ where the crank has the least leverage (figure, right).
 | Item | Value |
 |---|---|
 | Type | Electric cylinder: ball screw Ø32 × 5 (C_dyn ≥ 30 kN, C_0 ≥ 60 kN), parallel motor through a 1:2 toothed belt, sealed IP67, low-temperature grease |
-| Stroke | 196 mm (176 working + 2 × 10 overtravel to the rubber stops at −3° and 93°) |
-| Speed | 0.064 m/s at 30 °/s (emergency), 0.032 m/s at 15 °/s (normal limit) |
-| Force | 21 kN limit, set by current, so a stall on an end stop cannot overload the links (7.3 kN each) or cranks (≤ 850 Nm) |
-| Motor | 48 V PMSM servo, 9.2 Nm peak, 2.1 Nm continuous, 1,540 rpm at 30 °/s, **spring-applied holding brake ≥ 6.4 Nm** (storm holding × 1.2) |
+| Stroke | 180 mm (160 working + 2 × 10 overtravel to the rubber stops at −3° and 93°) |
+| Speed | 0.058 m/s at 30 °/s (emergency), 0.029 m/s at 15 °/s (normal limit) |
+| Force | 25.5 kN limit, set by current, so a stall on an end stop cannot overload the links (8.7 kN each) or cranks (≤ 950 Nm) |
+| Motor | 48 V PMSM servo, 11.3 Nm peak, 2.5 Nm continuous, 1,400 rpm at 30 °/s, **spring-applied holding brake ≥ 7.7 Nm** (storm holding × 1.2) |
 | Drive | One 48 V servo drive with STO, CANopen DS402, ≥ 35 A peak (31 A at the 30 V end of the supercap window) |
-| Screw life | About 1,350 km of travel in 20 years, almost all in small strokes. The supplier must confirm life under the doc 13 duty (R3.5 now applies to the screw and the link eyes too) |
+| Screw life | About 1,240 km of travel in 20 years, almost all in small strokes. The supplier must confirm life under the doc 13 duty (R3.5 now applies to the screw and the link eyes too) |
 | Pitch angle | **Linear absolute position sensor** on the yoke (magnetostrictive type) + the motor encoder. One sensor for all three blades: the links fix the blades relative to each other |
 | Limit switches | One set on the yoke: −2° (fine) and 91° (feather). Rubber stops on each blade at −3° and 93° |
 
 Candidates (envelope only, not yet asked): SKF CASM-63/100, Rexroth EMC-63,
-Exlar FTX, Tolomatic RSX in the 20 to 30 kN class with a 48 V servo from the
+Exlar FTX, Tolomatic RSX in the 25 to 30 kN class with a 48 V servo from the
 doc 17 list (Kollmorgen, Nanotec, JVL).
 
 ## 4. Fail-safe feathering (R3.1, R3.6 revised)
@@ -190,8 +217,8 @@ bearings, which see identical motion. The 24 h lubrication sweep (0 → 10° →
 Fatigue has the least margin. The saddle weld detail and the gusset layout need the FEA
 before drawings are released.
 
-**Mass 117 kg:** shell 30, necks 28, bearing flanges 28, rear flange 16,
-front plate 9, gussets 6. The cast hub of doc 13 adapted to the larger front
+**Mass 117 kg** by hand calculation (shell 30, necks 28, bearing flanges 28, rear flange 16,
+front plate 9, gussets 6), **107 kg** in the 3D model. The cast hub of doc 13 adapted to the larger front
 opening would be about 96 kg.
 
 ## 7. Nose housing, spinner, cold and ice
@@ -217,7 +244,7 @@ opening would be about 96 kg.
 ## 8. Requirements updated
 
 - **R3.1** Emergency feather at 30 °/s from stored energy: **met by the single
-  actuator** (17.3 kN needed at −30 °C, 21 kN available, 5.1 strokes).
+  actuator** (20.9 kN needed at −30 °C, 25.5 kN available, 5.1 strokes).
 - **R3.6 (revised)** The collective pitch actuator shall feather all blades on
   loss of the safety chain, of slip-ring power or of its watchdog, using only
   its own stored energy. It shall report its stored energy for the weekly test.
@@ -231,7 +258,7 @@ opening would be about 96 kg.
 
 Sized in `collective.py` (`spring_variant_rejected`) before the choice:
 
-- A steel coil spring for the 17.3 kN / 176 mm trip work would weigh about
+- A steel coil spring for the 17.3 kN / 176 mm trip work (first linkage geometry, before the 3D check) would weigh about
   30 kg, so the springs would have to be **two nitrogen gas springs**.
 - If the springs moved with every pitch step, their seals would wear out
   (about 1,350 km of travel) and the motor would have to hold about 20 kN
@@ -246,24 +273,24 @@ Sized in `collective.py` (`spring_variant_rejected`) before the choice:
 | | Doc 13 (3 drives) | **Doc 24 (collective, supercap)** |
 |---|---|---|
 | Pitch bearings | 3 × 21 kg = 63 | 3 × 19 kg = 57 |
-| Drives, controllers, supercaps | 3 × (6 + 2.5 + 3) = 35 | cylinder + motor 9.5, controller and sensors 3, supercap 3.5 |
-| Mechanism | – | cranks 12, links 4, yoke and guides 6.5, nose housing 5 |
+| Drives, controllers, supercaps | 3 × (6 + 2.5 + 3) = 35 | cylinder + motor 11, controller and sensors 3, supercap 3.5 |
+| Mechanism | – | cranks 24, links 4, yoke and guides 6.5, nose housing 5 |
 | Covers, switches | 4.5 | (in the above) |
 | Spinner, boots, slip ring rotor, cabling | 8 | 8 |
 | Hub | 90 (cast) | **117 (welded)** / 96 (cast) |
-| **Total** | **199** | **226 welded / 205 cast** |
+| **Total** | **199** | **239 welded / 218 cast** |
 | Electronic units in the hub | 3 drives, 3 supercap modules, 3 encoders | **1 drive, 1 supercap module, 1 position sensor** |
 
 Tower top: doc 14 estimated about 730 kg with a 200 kg hub. The welded hub
-adds about 26 kg (+3.5 %). The tower update listed in doc 13 §8 should use
-**760 kg** until the P2 drivetrain mass reduction is known.
+version adds about 40 kg (+5 %). The tower update listed in doc 13 §8 should use
+**770 kg** until the P2 drivetrain mass reduction is known.
 
 ## 11. Open points and next steps
 
-1. **3D model:** hub NH-500W, cranks, links, yoke, cylinder envelope and nose
-   housing in the Rev B / W1 model, with a clash check over the full stroke.
-   Confirm the rotor brake caliper and cover-lip clearance at the same update
-   (open item from the nacelle model).
+1. **3D model:** done for the hub and pitch system (`cad/hub_c`, clash-free).
+   Still to do: put it into the full Rev B / W1 nacelle model and confirm the
+   rotor brake caliper and cover-lip clearance there (open item from the
+   nacelle model).
 2. **Hub FEA:** neck saddle weld hot spot, gussets, flatness of the bearing
    flanges under 26 kNm. Then the drawing set (NH-500W, NH-530 crank, NH-540
    link, NH-550 yoke, NH-560 nose housing).

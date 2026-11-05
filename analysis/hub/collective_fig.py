@@ -49,10 +49,11 @@ ax.text(205, 300, "welded neck Ø330 × 10\nflange 25", fontsize=7, va="center")
 
 # crank: tube from the blade ring down to the pin plane, lever, pin (projected)
 g = S["geometry"]
-ax.add_patch(Rectangle((-84, 150), 8, 200, fc=MECH, ec="k", lw=0.5))
-ax.add_patch(Rectangle((76, 150), 8, 200, fc=MECH, ec="k", lw=0.5))
-ax.add_patch(Rectangle((-125, g["s_pin"] - 12), 250, 25, fc=MECH, ec="k", lw=0.5, alpha=0.35))
-ax.text(95, 175, "crank Ø168 × 8,\nr 120 (clamped by\nthe blade studs)", fontsize=7)
+ax.add_patch(Rectangle((-84, 164), 4, 173, fc=MECH, ec="k", lw=0.5))
+ax.add_patch(Rectangle((80, 164), 4, 173, fc=MECH, ec="k", lw=0.5))
+ax.add_patch(Rectangle((-84, 337), 168, 15, fc=MECH, ec="k", lw=0.5))
+ax.add_patch(Rectangle((-125, 144), 250, 20, fc=MECH, ec="k", lw=0.5, alpha=0.35))
+ax.text(95, 185, "crank Ø168 × 4, lever 20,\nr 110, eye below the lever\n(clamped by the blade studs)", fontsize=7)
 
 # linkage in the two end positions
 for th, ls, lab in ((C.TH_FINE, "-", "fine pitch −2°"), (C.TH_FEATHER, "--", "feather 92°")):
@@ -76,7 +77,7 @@ rect(ax, -700, -330, 0, 42, MECH, mirror=True, alpha=0.8)                       
 rect(ax, -330, -127, 0, 15, "#666", mirror=True)                                  # rod (extended = fine)
 rect(ax, -690, -520, 48, 95, MECH, alpha=0.5, mirror=False)                       # parallel motor + brake
 ax.text(-605, 71, "48 V servo\n+ brake", ha="center", va="center", fontsize=7, color="w")
-ax.text(-515, 0, "electric cylinder 21 kN, ball screw Ø32 × 5", ha="center", va="center", fontsize=7, color="w")
+ax.text(-515, 0, "electric cylinder 25.5 kN, ball screw Ø32 × 5", ha="center", va="center", fontsize=7, color="w")
 rect(ax, -680, -500, -110, -55, ELEC, mirror=False)
 ax.text(-590, -83, "supercap 16.7 F\n+ drive (STO)", ha="center", va="center", fontsize=7, color="w")
 
