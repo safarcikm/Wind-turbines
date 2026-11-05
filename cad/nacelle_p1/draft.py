@@ -179,6 +179,8 @@ class Sheet:
     size: tuple = A3
     notes_top: tuple | None = None       # (x, y top) or None = bottom-left
     notes_wrap: int = 118
+    date: str = "2026-11-03"
+    project: str = "12 kW WIND TURBINE (ICELAND) · NACELLE PROTOTYPE P1"
 
     def view(self, name, scale, origin, label=True):
         v = View(name, scale, origin, label=label)
@@ -245,12 +247,12 @@ class Sheet:
             ax.plot([xx, xx], [y0, y0 + 28], color="k", lw=lw * 0.5)
         f = lambda mm: mm * PT_PER_MM / 0.72  # noqa: E731
         small = dict(fontsize=f(1.8), color="0.3")
-        ax.text(x0 + 2, y0 + 39, "12 kW WIND TURBINE (ICELAND) · NACELLE PROTOTYPE P1", fontsize=f(2.2),
+        ax.text(x0 + 2, y0 + 39, self.project, fontsize=f(2.2),
                 weight="bold", va="top")
         ax.text(x0 + 2, y0 + 33.5, self.title, fontsize=f(3.2), weight="bold", va="top")
         cells = [
             (x0 + 2, y0 + 25, "DRAWING NO.", self.number),
-            (x0 + 62, y0 + 25, "REV / DATE", f"{self.rev} · 2026-11-03"),
+            (x0 + 62, y0 + 25, "REV / DATE", f"{self.rev} · {self.date}"),
             (x0 + 122, y0 + 25, "SCALE (A3)", self.scale_note),
             (x0 + 2, y0 + 11, "MATERIAL", self.material),
             (x0 + 62, y0 + 11, "MASS (CALC.)", self.mass),

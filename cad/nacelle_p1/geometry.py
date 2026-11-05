@@ -16,6 +16,11 @@ Inputs frozen in earlier design docs:
 
 Rev B (2026-11-03, doc 17): fixes for the doc 16 fit-check findings 1 to 9
 (disc, seals, bedplate face, lock pin, caliper room, dummy hub, key length).
+
+Rev C generator (2026-11-05, doc 23): segmented stator (doc 18, 45 tooth
+segments in carrier dovetail grooves) and the block rotor (doc 20 layout):
+one solid N45SH block 30 x 15 x 12 per pole across, five rows along the stack
+step-skewed 0.20 deg, drum seat Ø628.05, stepped G11 comb bars.
 """
 from __future__ import annotations
 
@@ -45,17 +50,22 @@ H_ROTOR = 530.0          # rotor centre height above the yaw bearing top face
 GEN = dict(
     poles=40, slots=45,
     r_s=299.0,           # stator outer (tooth tip) radius
-    gap=2.0, sleeve=0.5, hm=7.7, h_ry=12.0,
+    gap=2.0, sleeve=0.5, hm=12.0, h_ry=9.0,     # Rev C: 12 mm block magnet, 9.0 drum steel under the seat
     w_t=22.3, b0=4.0, h_tip=2.0, h_wedge=2.0, d_slot=65.0, h_sy=11.4,
-    stack=74.0, alpha_m=0.80,
+    stack=74.0, alpha_m=0.633,                  # Rev C: 30 mm block on r 301.5 spans 5.70 of 9.00 deg
     lam_thk=0.35, stacking=0.97,
-    turns_per_coil=28,   # 27 to 28 per doc 06, confirm with the first coil
+    turns_per_coil=28,   # Rev C (doc 23): 28 kept, 373 V line at 100 °C with N45SH
 )
 GEN["r_slot_top"] = GEN["r_s"] - GEN["h_tip"] - GEN["h_wedge"]      # 295
 GEN["r_slot_bot"] = GEN["r_slot_top"] - GEN["d_slot"]              # 230
 GEN["r_si"] = GEN["r_slot_bot"] - GEN["h_sy"]                      # 218.6
 GEN["r_m1"] = GEN["r_s"] + GEN["gap"] + GEN["sleeve"]              # 301.5
-GEN["r_m2"] = GEN["r_m1"] + GEN["hm"]                              # 309.2
+GEN["r_m2"] = GEN["r_m1"] + GEN["hm"]                              # 313.5 magnet back at the pole centre
+# Rev C: flat blocks on a round seat; the block's outer corners sit on the 0.15 bond beads
+MAG_W, MAG_L, MAG_BOND = 30.0, 15.0, 0.15
+# exact fit Ø628.02, rounded up so the block's gap face sits at r 301.52 (sleeve 0.52 at the pole centre)
+SEAT_D = 628.05
+R_SEAT = SEAT_D / 2
 X_STACK = (343.0, 417.0)                                           # stack, centre 380
 
 # ------------------------------------------------- purchased main bearings
@@ -116,7 +126,7 @@ DRUM_PARTS = {
     "hub web (inner)": [(195.0, 112.0), (195.0, 180.0), (200.0, 180.0), (200.0, 232.0),
                         (220.0, 232.0), (220.0, 112.0)],
     "web (outer)": [(212.0, 232.0), (220.0, 232.0), (220.0, 312.0), (212.0, 312.0)],
-    "shell": [(212.0, 312.0), (335.0, 312.0), (335.0, GEN["r_m2"]), (425.0, GEN["r_m2"]),
+    "shell": [(212.0, 312.0), (335.0, 312.0), (335.0, R_SEAT), (425.0, R_SEAT),
               (425.0, 312.0), (451.0, 312.0), (451.0, 318.0), (425.0, 318.0),
               (425.0, 323.0), (335.0, 323.0), (335.0, 318.0), (212.0, 318.0)],
     # Rev B (findings 1 and 7): ring OD 690 -> 710 so the bigger-bore disc can bolt to it
@@ -168,10 +178,16 @@ STACK_POLY = [(X_STACK[0], GEN["r_si"]), (X_STACK[1], GEN["r_si"]),
               (X_STACK[1], GEN["r_s"]), (X_STACK[0], GEN["r_s"])]
 END_WINDING = 22.0   # axial overhang of the tooth-coil end turns (estimate)
 
-# Magnet segments NP1-220 (bought): radial arc segments, 4 per pole axially
-MAGNET = dict(grade="N40UH", r_in=GEN["r_m1"], r_out=GEN["r_m2"],
-              arc_deg=360.0 / 40 * 0.80, axial_pieces=4,
-              length=(GEN["stack"] - 3 * 0.2) / 4)   # 0.2 mm glue gaps
+# Magnet blocks NP1-220 Rev E (bought, doc 23): one solid N45SH block 30 x 15 x 12
+# per pole across, magnetised through 12, five rows along the stack with 0.20
+# shims, rows step-skewed 0.20 deg (-0.4 ... +0.4 front to rear)
+_ROWS_LEN = 5 * MAG_L + 4 * 0.20
+MAGNET = dict(grade="N45SH", shape="block", W=MAG_W, L=MAG_L, T=GEN["hm"],
+              r_in=GEN["r_m1"], r_out=GEN["r_m2"], r_seat=R_SEAT,
+              arc_deg=math.degrees(2 * math.atan(MAG_W / 2 / GEN["r_m1"])),     # 5.70 deg span
+              axial_pieces=5, length=MAG_L, shim=0.20,
+              x_rows=[sum(X_STACK) / 2 - _ROWS_LEN / 2 + i * (MAG_L + 0.20) for i in range(5)],
+              skew=[-0.4, -0.2, 0.0, 0.2, 0.4], count=200, spares=10)
 
 # Cooling insert NP1-110 (6082-T6 extrusion), sits in the Ø90 bore
 INSERT = dict(od=90.0, shell=4.0, tube_od=40.0, tube_id=34.0, fins=16, fin_t=2.5,
@@ -306,9 +322,8 @@ def mass_table():
                           (revolved_volume(REAR_COVER) + revolved_volume(REAR_SEAL_CARRIER)) * RHO["aluminium"],
                           "5083-H111"))
     items.append(MassItem("Brake disc NP1-230", revolved_volume(DISC_POLY) * st))
-    mag = 40 * math.radians(MAGNET["arc_deg"]) / 2 * (MAGNET["r_out"] ** 2 - MAGNET["r_in"] ** 2) \
-        * GEN["stack"] * RHO["ndfeb"]
-    items.append(MassItem("Magnets NP1-220 (160 pcs)", mag, "N40UH"))
+    mag = MAGNET["count"] * MAGNET["W"] * MAGNET["L"] * MAGNET["T"] * RHO["ndfeb"]
+    items.append(MassItem("Magnets NP1-220 (200 pcs)", mag, "N45SH"))
     items.append(MassItem("Main bearings 32028 X (2)", 2 * BRG["mass"]))
     items.append(MassItem("Stator carrier NP1-200", revolved_volume(CARRIER) * st, "S355J2+N"))
     lam = lamination_area() * GEN["stack"] * GEN["stacking"] * RHO["iron_lam"]
