@@ -183,6 +183,7 @@ button.primary { border-color: var(--accent); color: var(--accent); }
       <button type="button" data-cam="hub">Pitch</button>
       <button type="button" data-cam="gen">Generator</button>
       <button type="button" data-cam="yaw">Yaw</button>
+      <button type="button" data-cam="house">With house</button>
     </div>
   </section>
 
@@ -316,6 +317,9 @@ const PARTS = {
   adapter: { n: "Tower-top adapter", d: "NY-400", t: "Weldment with the 25 mm ring seat, 15 mm friction track to Ø790, cone and Ø420 tower flange.", kv: [["Mass", "107 kg"]] },
   tower: { n: "Tower, tapered monopole", d: "doc 09", t: "Freestanding tilt-up S355NL monopole. 18 m standard (24 m option). Soft-stiff, 1P speed exclusion zone.", kv: [["Diameter", "Ø550 base → Ø320 top"], ["Mass (18 m)", "1.9 t"], ["1st mode", "1.21 Hz"]] },
   foundation: { n: "Spread footing", d: "doc 09", t: "Square reinforced-concrete footing; storm drag at Ve50 governs.", kv: [["Size", "3.8 … 4.9 m square"]] },
+  house: { n: "Your house (estimated)", d: "from photo", t: "Sized from the photo, with you (≈ 1.8 m) as the scale reference. Main house ≈ 9 × 7 m with a concrete and corrugated basement storey, timber main floor and steep attic roof; lower annex and shed behind.", kv: [["Eaves", "≈ 5.0 m"], ["Ridge", "≈ 8.6 m"], ["Turbine hub height", "≈ 18.9 m"], ["Blade tip, top", "≈ 22.7 m"]] },
+  person: { n: "Person, 1.8 m", d: "scale", t: "For scale.", kv: [] },
+  van: { n: "Small van", d: "scale", t: "Small panel van, about 4.4 × 1.7 × 1.9 m.", kv: [] },
   shell: { n: "Nacelle shell (concept)", d: "not designed", t: "Glass/vinyl-ester body over the bedplate and brakes. Indicative only: the shell is not designed yet.", kv: [] },
 };
 
@@ -489,6 +493,58 @@ function gearShape(z, m, phase = 0) { const ra = m * z / 2 + m, rf = m * z / 2 -
   for (let k = 0; k < z; k++) { const a0 = p * k + phase; for (const [f, r] of [[0, rf], [0.18, rf], [0.32, ra], [0.68, ra], [0.82, rf]]) out.push([r * Math.cos(a0 + f * p), r * Math.sin(a0 + f * p)]); } return out; }
 const outerRing = mesh(extrude(gearShape(150, 4), [circ(0, 0, 185, 96)], 60, EX, V(0, 0, -1), EY, -70), "yawOuter", C.bearing, { metal: 0.6, rough: 0.35 });
 towerTop.add(outerRing);
+
+// ---------- Martin's house for scale (dimensions estimated from a photo; person ≈ 1.8 m)
+const houseG = new THREE.Group(); root.add(houseG);
+houseG.position.set(-11000, groundY, 15000); houseG.rotation.y = -0.25;
+{
+  const WALL = 0x2b2420, ROOF = 0x3b3431, CONC = 0x8f8c86, CORR = 0xb4b9bd, WIN = 0xf2f1ec, GLASS = 0x2c3c4a;
+  const o = { metal: 0.05, rough: 0.85, clip: false };
+  // gabled block: x along the ridge (x0..x1), z across (±w/2), walls up to eave, ridge at top
+  function block(x0, x1, w, y0, eave, ridge, zc = 0) {
+    const g = new THREE.Group();
+    const prof = [[-w / 2, y0], [w / 2, y0], [w / 2, eave], [0, ridge], [-w / 2, eave]].map(([z, y]) => [z + zc, y]);
+    g.add(mesh(extrude(prof, null, x1 - x0, EZ, EY, EX, x0), "house", WALL, o));
+    const ov = 300, run = w / 2 + ov, rise = (ridge - eave) * run / (w / 2), L = Math.hypot(run, rise), ang = Math.atan2(ridge - eave, w / 2);
+    for (const sg of [-1, 1]) {
+      const r = mesh(new THREE.BoxGeometry(x1 - x0 + 2 * ov, 140, L), "house", ROOF, o);
+      r.rotation.x = sg * ang; r.position.set((x0 + x1) / 2, ridge - (L / 2) * Math.sin(ang) + 70, zc + sg * (L / 2) * Math.cos(ang));
+      g.add(r);
+    }
+    return g;
+  }
+  function win(x, y, z, w, h, axis) {   // white frame + dark glass, proud of a wall facing ±x or ±z
+    const t = 120, g = new THREE.Group();
+    const fr = axis === "x" ? box(x - t / 2, x + t / 2, y, y + h, z - w / 2, z + w / 2) : box(x - w / 2, x + w / 2, y, y + h, z - t / 2, z + t / 2);
+    g.add(mesh(fr, "house", WIN, o));
+    const gl = axis === "x" ? box(x - t / 2 - 5, x + t / 2 + 5, y + 90, y + h - 90, z - w / 2 + 90, z + w / 2 - 90) : box(x - w / 2 + 90, x + w / 2 - 90, y + 90, y + h - 90, z - t / 2 - 5, z + t / 2 + 5);
+    g.add(mesh(gl, "house", GLASS, { metal: 0.6, rough: 0.15, clip: false }));
+    return g;
+  }
+  const L = 9000, W = 7000, B = 2300, E = 5000, RID = 8600;
+  // basement storey: concrete on the gable end, corrugated sheet on the long side
+  houseG.add(mesh(box(0, L, 0, B, -W / 2, W / 2), "house", CONC, o));
+  houseG.add(mesh(box(1800, L, 0, B, W / 2, W / 2 + 40), "house", CORR, { metal: 0.6, rough: 0.4, clip: false }));
+  houseG.add(mesh(box(-120, L + 120, B - 120, B, -W / 2 - 120, W / 2 + 120), "house", WALL, o));
+  houseG.add(block(0, L, W, B, E, RID));
+  // gable end windows (end faces −x)
+  houseG.add(win(-40, B + 600, -600, 1500, 1700, "x"));
+  houseG.add(win(-40, E + 700, -800, 900, 1500, "x"));
+  // long-side windows (side faces +z)
+  for (const x of [3200, 5600]) houseG.add(win(x, B + 600, W / 2 + 30, 1100, 1700, "z"));
+  for (const x of [2600, 3900]) houseG.add(win(x, 350, W / 2 + 60, 900, 1300, "z"));
+  houseG.add(mesh(box(7200, 8100, 300, 2300 + 1800, W / 2 + 10, W / 2 + 70), "house", WIN, o));   // door
+  // annex (lower, narrower) and shed behind
+  houseG.add(block(L, L + 8000, 5200, 0, 3300, 5600, 900));
+  for (const x of [L + 800, L + 1900]) houseG.add(win(x, 1200, 900 + 2600 + 30, 600, 1500, "z"));
+  houseG.add(block(L + 8000, L + 12000, 4200, 0, 2600, 4500, 900));
+  // person (1.8 m) at the corner, and a small van
+  const pers = new THREE.Group(); pers.position.set(2400, 0, W / 2 + 1800); houseG.add(pers);
+  pers.add(mesh(cylY(160, 0, 900, 0, 0, 16), "person", 0x2f2623, o));
+  pers.add(mesh(cylY(200, 900, 1520, 0, 0, 16), "person", 0xe9e9e4, o));
+  pers.add(mesh(new THREE.SphereGeometry(125, 16, 12).translate(0, 1660, 0), "person", 0xd9b9a0, o));
+  houseG.add(mesh(box(L + 9000, L + 13400, 250, 1900, W / 2 + 2500, W / 2 + 4200), "van", 0xf4f4f2, { metal: 0.3, rough: 0.4, clip: false }));
+}
 
 // ---------- nacelle (yaws)
 const yawG = new THREE.Group(); root.add(yawG);
@@ -693,7 +749,7 @@ const LABELS = [
   ["blade", bladeMeshes[0], V(0, 2600, 0)], ["hub", hubShell, V(-100, 160, 160)], ["crank", pitchGs[1], V(60, 200, 0)],
   ["yoke", yokeG, V(0, 0, 50)], ["actuator", noseG, V(-520, 0, 46)], ["drum", statorG, V(300, 240, 230)], ["disc", statorG, V(443, -300, 300)],
   ["stator", statorG, V(380, 0, 300)], ["caliper", calipers[1].g, V(440, 90, 440)], ["yawDrive", yawG, V(0, 340, 328)],
-  ["padUnit", yawG, V(-314, -40, 247)], ["adapter", towerTop, V(0, -330, 200)], ["tower", towerG, V(0, -6000, 220)], ["bedplate", yawG, V(320, 330, 250)],
+  ["house", houseG, V(4500, 9300, 0)], ["padUnit", yawG, V(-314, -40, 247)], ["adapter", towerTop, V(0, -330, 200)], ["tower", towerG, V(0, -6000, 220)], ["bedplate", yawG, V(320, 330, 250)],
 ];
 const labelEls = LABELS.map(([k]) => { const d = document.createElement("div"); d.className = "lbl"; d.textContent = PARTS[k].n.replace(/ \(.*\)$/, "").replace(/,.*$/, ""); $("labels").appendChild(d); return d; });
 
@@ -904,7 +960,7 @@ function updateLabels() {
       occluded[i] = !!hit; ray.far = Infinity;
     }
     wp.project(camera);
-    const show = !occluded[i] && wp.z < 1 && Math.abs(wp.x) < 1.05 && Math.abs(wp.y) < 1.05 && dist < (k === "tower" || k === "blade" ? 60 : 9) && !hiddenBlade;
+    const show = !occluded[i] && wp.z < 1 && Math.abs(wp.x) < 1.05 && Math.abs(wp.y) < 1.05 && dist < (k === "tower" || k === "blade" || k === "house" ? 80 : 9) && !hiddenBlade;
     el.style.display = show ? "" : "none";
     if (show) el.style.transform = `translate(${(wp.x * 0.5 + 0.5) * w}px, ${(-wp.y * 0.5 + 0.5) * h}px) translate(-50%, -130%)`;
   });
@@ -967,12 +1023,13 @@ const CAMS = {
   hub: () => [V(-1.9, 1.05, 1.15), V(-0.75, 0.6, 0)],
   gen: () => [V(0.1, 1.0, 1.6), V(-0.38, 0.58, 0)],
   yaw: () => [V(1.7, 0.55, 2.0), V(-0.05, -0.15, 0)],
+  house: () => [V(-52, -9, 50), V(-4, -9.5, 6)],
 };
 let camAnim = null;
 function goCam(name, instant) {
   // presets are relative to the nacelle at yaw 0; rotate with the current yaw
   const [p, t] = CAMS[name](); const q = new THREE.Quaternion().setFromAxisAngle(Y1, st.yaw * D2R);
-  if (name !== "all") { p.applyQuaternion(q); t.applyQuaternion(q); }
+  if (name !== "all" && name !== "house") { p.applyQuaternion(q); t.applyQuaternion(q); }
   const want = { cSection: name === "gen", cSpinner: name !== "hub" && name !== "gen", cHub: name !== "hub" };
   for (const [id, on] of Object.entries(want)) if ($(id).checked !== on) $(id).click();
   if (instant) { camera.position.copy(p); controls.target.copy(t); return; }
