@@ -135,7 +135,7 @@ paths) need a site-specific load assessment before installation.
 | Regulation | **Active pitch**, three independent electric pitch drives with supercapacitor stores (doc 13), with fail-safe return to feather on any power or controller loss |
 | Drivetrain | Direct drive, no gearbox |
 | Generator | Permanent magnet synchronous, NdFeB magnets |
-| Yaw | Active yaw: slewing ring, two gearmotors, spring-applied brake with controlled slip at 8 kNm (doc 13) |
+| Yaw | Active yaw: slewing ring, two gearmotors with spring-applied motor brakes, two passive friction pad units 3 kNm, no hydraulics (doc 25) |
 | Brake | Mechanical brake able to stop the rotor from overspeed alone, independent of pitch |
 | Tower | Tilt-up freestanding tapered steel monopole (doc 09), 18 m and 24 m hub height options |
 | Design life | 20 years, with no structural component replacement |
@@ -232,9 +232,14 @@ is a target to be confirmed by design studies.
 - **R3.6** Each pitch axis shall feather on loss of the safety chain, of
   slip-ring power or of its watchdog, using only its own stored energy, and
   shall report its stored energy for the weekly test (doc 13).
-- **R3.7** The yaw brake shall slip above 8 kNm and the yaw drives shall not
-  be self-locking, so a side gust cannot overload the gear train or the
-  tower top (doc 13).
+- **R3.7** (revised, doc 25) The yaw system shall hold the design yaw moment
+  (8 kNm, γ included) with spring-applied brakes that apply on loss of power
+  or of the safety chain; the gear train shall carry it on one pinion with
+  S_F ≥ 2 and S_H ≥ 1.2; no yaw function shall depend on hydraulic pressure.
+- **R3.9** (doc 25) Passive yaw friction ≥ 1.25 × the 95th percentile
+  operating yaw moment over the μ band and pad life.
+- **R3.10** (doc 25) Cable twist limited by an independent geared cam switch
+  in the safety chain at ±3 turns; cable loop torsion rating ≥ 150 °/m.
 
 ### 6.4 Generator (cat. 4)
 - **R4.1** Generator shall deliver rated power continuously at rated speed

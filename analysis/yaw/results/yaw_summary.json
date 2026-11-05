@@ -1,0 +1,283 @@
+{
+ "tower_top": {
+  "m_above_bearing_kg": 969.2,
+  "m_tower_side_kg": 134.2,
+  "m_total_kg": 1103.4,
+  "x_cg_mm": -385.821295914156,
+  "z_cg_mm": 410.7779612051176,
+  "items": [
+   [
+    "Blades 3 x 20.5 kg (doc 10)",
+    61.5,
+    -770,
+    570
+   ],
+   [
+    "Hub + collective pitch, welded (doc 24)",
+    239.0,
+    -720,
+    570
+   ],
+   [
+    "Generator rotor Rev C (doc 23)",
+    161.0,
+    -451,
+    544
+   ],
+   [
+    "Generator stator Rev C (doc 23)",
+    115.0,
+    -370,
+    537
+   ],
+   [
+    "Spindle (doc 14)",
+    57.0,
+    -420,
+    535
+   ],
+   [
+    "Bedplate P1 weldment (doc 14)",
+    150.0,
+    -40,
+    170
+   ],
+   [
+    "Nacelle cover and electrics",
+    20.0,
+    0,
+    300
+   ],
+   [
+    "Slip ring, sensors, cabling, fans, seals",
+    25.0,
+    -150,
+    400
+   ]
+  ],
+  "yaw_above": [
+   [
+    "Yaw bearing inner ring (half of the 55 kg ring)",
+    27.5,
+    0,
+    -30
+   ],
+   [
+    "2 yaw gearmotors with motor brakes",
+    44.0,
+    0,
+    180
+   ],
+   [
+    "2 drive brackets NP1-420 (model)",
+    15.4,
+    0,
+    60
+   ],
+   [
+    "Yaw VFD, brake relay, cabling",
+    4.0,
+    100,
+    200
+   ],
+   [
+    "2 friction pad units NY-410 (model)",
+    26.4,
+    -280,
+    -80
+   ],
+   [
+    "Yaw lock NY-430, encoder unit NY-440 (model)",
+    13.4,
+    100,
+    0
+   ],
+   [
+    "Cable hanger NY-460 (model)",
+    10.0,
+    0,
+    -120
+   ]
+  ],
+  "tower_side": [
+   [
+    "Yaw bearing outer ring with gear",
+    27.5
+   ],
+   [
+    "Tower-top adapter NY-400 (seat, track, cone, flange; model)",
+    106.7
+   ]
+  ]
+ },
+ "loads": {
+  "W_kN": 9.507852000000002,
+  "M_grav_kNm": 3.6683317800000004,
+  "h_hub_m": 0.605,
+  "sets": {
+   "SLM H parked thrust + SLM shaft moment (gamma 3.0)": {
+    "M_tilt": 34.577364958,
+    "Fa": 10.458637200000002,
+    "Fr": 41.64
+   },
+   "Simulated envelope (gamma 1.35)": {
+    "M_tilt": 16.140838958,
+    "Fa": 10.458637200000002,
+    "Fr": 5.7788
+   }
+  }
+ },
+ "bolts": {
+  "Bedplate to inner ring, 16 x M16 10.9 PCD 300": {
+   "F_ext_kN": 28.22023004833333,
+   "F_pre_kN": 90.0,
+   "ratio": 0.3135581116481481,
+   "added_bolt_force_kN": 5.644046009666667
+  },
+  "Outer ring to adapter, 16 x M16 10.9 PCD 440": {
+   "F_ext_kN": 19.051989339772724,
+   "F_pre_kN": 90.0,
+   "ratio": 0.21168877044191917,
+   "added_bolt_force_kN": 3.810397867954545
+  },
+  "Adapter to tower flange, 16 x M20 10.9 PCD 380": {
+   "F_ext_kN": 32.01613093289473,
+   "F_pre_kN": 110.0,
+   "ratio": 0.2910557357535885,
+   "M_kNm": 49.567764958
+  }
+ },
+ "ring": {
+  "geometry": {
+   "Dpw": 0.36,
+   "Dw": 0.019,
+   "Z": 53
+  },
+  "checks": {
+   "SLM H parked thrust + SLM shaft moment (gamma 3.0)": {
+    "Q_kN": 13.701045842313444,
+    "p_MPa": 3541.5873532216133,
+    "s0": 1.4407416112628073
+   },
+   "Simulated envelope (gamma 1.35)": {
+    "Q_kN": 5.815568712824533,
+    "p_MPa": 2661.60813631926,
+    "s0": 3.3942797063527457
+   }
+  },
+  "friction_Nm": {
+   "warm": 128.22499316539935,
+   "-30 C": 280.7784798401981
+  }
+ },
+ "slip": {
+  "i_total": 18000.0,
+  "J_reflected_kgm2": 324000.0,
+  "J_nacelle_kgm2": 353.89265,
+  "share_of_gust_into_gears": 0.9989089304675561,
+  "tower_torsion_15kNm_MPa": 12.26230762234154
+ },
+ "yaw_moments": {
+  "op_p95_Nm": 1587.9617164870128,
+  "hold_design_Nm": 8000.0,
+  "sim_design_Nm": 7030.6,
+  "sim_governing": "DLC 7.1-parked-stuck-fine at 44.0 m/s, yaw 30, azimuth 60"
+ },
+ "pads": {
+  "r_eff": 0.355,
+  "F_clamp_per_unit_kN": 5.281690140845071,
+  "T_kNm": {
+   "nominal": 3.0000000000000004,
+   "min": 2.4,
+   "max": 3.6,
+   "max_cold_breakaway": 4.761
+  },
+  "T_min_over_op_p95": 1.5113714487458982,
+  "pad_area_cm2": 53.99999999999999,
+  "pad_pressure_MPa": 0.9780907668231614,
+  "sliding_speed_mm_s": 3.097959422289935,
+  "heat_W": 26.17993877991494,
+  "disc": {
+   "spec": "DIN 2093 B 63 (63 x 31 x 2.5, l0 4.25)",
+   "parallel": 1,
+   "series": 8,
+   "s_set_per_disc_mm": 0.878,
+   "s_set_over_h0": 0.5017142857142857,
+   "F_at_0p75h0_kN": 7.188986772967556,
+   "stack_preset_mm": 7.024
+  },
+  "wear": {
+   "travel_deg_day": 1500.0,
+   "energy_20y_MJ": 573.3406592801372,
+   "k_cm3_per_MJ": 0.25,
+   "wear_per_pad_20y_mm": 6.635887260186774,
+   "usable_mm": 9.0,
+   "clamp_drop_after_1y": 0.07587304945670903
+  }
+ },
+ "drives": {
+  "T_need_Nm": 6629.740196327211,
+  "per_drive_at_ring_Nm": 3314.8700981636057,
+  "T_gearbox_out_Nm": 309.3878758286032,
+  "T_motor_Nm": 0.30693241649663017,
+  "T_motor_one_drive_Nm": 0.6138648329932603,
+  "T_motor_rated_Nm": 1.1459155902616465,
+  "yaw_rate_deg_s": 0.5000000000000001,
+  "motor_brake_Nm": 2.0,
+  "hold_capacity_per_drive_at_ring_kNm": 23.4,
+  "hold_case": {
+   "M_design_kNm": 8.0,
+   "F_one_pinion_kN": 26.666666666666668,
+   "T_gearbox_static_Nm": 746.6666666666667,
+   "required_gearbox_static_Nm": 1493.3333333333335
+  },
+  "F_operating_per_pinion_kN": 11.049566993878686
+ },
+ "gears": {
+  "static hold, one pinion": {
+   "F_kN": 26.666666666666668,
+   "sigma_H": 1372.5232488195998,
+   "pinion": {
+    "sigma_F": 573.3333333333334,
+    "S_F": 4.3604651162790695,
+    "S_H": 1.7486042601202223
+   },
+   "ring": {
+    "sigma_F": 533.3333333333334,
+    "S_F": 3.4687499999999996,
+    "S_H": 1.3405965994255038
+   }
+  },
+  "yawing, max cold": {
+   "F_kN": 11.049566993878686,
+   "sigma_H": 883.5028873437494,
+   "pinion": {
+    "sigma_F": 237.56569036839178,
+    "S_F": 4.20936204402793,
+    "S_H": 1.6977873207746368
+   },
+   "ring": {
+    "sigma_F": 220.99133987757375,
+    "S_F": 3.3485475060242185,
+    "S_H": 1.3016369459272215
+   }
+  },
+  "materials": {
+   "pinion": "18CrNiMo7-6 case hardened",
+   "ring": "42CrMo4, teeth induction hardened (slewing ring option)"
+  }
+ },
+ "electrical": {
+  "P_mech_W": 27.29891293695667,
+  "P_el_yawing_W": 94.73466253023895,
+  "E_72h_Wh": 5252.179140435441,
+  "installed_kWh": 7.8782687106531615,
+  "doc13_installed_kWh": 8.4
+ },
+ "cable": {
+  "turns_max": 3.0,
+  "torsion_deg_per_m": 150.0,
+  "free_length_m": 7.2,
+  "chosen_m": 7.5
+ }
+}

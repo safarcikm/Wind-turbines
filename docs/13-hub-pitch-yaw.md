@@ -207,6 +207,12 @@ the 26 kNm moment, to be checked in the casting FEA).
 
 ## 7. Yaw system
 
+> **Update (doc 25):** the yaw brake is now two passive spring-loaded friction
+> pad units (3 kNm) and the drives hold with spring-applied motor brakes. The
+> hydraulic controlled-slip calipers and R3.7 below are replaced. The bearing
+> check is redone at 34.6 kNm with a 1,103 kg tower top. See
+> [25 – Yaw system](25-yaw-system.md).
+
 ### 7.1 Loads at the yaw bearing
 
 | Case | Tilt moment | Axial | Radial |
