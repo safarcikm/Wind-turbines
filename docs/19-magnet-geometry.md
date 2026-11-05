@@ -665,6 +665,65 @@ What this means for the prototype:
   costs roughly another 1 % of EMF.
 - Swap to the N40EH/UH blocks for any unattended or field use.
 
+## 15. Study: N42SH blocks 30 × 15 × 6 mm
+
+Question (Martin, 2026-11-05): a study for 30 × 15 × 6 mm N42SH blocks.
+
+**How the block fits.** The pole pitch at the magnet face is 47.4 mm and the
+stack 74 mm. Two layouts make sense:
+
+- **S1: one block across (30 wide) × five along (15 long).** Rows 75.8 mm,
+  almost exactly the stack (0.9 mm overhang each end). Pole span 0.63:
+  17 mm free between poles, so normal comb bars fit.
+- **S3: three blocks across (15 wide) × three along (30 long).** Pole span
+  0.96: only **2 mm between poles**. Rows 90.4 mm, overhanging the stack
+  8.2 mm at each end.
+
+Two 15 mm blocks across give the same span as S1 with more pieces, and two
+30 mm rows (60.2 mm) would leave 14 mm of stack without magnet, so neither
+was run. Both layouts use a seat fitted to the 6 mm block and a step skew of
+the rows (1/n of the 1° cogging period). N42SH catalogue minimum: Br 1.29 T,
+HcJ 1,592 kA/m at 20 °C, −0.12 %/K and −0.60 %/K. Model:
+[`sh30.py`](../analysis/generator/sh30.py) → `results/sh30_S1.json`,
+`results/sh30_S3.json`.
+
+| | Rev B (N40EH/UH 40 × 20 × 7.5) | **S1: 1 across × 5 along** | S3: 3 across × 3 along |
+|---|---|---|---|
+| Pieces / magnet mass | 160 / 7.30 kg | 200 / 4.10 kg | 360 / 7.39 kg |
+| Drum seat | Ø618.65 × 96 | Ø616.03 × ≈ 92 | Ø615.48 × ≈ 106 |
+| Line EMF, 100 °C, 28 turns | 380 V | **312 V (−18 %)** | 376 V (−1 %) |
+| Turns for 380 V | 28 | 34 | 28 |
+| Torque at the sizing current | 787 Nm | 644 Nm (−18 %) | 780 Nm |
+| Cogging, skewed (not skewed) | < 0.1 (6.6) Nm | < 0.1 (5.1) Nm | < 0.1 (8.6) Nm |
+| Demag margin, transient short circuit, 100 °C / 120 °C | 47 % / 27 % (N40EH) | 21 % / 0 % | 14 % / −9 % |
+| Demag margin, rated load, 120 °C | ≥ 30 % | 29 % | 34 % |
+
+What it says:
+
+- **S3 matches the voltage and torque**, but it is a hard rotor to build:
+  360 pieces, 2 mm between poles (comb bars would be 1.8 mm G11 strips),
+  a 106 mm magnet seat that runs into the brake disc's room at the rear
+  (x 433 against the disc at x 435) unless the end rings are made thinner,
+  and only 14 % demagnetisation margin at 100 °C.
+- **S1 is easy to build** (200 pieces, rows that fit the stack, normal comb
+  bars) and is more robust against demagnetising than S3, but it has 18 %
+  less flux. To keep 380 V the coils need 34 turns instead of 28; at the
+  same torque the current-times-turns rises by 22 % and the copper loss by
+  about 1.5 ×, which the doc 06 cooling (hot spot 92 to 101 °C) has no room
+  for. As built with 28 turns it is a 312 V, roughly 80 % power machine.
+- **N42SH itself** passes at 100 °C (S1) but not at the 120 °C design case:
+  the transient short circuit leaves 0 % (S1) or −9 % (S3). This is the same
+  result as §12, where N42SH failed at 120 °C even in the thicker block.
+
+**Recommendation.** For the production rotor, stay with Rev B (40 × 20 × 7.5,
+N40EH or N40UH): it is the only option that meets voltage, torque, cooling
+and the 120 °C fault case together. 30 × 15 × 6 N42SH blocks are usable for
+a **bench prototype in the S1 layout**, accepting 312 V and about 80 %
+torque with the existing 28-turn winding, magnets kept below 100 °C, and no
+short-circuit tests above 100 °C. That is a better prototype than §14's N42
+5 mm blocks (which must stay below 50 °C and never see a short circuit), at
+the price of a different seat (Ø616.03) and 18 % less output.
+
 ## Appendix A. How to rerun
 
 ```
@@ -676,6 +735,7 @@ python3 magnets.py C2 C1 C2t C2s   # Rev B: 40 x 20 cases incl. step skew, ~30 m
 python3 magnets.py tol C2t      # Rev B tolerance scatter, with and without skew
 python3 grades.py C2t           # Rev B grade assessment (§12) -> grades_summary_C2t.json
 python3 proto.py steel          # §14 prototype N42 5 mm + steel filler (also: resin), ~10 min
+python3 sh30.py S1              # §15 N42SH 30 x 15 x 6 layouts (also: S3), ~10 min
 cd ../../cad/generator_mfg
 python3 magnet_geom.py          # final dimensions
 python3 figures_magnets.py --png

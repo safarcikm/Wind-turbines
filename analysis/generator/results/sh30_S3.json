@@ -1,0 +1,47 @@
+{
+  "key": "S3",
+  "name": "N42SH 30x15x6: 3 across x 3 along",
+  "seat_d_mm": 615.48,
+  "span_alpha": 0.958,
+  "rows_mm": 90.4,
+  "pieces": 360,
+  "magnet_kg": 7.39,
+  "skew_step_deg": 0.333,
+  "skew_emf_factor": 0.9955,
+  "line_emf_60C_V": 393.8,
+  "line_emf_100C_V": 376.4,
+  "turns_for_380V_100C": 28.3,
+  "cogging_pp_Nm": 8.57,
+  "cogging_skewed_pp_Nm": 0.05,
+  "torque_at_sizing_current_100C_Nm": 779.5,
+  "demag_margin_pct": {
+    "60C": {
+      "HcJ_kA_m": 1210,
+      "I_sc_A_peak": 65.1,
+      "rated_load_q": 63.0,
+      "steady_sc_d": 52.5,
+      "transient_sc_d": 38.0
+    },
+    "80C": {
+      "HcJ_kA_m": 1019,
+      "I_sc_A_peak": 63.1,
+      "rated_load_q": 57.0,
+      "steady_sc_d": 45.1,
+      "transient_sc_d": 28.3
+    },
+    "100C": {
+      "HcJ_kA_m": 828,
+      "I_sc_A_peak": 61.1,
+      "rated_load_q": 48.3,
+      "steady_sc_d": 34.3,
+      "transient_sc_d": 14.1
+    },
+    "120C": {
+      "HcJ_kA_m": 637,
+      "I_sc_A_peak": 59.2,
+      "rated_load_q": 34.3,
+      "steady_sc_d": 17.0,
+      "transient_sc_d": -8.6
+    }
+  }
+}
