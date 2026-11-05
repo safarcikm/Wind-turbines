@@ -1,0 +1,292 @@
+{
+ "geometry": {
+  "theta_range": [
+   -2.0,
+   92.0
+  ],
+  "r_crank": 120.0,
+  "s_pin": 130.0,
+  "R_yoke": 110.0,
+  "L_link": 220.0,
+  "beta_deg": 42.7,
+  "stroke_mm": 175.5,
+  "lever_mm_per_rad": [
+   79.1,
+   122.5
+  ],
+  "link_angle_max_deg": 17.7
+ },
+ "blade_torques_Nm": {
+  "trip_design": 433.0,
+  "trip_single": 246.8,
+  "trip_warm_min": 30.9,
+  "normal_cold_eq": 87.7,
+  "normal_warm_mean": 33.8,
+  "storm_hold": 440.4,
+  "J_blade": 0.1
+ },
+ "yoke_force_required_kN": {
+  "design_max": 17.28,
+  "single_max": 9.85
+ },
+ "springs": {
+  "n": 2,
+  "type": "nitrogen gas spring (die spring, ISO 11901 type), low-temperature seals",
+  "stroke_mm": 186,
+  "F_extended_20C_each_kN": 13.5,
+  "F_compressed_20C_each_kN": 17.6,
+  "progression": 1.3,
+  "margin_one_spring_cold_vs_sim_estop": 1.23,
+  "margin_both_cold_vs_SLM_G": 1.4,
+  "F_latched_both_40C_kN": 37.5,
+  "energy_released_both_kJ": 5.42,
+  "cycles": "trips and weekly tests only (about 2,000 in 20 years); the springs do not move in normal pitching"
+ },
+ "damper": {
+  "type": "hydraulic speed controller (sealed, adjustable), in parallel with the springs",
+  "v_design_m_s": 0.064,
+  "F_max_kN": 36.7,
+  "c_Ns_per_m": 572122,
+  "feather_time_s": 3.1,
+  "end_buffer": "industrial shock absorber on the carriage end stop + rubber blade stops at 93 deg"
+ },
+ "actuator": {
+  "type": "electric cylinder, ball screw, parallel servo motor with spring-applied holding brake",
+  "stroke_mm": 196,
+  "F_normal_cont_kN": 3.5,
+  "F_normal_peak_kN": 4.74,
+  "F_recock_kN": 41.2,
+  "F_rated_required_kN": 42,
+  "lead_mm": 10.0,
+  "belt_ratio": 3.0,
+  "v_15dps_m_s": 0.032,
+  "motor_rpm_15dps": 577,
+  "motor_T_cont_Nm": 2.06,
+  "motor_T_peak_normal_Nm": 2.79,
+  "motor_T_recock_Nm": 24.31,
+  "motor": "48 V PMSM servo, about 4 Nm peak / 1.3 Nm continuous, 0.4 kW (re-cocking is slow: 10 mm/s)",
+  "C_dyn_needed": "ball screw dynamic rating >= 25 kN; screw travel 20 years from pitch duty below",
+  "screw_travel_20y_km": 1352.0
+ },
+ "latch": {
+  "holding_kN": 37.5,
+  "type": "roller pawl over a hardened step, toggle ratio >= 25:1, held by a power-on solenoid",
+  "solenoid_force_N": 337,
+  "release": "safety chain opens solenoid power: release < 50 ms; weekly test = real trip at low wind"
+ },
+ "links": {
+  "eye": "spherical plain bearings, steel/steel, greased from the hub lubricator (not PTFE: 230 million reversals)",
+  "tube": "\u00d830 x 4 S355 with M20 turnbuckle",
+  "L_mm": 220.0,
+  "F_tension_trip_kN": 7.3,
+  "F_tension_recock_kN": 14.4,
+  "F_compression_max_kN": 14.4,
+  "buckling_kN": 1210,
+  "angle_max_deg": 17.7
+ },
+ "crank": {
+  "r_mm": 120.0,
+  "pin_plane_s_mm": 130.0,
+  "form": "welded S355 tube \u00d8168 x 8 from the blade-ring flange (clamped by the 10 blade studs) down to the pin plane, lever 25 thick, pin \u00d830",
+  "T_recock_Nm": 1732,
+  "T_trip_design_Nm": 520,
+  "storm_hold_Nm": 440,
+  "storm_note": "storm holding: the cylinder's holding brake + screw hold all three blades; one blade's 440 Nm gives 5.6 kN on the yoke, far below the cylinder rating"
+ },
+ "yoke": {
+  "form": "S355 three-arm plate yoke 20 thick, eyes at R 110, central boss on the cylinder rod, guided by 2 rods \u00d825 (also take the yoke torque from the link angles)",
+  "stroke_mm": 176,
+  "x_fine_mm": -127,
+  "x_feather_mm": -302
+ },
+ "hub": {
+  "material": "S355NL (impact tested -50 C), stress relieved after welding, flanges machined after",
+  "shell": "rolled tube \u00d8460 x 10, length 440",
+  "necks": "3 x tube \u00d8330 x 10, full-penetration welds, toes ground",
+  "neck_flanges": "3 x ring \u00d8360/\u00d8262 x 25 (pitch bearing seat, 16 x M16 PCD 300, flatness 0.05 after machining)",
+  "rear_flange": "ring \u00d8470/\u00d8340 x 25: 12 x M16 10.9 PCD 400, \u00d8361 H7 recess (unchanged interface to the drum)",
+  "front_plate": "ring \u00d8460/\u00d8300 x 12: nose housing flange, 12 x M12 PCD 340",
+  "static_hot_spot_MPa": 83,
+  "static_allow_MPa": 323,
+  "fatigue_range_MPa": 33.9,
+  "fatigue_allow_1e7_MPa": 42.1,
+  "fatigue_ok": true,
+  "mass": {
+   "shell": 29.5,
+   "necks": 28.4,
+   "neck_flanges": 28.2,
+   "rear_flange": 16.2,
+   "front_plate": 9.0,
+   "gussets": 6.0,
+   "total": 117.3
+  },
+  "joint": {
+   "n_bolts": 12,
+   "size": "M16 10.9",
+   "pcd": 0.4,
+   "Ft_per_bolt_kN": 10.6,
+   "preload_kN": 110,
+   "slip_capacity_kN": 292.0,
+   "shear_demand_kN": 141.9
+  }
+ },
+ "mass": {
+  "parts": {
+   "pitch bearings x 3 (ungeared)": 57.4,
+   "cranks x 3": 12.0,
+   "links x 3": 3.6,
+   "yoke + guide rods": 6.5,
+   "electric cylinder + motor": 11.0,
+   "carriage, latch, solenoid": 5.0,
+   "gas springs x 2": 7.0,
+   "damper + end buffer": 2.0,
+   "nose housing (Al 6082, welded)": 7.0,
+   "pitch controller, position sensor, limit switches": 3.0,
+   "spinner, boots, slip ring rotor, cabling": 8.0
+  },
+  "pitch_system": 122.5,
+  "hub_welded": 117.3,
+  "total_welded_hub": 239.8,
+  "total_with_cast_hub": 218.5,
+  "doc13": {
+   "hub_cast": 90.0,
+   "three_pitch_axes": 101.39999999999999,
+   "spinner_slip_ring": 8.0,
+   "total": 199.4
+  }
+ },
+ "part_count": {
+  "doc13": {
+   "servo_gearmotors": 3,
+   "drive_controllers": 3,
+   "supercap_modules": 3,
+   "encoders": 3,
+   "ring_gears_pinions": 3,
+   "limit_switch_sets": 3,
+   "heater_pads": 6
+  },
+  "doc24": {
+   "electric_cylinder": 1,
+   "controller": 1,
+   "linear_position_sensor": 1,
+   "limit_switch_set": 1,
+   "gas_springs": 2,
+   "latch_solenoid": 1,
+   "damper": 1,
+   "heater_pads": 2,
+   "links": 3,
+   "cranks": 3,
+   "yoke": 1
+  }
+ },
+ "curves": {
+  "theta": [
+   -2.0,
+   4.0,
+   10.0,
+   16.0,
+   22.0,
+   28.0,
+   34.0,
+   40.0,
+   46.0,
+   52.0,
+   58.0,
+   64.0,
+   70.0,
+   76.0,
+   82.0,
+   88.0
+  ],
+  "yoke_x": [
+   -126.6,
+   -135.1,
+   -144.3,
+   -154.1,
+   -164.5,
+   -175.6,
+   -187.1,
+   -199.2,
+   -211.7,
+   -224.4,
+   -237.2,
+   -250.0,
+   -262.4,
+   -274.4,
+   -285.6,
+   -295.9
+  ],
+  "F_req_design_kN": [
+   17.28,
+   16.15,
+   15.09,
+   14.15,
+   13.34,
+   12.65,
+   12.09,
+   11.66,
+   11.35,
+   11.19,
+   11.18,
+   11.33,
+   11.69,
+   12.31,
+   13.27,
+   14.74
+  ],
+  "F_springs_cold_kN": [
+   29.11,
+   28.74,
+   28.35,
+   27.94,
+   27.51,
+   27.06,
+   26.59,
+   26.12,
+   25.63,
+   25.15,
+   24.67,
+   24.21,
+   23.76,
+   23.34,
+   22.95,
+   22.6
+  ],
+  "F_one_spring_cold_kN": [
+   14.56,
+   14.37,
+   14.18,
+   13.97,
+   13.75,
+   13.53,
+   13.3,
+   13.06,
+   12.82,
+   12.58,
+   12.34,
+   12.1,
+   11.88,
+   11.67,
+   11.48,
+   11.3
+  ],
+  "F_req_single_kN": [
+   9.85,
+   9.2,
+   8.6,
+   8.07,
+   7.6,
+   7.21,
+   6.89,
+   6.65,
+   6.47,
+   6.38,
+   6.37,
+   6.46,
+   6.67,
+   7.02,
+   7.57,
+   8.4
+  ]
+ }
+}
