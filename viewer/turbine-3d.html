@@ -1,0 +1,894 @@
+<title>12 kW Turbine 3D</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: full-bleed 3D stage; a narrow instrument panel floats on the left (bottom sheet on phones); part card floats right. */
+:root {
+  --bg: #dfe5e8;          /* sky / stage */
+  --bg2: #c9d3d8;
+  --panel: rgba(247, 249, 250, 0.92);
+  --fg: #17232b;
+  --muted: #5b6b75;
+  --line: rgba(23, 35, 43, 0.14);
+  --accent: #1f6f9c;      /* pitch-system blue, used for controls */
+  --warm: #c8782a;        /* highlight / selection amber */
+  --ground: #b9c2b4;
+  --font-ui: "Barlow Semi Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --font-data: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #11181d; --bg2: #1b252c; --panel: rgba(22, 30, 36, 0.92); --fg: #e3eaee; --muted: #93a3ad;
+    --line: rgba(227, 234, 238, 0.14); --accent: #5fb0de; --warm: #e59a4f; --ground: #2a332c; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #11181d; --bg2: #1b252c; --panel: rgba(22, 30, 36, 0.92); --fg: #e3eaee; --muted: #93a3ad;
+  --line: rgba(227, 234, 238, 0.14); --accent: #5fb0de; --warm: #e59a4f; --ground: #2a332c; color-scheme: dark;
+}
+html, body { height: 100%; }
+[hidden] { display: none !important; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font-ui); font-size: 15px; overflow: hidden; }
+#stage { position: fixed; inset: 0; }
+#stage canvas { display: block; width: 100%; height: 100%; touch-action: none; }
+
+.panel {
+  position: fixed; z-index: 3; top: calc(12px + env(safe-area-inset-top, 0px)); left: max(12px, env(safe-area-inset-left, 0px));
+  width: 300px; max-height: calc(100% - 24px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
+  overflow-y: auto; background: var(--panel); border: 1px solid var(--line); border-radius: 6px;
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  display: flex; flex-direction: column; gap: 14px; padding: 14px 16px 16px;
+}
+.panel header h1 { margin: 0; font-size: 21px; font-weight: 700; letter-spacing: 0.01em; text-wrap: balance; }
+.panel header p { margin: 2px 0 0; color: var(--muted); font-size: 13px; line-height: 1.35; }
+.grp { display: flex; flex-direction: column; gap: 8px; }
+.grp + .grp { border-top: 1px solid var(--line); padding-top: 12px; }
+.grp h2 { margin: 0; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.09em; color: var(--muted); }
+.row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.slider { display: grid; grid-template-columns: 1fr auto; gap: 2px 8px; align-items: center; }
+.slider label { font-size: 14px; }
+.slider output { font-family: var(--font-data); font-size: 12.5px; font-variant-numeric: tabular-nums; color: var(--fg); }
+.slider input { grid-column: 1 / -1; width: 100%; accent-color: var(--accent); margin: 0; }
+button {
+  font: inherit; font-size: 14px; font-weight: 500; color: var(--fg); background: transparent;
+  border: 1px solid var(--line); border-radius: 4px; padding: 5px 10px; cursor: pointer;
+}
+button:hover { border-color: var(--accent); }
+button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+button.on { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+button.primary { border-color: var(--accent); color: var(--accent); }
+.checks { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 10px; font-size: 14px; }
+.checks label { display: flex; gap: 6px; align-items: center; cursor: pointer; }
+.checks input { accent-color: var(--accent); margin: 0; }
+.readout { display: grid; grid-template-columns: auto 1fr; gap: 3px 10px; font-size: 13px; }
+.readout dt { color: var(--muted); }
+.readout dd { margin: 0; text-align: right; font-family: var(--font-data); font-size: 12.5px; font-variant-numeric: tabular-nums; }
+.note { font-size: 12px; color: var(--muted); line-height: 1.35; margin: 0; }
+
+#card {
+  position: fixed; z-index: 4; top: calc(12px + env(safe-area-inset-top, 0px)); right: max(12px, env(safe-area-inset-right, 0px));
+  width: 290px; background: var(--panel); border: 1px solid var(--line); border-left: 3px solid var(--warm);
+  border-radius: 6px; padding: 12px 14px 14px; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  display: flex; flex-direction: column; gap: 6px;
+}
+#card .dwg { font-family: var(--font-data); font-size: 12px; color: var(--warm); }
+#card h3 { margin: 0; font-size: 18px; font-weight: 600; text-wrap: balance; }
+#card p { margin: 0; font-size: 13.5px; line-height: 1.4; }
+#card dl { margin: 4px 0 0; }
+#card .x { position: absolute; top: 6px; right: 6px; border: 0; padding: 2px 8px; font-size: 18px; line-height: 1; color: var(--muted); }
+
+#tip {
+  position: fixed; pointer-events: none; background: var(--panel); border: 1px solid var(--line); border-radius: 4px;
+  padding: 3px 8px; font-size: 13px; white-space: nowrap; transform: translate(12px, 12px);
+}
+.lbl {
+  position: fixed; left: 0; top: 0; pointer-events: none; font-size: 12px; font-weight: 600; letter-spacing: 0.02em;
+  padding: 1px 6px; border-radius: 3px; background: var(--panel); border: 1px solid var(--line); white-space: nowrap;
+  transform: translate(-50%, -130%);
+}
+.lbl::after { content: ""; position: absolute; left: 50%; top: 100%; width: 1px; height: 8px; background: var(--muted); }
+
+#loading { position: fixed; inset: 0; display: grid; place-items: center; color: var(--muted); font-size: 14px; pointer-events: none; }
+
+@media (max-width: 720px) {
+  .panel {
+    top: auto; bottom: calc(8px + env(safe-area-inset-bottom, 0px)); left: max(8px, env(safe-area-inset-left, 0px));
+    right: max(8px, env(safe-area-inset-right, 0px)); width: auto; max-height: 46%;
+  }
+  #card { left: max(8px, env(safe-area-inset-left, 0px)); right: max(8px, env(safe-area-inset-right, 0px)); width: auto; top: calc(8px + env(safe-area-inset-top, 0px)); }
+  .panel header p { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+</style>
+
+<div id="stage"></div>
+<div id="loading">Building the turbine model…</div>
+
+<aside class="panel" aria-label="Viewer controls">
+  <header>
+    <h1>12 kW turbine, Rev C</h1>
+    <p>Ø7.5 m rotor, direct-drive outer-rotor generator, collective pitch, active yaw. Geometry from the design files (mm).</p>
+  </header>
+
+  <section class="grp" aria-label="Operation">
+    <h2>Operation</h2>
+    <div class="row">
+      <button id="btnRun" class="primary" type="button">Run</button>
+      <button id="btnStop" type="button">Stop (feather)</button>
+      <button id="btnSlow" type="button" class="on" title="Show the rotor at 1/10 of its real speed">Slow motion</button>
+    </div>
+    <div class="slider">
+      <label for="rpm">Rotor speed</label><output id="rpmOut">178 rpm</output>
+      <input id="rpm" type="range" min="0" max="250" step="1" value="178">
+    </div>
+    <div class="slider">
+      <label for="pitch">Blade pitch</label><output id="pitchOut">0.0°</output>
+      <input id="pitch" type="range" min="-2" max="92" step="0.5" value="0">
+    </div>
+    <div class="slider">
+      <label for="yaw">Nacelle yaw</label><output id="yawOut">0°</output>
+      <input id="yaw" type="range" min="-180" max="180" step="1" value="0">
+    </div>
+    <div class="row"><button id="btnAutoYaw" type="button">Follow wind</button></div>
+  </section>
+
+  <section class="grp" aria-label="View">
+    <h2>View</h2>
+    <div class="slider">
+      <label for="explode">Exploded view</label><output id="explodeOut">0 %</output>
+      <input id="explode" type="range" min="0" max="1" step="0.01" value="0">
+    </div>
+    <div class="checks">
+      <label><input id="cSection" type="checkbox"> Section cut</label>
+      <label><input id="cLabels" type="checkbox" checked> Labels</label>
+      <label><input id="cSpinner" type="checkbox" checked> Spinner</label>
+      <label><input id="cCover" type="checkbox"> Nacelle shell</label>
+      <label><input id="cBlades" type="checkbox" checked> Blades</label>
+      <label><input id="cHub" type="checkbox" checked> Hub shell</label>
+    </div>
+    <div class="row" role="group" aria-label="Camera">
+      <button type="button" data-cam="all">Turbine</button>
+      <button type="button" data-cam="rotor">Rotor</button>
+      <button type="button" data-cam="nacelle">Nacelle</button>
+      <button type="button" data-cam="hub">Pitch</button>
+      <button type="button" data-cam="gen">Generator</button>
+      <button type="button" data-cam="yaw">Yaw</button>
+    </div>
+  </section>
+
+  <section class="grp" aria-label="Live values">
+    <h2>Live values</h2>
+    <dl class="readout">
+      <dt>Tip speed</dt><dd id="vTip">–</dd>
+      <dt>Generator frequency</dt><dd id="vFreq">–</dd>
+      <dt>Pitch yoke position</dt><dd id="vYoke">–</dd>
+      <dt>Yaw pinion angle</dt><dd id="vPin">–</dd>
+      <dt>Wind direction</dt><dd id="vWind">–</dd>
+    </dl>
+    <p class="note">Hover a part for its name, click it for details. Drag to orbit, scroll or pinch to zoom, right-drag to pan.</p>
+  </section>
+</aside>
+
+<div id="card" hidden role="dialog" aria-live="polite">
+  <button class="x" id="cardX" type="button" aria-label="Close">×</button>
+  <div class="dwg" id="cardDwg"></div>
+  <h3 id="cardName"></h3>
+  <p id="cardText"></p>
+  <dl class="readout" id="cardDl"></dl>
+</div>
+<div id="tip" hidden></div>
+<div id="labels"></div>
+
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+} }
+</script>
+<script type="module">
+import * as THREE from "three";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
+import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
+
+const D2R = Math.PI / 180;
+const $ = (id) => document.getElementById(id);
+
+/* =====================================================================
+   DESIGN DATA (mm, deg) — copied from the repository sources
+   cad/nacelle_p1/geometry.py (Rev B nacelle, Rev C generator), cad/hub_c/model.py,
+   analysis/hub/collective.py (doc 24), cad/yaw/model.py + cad/nacelle_fitcheck/parts.py (doc 25),
+   analysis/blade + analysis/rotor/bem.py (doc 10/03), analysis/tower (doc 09)
+   Spindle frame: x rearward from the blade plane, r from the rotor axis.
+   ===================================================================== */
+const TILT = 5.0, X_YAW = 750.0, H_ROTOR = 530.0;
+const RC = { X: -X_YAW, Z: H_ROTOR + 40.0 };               // rotor centre in the nacelle world frame
+const GEN = { poles: 40, slots: 45, r_s: 299, w_t: 22.3, b0: 4, h_tip: 2, h_wedge: 2, d_slot: 65, h_sy: 11.4, stack: 74 };
+GEN.r_slot_top = GEN.r_s - GEN.h_tip - GEN.h_wedge; GEN.r_slot_bot = GEN.r_slot_top - GEN.d_slot; GEN.r_si = GEN.r_slot_bot - GEN.h_sy;
+const R_SEAT = 628.05 / 2, X_STACK = [343, 417];
+const MAG = { W: 30, L: 15, T: 12, r_in: 301.5, rows: 5, shim: 0.2, skew: [-0.4, -0.2, 0, 0.2, 0.4] };
+const SPINDLE_OUTER = [[40, 60], [52, 60], [52, 67.5], [80, 67.5], [80, 70], [142.5, 70], [142.5, 69], [337.5, 69], [337.5, 70],
+  [382.5, 70], [382.5, 77.5], [400, 77.5], [400, 75], [430, 75], [440, 85], [440, 200], [470, 200], [470, 100], [476, 100], [476, 45]];
+const DRUM_PARTS = {
+  housing: [[92, 105], [142.5, 105], [142.5, 98], [337.5, 98], [337.5, 105], [385, 105], [385, 120], [320, 120], [320, 112], [160, 112], [160, 120], [92, 120]],
+  webIn: [[195, 112], [195, 180], [200, 180], [200, 232], [220, 232], [220, 112]],
+  webOut: [[212, 232], [220, 232], [220, 312], [212, 312]],
+  shell: [[212, 312], [335, 312], [335, R_SEAT], [425, R_SEAT], [425, 312], [451, 312], [451, 318], [425, 318], [425, 323], [335, 323], [335, 318], [212, 318]],
+  rearRing: [[451, 312], [465, 312], [465, 355], [451, 355]],
+};
+const CARRIER = [[343.5, 200], [343.5, GEN.r_si], [417, GEN.r_si], [417, 228], [440, 228], [440, 90], [415, 90], [415, 200]];
+const STATOR_RING = [[335, 203], [343, 203], [343, 229], [335, 229]];
+const DISC = [[435, 326], [451, 326], [451, 440], [435, 440]];
+const REAR_COVER = [[465, 216], [465, 345], [475, 345], [475, 216]];
+const SEAL_FRONT = [[82, 91.5], [92, 91.5], [92, 120], [82, 120]], SEAL_REAR = [[385, 99], [397, 99], [397, 120], [385, 120]];
+const FINS = { n: 36, t: 3, x0: 220, x1: 312, r0: 262, r1: 312, leg_x1: 250, leg_r0: 140 };
+const RIBS = { n: 48, t: 4, x0: 222, x1: 430, r_tip: 338 };
+// hub + collective pitch (doc 24)
+const BLADES = [90, 210, 330];
+const HUB = { shell_r: [220, 230], shell_x: [-240, 175], rear: { x: [175, 200], r: [170, 235] }, front: { x: [-252, -240], r: [150, 230] },
+  neck_r: [155, 165], neck_s: [190, 325], flange: { s: [325, 350], r: [131, 180] } };
+const PB = { outer: { s: [350, 400], r: [127.5, 177.5] }, inner: { s: [352, 402], r: [90, 122.5] } };
+const CRANK = { flange: { s: [337, 352], r: [80, 118] }, tube: { s: [164, 337], r: [80, 84] }, lever: { s: [144, 164] }, pin_r: 15 };
+const K = { TH_FINE: -2, TH_FEATHER: 92, R_C: 110, S_P: 118, PHI0: 5, R_Y: 110, L_LINK: 220 };
+K.TH_MID = (K.TH_FINE + K.TH_FEATHER) / 2;
+// blade (doc 10 / BEM doc 03): r [m], chord [m], twist [deg], t/c
+const BL = {
+  r: [0.4, 0.546, 0.691, 0.837, 0.983, 1.128, 1.274, 1.42, 1.565, 1.711, 1.857, 2.002, 2.148, 2.293, 2.439, 2.585, 2.73, 2.876, 3.022, 3.167, 3.313, 3.459, 3.604, 3.75],
+  c: [0.191, 0.256, 0.332, 0.338, 0.329, 0.32, 0.311, 0.302, 0.293, 0.284, 0.275, 0.267, 0.258, 0.249, 0.24, 0.231, 0.222, 0.213, 0.204, 0.195, 0.186, 0.177, 0.168, 0.159],
+  tw: [19.88, 19.88, 19.78, 17.23, 14.48, 12.24, 10.42, 8.93, 7.67, 6.6, 5.68, 4.88, 4.19, 3.58, 3.04, 2.56, 2.12, 1.73, 1.37, 1.05, 0.75, 0.48, 0.23, 0],
+  tc: [1, 0.709, 0.449, 0.296, 0.286, 0.276, 0.266, 0.256, 0.247, 0.239, 0.231, 0.223, 0.215, 0.209, 0.204, 0.199, 0.195, 0.19, 0.186, 0.181, 0.18, 0.18, 0.18, 0.18],
+  tipOffset: 0.12, pitchAxis: 0.30, rootR: 110,
+};
+// tower (doc 09): 18 m tapered monopole Ø550 → Ø320
+const TOWER = { H: 18000, D_base: 550, D_top: 320, flangeZ: -360 };
+
+/* ----------------------------------------------- collective pitch kinematics (collective.py) */
+function pin(theta) { const a = (theta - K.TH_MID + K.PHI0) * D2R; return [-K.R_C * Math.sin(a), K.S_P, -K.R_C * Math.cos(a)]; } // (x, s, y_cad)
+const BETA = (() => { const p = pin(K.TH_MID); return Math.atan2(-p[2], p[1]); })();
+const S_Y = K.R_Y * Math.cos(BETA), Y_Y = -K.R_Y * Math.sin(BETA);
+function yokeX(theta) { const p = pin(theta); const d2 = K.L_LINK ** 2 - (p[1] - S_Y) ** 2 - (p[2] - Y_Y) ** 2; return p[0] - Math.sqrt(d2); }
+
+/* =====================================================================
+   PART CATALOGUE (shown on hover / click)
+   ===================================================================== */
+const PARTS = {
+  blade: { n: "Rotor blade (×3)", d: "doc 10", t: "Glass/epoxy shell with carbon UD spar caps and PET core. Root Ø220 with 10 × M16 inserts; pitch axis at 30 % chord.", kv: [["Length", "3.35 m (r 0.40 → 3.75 m)"], ["Max chord", "338 mm at r 0.84 m"], ["Mass", "20.5 kg"], ["Twist", "19.9° root → 0° tip"]] },
+  spinner: { n: "Spinner", d: "doc 24 §7", t: "Vacuum-infused glass/vinyl-ester nose cone with EPDM blade boots. Shown translucent; shape is indicative.", kv: [["Length", "≈ 0.8 m ahead of the blade plane"]] },
+  hub: { n: "Hub, welded S355NL", d: "NH-500W", t: "Rolled shell with three necks (full-penetration welds, toes ground) and 25 mm bearing flanges. Bolts to the drum: 12 × M16 10.9 on PCD 400.", kv: [["Shell", "Ø460 × 10, x −240 … +200"], ["Necks", "Ø330 × 10"], ["Mass", "117 kg"]] },
+  pbOuter: { n: "Pitch bearing, outer ring", d: "bought", t: "Four-point slewing ring, no gear teeth (collective pitch). Bolted to the hub flange.", kv: [["Size", "Ø355 × 50, Dpw 250"], ["Balls", "27 × 25.4 mm"]] },
+  pbInner: { n: "Pitch bearing, inner ring", d: "bought", t: "Blade-side ring; turns with the blade. Bore opened to Ø180.", kv: [["Mass, both rings", "19 kg per blade"]] },
+  crank: { n: "Pitch crank (×3)", d: "NH-530", t: "Welded S355: flange clamped by the 10 blade studs, tube down the neck, 20 mm lever with a Ø30 pin at r 110 from the pitch axis.", kv: [["Mass", "8 kg each"], ["Crank phase", "5° (pin clears drum housing by 8 mm)"]] },
+  link: { n: "Pitch link (×3)", d: "NH-540", t: "Ø30 × 4 tube with steel/steel spherical eyes and an M20 turnbuckle for the 0° setting of each blade (±3°).", kv: [["Eye centres", "220 mm"]] },
+  yoke: { n: "Yoke", d: "NH-550", t: "20 mm S355 plate with three arms (eyes at R 110) on the cylinder rod. Runs on two Ø25 guide rods that also take the twisting moment.", kv: [["Stroke", "160 mm for −2° … 92°"], ["Fine / feather", "x −143 / x −303"]] },
+  actuator: { n: "Pitch electric cylinder", d: "bought", t: "Ball screw Ø32 × 5 with a 1:2 belt to a parallel 48 V servo with a spring-applied holding brake. Feathers the rotor on supercap power if the safety chain opens.", kv: [["Force limit", "25.5 kN"], ["Trip case −30 °C", "20.9 kN"], ["Stroke", "180 mm"]] },
+  motor: { n: "Pitch servo motor, 48 V", d: "bought", t: "Parallel motor on the cylinder through a 1:2 toothed belt; spring-applied brake holds the blades when parked.", kv: [["Peak / cont.", "11.3 / 2.5 Nm"], ["At 30 °/s", "1,400 rpm, 0.8 kW"]] },
+  supercap: { n: "Supercapacitor module", d: "bought", t: "Energy store for the fail-safe feather. One module for all three blades.", kv: [["Reserve", "5.1 full strokes at end of life"]] },
+  drive: { n: "Pitch drive (STO)", d: "bought", t: "48 V servo drive with Safe Torque Off on the two-channel safety chain, CANopen to the controller.", kv: [] },
+  nose: { n: "Nose housing", d: "NH-560", t: "Al 6082 frame on the hub front plate: front ring, rear flange ring, four longerons and the cylinder mounts.", kv: [["Front ring", "x −775"]] },
+  guide: { n: "Yoke guide rods (×2)", d: "NH-550", t: "Ø25 hardened rods from the nose housing into the hub. They stop the yoke turning.", kv: [] },
+  slip: { n: "Slip ring", d: "bought", t: "Power and signals to the hub, sized for blade heating rings on every unit.", kv: [] },
+  drum: { n: "Generator rotor drum", d: "NP1-210C", t: "Welded S355 drum: bearing housing, webs and magnet shell. Full-round rear flange weld keeps both ends round.", kv: [["Magnet seat", "Ø628.05"], ["Shell OD", "Ø646"], ["Mass", "92 kg"]] },
+  ribs: { n: "Outer cooling ribs (×48)", d: "NP1-210C", t: "Axial 4 × 20 ribs on the drum shell for purely passive cooling (doc 23 §4a).", kv: [["Tip diameter", "Ø676"], ["Length", "x 222 … 430"]] },
+  fins: { n: "Inner fins (×36)", d: "NP1-210C", t: "L-shaped 3 mm fins in the front cavity. They stir the inside air, which is the main cooling lever.", kv: [["Fins + ribs", "12.5 kg"]] },
+  magnets: { n: "Magnets N45SH (200 + 10 spare)", d: "NP1-220E", t: "One solid 30 × 15 × 12 block per pole and row, magnetised through 12. 40 poles × 5 rows, rows step-skewed 0.20°. Red = N, blue = S.", kv: [["Block", "30 × 15 × 12 mm"], ["Total", "8.2 kg"]] },
+  disc: { n: "Brake disc", d: "NP1-230", t: "Ø880 × 16 disc bolted to the drum rear ring (24 × M10 10.9 on PCD 678). Pad track r 385 … 435. 12 lock holes on PCD 740.", kv: [["Mass", "34.5 kg"]] },
+  cover: { n: "Drum rear cover", d: "NP1-212", t: "5083 aluminium cover with the Ø400 lip seal carrier running on the spindle flange.", kv: [["Mass", "7.3 kg"]] },
+  stator: { n: "Stator core (segmented)", d: "NP1-201C", t: "45 tooth segments of M270-35A in carrier dovetail grooves. 40 poles / 45 slots.", kv: [["Bore / OD", "Ø437 / Ø598"], ["Stack", "74 mm"], ["Mass", "48 kg"]] },
+  coils: { n: "Stator coils (×45)", d: "NP1-203C", t: "Concentrated tooth coils, 28 turns, VPI and potted.", kv: [["Line voltage", "372 V at 100 °C, rated"], ["Copper loss", "518 W"]] },
+  carrier: { n: "Stator carrier", d: "NP1-200", t: "Steel carrier bolted to the integral Ø400 spindle flange (steel, because aluminium loosens on Ø437 at −40 °C).", kv: [["Mass", "40.6 kg"]] },
+  spindle: { n: "Stationary spindle", d: "NP1-100", t: "Hollow 42CrMo4+QT spindle, Ø140 bearing seats, Ø90 bore for cooling air and cables, integral Ø400 flange.", kv: [["Mass", "56.8 kg"]] },
+  bearing: { n: "Main bearings 32028 X (×2)", d: "bought", t: "Tapered roller pair in O arrangement at x 120 and x 360.", kv: [["Size", "140 × 210 × 45"], ["C / C0", "280 / 430 kN"]] },
+  caliper: { n: "Rotor brake caliper (×2)", d: "NP1-310", t: "Spring-applied calipers at 3 and 9 o'clock. Second safety system: stop the rotor even with all blades stuck at fine pitch.", kv: [["Brake torque", "8.7 kNm"], ["Envelope", "generic, until supplier chosen"]] },
+  bedplate: { n: "Bedplate weldment", d: "NP1-300", t: "40 mm front and bottom plates, 20 mm side and rear plates. Spindle flange bolts to the Ø410 pad with 12 × M20.", kv: [["Mass", "150 kg (P1)"]] },
+  yawInner: { n: "Yaw bearing, inner ring", d: "bought", t: "Slewing ring Dpw 360, bolted to the bedplate with 16 × M16 on PCD 300.", kv: [] },
+  yawOuter: { n: "Yaw bearing, outer gear ring", d: "bought", t: "External gear z150 m4 on the tower side. Teeth induction hardened.", kv: [["Pitch circle", "Ø600"]] },
+  yawDrive: { n: "Yaw gearmotor (×2)", d: "bought", t: "0.18 kW gearmotor 1:1680 with z14 m4 pinion and 2 Nm spring-applied motor brake. No hydraulics.", kv: [["Overall ratio", "≈ 1:18,000"], ["Holds", "8 kNm on one pinion"]] },
+  padUnit: { n: "Friction pad unit (×2)", d: "NY-410", t: "Passive spring-loaded pads on a floating C-frame clamp the tower-top track (8 × DIN 2093 B63 disc springs).", kv: [["Friction moment", "≈ 3 kNm"], ["Mass", "13 kg each"]] },
+  adapter: { n: "Tower-top adapter", d: "NY-400", t: "Weldment with the 25 mm ring seat, 15 mm friction track to Ø790, cone and Ø420 tower flange.", kv: [["Mass", "107 kg"]] },
+  tower: { n: "Tower, tapered monopole", d: "doc 09", t: "Freestanding tilt-up S355NL monopole. 18 m standard (24 m option). Soft-stiff, 1P speed exclusion zone.", kv: [["Diameter", "Ø550 base → Ø320 top"], ["Mass (18 m)", "1.9 t"], ["1st mode", "1.21 Hz"]] },
+  foundation: { n: "Spread footing", d: "doc 09", t: "Square reinforced-concrete footing; storm drag at Ve50 governs.", kv: [["Size", "3.8 … 4.9 m square"]] },
+  shell: { n: "Nacelle shell (concept)", d: "not designed", t: "Glass/vinyl-ester body over the bedplate and brakes. Indicative only: the shell is not designed yet.", kv: [] },
+};
+
+/* =====================================================================
+   SCENE
+   ===================================================================== */
+const stage = $("stage");
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.localClippingEnabled = true;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.0;
+stage.appendChild(renderer.domElement);
+const scene = new THREE.Scene();
+const pmrem = new THREE.PMREMGenerator(renderer);
+scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+const camera = new THREE.PerspectiveCamera(35, 1, 0.05, 400);
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true; controls.dampingFactor = 0.08; controls.maxDistance = 120; controls.minDistance = 0.4;
+scene.add(new THREE.HemisphereLight(0xffffff, 0x667766, 0.6));
+const sun = new THREE.DirectionalLight(0xffffff, 1.6); sun.position.set(-6, 10, 8); scene.add(sun);
+
+const sectionPlane = new THREE.Plane(new THREE.Vector3(0, 0, -1), 0);
+let sectionOn = false;
+const clipMats = [];
+const matCache = {};
+function mat(key, color, o = {}) {
+  const id = key + "|" + color + "|" + JSON.stringify(o);
+  if (matCache[id]) return matCache[id];
+  const m = new THREE.MeshStandardMaterial({ color, metalness: o.metal ?? 0.45, roughness: o.rough ?? 0.5, side: THREE.DoubleSide,
+    transparent: !!o.opacity, opacity: o.opacity ?? 1, depthWrite: o.opacity ? false : true });
+  m.userData.base = new THREE.Color(color);
+  if (o.clip !== false) clipMats.push(m);
+  matCache[id] = m; (byPart[key] ||= []).push(m);
+  return m;
+}
+const byPart = {};
+const C = { steel: 0x8d949e, dsteel: 0x5f6770, drum: 0xaab1ba, bearing: 0xc9a13b, blue: 0x3a6ea5, blue2: 0x2f5d8c, blue3: 0x4f86c0,
+  bright: 0xd0d4da, act: 0x5b6f86, motor: 0x33475e, green: 0x4f9a5a, al: 0xb3c0cc, copper: 0xb8733a, lam: 0x4a5058,
+  magN: 0xb84a3e, magS: 0x3e64b8, blade: 0xece8dd, tower: 0xc4c7c2, red: 0xa83a32, yaw: 0x7f8c99, pad: 0x4f7a4f };
+
+function mesh(geo, key, color, o) { const m = new THREE.Mesh(geo, mat(key, color, o)); m.userData.part = key; return m; }
+
+/* ----------------------------------------------- geometry helpers (mm) */
+function latheEdges(poly, seg = 72) {   // poly [[a, r]] closed; returns geometry revolved about Y (a along Y)
+  const gs = [];
+  for (let i = 0; i < poly.length; i++) {
+    const p = poly[i], q = poly[(i + 1) % poly.length];
+    if (Math.abs(p[0] - q[0]) < 1e-6 && Math.abs(p[1] - q[1]) < 1e-6) continue;
+    gs.push(new THREE.LatheGeometry([new THREE.Vector2(Math.max(p[1], 0.01), p[0]), new THREE.Vector2(Math.max(q[1], 0.01), q[0])], seg));
+  }
+  return mergeGeometries(gs.map((g) => g.toNonIndexed()));
+}
+const latheY = (poly, seg) => latheEdges(poly, seg);
+function latheX(poly, seg) { const g = latheEdges(poly, seg); g.rotateZ(-Math.PI / 2); return g; }
+const ringX = (r0, r1, x0, x1, seg) => latheX([[x0, r0], [x1, r0], [x1, r1], [x0, r1]], seg);
+const ringY = (r0, r1, s0, s1, seg) => latheY([[s0, r0], [s1, r0], [s1, r1], [s0, r1]], seg);
+function cylX(r, x0, x1, y = 0, z = 0, seg = 32) { const g = new THREE.CylinderGeometry(r, r, x1 - x0, seg); g.rotateZ(-Math.PI / 2); g.translate((x0 + x1) / 2, y, z); return g; }
+function cylY(r, s0, s1, x = 0, z = 0, seg = 32) { const g = new THREE.CylinderGeometry(r, r, s1 - s0, seg); g.translate(x, (s0 + s1) / 2, z); return g; }
+function box(x0, x1, y0, y1, z0, z1) { const g = new THREE.BoxGeometry(x1 - x0, y1 - y0, z1 - z0); g.translate((x0 + x1) / 2, (y0 + y1) / 2, (z0 + z1) / 2); return g; }
+function rod(p, q, r, seg = 16) {     // cylinder between two points (THREE.Vector3)
+  const d = new THREE.Vector3().subVectors(q, p); const g = new THREE.CylinderGeometry(r, r, d.length(), seg);
+  g.applyQuaternion(new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), d.clone().normalize()));
+  g.translate((p.x + q.x) / 2, (p.y + q.y) / 2, (p.z + q.z) / 2); return g;
+}
+function hull(pts) {
+  pts = pts.slice().sort((a, b) => a[0] - b[0] || a[1] - b[1]);
+  const cr = (o, a, b) => (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0]);
+  const lo = [], up = [];
+  for (const p of pts) { while (lo.length >= 2 && cr(lo[lo.length - 2], lo[lo.length - 1], p) <= 0) lo.pop(); lo.push(p); }
+  for (const p of pts.slice().reverse()) { while (up.length >= 2 && cr(up[up.length - 2], up[up.length - 1], p) <= 0) up.pop(); up.push(p); }
+  return lo.slice(0, -1).concat(up.slice(0, -1));
+}
+const circ = (cx, cy, r, n = 40) => Array.from({ length: n }, (_, i) => [cx + r * Math.cos(2 * Math.PI * i / n), cy + r * Math.sin(2 * Math.PI * i / n)]);
+// extrude a 2D shape (u, v) along w, then map (u, v, w) -> three axes given as basis vectors
+function extrude(outline, holes, depth, bu, bv, bw, w0 = 0) {
+  const sh = new THREE.Shape(outline.map(([u, v]) => new THREE.Vector2(u, v)));
+  for (const h of holes || []) sh.holes.push(new THREE.Path(h.map(([u, v]) => new THREE.Vector2(u, v))));
+  const g = new THREE.ExtrudeGeometry(sh, { depth, bevelEnabled: false, curveSegments: 12 });
+  g.translate(0, 0, w0);
+  g.applyMatrix4(new THREE.Matrix4().makeBasis(bu, bv, bw)); return g;
+}
+const V = (x, y, z) => new THREE.Vector3(x, y, z);
+const EX = V(1, 0, 0), EY = V(0, 1, 0), EZ = V(0, 0, 1);
+
+/* ----------------------------------------------- stator lamination outline (geometry.py) */
+function laminationOutline(nArc = 6) {
+  const g = GEN, tau = 2 * Math.PI / g.slots, pts = [];
+  for (let k = 0; k < g.slots; k++) {
+    const th = k * tau, c = Math.cos(th), s = Math.sin(th);
+    const rot = ([px, py]) => [px * c - py * s, px * s + py * c];
+    const side = (r, sign) => { const a = sign * tau / 2, ux = Math.cos(a), uy = Math.sin(a), nx = -Math.sin(a), ny = Math.cos(a);
+      const t = Math.sqrt(r * r - (g.w_t / 2) ** 2), w = -sign * g.w_t / 2; return [t * ux + w * nx, t * uy + w * ny]; };
+    const y0 = g.b0 / 2, rOpen = g.r_s - g.h_tip;
+    const seq = [[Math.sqrt(g.r_s ** 2 - y0 ** 2), -y0], [Math.sqrt(rOpen ** 2 - y0 ** 2), -y0], side(g.r_slot_top, -1), side(g.r_slot_bot, -1)];
+    const a0 = Math.atan2(seq[3][1], seq[3][0]); const pu = side(g.r_slot_bot, 1); const a1 = Math.atan2(pu[1], pu[0]);
+    for (let i = 1; i < nArc; i++) { const a = a0 + (a1 - a0) * i / nArc; seq.push([g.r_slot_bot * Math.cos(a), g.r_slot_bot * Math.sin(a)]); }
+    seq.push(pu, side(g.r_slot_top, 1), [Math.sqrt(rOpen ** 2 - y0 ** 2), y0], [Math.sqrt(g.r_s ** 2 - y0 ** 2), y0]);
+    for (const p of seq) pts.push(rot(p));
+    const as = th + Math.asin(y0 / g.r_s), ae = th + tau - Math.asin(y0 / g.r_s);
+    for (let i = 1; i < nArc; i++) { const a = as + (ae - as) * i / nArc; pts.push([g.r_s * Math.cos(a), g.r_s * Math.sin(a)]); }
+  }
+  return pts;
+}
+
+/* ----------------------------------------------- blade loft */
+function interp(xs, ys, x) { if (x <= xs[0]) return ys[0]; for (let i = 1; i < xs.length; i++) if (x <= xs[i]) { const t = (x - xs[i - 1]) / (xs[i] - xs[i - 1]); return ys[i - 1] + t * (ys[i] - ys[i - 1]); } return ys[ys.length - 1]; }
+function bladeGeometry() {
+  const NP = 56, stations = [];
+  const s0 = 402, s1 = 3750;
+  for (let i = 0; i <= 60; i++) stations.push(s0 + (s1 - s0) * i / 60);
+  const pos = [], idx = [];
+  for (const s of stations) {
+    const r = s / 1000, c = interp(BL.r, BL.c, r) * 1000, tc = Math.min(interp(BL.r, BL.tc, r), 1);
+    const tw = (interp(BL.r, BL.tw, r) + BL.tipOffset) * D2R;
+    const w = Math.min(Math.max((tc - 0.30) / 0.70, 0), 1) ** 0.8;   // 1 = circular root
+    const tcf = Math.min(tc, 0.30);
+    const psi = -tw, cp = Math.cos(psi), sp = Math.sin(psi);
+    for (let j = 0; j < NP; j++) {
+      const ph = 2 * Math.PI * j / NP;
+      const xc = (1 - Math.cos(ph)) / 2;                                   // 0 LE … 1 TE … 0 LE
+      const yt = 5 * tcf * c * (0.2969 * Math.sqrt(xc) - 0.126 * xc - 0.3516 * xc ** 2 + 0.2843 * xc ** 3 - 0.1036 * xc ** 4);
+      const sgn = ph <= Math.PI ? 1 : -1;
+      const ax = sgn * yt, az = (BL.pitchAxis - xc) * c;                 // thickness along x, chord along z (LE at +z)
+      const cx = BL.rootR * Math.sin(ph), cz = BL.rootR * Math.cos(ph);
+      const x0 = w * cx + (1 - w) * ax, z0 = w * cz + (1 - w) * az;
+      pos.push(x0 * cp + z0 * sp, s, -x0 * sp + z0 * cp);
+    }
+  }
+  for (let i = 0; i < stations.length - 1; i++) for (let j = 0; j < NP; j++) {
+    const a = i * NP + j, b = i * NP + (j + 1) % NP, c2 = (i + 1) * NP + j, d = (i + 1) * NP + (j + 1) % NP;
+    idx.push(a, c2, b, b, c2, d);
+  }
+  const tip = pos.length / 3; const last = (stations.length - 1) * NP;
+  let tx = 0, tz = 0; for (let j = 0; j < NP; j++) { tx += pos[(last + j) * 3]; tz += pos[(last + j) * 3 + 2]; }
+  pos.push(tx / NP, s1 + 4, tz / NP);
+  for (let j = 0; j < NP; j++) idx.push(last + j, tip, last + (j + 1) % NP);
+  const g = new THREE.BufferGeometry(); g.setAttribute("position", new THREE.Float32BufferAttribute(pos, 3)); g.setIndex(idx); g.computeVertexNormals(); return g;
+}
+
+/* =====================================================================
+   ASSEMBLY TREE (all in mm; root scaled to metres)
+   three axes in the nacelle world: x = rearward (X), y = up (Z), z = right (−Y)
+   ===================================================================== */
+const root = new THREE.Group(); root.scale.setScalar(0.001); scene.add(root);
+const groundY = TOWER.flangeZ - TOWER.H;
+
+// ---------- ground, footing, tower
+const groundMat = new THREE.MeshStandardMaterial({ color: 0xb9c2b4, roughness: 1, metalness: 0 });
+const ground = new THREE.Mesh(new THREE.CircleGeometry(300000, 64).rotateX(-Math.PI / 2), groundMat); ground.position.y = groundY - 2; root.add(ground);
+const footing = mesh(box(-1900, 1900, groundY - 600, groundY + 150, -1900, 1900), "foundation", 0x9a9c96, { metal: 0, rough: 0.95, clip: false });
+root.add(footing);
+const towerG = new THREE.Group(); root.add(towerG);
+towerG.add(mesh(latheY([[groundY + 150, TOWER.D_base / 2 - 10], [TOWER.flangeZ - 30, TOWER.D_top / 2 - 8], [TOWER.flangeZ - 30, TOWER.D_top / 2], [groundY + 150, TOWER.D_base / 2]], 48), "tower", C.tower, { metal: 0.3, rough: 0.6, clip: false }));
+towerG.add(mesh(ringY(120, 210, TOWER.flangeZ - 30, TOWER.flangeZ), "tower", C.tower, { metal: 0.3, rough: 0.6 }));
+towerG.add(mesh(ringY(240, 380, groundY + 150, groundY + 185), "tower", C.tower, { metal: 0.3, rough: 0.6, clip: false }));
+
+// ---------- tower side of yaw: adapter NY-400 + outer gear ring
+const towerTop = new THREE.Group(); root.add(towerTop);
+const adapterG = new THREE.Group(); towerTop.add(adapterG);
+adapterG.add(mesh(ringY(150, 250, -95, -70), "adapter", C.yaw));
+adapterG.add(mesh(ringY(250, 395, -85, -70), "adapter", C.yaw));
+adapterG.add(mesh(latheY([[-95, 186], [-95, 198], [-330, 166], [-330, 154]], 64), "adapter", C.yaw));
+adapterG.add(mesh(ringY(120, 210, -360, -330), "adapter", C.yaw));
+for (let k = 0; k < 8; k++) {
+  const a = (11.25 + 45 * k) * D2R;
+  const g = extrude([[184, -200], [300, -95], [198, -95]], null, 12, V(Math.cos(a), 0, -Math.sin(a)), EY, V(Math.sin(a), 0, Math.cos(a)), -6);
+  adapterG.add(mesh(g, "adapter", C.yaw));
+}
+function gearShape(z, m, phase = 0) { const ra = m * z / 2 + m, rf = m * z / 2 - 1.25 * m, p = 2 * Math.PI / z, out = [];
+  for (let k = 0; k < z; k++) { const a0 = p * k + phase; for (const [f, r] of [[0, rf], [0.18, rf], [0.32, ra], [0.68, ra], [0.82, rf]]) out.push([r * Math.cos(a0 + f * p), r * Math.sin(a0 + f * p)]); } return out; }
+const outerRing = mesh(extrude(gearShape(150, 4), [circ(0, 0, 185, 96)], 60, EX, V(0, 0, -1), EY, -70), "yawOuter", C.bearing, { metal: 0.6, rough: 0.35 });
+towerTop.add(outerRing);
+
+// ---------- nacelle (yaws)
+const yawG = new THREE.Group(); root.add(yawG);
+yawG.add(mesh(ringY(110, 175, -60, 0), "yawInner", C.bearing, { metal: 0.6, rough: 0.35 }));
+// bedplate (world frame) — bottom, sides, rear; front plate is built in the tilted spindle frame
+const tR = TILT * D2R;
+const P = (s, u) => [RC.X + Math.cos(tR) * s + Math.sin(tR) * u, RC.Z - Math.sin(tR) * s + Math.cos(tR) * u];
+yawG.add(mesh(extrude([[-330, -260], [330, -260], [330, 260], [-330, 260]], [circ(0, 0, 110, 48)], 40, EX, V(0, 0, -1), EY, 0), "bedplate", 0x4e7752, { metal: 0.3, rough: 0.6 }));
+const sidePts = [P(520, 250), [330, 330], [330, 40], P(520, -495)].map(([x, z]) => [x, Math.max(z, 40)]);
+for (const zz of [-260, 240]) yawG.add(mesh(extrude(sidePts, null, 20, EX, EY, EZ, zz), "bedplate", 0x4e7752, { metal: 0.3, rough: 0.6 }));
+yawG.add(mesh(box(310, 330, 40, 330, -240, 240), "bedplate", 0x4e7752, { metal: 0.3, rough: 0.6 }));
+// yaw drives (×2, lateral) with spinning pinions
+const pinions = [];
+for (const a of [90, -90]) {
+  const cx = 328 * Math.cos(a * D2R), cy = 328 * Math.sin(a * D2R);
+  const g = new THREE.Group(); g.position.set(cx, 0, -cy); yawG.add(g);
+  const pn = mesh(extrude(gearShape(14, 4, (a + 180) * D2R + Math.PI / 14), null, 50, EX, V(0, 0, -1), EY, -65), "yawDrive", 0x9aa3ad, { metal: 0.7, rough: 0.3 });
+  const pg = new THREE.Group(); pg.add(pn); g.add(pg); pinions.push(pg);
+  g.add(mesh(cylY(15, -15, 25), "yawDrive", 0x9aa3ad, { metal: 0.7 }));
+  g.add(mesh(cylY(50, 25, 175), "yawDrive", 0x4b5a9c, { metal: 0.3, rough: 0.5 }));
+  g.add(mesh(cylY(55, 175, 335), "yawDrive", 0x3b4778, { metal: 0.3, rough: 0.5 }));
+}
+// friction pad units (×2) at ±141.8°, C-frame around the track
+for (const a of [141.8, -141.8]) {
+  const g = new THREE.Group(); g.rotation.y = a * D2R; yawG.add(g);   // local x = radial out, z = -tangential
+  const B = (u0, u1, v0, v1, z0, z1) => box(u0, u1, z0, z1, -v1, -v0);
+  g.add(mesh(B(315, 440, -85, 85, -20, 0), "padUnit", C.pad, { metal: 0.3 }));
+  g.add(mesh(B(318, 430, -82, 82, -52, -28), "padUnit", C.pad, { metal: 0.3 }));
+  g.add(mesh(B(402, 427, -45, 45, -165, -28), "padUnit", C.pad, { metal: 0.3 }));
+  g.add(mesh(B(305, 427, -45, 45, -165, -103), "padUnit", C.pad, { metal: 0.3 }));
+  g.add(mesh(B(325, 385, -45, 45, -70 + 0.5, -58), "padUnit", 0x2d2d2d, { metal: 0, rough: 0.9 }));
+  g.add(mesh(B(325, 385, -45, 45, -97, -85.5), "padUnit", 0x2d2d2d, { metal: 0, rough: 0.9 }));
+  g.add(mesh(cylY(31.5, -141, -97, 355, 0), "padUnit", 0x9aa3ad, { metal: 0.7 }));
+  g.add(mesh(cylY(34, -165, -141, 355, 0), "padUnit", 0x9aa3ad, { metal: 0.7 }));
+}
+
+// ---------- tilted spindle frame
+const tiltG = new THREE.Group(); tiltG.position.set(RC.X, RC.Z, 0); tiltG.rotation.z = -tR; yawG.add(tiltG);
+// stationary drivetrain
+const statorG = new THREE.Group(); tiltG.add(statorG);
+const spPoly = [[40, 45], ...SPINDLE_OUTER, [476, 45]];
+statorG.add(mesh(latheX(spPoly, 64), "spindle", 0x7c848d, { metal: 0.7, rough: 0.35 }));
+for (const xb of [120, 360]) statorG.add(mesh(ringX(70, 105, xb - 22.5, xb + 22.5, 48), "bearing", C.bearing, { metal: 0.75, rough: 0.3 }));
+statorG.add(mesh(latheX([[80, 70], [97.5, 70], [97.5, 90], [80, 90]], 48), "spindle", 0x7c848d, { metal: 0.7 }));
+statorG.add(mesh(latheX([[382.5, 77.5], [398, 77.5], [398, 97.5], [382.5, 97.5]], 48), "spindle", 0x7c848d, { metal: 0.7 }));
+statorG.add(mesh(latheX(CARRIER, 72), "carrier", 0x6a7480, { metal: 0.4 }));
+statorG.add(mesh(latheX(STATOR_RING, 72), "carrier", 0xb7bdc4, { metal: 0.6 }));
+statorG.add(mesh(cylX(50, -80, 38), "slip", C.green, { metal: 0.2 }));
+statorG.add(mesh(extrude(laminationOutline(4), [circ(0, 0, GEN.r_si, 90)], GEN.stack, EZ, EY, EX, X_STACK[0]).translate(0, 0, 0), "stator", C.lam, { metal: 0.55, rough: 0.45 }));
+{ // coils: 45 tooth coils (two sides in the slots + two end turns)
+  const geoSide = new THREE.BoxGeometry(GEN.stack + 40, 60, 6.4), geoEnd = new THREE.BoxGeometry(20, 60, 22.3 + 2 * 6.4);
+  const mside = new THREE.InstancedMesh(geoSide, mat("coils", C.copper, { metal: 0.6, rough: 0.4 }), 90);
+  const mend = new THREE.InstancedMesh(geoEnd, mat("coils", C.copper, { metal: 0.6, rough: 0.4 }), 90);
+  mside.userData.part = mend.userData.part = "coils";
+  const tau = 2 * Math.PI / GEN.slots, m4 = new THREE.Matrix4(), q = new THREE.Quaternion(), sc = V(1, 1, 1);
+  let i = 0, j = 0;
+  for (let k = 0; k < GEN.slots; k++) {
+    const th = (k + 0.5) * tau, rc = 262, ur = V(0, Math.sin(th), Math.cos(th)), ut = V(0, Math.cos(th), -Math.sin(th));
+    q.setFromAxisAngle(EX, Math.PI / 2 - th);    // box y -> radial
+    for (const sg of [-1, 1]) { const p = ur.clone().multiplyScalar(rc).add(ut.clone().multiplyScalar(sg * (GEN.w_t / 2 + 3.6))); p.x = 380; m4.compose(p, q, sc); mside.setMatrixAt(i++, m4); }
+    for (const xe of [331, 429]) { const p = ur.clone().multiplyScalar(rc); p.x = xe; m4.compose(p, q, sc); mend.setMatrixAt(j++, m4); }
+  }
+  statorG.add(mside, mend);
+}
+// calipers (stationary, 3 and 9 o'clock) + brackets
+const calipers = [];
+for (const sg of [1, -1]) {
+  const g = new THREE.Group(); tiltG.add(g); calipers.push({ g, sg });
+  const z0 = 370, z1 = 500;
+  const zz = (a, b) => sg > 0 ? [-b, -a] : [a, b];
+  const [za, zb] = zz(z0, z1), [zc, zd] = zz(445, z1);
+  g.add(mesh(box(373, 431, -90, 90, za, zb), "caliper", C.red, { metal: 0.3, rough: 0.5 }));
+  g.add(mesh(box(455, 513, -90, 90, za, zb), "caliper", C.red, { metal: 0.3, rough: 0.5 }));
+  g.add(mesh(box(431, 455, -90, 90, zc, zd), "caliper", C.red, { metal: 0.3, rough: 0.5 }));
+  g.add(mesh(box(513, 538, -110, 110, za - 10 * sg, zb - 10 * sg), "caliper", 0x4e7752, { metal: 0.3 }));
+}
+// bedplate front plate (spindle frame)
+tiltG.add(mesh(box(480, 520, -495, 250, -250, 250), "bedplate", 0x4e7752, { metal: 0.3, rough: 0.6 }));
+tiltG.add(mesh(cylX(205, 470, 481, 0, 0, 64), "bedplate", 0x4e7752, { metal: 0.3, rough: 0.6 }));
+
+// rotating parts
+const rotorG = new THREE.Group(); tiltG.add(rotorG);
+const drumG = new THREE.Group(); rotorG.add(drumG);
+for (const [k, poly] of Object.entries(DRUM_PARTS)) drumG.add(mesh(latheX(poly, 96), "drum", C.drum, { metal: 0.55, rough: 0.4 }));
+drumG.add(mesh(latheX(SEAL_FRONT, 48), "drum", C.drum, { metal: 0.55 }));
+drumG.add(mesh(latheX(SEAL_REAR, 48), "drum", C.drum, { metal: 0.55 }));
+drumG.add(mesh(latheX(DISC, 96), "disc", 0x6d737a, { metal: 0.8, rough: 0.3 }));
+drumG.add(mesh(latheX(REAR_COVER, 72), "cover", C.al, { metal: 0.5, rough: 0.45 }));
+drumG.add(mesh(latheX([[450, 216], [465, 216], [465, 236], [450, 236]], 72), "cover", C.al, { metal: 0.5 }));
+{ // magnets: 40 poles × 5 rows, N/S alternating, rows skewed
+  const geo = new THREE.BoxGeometry(MAG.L, MAG.T, MAG.W);
+  const mN = new THREE.InstancedMesh(geo, mat("magnets", C.magN, { metal: 0.5, rough: 0.35 }), 100);
+  const mS = new THREE.InstancedMesh(geo, mat("magnets", C.magS, { metal: 0.5, rough: 0.35 }), 100);
+  mN.userData.part = mS.userData.part = "magnets";
+  const rowsLen = 5 * MAG.L + 4 * MAG.shim, m4 = new THREE.Matrix4(), q = new THREE.Quaternion(), sc = V(1, 1, 1);
+  let n = 0, s = 0;
+  for (let k = 0; k < GEN.poles; k++) for (let row = 0; row < MAG.rows; row++) {
+    const a = (k * 9 + MAG.skew[row]) * D2R, x = 380 - rowsLen / 2 + row * (MAG.L + MAG.shim) + MAG.L / 2, rc = MAG.r_in + MAG.T / 2;
+    q.setFromAxisAngle(EX, a); m4.compose(V(x, rc * Math.cos(a), rc * Math.sin(a)), q, sc);
+    if (k % 2 === 0) mN.setMatrixAt(n++, m4); else mS.setMatrixAt(s++, m4);
+  }
+  drumG.add(mN, mS);
+  // outer ribs and inner fins
+  const rib = new THREE.InstancedMesh(new THREE.BoxGeometry(RIBS.x1 - RIBS.x0, RIBS.r_tip - 320.5, RIBS.t), mat("ribs", C.drum, { metal: 0.55, rough: 0.4 }), RIBS.n);
+  rib.userData.part = "ribs";
+  for (let k = 0; k < RIBS.n; k++) { const a = (k + 0.5) * 2 * Math.PI / RIBS.n, rc = (RIBS.r_tip + 320.5) / 2; q.setFromAxisAngle(EX, a);
+    m4.compose(V((RIBS.x0 + RIBS.x1) / 2, rc * Math.cos(a), rc * Math.sin(a)), q, sc); rib.setMatrixAt(k, m4); }
+  const finA = new THREE.InstancedMesh(new THREE.BoxGeometry(FINS.x1 - FINS.x0, FINS.r1 - FINS.r0, FINS.t), mat("fins", 0x9ca3ad, { metal: 0.55 }), FINS.n);
+  const finB = new THREE.InstancedMesh(new THREE.BoxGeometry(FINS.leg_x1 - FINS.x0, FINS.r0 - FINS.leg_r0, FINS.t), mat("fins", 0x9ca3ad, { metal: 0.55 }), FINS.n);
+  finA.userData.part = finB.userData.part = "fins";
+  for (let k = 0; k < FINS.n; k++) { const a = k * 2 * Math.PI / FINS.n; q.setFromAxisAngle(EX, a);
+    let rc = (FINS.r0 + FINS.r1) / 2; m4.compose(V((FINS.x0 + FINS.x1) / 2, rc * Math.cos(a), rc * Math.sin(a)), q, sc); finA.setMatrixAt(k, m4);
+    rc = (FINS.leg_r0 + FINS.r0) / 2; m4.compose(V((FINS.x0 + FINS.leg_x1) / 2, rc * Math.cos(a), rc * Math.sin(a)), q, sc); finB.setMatrixAt(k, m4); }
+  drumG.add(rib, finA, finB);
+}
+
+// hub + collective pitch
+const hubG = new THREE.Group(); rotorG.add(hubG);
+const hubShell = new THREE.Group(); hubG.add(hubShell);
+hubShell.add(mesh(ringX(HUB.shell_r[0], HUB.shell_r[1], ...HUB.shell_x, 96), "hub", C.steel));
+hubShell.add(mesh(ringX(HUB.rear.r[0], HUB.rear.r[1], ...HUB.rear.x, 96), "hub", C.steel));
+hubShell.add(mesh(ringX(HUB.front.r[0], HUB.front.r[1], ...HUB.front.x, 96), "hub", C.steel));
+const bladeAxes = [], pitchGs = [], linkMeshes = [], bladeMeshes = [];
+const bladeGeo = bladeGeometry();
+const pin0 = pin(0);   // crank built at theta = 0, then turned by -theta about the pitch axis
+for (const a of BLADES) {
+  const ax = new THREE.Group(); ax.rotation.x = (a - 90) * D2R; hubG.add(ax); bladeAxes.push(ax);
+  const neck = new THREE.Group(); ax.add(neck); hubShell.userData.necks = (hubShell.userData.necks || []).concat(neck);
+  neck.add(mesh(ringY(HUB.neck_r[0], HUB.neck_r[1], HUB.neck_s[0], HUB.neck_s[1], 64), "hub", C.steel));
+  neck.add(mesh(ringY(HUB.flange.r[0], HUB.flange.r[1], HUB.flange.s[0], HUB.flange.s[1], 64), "hub", C.steel));
+  for (const sx of [-1, 1]) neck.add(mesh(extrude([[sx * 162, 222], [sx * 215, 222], [sx * 162, 318]], null, 10, EX, EY, EZ, -5), "hub", C.steel));
+  ax.add(mesh(ringY(PB.outer.r[0], PB.outer.r[1], PB.outer.s[0], PB.outer.s[1], 64), "pbOuter", C.bearing, { metal: 0.7, rough: 0.3 }));
+  const pg = new THREE.Group(); ax.add(pg); pitchGs.push(pg);
+  pg.add(mesh(ringY(PB.inner.r[0], PB.inner.r[1], PB.inner.s[0], PB.inner.s[1], 64), "pbInner", 0xdcb95a, { metal: 0.7, rough: 0.3 }));
+  pg.add(mesh(ringY(CRANK.flange.r[0], CRANK.flange.r[1], ...CRANK.flange.s, 48), "crank", C.blue));
+  pg.add(mesh(ringY(CRANK.tube.r[0], CRANK.tube.r[1], ...CRANK.tube.s, 48), "crank", C.blue));
+  const px = pin0[0], pz = -pin0[2];
+  pg.add(mesh(extrude(hull(circ(0, 0, 84, 48).concat(circ(pz, px, 28, 24))), [circ(0, 0, 62, 40)], 20, EZ, EX, EY, CRANK.lever.s[0]), "crank", C.blue));
+  pg.add(mesh(cylY(CRANK.pin_r, K.S_P - 30, CRANK.lever.s[1] + 5, px, pz, 20), "crank", C.bright, { metal: 0.8, rough: 0.25 }));
+  const bm = new THREE.Group(); pg.add(bm); bladeMeshes.push(bm);
+  bm.add(mesh(ringY(90, 110, 402, 662, 48), "blade", C.blade, { metal: 0.05, rough: 0.55, clip: false }));
+  bm.add(mesh(bladeGeo, "blade", C.blade, { metal: 0.05, rough: 0.55, clip: false }));
+  // link: unit cylinder + two eyes, updated every frame
+  const lk = new THREE.Group(); ax.add(lk);
+  const tube = mesh(new THREE.CylinderGeometry(15, 15, 1, 16), "link", C.blue2);
+  const tb = mesh(new THREE.CylinderGeometry(21, 21, 70, 16), "link", C.blue2);
+  const e1 = mesh(new THREE.SphereGeometry(21, 16, 12), "link", C.bright, { metal: 0.8 }), e2 = e1.clone();
+  lk.add(tube, tb, e1, e2); linkMeshes.push({ tube, tb, e1, e2 });
+}
+// yoke (moves along x) with three arms
+const yokeG = new THREE.Group(); hubG.add(yokeG);
+yokeG.add(mesh(cylX(48, -25, 25, 0, 0, 40), "yoke", C.blue3));
+const GUIDE = (() => { const offs = Math.atan2(S_Y, Y_Y) / D2R - 90; return [150 + offs, 330 + offs]; })();
+for (const ga of GUIDE) { const y = 75 * Math.sin(ga * D2R), z = -75 * Math.cos(ga * D2R); yokeG.add(mesh(cylX(22, -30, 30, y, z, 24), "yoke", C.blue3)); }
+for (const a of BLADES) {
+  const g = new THREE.Group(); g.rotation.x = (a - 90) * D2R; yokeG.add(g);
+  g.add(mesh(extrude(hull(circ(0, 0, 45, 40).concat(circ(S_Y, -Y_Y, 26, 24))), null, 20, EY, EZ, EX, -10), "yoke", C.blue3));
+}
+// nose: actuator, motor, electronics, guide rods, housing
+const noseG = new THREE.Group(); rotorG.add(noseG);
+noseG.add(mesh(cylX(45, -705, -335, 0, 0, 40), "actuator", C.act));
+noseG.add(mesh(cylX(52, -715, -690, 0, 0, 40), "actuator", C.act));
+noseG.add(mesh(cylX(52, -350, -335, 0, 0, 40), "actuator", C.act));
+noseG.add(mesh(box(-718, -690, -40, 150, -45, 45), "actuator", C.act));
+noseG.add(mesh(cylX(40, -690, -520, 100, 0, 32), "motor", C.motor));
+noseG.add(mesh(box(-690, -460, -112, -50, -50, 50), "supercap", C.green, { metal: 0.2, rough: 0.6 }));
+noseG.add(mesh(box(-460, -350, -97, -52, -45, 45), "drive", 0x6aa86e, { metal: 0.2, rough: 0.6 }));
+for (const ga of GUIDE) { const y = 75 * Math.sin(ga * D2R), z = -75 * Math.cos(ga * D2R); noseG.add(mesh(cylX(12.5, -735, -105, y, z, 16), "guide", 0xb8bcc2, { metal: 0.8, rough: 0.25 })); }
+noseG.add(mesh(ringX(80, 128, -775, -760, 64), "nose", C.al, { metal: 0.5 }));
+noseG.add(mesh(ringX(158, 190, -266, -252, 64), "nose", C.al, { metal: 0.5 }));
+for (let k = 0; k < 4; k++) { const an = (45 + 90 * k) * D2R; noseG.add(mesh(rod(V(-262, 172 * Math.sin(an), -172 * Math.cos(an)), V(-768, 105 * Math.sin(an), -105 * Math.cos(an)), 9), "nose", C.al, { metal: 0.5 })); }
+noseG.add(mesh(ringX(46, 80, -716, -700, 48), "nose", C.al)); noseG.add(mesh(ringX(46, 76, -350, -338, 48), "nose", C.al));
+const cylRod = mesh(new THREE.CylinderGeometry(16, 16, 1, 20).rotateZ(-Math.PI / 2), "actuator", C.bright, { metal: 0.85, rough: 0.2 });
+rotorG.add(cylRod);
+// spinner (indicative)
+const spinnerG = new THREE.Group(); rotorG.add(spinnerG);
+{
+  const prof = []; for (let i = 0; i <= 24; i++) { const u = i / 24, x = -830 + u * (880); prof.push([x, 335 * Math.sqrt(Math.sin(Math.min(u / 0.92, 1) * Math.PI / 2))]); }
+  prof.push([195, 330]);
+  const pts = prof.map(([x, r]) => new THREE.Vector2(Math.max(r, 0.1), x));
+  const g = new THREE.LatheGeometry(pts, 72); g.rotateZ(-Math.PI / 2);
+  spinnerG.add(mesh(g, "spinner", 0xe9ecef, { metal: 0.1, rough: 0.35, opacity: 0.32 }));
+  for (const a of BLADES) { const b = new THREE.Group(); b.rotation.x = (a - 90) * D2R; spinnerG.add(b);
+    b.add(mesh(latheY([[300, 130], [430, 112]], 40).translate(0, 0, 0), "spinner", 0x2e3236, { metal: 0, rough: 0.9, opacity: 0.55 })); }
+}
+
+// nacelle shell (concept only)
+const shellG = new THREE.Group(); yawG.add(shellG);
+{
+  const prof = []; const x0 = -300, x1 = 560;
+  for (let i = 0; i <= 28; i++) { const u = i / 28; prof.push([x0 + (x1 - x0) * u, 470 * Math.sqrt(Math.max(1 - Math.pow(u, 2.4), 0))]); }
+  const pts = prof.map(([x, r]) => new THREE.Vector2(Math.max(r, 0.1), x));
+  const g = new THREE.LatheGeometry(pts, 64); g.rotateZ(-Math.PI / 2); g.scale(1, 0.95, 1.25); g.translate(0, 390, 0);
+  shellG.add(mesh(g, "shell", 0xf2f4f5, { metal: 0.05, rough: 0.4, opacity: 0.25 }));
+}
+shellG.visible = false;
+
+/* =====================================================================
+   LABELS (anchor = object + local point in mm)
+   ===================================================================== */
+const LABELS = [
+  ["blade", bladeMeshes[0], V(0, 2600, 0)], ["hub", hubShell, V(-100, 160, 160)], ["crank", pitchGs[1], V(60, 200, 0)],
+  ["yoke", yokeG, V(0, 0, 50)], ["actuator", noseG, V(-520, 0, 46)], ["drum", statorG, V(300, 240, 230)], ["disc", statorG, V(443, -300, 300)],
+  ["stator", statorG, V(380, 0, 300)], ["caliper", calipers[1].g, V(440, 90, 440)], ["yawDrive", yawG, V(0, 340, 328)],
+  ["padUnit", yawG, V(-314, -40, 247)], ["adapter", towerTop, V(0, -330, 200)], ["tower", towerG, V(0, -6000, 220)], ["bedplate", yawG, V(320, 330, 250)],
+];
+const labelEls = LABELS.map(([k]) => { const d = document.createElement("div"); d.className = "lbl"; d.textContent = PARTS[k].n.replace(/ \(.*\)$/, "").replace(/,.*$/, ""); $("labels").appendChild(d); return d; });
+
+/* =====================================================================
+   STATE + ANIMATION
+   ===================================================================== */
+const st = { rpm: 178, rpmTarget: 178, pitch: 0, pitchTarget: 0, yaw: 0, yawTarget: 0, autoYaw: false, wind: 0, windT: 0, slow: true, explode: 0, spin: 0 };
+let userPitch = false;
+
+function syncUI() {
+  $("rpm").value = Math.round(st.rpm); $("rpmOut").textContent = `${st.rpm.toFixed(0)} rpm`;
+  $("pitch").value = st.pitch; $("pitchOut").textContent = `${st.pitch.toFixed(1)}°`;
+  $("yaw").value = Math.round(st.yaw); $("yawOut").textContent = `${st.yaw.toFixed(0)}°`;
+}
+$("rpm").addEventListener("input", (e) => { st.rpm = st.rpmTarget = +e.target.value; syncUI(); });
+$("pitch").addEventListener("input", (e) => { st.pitch = st.pitchTarget = +e.target.value; syncUI(); });
+$("yaw").addEventListener("input", (e) => { st.yaw = st.yawTarget = +e.target.value; st.autoYaw = false; $("btnAutoYaw").classList.remove("on"); syncUI(); });
+$("btnRun").addEventListener("click", () => { st.pitchTarget = 0; st.rpmTarget = 178; });
+$("btnStop").addEventListener("click", () => { st.pitchTarget = 92; st.rpmTarget = 0; });
+$("btnSlow").addEventListener("click", (e) => { st.slow = !st.slow; e.target.classList.toggle("on", st.slow); });
+$("btnAutoYaw").addEventListener("click", (e) => { st.autoYaw = !st.autoYaw; e.target.classList.toggle("on", st.autoYaw); if (st.autoYaw) { st.wind = st.yaw + 40; st.windT = st.wind; } });
+$("explode").addEventListener("input", (e) => { st.explode = +e.target.value; $("explodeOut").textContent = `${Math.round(st.explode * 100)} %`; });
+const vis = { cSpinner: spinnerG, cCover: shellG, cBlades: null, cHub: hubShell };
+for (const id of Object.keys(vis)) $(id).addEventListener("change", (e) => {
+  const on = e.target.checked;
+  if (id === "cBlades") bladeMeshes.forEach((b) => (b.visible = on));
+  else if (id === "cHub") { hubShell.visible = on; hubShell.userData.necks.forEach((n) => (n.visible = on)); }
+  else vis[id].visible = on;
+});
+$("cSection").addEventListener("change", (e) => { sectionOn = e.target.checked; clipMats.forEach((m) => { m.clippingPlanes = sectionOn ? [sectionPlane] : []; m.needsUpdate = true; }); });
+$("cLabels").addEventListener("change", (e) => labelEls.forEach((d) => (d.hidden = !e.target.checked)));
+
+function applyExplode(e) {
+  spinnerG.position.x = -1500 * e; noseG.position.x = -1050 * e; hubG.position.x = -650 * e; drumG.position.x = -280 * e;
+  bladeMeshes.forEach((b) => (b.position.y = 900 * e));
+  calipers.forEach(({ g, sg }) => (g.position.z = -sg * 350 * e));
+  yawG.position.y = 500 * e; outerRing.position.y = -150 * e; adapterG.position.y = -400 * e; shellG.position.y = 900 * e;
+}
+
+const tmpA = new THREE.Vector3(), tmpB = new THREE.Vector3(), tmpU = new THREE.Vector3(), Y1 = V(0, 1, 0);
+function placeRod(m, p, q, trimA = 0, trimB = 0) {
+  tmpU.subVectors(q, p); const L = tmpU.length(); tmpU.divideScalar(L);
+  const a = p.clone().addScaledVector(tmpU, trimA), b = q.clone().addScaledVector(tmpU, -trimB);
+  m.position.addVectors(a, b).multiplyScalar(0.5); m.quaternion.setFromUnitVectors(Y1, tmpU); m.scale.set(1, Math.max(a.distanceTo(b), 0.01), 1);
+}
+function updateMechanism() {
+  const th = st.pitch, xe = yokeX(th), p = pin(th);
+  yokeG.position.x = xe;
+  pitchGs.forEach((g) => (g.rotation.y = -th * D2R));
+  for (const L of linkMeshes) {
+    tmpA.set(p[0], p[1], -p[2]); tmpB.set(xe, S_Y, -Y_Y);
+    placeRod(L.tube, tmpA, tmpB, 20, 20);
+    L.tb.position.addVectors(tmpA, tmpB).multiplyScalar(0.5); L.tb.quaternion.setFromUnitVectors(Y1, tmpU.subVectors(tmpB, tmpA).normalize());
+    L.e1.position.copy(tmpA); L.e2.position.copy(tmpB);
+  }
+  // cylinder rod from the actuator nose (x -335 in the nose group) to the yoke boss
+  const x0 = -335 + noseG.position.x, x1 = xe - 25 + hubG.position.x;
+  cylRod.position.set((x0 + x1) / 2, 0, 0); cylRod.scale.set(Math.max(x1 - x0, 1), 1, 1);
+}
+
+const clock = new THREE.Clock();
+let fpsLow = 0;
+function tick() {
+  const dt = Math.min(clock.getDelta(), 0.05);
+  // pitch at the real rate (30 °/s); rotor speed ramps
+  if (st.pitch !== st.pitchTarget) { const d = st.pitchTarget - st.pitch, stp = 30 * dt; st.pitch = Math.abs(d) <= stp ? st.pitchTarget : st.pitch + Math.sign(d) * stp; }
+  if (st.rpm !== st.rpmTarget) { const d = st.rpmTarget - st.rpm, stp = (d < 0 ? 90 : 45) * dt; st.rpm = Math.abs(d) <= stp ? st.rpmTarget : st.rpm + Math.sign(d) * stp; }
+  // wind wander and yaw tracking (yaw rate ≈ 0.5 °/s real; shown ×10 so it is visible)
+  if (st.autoYaw) {
+    if (Math.random() < dt * 0.15) st.windT = st.wind + (Math.random() - 0.5) * 120;
+    st.wind += (st.windT - st.wind) * Math.min(dt * 0.4, 1);
+    const err = st.wind - st.yaw; if (Math.abs(err) > 3) st.yaw += Math.sign(err) * Math.min(Math.abs(err), 5 * dt);
+    if (st.yaw > 180) { st.yaw -= 360; st.wind -= 360; st.windT -= 360; } if (st.yaw < -180) { st.yaw += 360; st.wind += 360; st.windT += 360; }
+  }
+  const speed = st.slow ? 0.1 : 1;
+  st.spin += (st.rpm / 60) * 2 * Math.PI * dt * speed;
+  rotorG.rotation.x = st.spin % (2 * Math.PI);
+  yawG.rotation.y = st.yaw * D2R;
+  pinions.forEach((p) => (p.rotation.y = -st.yaw * D2R * 150 / 14));
+  applyExplode(st.explode);
+  updateMechanism();
+  // section plane follows the nacelle (vertical plane through the rotor axis)
+  sectionPlane.normal.set(0, 0, -1).applyAxisAngle(Y1, st.yaw * D2R);
+  syncUI();
+  $("vTip").textContent = `${(st.rpm / 60 * 2 * Math.PI * 3.75).toFixed(1)} m/s`;
+  $("vFreq").textContent = `${(st.rpm * 20 / 60).toFixed(1)} Hz`;
+  $("vYoke").textContent = `x ${yokeX(st.pitch).toFixed(0)} mm`;
+  $("vPin").textContent = `${((st.yaw * 150 / 14) % 360).toFixed(0)}°`;
+  $("vWind").textContent = st.autoYaw ? `${(((st.wind % 360) + 540) % 360 - 180).toFixed(0)}° (error ${(st.wind - st.yaw).toFixed(0)}°)` : "set by hand";
+  controls.update();
+  renderer.render(scene, camera);
+  updateLabels();
+  requestAnimationFrame(tick);
+}
+
+/* ----------------------------------------------- labels projection */
+const wp = new THREE.Vector3();
+let lblFrame = 0;
+const occluded = LABELS.map(() => false);
+function updateLabels() {
+  if (!$("cLabels").checked) return;
+  const doOcc = (lblFrame++ % 8) === 0;
+  const w = renderer.domElement.clientWidth, h = renderer.domElement.clientHeight;
+  LABELS.forEach(([k, obj, local], i) => {
+    const el = labelEls[i]; obj.updateWorldMatrix(true, false); wp.copy(local).applyMatrix4(obj.matrixWorld);
+    let cut = false;
+    if (sectionOn && sectionPlane.distanceToPoint(wp) < 0) {   // anchor is in the removed half: move it onto the cut face
+      if (obj === yawG || obj === towerTop || obj === towerG || obj === calipers[1].g) cut = true;
+      else wp.set(local.x, Math.hypot(local.y, local.z), 0).applyMatrix4(obj.matrixWorld);
+    }
+    if (cut || !visibleChain(obj)) { el.style.display = "none"; return; }
+    const dist = camera.position.distanceTo(wp);
+    const hiddenBlade = k === "blade" && !bladeMeshes[0].visible;
+    if (doOcc) {
+      const target = wp.clone(); ray.set(camera.position, target.sub(camera.position).normalize()); ray.far = dist - 0.03;
+      const hit = ray.intersectObjects(root.children, true).find((h) => h.object.userData.part && h.object.userData.part !== k && h.object.material.opacity === 1 && visibleChain(h.object)
+        && !(sectionOn && h.object.material.clippingPlanes?.length && sectionPlane.distanceToPoint(h.point) < 0));
+      occluded[i] = !!hit; ray.far = Infinity;
+    }
+    wp.project(camera);
+    const show = !occluded[i] && wp.z < 1 && Math.abs(wp.x) < 1.05 && Math.abs(wp.y) < 1.05 && dist < (k === "tower" || k === "blade" ? 60 : 9) && !hiddenBlade;
+    el.style.display = show ? "" : "none";
+    if (show) el.style.transform = `translate(${(wp.x * 0.5 + 0.5) * w}px, ${(-wp.y * 0.5 + 0.5) * h}px) translate(-50%, -130%)`;
+  });
+}
+
+/* ----------------------------------------------- picking */
+const ray = new THREE.Raycaster(), mouse = new THREE.Vector2();
+let hoverKey = null, selKey = null;
+function visibleChain(o) { while (o) { if (!o.visible) return false; o = o.parent; } return true; }
+function pick(ev) {
+  const r = renderer.domElement.getBoundingClientRect();
+  mouse.set(((ev.clientX - r.left) / r.width) * 2 - 1, -((ev.clientY - r.top) / r.height) * 2 + 1);
+  ray.setFromCamera(mouse, camera);
+  const hits = ray.intersectObjects(root.children, true);
+  let ghost = null;
+  for (const h of hits) {
+    let o = h.object, ok = true;
+    while (o) { if (!o.visible) { ok = false; break; } o = o.parent; }
+    if (!ok || !h.object.userData.part) continue;
+    if (sectionOn && h.object.material.clippingPlanes?.length && sectionPlane.distanceToPoint(h.point) < 0) continue;
+    if (h.object.material.opacity < 1) { ghost ||= h.object.userData.part; continue; }
+    return h.object.userData.part;
+  }
+  return ghost;
+}
+function setGlow(key, on, color) { (byPart[key] || []).forEach((m) => m.emissive.set(on ? color : 0x000000)); }
+function warmColor() { return new THREE.Color(getComputedStyle(document.documentElement).getPropertyValue("--warm").trim() || "#c8782a").multiplyScalar(0.45); }
+let downAt = null;
+renderer.domElement.addEventListener("pointermove", (ev) => {
+  if (ev.pointerType !== "mouse") return;
+  const k = pick(ev);
+  if (k !== hoverKey) { if (hoverKey && hoverKey !== selKey) setGlow(hoverKey, false); hoverKey = k; if (k && k !== selKey) setGlow(k, true, warmColor().multiplyScalar(0.6)); }
+  const tip = $("tip");
+  if (k) { tip.hidden = false; tip.textContent = PARTS[k].n; tip.style.left = ev.clientX + "px"; tip.style.top = ev.clientY + "px"; renderer.domElement.style.cursor = "pointer"; }
+  else { tip.hidden = true; renderer.domElement.style.cursor = ""; }
+});
+renderer.domElement.addEventListener("pointerdown", (ev) => (downAt = [ev.clientX, ev.clientY]));
+renderer.domElement.addEventListener("pointerup", (ev) => {
+  if (!downAt || Math.hypot(ev.clientX - downAt[0], ev.clientY - downAt[1]) > 5) return;
+  select(pick(ev));
+});
+function select(k) {
+  if (selKey) setGlow(selKey, false);
+  selKey = k;
+  if (!k) { $("card").hidden = true; return; }
+  setGlow(k, true, warmColor());
+  const P_ = PARTS[k];
+  $("cardDwg").textContent = P_.d; $("cardName").textContent = P_.n; $("cardText").textContent = P_.t;
+  $("cardDl").innerHTML = ""; for (const [a, b] of P_.kv) { const dt = document.createElement("dt"), dd = document.createElement("dd"); dt.textContent = a; dd.textContent = b; $("cardDl").append(dt, dd); }
+  $("cardDl").hidden = !P_.kv.length; $("card").hidden = false;
+}
+$("cardX").addEventListener("click", () => select(null));
+
+/* ----------------------------------------------- cameras (metres, world) */
+const hubC = () => { const v = new THREE.Vector3(); hubG.getWorldPosition(v); return v; };
+const CAMS = {
+  all: () => [V(-20, -1, 30), V(-0.4, -6.8, 0)],
+  rotor: () => [V(-8.8, 2.2, 7.6), V(-0.7, -0.2, 0)],
+  nacelle: () => [V(1.3, 1.25, 2.6), V(-0.45, 0.4, 0)],
+  hub: () => [V(-1.9, 1.05, 1.15), V(-0.75, 0.6, 0)],
+  gen: () => [V(0.1, 1.0, 1.6), V(-0.38, 0.58, 0)],
+  yaw: () => [V(1.7, 0.55, 2.0), V(-0.05, -0.15, 0)],
+};
+let camAnim = null;
+function goCam(name, instant) {
+  // presets are relative to the nacelle at yaw 0; rotate with the current yaw
+  const [p, t] = CAMS[name](); const q = new THREE.Quaternion().setFromAxisAngle(Y1, st.yaw * D2R);
+  if (name !== "all") { p.applyQuaternion(q); t.applyQuaternion(q); }
+  const want = { cSection: name === "gen", cSpinner: name !== "hub" && name !== "gen", cHub: name !== "hub" };
+  for (const [id, on] of Object.entries(want)) if ($(id).checked !== on) $(id).click();
+  if (instant) { camera.position.copy(p); controls.target.copy(t); return; }
+  camAnim = { p0: camera.position.clone(), t0: controls.target.clone(), p, t, k: 0 };
+}
+document.querySelectorAll("[data-cam]").forEach((b) => b.addEventListener("click", () => goCam(b.dataset.cam)));
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+controls.addEventListener("start", () => (camAnim = null));
+function camStep() {
+  if (camAnim) { camAnim.k = Math.min(camAnim.k + (reduce ? 1 : 0.035), 1); const e = 1 - Math.pow(1 - camAnim.k, 3);
+    camera.position.lerpVectors(camAnim.p0, camAnim.p, e); controls.target.lerpVectors(camAnim.t0, camAnim.t, e); if (camAnim.k >= 1) camAnim = null; }
+  requestAnimationFrame(camStep);
+}
+
+/* ----------------------------------------------- theme + resize */
+function applyTheme() {
+  const cs = getComputedStyle(document.documentElement);
+  scene.background = new THREE.Color(cs.getPropertyValue("--bg").trim() || "#dfe5e8");
+  groundMat.color.set(cs.getPropertyValue("--ground").trim() || "#b9c2b4");
+  scene.fog = new THREE.Fog(scene.background, 45, 160);
+}
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change", applyTheme);
+new MutationObserver(applyTheme).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+function resize() {
+  const w = stage.clientWidth, h = stage.clientHeight; renderer.setSize(w, h, false); camera.aspect = w / h;
+  // on wide screens, shift the picture centre right so the model is not hidden behind the control panel
+  if (w > 720) { camera.aspect = (w + 320) / h; camera.setViewOffset(w + 320, h, 0, 0, w, h); } else { camera.aspect = w / (h * 1.4); camera.setViewOffset(w, h * 1.4, 0, h * 0.4, w, h); }   // phones: lift the picture above the bottom sheet
+  camera.updateProjectionMatrix();
+}
+addEventListener("resize", resize);
+
+applyTheme(); resize();
+goCam("rotor", true);
+$("loading").hidden = true;
+requestAnimationFrame(tick); requestAnimationFrame(camStep);
+window.__viewer = { st, goCam, select };
+</script>
