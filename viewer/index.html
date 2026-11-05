@@ -134,6 +134,10 @@ button.primary { border-color: var(--accent); color: var(--accent); }
       <button type="button" data-blades="4">4</button><button type="button" data-blades="5">5</button>
     </div>
     <div class="slider">
+      <label for="rotorD">Rotor diameter</label><output id="rotorDOut">Ø7.50 m</output>
+      <input id="rotorD" type="range" min="5" max="11" step="0.25" value="7.5">
+    </div>
+    <div class="slider">
       <label for="tsr">Design tip-speed ratio</label><output id="tsrOut">6.5</output>
       <input id="tsr" type="range" min="3" max="8" step="0.5" value="6.5">
     </div>
@@ -285,6 +289,7 @@ const BL = {
   tc: [1, 0.709, 0.449, 0.296, 0.286, 0.276, 0.266, 0.256, 0.247, 0.239, 0.231, 0.223, 0.215, 0.209, 0.204, 0.199, 0.195, 0.19, 0.186, 0.181, 0.18, 0.18, 0.18, 0.18],
   tipOffset: 0.12, pitchAxis: 0.30, rootR: 110,
 };
+let rotorR = 3.75;   // m, rotor radius (slider); 3.75 is the design
 // blade designs per design TSR (analysis/rotor/bem.py, Schmitz optimum + manufacturable taper, R 3.75, cl 1.0):
 // c [m], tw [deg] at BL.r; off = tip twist offset + best pitch; cp = max Cp; top = TSR where it peaks; area = m² per blade
 const TSR_TABLES = {};
@@ -452,11 +457,12 @@ function laminationOutline(nArc = 6) {
 function interp(xs, ys, x) { if (x <= xs[0]) return ys[0]; for (let i = 1; i < xs.length; i++) if (x <= xs[i]) { const t = (x - xs[i - 1]) / (xs[i] - xs[i - 1]); return ys[i - 1] + t * (ys[i] - ys[i - 1]); } return ys[ys.length - 1]; }
 function bladeGeometry(T) {   // T = TSR_TABLE entry (chord, twist, pitch offset)
   const NP = 56, stations = [];
-  const s0 = 402, s1 = 3750;
+  const s0 = 402, s1 = rotorR * 1000, kc = rotorR / 3.75;   // other diameters: same design scaled along the span (chord ∝ R)
   for (let i = 0; i <= 60; i++) stations.push(s0 + (s1 - s0) * i / 60);
   const pos = [], idx = [];
   for (const s of stations) {
-    const r = s / 1000, c = interp(BL.r, T.c, r) * 1000, tc = Math.min(interp(BL.r, BL.tc, r), 1);
+    const r = 0.4 + (s / 1000 - 0.4) * 3.35 / (rotorR - 0.4);       // equivalent radius on the 3.75 m design
+    const c = interp(BL.r, T.c, r) * 1000 * kc, tc = Math.min(interp(BL.r, BL.tc, r), 1);
     const tw = (interp(BL.r, T.tw, r) + T.off) * D2R;
     const w = Math.min(Math.max((tc - 0.30) / 0.70, 0), 1) ** 0.8;   // 1 = circular root
     const tcf = Math.min(tc, 0.30);
@@ -831,6 +837,7 @@ function setBlades(B) {
   buildHub(B); setTSR(tsrKey);
 }
 document.querySelectorAll("[data-blades]").forEach((b) => b.addEventListener("click", () => setBlades(+b.dataset.blades)));
+$("rotorD").addEventListener("input", (e) => setRotor(+e.target.value));
 $("tsr").addEventListener("input", (e) => setTSR((+e.target.value).toFixed(1)));
 $("towerH").addEventListener("input", (e) => setTowerHeight(+e.target.value));
 $("cGust").addEventListener("change", (e) => (st.gust = e.target.checked));
@@ -887,14 +894,17 @@ const towerF1 = () => 1.21 * Math.pow(18000 / towerH, 1.147);   // Hz, power law
 const exclusion = () => [60 * towerF1() * 66 / 72.6, 60 * towerF1() * 80 / 72.6];
 // design TSR: blade shape and Cp from analysis/rotor/bem.py (rerun per TSR); rated power held at 13.6 kW shaft
 let tsrKey = "6.5";
-const rotorPt = () => { const T = TSR_TABLES[nBlades][tsrKey], vr = Math.cbrt(13600 / (0.5 * 1.25 * Math.PI * 3.75 ** 2 * T.cp));
-  return { T, cp: T.cp, op: T.top, vRated: vr, rpmRated: T.top * vr / 3.75 * 60 / (2 * Math.PI) }; };
+const rotorPt = () => { const T = TSR_TABLES[nBlades][tsrKey], vr = Math.cbrt(13600 / (0.5 * 1.25 * Math.PI * rotorR ** 2 * T.cp));
+  return { T, cp: T.cp, op: T.top, vRated: vr, rpmRated: T.top * vr / rotorR * 60 / (2 * Math.PI),
+    area: T.area * ((rotorR - 0.4) / 3.35) * (rotorR / 3.75) }; };
+function setRotor(Dm) { rotorR = Dm / 2; $("rotorDOut").textContent = `Ø${Dm.toFixed(2)} m`; setTSR(tsrKey); }
 function setTSR(k) {
   tsrKey = k; const R_ = rotorPt();
   const g = bladeGeometry(R_.T); bladeSkins.forEach((m) => (m.geometry = g)); bladeGeo.dispose(); bladeGeo = g;
   const torque = 13600 / (R_.rpmRated * 2 * Math.PI / 60);
   $("tsrOut").textContent = (+k).toFixed(1);
-  $("tsrNote").textContent = `Runs at TSR ${R_.op.toFixed(1)}, Cp ${R_.cp.toFixed(3)}. Rated ${R_.rpmRated.toFixed(0)} rpm at ${R_.vRated.toFixed(1)} m/s, tip ${(R_.rpmRated / 9.549 * 3.75).toFixed(0)} m/s, torque ${torque.toFixed(0)} Nm (${((torque / 730 - 1) * 100).toFixed(0)} % vs now). Blade area ${R_.T.area.toFixed(2)} m² each, ${(R_.T.area * nBlades).toFixed(2)} m² total (${((R_.T.area * nBlades / 2.55 - 1) * 100).toFixed(0)} %).` + (R_.op > +k + 0.2 ? ` A blade designed for ${(+k).toFixed(1)} will not actually run that slowly.` : "") + (k === "6.5" && nBlades === 3 ? " This is the current design." : " Generator, loads and tower are not resized in this view.") + (nBlades > 3 ? ` Hub enlarged to Ø${(2 * (230 + hubDs)).toFixed(0)} only so the necks fit; it is not designed.` : "");
+  $("tsrNote").textContent = `Runs at TSR ${R_.op.toFixed(1)}, Cp ${R_.cp.toFixed(3)}. Rated ${R_.rpmRated.toFixed(0)} rpm at ${R_.vRated.toFixed(1)} m/s, tip ${(R_.rpmRated / 9.549 * rotorR).toFixed(0)} m/s, torque ${torque.toFixed(0)} Nm (${((torque / 730 - 1) * 100).toFixed(0)} % vs now). Blade area ${R_.area.toFixed(2)} m² each, ${(R_.area * nBlades).toFixed(2)} m² total (${((R_.area * nBlades / 2.55 - 1) * 100).toFixed(0)} %).`
+    + (rotorR !== 3.75 ? ` Power at 6 m/s ${(0.5 * 1.25 * Math.PI * rotorR ** 2 * R_.cp * 216 / 1000 * ETA).toFixed(2)} kW (${(((rotorR / 3.75) ** 2 * R_.cp / 0.478 - 1) * 100).toFixed(0)} % vs now). Blade mass ≈ ${(20.5 * (rotorR / 3.75) ** 2.7).toFixed(0)} kg each; parked storm thrust ≈ ${(((R_.area * nBlades) / 2.55 - 1) * 100).toFixed(0)} %, tower base moment ≈ ${(((R_.area * nBlades) / 2.55 * (rotorR / 3.75) - 1) * 100).toFixed(0)} % (rough, area × arm).` : "") + (R_.op > +k + 0.2 ? ` A blade designed for ${(+k).toFixed(1)} will not actually run that slowly.` : "") + (k === "6.5" && nBlades === 3 && rotorR === 3.75 ? " This is the current design." : " Generator, loads and tower are not resized in this view.") + (nBlades > 3 ? ` Hub enlarged to Ø${(2 * (230 + hubDs)).toFixed(0)} only so the necks fit; it is not designed.` : "");
   setTowerHeight(towerH / 1000);
 }
 function setTowerHeight(Hm) {
@@ -904,9 +914,9 @@ function setTowerHeight(Hm) {
   const [a, b] = exclusion();
   $("towerHOut").textContent = `${Hm} m`;
   const inRange = a < rotorPt().rpmRated && b > 40;
-  $("towerNote").textContent = `Hub ≈ ${(Hm + 0.93).toFixed(1)} m above ground, blade tip ${(Hm + 0.93 - 3.75).toFixed(1)} … ${(Hm + 0.93 + 3.75).toFixed(1)} m. First tower mode ≈ ${towerF1().toFixed(2)} Hz` + (inRange ? `, so the controller skips ${a.toFixed(0)}–${b.toFixed(0)} rpm.` : ` (1P ${a.toFixed(0)}–${b.toFixed(0)} rpm is outside the operating range).`) + (Hm === 18 || Hm === 24 ? "" : " Only the 18 m and 24 m towers are designed; this height is estimated.");
+  $("towerNote").textContent = `Hub ≈ ${(Hm + 0.93).toFixed(1)} m above ground, blade tip ${(Hm + 0.93 - rotorR).toFixed(1)} … ${(Hm + 0.93 + rotorR).toFixed(1)} m.` + (Hm + 0.93 - rotorR < 4 ? " Lowest tip is under 4 m: too close to the ground." : "") + ` First tower mode ≈ ${towerF1().toFixed(2)} Hz` + (inRange ? `, so the controller skips ${a.toFixed(0)}–${b.toFixed(0)} rpm.` : ` (1P ${a.toFixed(0)}–${b.toFixed(0)} rpm is outside the operating range).`) + (Hm === 18 || Hm === 24 ? "" : " Only the 18 m and 24 m towers are designed; this height is estimated.");
 }
-const RHO_AIR = 1.25, AREA = Math.PI * 3.75 ** 2, ETA = 12.0 / 13.6;
+const RHO_AIR = 1.25, ETA = 12.0 / 13.6;
 const wrap180 = (a) => ((a % 360) + 540) % 360 - 180;
 const yawForHeading = (h) => wrap180(h + 90);          // nacelle yaw that points the rotor into the wind
 function pitchFor(v, vr) { return v <= vr ? 0 : Math.min(3.0 * Math.pow(v - vr, 0.85), 40) + (v > 25 ? (v - 25) * 2.5 : 0); }
@@ -930,7 +940,7 @@ function windControl(dt) {
     if (st.mode !== "run") { st.pitchTarget = 92; st.pitchRate = 8; st.rpmTarget = 0; }
     else {
       const RP = rotorPt();
-      let rpm = Math.min(RP.op * v / 3.75 * 60 / (2 * Math.PI), RP.rpmRated);
+      let rpm = Math.min(RP.op * v / rotorR * 60 / (2 * Math.PI), RP.rpmRated);
       const [ez0, ez1] = exclusion();                                  // 1P tower exclusion zone (66–80 rpm on 18 m)
       if (rpm > ez0 && rpm < ez1 && ez0 < RP.rpmRated) rpm = rpm < (ez0 + ez1) / 2 ? ez0 : ez1;
       if (v > 25) rpm = RP.rpmRated * (1 - 0.25 * Math.min((v - 25) / 5, 1)); // storm control 25–30 m/s, speed to 75 %
@@ -942,7 +952,7 @@ function windControl(dt) {
     const cap = v > 25 ? 13.6 - (13.6 - 5.4) * Math.min((v - 25) / 5, 1) : 13.6;
     const yawLoss = Math.cos(Math.min(Math.abs(wrap180(yawForHeading(st.hEff) - st.yaw)), 89) * D2R) ** 3;
     const RP = rotorPt();
-    shaftKW = Math.min(0.5 * RHO_AIR * AREA * RP.cp * v ** 3 / 1000 * yawLoss * Math.min(st.rpm / Math.max(RP.op * v / 3.75 * 9.549, 1), 1), cap);
+    shaftKW = Math.min(0.5 * RHO_AIR * Math.PI * rotorR ** 2 * RP.cp * v ** 3 / 1000 * yawLoss * Math.min(st.rpm / Math.max(RP.op * v / rotorR * 9.549, 1), 1), cap);
   }
   st.power = shaftKW * ETA;
   const label = !st.auto ? (st.stopped ? "Stopped" : "Manual") : st.mode === "low-stop" ? "Parked, wind too low"
@@ -1011,7 +1021,7 @@ function tick() {
   // section plane follows the nacelle (vertical plane through the rotor axis)
   sectionPlane.normal.set(0, 0, -1).applyAxisAngle(Y1, st.yaw * D2R);
   syncUI();
-  $("vTip").textContent = `${(st.rpm / 60 * 2 * Math.PI * 3.75).toFixed(1)} m/s`;
+  $("vTip").textContent = `${(st.rpm / 60 * 2 * Math.PI * rotorR).toFixed(1)} m/s`;
   $("vFreq").textContent = `${(st.rpm * 20 / 60).toFixed(1)} Hz`;
   $("vYoke").textContent = `x ${yokeX(st.pitch).toFixed(0)} mm`;
   $("vPin").textContent = `${((st.yaw * 150 / 14) % 360).toFixed(0)}°`;
