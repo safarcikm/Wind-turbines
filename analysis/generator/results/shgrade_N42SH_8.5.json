@@ -1,0 +1,41 @@
+{
+  "grade": "N42SH",
+  "thickness_mm": 8.5,
+  "seat_d_mm": 620.62,
+  "magnet_kg": 8.27,
+  "line_emf_100C_V": 398.1,
+  "turns_for_380V": 26.7,
+  "demag_margin_pct": {
+    "60C": {
+      "HcJ_kA_m": 1210,
+      "rated": 67.6,
+      "steady_sc": 57.4,
+      "transient_sc": 43.9
+    },
+    "80C": {
+      "HcJ_kA_m": 1019,
+      "rated": 62.4,
+      "steady_sc": 50.9,
+      "transient_sc": 35.1
+    },
+    "100C": {
+      "HcJ_kA_m": 828,
+      "rated": 54.8,
+      "steady_sc": 41.2,
+      "transient_sc": 22.3
+    },
+    "110C": {
+      "HcJ_kA_m": 732,
+      "rated": 49.6,
+      "steady_sc": 34.5,
+      "transient_sc": 13.3
+    },
+    "120C": {
+      "HcJ_kA_m": 637,
+      "rated": 42.7,
+      "steady_sc": 25.7,
+      "transient_sc": 1.7
+    }
+  },
+  "max_temp_transient_sc_20pct_C": 103.0
+}

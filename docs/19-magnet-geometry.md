@@ -724,6 +724,126 @@ short-circuit tests above 100 °C. That is a better prototype than §14's N42
 5 mm blocks (which must stay below 50 °C and never see a short circuit), at
 the price of a different seat (Ø616.03) and 18 % less output.
 
+## 16. Can the production rotor use SH grade magnets?
+
+Question (Martin, 2026-11-05): because of restrictions on importing from
+Asia, a full feasibility study of SH grades for the production generator.
+
+### 16.1 Why SH is attractive
+
+SH grades (HcJ ≥ 1,592 kA/m, 20 kOe) need roughly **half the heavy rare
+earth** of UH and a third of EH (typically 1 to 3 % Dy, or a few tenths of
+a percent of Tb by grain-boundary diffusion, against 4 to 6 % for UH and
+6 to 9 % for EH). Heavy rare earths are the bottleneck: they are what
+China's export licensing targets, and what makers outside China are
+shortest of. SH is also the most common motor grade, so almost every maker
+stocks it. Note that a magnet with any Dy or Tb from China still falls under
+the licensing; SH helps mainly because non-Chinese makers can make it from
+their limited heavy rare earth feed.
+
+### 16.2 What the FEA says
+
+The Rev B layout (2 × 2 blocks 40 × 20 per pole, rows skewed 0.50°) was run
+with N38SH, N42SH and N45SH at several thicknesses, the drum seat fitted to
+each block ([`shgrade.py`](../analysis/generator/shgrade.py) →
+`results/shgrade_*.json`). The margin is the worst element against HcJ in
+the transient short circuit (2 × steady current), the doc 06 design case:
+
+| Block | Seat Ø | Magnets | EMF at 100 °C, 28 turns | Transient SC margin at 60 / 80 / 100 / 110 / 120 °C | 20 % kept up to |
+|---|---|---|---|---|---|
+| N40EH 7.5 (Rev B, reference) | 618.65 | 7.3 kg | 380 V | – / – / – / – / **47 %** | > 150 °C |
+| N40UH 7.5 (Rev B, accepted) | 618.65 | 7.3 kg | 380 V | – / – / – / – / **30 %** | ≈ 130 °C |
+| N45SH 7.0 | 617.62 | 6.8 kg | 389 V | 40 / 31 / 17 / 7 / −5 % | 96 °C |
+| **N42SH 7.5** (Rev B drawing) | 618.62 | 7.3 kg | 388 V | 42 / 33 / **20** / 11 / −1 % | **100 °C** |
+| N42SH 8.5 | 620.62 | 8.3 kg | 398 V | 44 / 35 / 22 / 13 / 2 % | 103 °C |
+| N42SH 9.5 | 622.62 | 9.2 kg | 406 V | 45 / 37 / 24 / 15 / 4 % | 105 °C |
+| N42SH 10.5 | 624.62 | 10.2 kg | 413 V | 47 / 38 / 26 / 17 / 6 % | 107 °C |
+| N38SH 8.0 | 619.62 | 7.8 kg | 374 V | 46 / 38 / 26 / 17 / 6 % | 107 °C |
+| **N38SH 9.5** | 622.62 | 9.2 kg | 387 V | 48 / 40 / **28** / 20 / 9 % | **110 °C** |
+
+At 120 °C the steady short circuit keeps 24 to 31 % in every SH case, and
+rated load keeps more than 40 %. Only the transient short circuit fails.
+
+What it says:
+
+- **No SH grade meets the 120 °C design case at any sensible thickness.** A
+  thicker block helps only slowly (N42SH: 2 points per extra millimetre),
+  because the limit is the grade's coercivity, not the magnet length.
+- **N42SH meets it at 100 °C, on the Rev B drawing as it is.** The
+  40 × 20 × 7.5 block, the Ø618.65 seat, comb bars, jig: all unchanged. It
+  gives 2 % more EMF than N40UH (388 V with 28 turns, worst-case peak about
+  915 V, still inside the 1,200 V parts).
+- **N38SH 9.5 mm buys 10 K more (110 °C)**, at the price of 2 kg more
+  magnet, a Ø622.6 seat and 2 mm less drum yoke.
+
+### 16.3 Is a 100 °C design case defensible?
+
+The doc 06 thermal model puts the magnets at **60 °C in the worst running
+case** (hot day, rated power): the magnets sit on the outside drum, cooled
+by the wind. The 120 °C design case was chosen as a 60 K reserve before any
+measurement. A 100 °C design case still keeps **40 K** above the model, but
+three things must make it true rather than hoped:
+
+1. **Measure it.** The bench test (doc 15) records the magnet temperature
+   at rated and 110 % load and after a hot shutdown (no airflow while the
+   stator gives off its heat). SH is only released for production if the
+   measured worst case stays at or below 75 °C.
+2. **Watch it in service.** An infrared sensor on the nacelle looks at the
+   drum outside over the magnet band (the steel is 13.7 mm thick, so it reads
+   within a few kelvin of the magnets), backed by the controller's thermal
+   model. The controller derates power above 85 °C and stops the turbine by
+   pitching above 95 °C.
+3. **Never short the generator on purpose.** No phase-short braking or
+   crowbar (doc 12 already brakes with the converter and the dump load).
+   Field weakening for the e-stop draws at most the steady short-circuit
+   current, which keeps 40 % margin at 100 °C. Only a real cable or converter
+   fault at a hot moment can still reach the transient case, and then the
+   damage is partial (block corners, a few percent of EMF), found by the
+   yearly EMF check, not a failure.
+
+Copper loss, cooling, voltage and the rest of the design do not change.
+
+### 16.4 Sourcing outside Asia
+
+| Maker | Plant | Notes |
+|---|---|---|
+| Neo Performance Materials | Narva, Estonia | Sintered NdFeB plant opened 2025, now also a heavy rare earth separation line in Estonia; supplies EU motor makers |
+| VAC (Vacuumschmelze) | Hanau, Germany; Slovakia; South Carolina, USA (eVAC, shipping since 2025) | Full grade range incl. SH/UH; long-standing industrial supplier |
+| Noveon Magnetics | Texas, USA | Sintered magnets, partly from recycled feed; automotive supply |
+| MP Materials | Fort Worth, USA | Started magnet production; mostly committed to large automotive contracts |
+
+All of them prefer large orders; 8 kg per generator will usually go through a
+distributor or a small-lot service, at 2 to 3 × the Chinese price (roughly
+€2,000 to 3,500 per generator against €1,000 to 1,500 from China). Their heavy rare
+earth feed is still partly Chinese, which is exactly why SH (little Dy/Tb)
+is easier for them to quote than UH or EH. Japan (Shin-Etsu, Proterial, TDK)
+is the other non-Chinese source, but it is in Asia.
+
+### 16.5 Recommendation
+
+**SH is feasible for production as N42SH 40 × 20 × 7.5 on the unchanged
+Rev B drawing, with the design case moved from 120 °C to 100 °C** and the
+three conditions in §16.3 (bench-measured magnet temperature ≤ 75 °C,
+magnet temperature watch with derating and stop, no deliberate shorting).
+
+Proposed ordering, best first:
+
+1. N40EH (all faults covered up to 150 °C), if a non-Asian maker quotes it.
+2. N40UH (120 °C covered).
+3. **N42SH, same drawing**, released after the bench temperature test. This
+   is the most likely grade to be quoted by Neo or VAC at short lead time.
+4. N38SH 9.5 mm if more reserve is wanted (110 °C), with a new seat Ø622.6.
+
+The RFQ (§8) should therefore list N42SH as a third acceptable grade on the
+same drawing, marked "subject to bench test", and ask the European and US
+makers above.
+
+Sources: [Neo opens Narva plant](https://projectblue.com/blue/news-analysis/1321/neo-performance-materials-opens-narva-ndfeb-magnet-production-facility),
+[Neo heavy rare earth line](https://www.fastmarkets.com/insights/neo-adds-heavy-rare-earth-line-opens-ev-motor-magnet-plant/),
+[eVAC South Carolina](https://www.metal-powder.tech/evac-ships-first-rare-earth-magnets-from-south-carolina-facility/),
+[Noveon](https://www.metal-powder.tech/?p=283339),
+[MP Materials](https://pipedot.org/6V82K).
+
 ## Appendix A. How to rerun
 
 ```
@@ -736,6 +856,7 @@ python3 magnets.py tol C2t      # Rev B tolerance scatter, with and without skew
 python3 grades.py C2t           # Rev B grade assessment (§12) -> grades_summary_C2t.json
 python3 proto.py steel          # §14 prototype N42 5 mm + steel filler (also: resin), ~10 min
 python3 sh30.py S1              # §15 N42SH 30 x 15 x 6 layouts (also: S3), ~10 min
+python3 shgrade.py N42SH 7.5 8.5 9.5 10.5   # §16 SH feasibility (also N38SH, N45SH), ~5 min per case
 cd ../../cad/generator_mfg
 python3 magnet_geom.py          # final dimensions
 python3 figures_magnets.py --png

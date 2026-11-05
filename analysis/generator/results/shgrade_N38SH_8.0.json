@@ -1,0 +1,41 @@
+{
+  "grade": "N38SH",
+  "thickness_mm": 8.0,
+  "seat_d_mm": 619.62,
+  "magnet_kg": 7.78,
+  "line_emf_100C_V": 374.3,
+  "turns_for_380V": 28.4,
+  "demag_margin_pct": {
+    "60C": {
+      "HcJ_kA_m": 1210,
+      "rated": 68.6,
+      "steady_sc": 59.6,
+      "transient_sc": 46.3
+    },
+    "80C": {
+      "HcJ_kA_m": 1019,
+      "rated": 63.5,
+      "steady_sc": 53.2,
+      "transient_sc": 37.9
+    },
+    "100C": {
+      "HcJ_kA_m": 828,
+      "rated": 56.2,
+      "steady_sc": 44.0,
+      "transient_sc": 25.6
+    },
+    "110C": {
+      "HcJ_kA_m": 732,
+      "rated": 51.0,
+      "steady_sc": 37.6,
+      "transient_sc": 17.0
+    },
+    "120C": {
+      "HcJ_kA_m": 637,
+      "rated": 44.4,
+      "steady_sc": 29.2,
+      "transient_sc": 5.8
+    }
+  },
+  "max_temp_transient_sc_20pct_C": 107.0
+}
