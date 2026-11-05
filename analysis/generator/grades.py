@@ -10,11 +10,13 @@ intrinsic coercivity HcJ at that temperature. Also the block thickness that
 would give the 380 V target with that grade.
 
 Run:  python3 grades.py   (~10 min)  -> results/grades_summary.json
+      python3 grades.py C2t N40UH N40EH   (one shape, some grades) -> results/grades_summary_C2t.json
 """
 from __future__ import annotations
 
 import json
 import math
+import sys
 from pathlib import Path
 
 import numpy as np
@@ -43,8 +45,12 @@ GRADES = [
 ]
 
 
+SHAPE = next((a for a in sys.argv[1:] if a in {s.key for s in SHAPES}), "F2t")
+ONLY = [a for a in sys.argv[1:] if a in {g[0] for g in GRADES}]
+
+
 def run_grade(key, br20, hcj20, a_br, b_hcj):
-    shape = next(s for s in SHAPES if s.key == "F2t")
+    shape = next(s for s in SHAPES if s.key == SHAPE)
     geo = MagGeometry(br20=br20, br_tc=a_br / 100, hm=shape.hm, d_slot=0.065, L=STACK, g=0.0020,
                       sleeve=0.0005)
     geo.mu_rm = 1.05 if not key.startswith("SmCo") else 1.03
@@ -68,7 +74,7 @@ def run_grade(key, br20, hcj20, a_br, b_hcj):
         return [sgn * NI * (-math.sin(p * theta - d) if axis == "q" else math.cos(p * theta - d)) for d in deltas]
 
     out = dict(grade=key, br20=br20, hcj20_kA_m=hcj20, line_emf_V=round(e_line, 1),
-               thickness_for_380V_mm=round(8.2 + (E_TARGET - e_line) / DEDH * (1.26 / br20), 2))
+               thickness_for_380V_mm=round(shape.hm * 1e3 + (E_TARGET - e_line) / DEDH * (1.26 / br20), 2))
     for T in (120.0, 150.0):
         geo.t_mag = T
         th_d = deltas[0] / p
@@ -92,10 +98,12 @@ def run_grade(key, br20, hcj20, a_br, b_hcj):
 
 
 def main():
-    res = [run_grade(k, br, hcj, a, b) for k, br, hcj, a, b, _ in GRADES]
-    for r, g in zip(res, GRADES):
+    grades = [g for g in GRADES if not ONLY or g[0] in ONLY]
+    res = [run_grade(k, br, hcj, a, b) for k, br, hcj, a, b, _ in grades]
+    for r, g in zip(res, grades):
         r["family"] = g[5]
-    (OUT / "grades_summary.json").write_text(json.dumps(res, indent=2))
+    suffix = "" if SHAPE == "F2t" else f"_{SHAPE}"
+    (OUT / f"grades_summary{suffix}.json").write_text(json.dumps(res, indent=2))
 
 
 if __name__ == "__main__":

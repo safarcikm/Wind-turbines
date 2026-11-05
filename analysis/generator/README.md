@@ -29,10 +29,12 @@ No numpy needed.
 ## Magnet geometry study (doc 19)
 
 ```
-python3 magnets.py              # 7 magnet shapes (arc vs flat blocks): EMF, cogging, ripple,
+python3 magnets.py              # 11 magnet shapes (arc vs flat blocks): EMF, cogging, ripple,
                                 # demag, net force per pole, magnet eddy loss vs segmentation (~40 min)
 python3 magnets.py A F2t        # only some shapes (results are merged into the summary)
 python3 magnets.py tol F2t      # cogging sensitivity to pole remanence/position scatter
+python3 magnets.py C2t          # doc 19 Rev B: 40 x 20 x 7.5 catalogue blocks; also reports the 2-row step skew
+python3 grades.py [C2t]         # magnet grade assessment on F2t (default) or another shape
 python3 magnets.py quick ...    # coarse mesh for checks
 ```
 

@@ -1,8 +1,12 @@
-"""Final magnet geometry for the P1 generator (doc 19, NP1-220 Rev C).
+"""Final magnet geometry for the P1 generator (doc 19 Rev B, NP1-220 Rev D).
 
-Flat (rectangular) N40UH blocks, parallel magnetised through the thickness,
-K blocks side by side per pole and N_AX blocks along the stack. All other
-drawings and the doc 19 tables are computed from this file.
+Flat 40 x 20 mm catalogue-size blocks (N40EH / N40UH), parallel magnetised
+through the 7.50 thickness: K = 2 blocks side by side per pole (20 across) and
+N_AX = 2 blocks along the stack (40 along). The two block rows are 80.2 mm long,
+so they overhang the 74 mm stator stack by 3.1 mm at each end, and the rear row
+is turned 0.50 deg against the front row (step skew, cancels the cogging that the
+wider 0.85 pole span would otherwise give). Rev A (18.75 x 36.90 x 8.20) is kept
+in doc 19 Rev A. All other drawings and the doc 19 tables are computed from this file.
 
 Coordinates: r = radius from the generator axis [mm], x = axial position along
 the spindle [mm] (same x as geometry.py, stack x 343 to 417).
@@ -23,7 +27,7 @@ SPAN = TAU * GEN["alpha_m"]         # pole span 7.20° (unchanged from doc 06)
 
 K = 2                               # blocks side by side per pole
 N_AX = 2                            # blocks along the stack
-H = 8.20                            # thickness (magnetised direction); doc 06 arcs were 7.70
+H = 7.50                            # thickness (magnetised direction); Rev A 8.20, doc 06 arcs 7.70
 BOND = 0.15                         # bond line at the block corners (glass beads)
 SHIM = 0.20                         # axial gap between blocks (PTFE shim, removed)
 STACK = GEN["stack"]                # 74.0
@@ -32,11 +36,15 @@ R_STATOR = GEN["r_s"]               # 299.0
 GAP = GEN["gap"]                    # 2.0
 R_SLEEVE_BORE = R_STATOR + GAP      # 301.0 (mandrel Ø602.0)
 
-# block width: two blocks fill the 7.20° span at the inner face, 0.20 mm apart
-PITCH = SPAN / K                    # 3.60°
-W = 18.75                           # block width (circumferential), mm
-L = round((STACK - (N_AX - 1) * SHIM) / N_AX, 2)   # 36.90 block length (axial)
-SEAT_D = 620.00                     # drum magnet seat diameter (was 618.4 in doc 18)
+W = 20.00                           # block width (circumferential), catalogue 20
+L = 40.00                           # block length (axial), catalogue 40
+CLEAR_BLK = 0.20                    # gap between the two blocks of a pole at their inner corners
+R_IN_NOM = 301.5                    # inner face at the block centre line (sleeve 0.5)
+PITCH = math.degrees(2 * math.atan((W + CLEAR_BLK) / (2 * R_IN_NOM)))   # 3.84° between block centres
+SPAN_W = PITCH + math.degrees(2 * math.atan(W / 2 / R_IN_NOM))          # 7.64° pole span at the inner face
+SKEW = 0.50                         # rear row turned against the front row (half the 1° cogging period)
+ROW_SHIFT = [-SKEW / 2, SKEW / 2]   # pole centre of each row from the nominal pole centre (front, rear)
+SEAT_D = 618.65                     # drum magnet seat diameter (Rev A 620.00, doc 18 618.4)
 R_SEAT = SEAT_D / 2
 R_CORNER = R_SEAT - BOND            # outer corners of the block sit on the beads
 R_IN = math.sqrt(R_CORNER ** 2 - (W / 2) ** 2) - H        # inner face, block centre line
@@ -94,7 +102,15 @@ MASS_G = VOL * 7.6e-3
 COUNT = POLES * K * N_AX                         # 160
 SPARES = 8
 TOTAL_KG = COUNT * MASS_G / 1000
-X_BLOCKS = [X_STACK[0] + i * (L + SHIM) for i in range(N_AX)]   # front edge of each block row
+X_MID = (X_STACK[0] + X_STACK[1]) / 2           # 380.0
+ROWS_LEN = N_AX * L + (N_AX - 1) * SHIM          # 80.2
+OVERHANG = (ROWS_LEN - STACK) / 2                # 3.1 at each end of the stack
+X_BLOCKS = [X_MID - ROWS_LEN / 2 + i * (L + SHIM) for i in range(N_AX)]   # front edge of each block row
+RING_W = 7.9                                     # end ring width (axial)
+SEAT_X = (X_BLOCKS[0] - RING_W, X_BLOCKS[-1] + L + RING_W)               # (332.0, 428.0) drum seat land
+COMB_L = 44.0                                    # one comb bar per row and pole gap, 3.9 into the end ring
+COMB_X = [(X_MID - COMB_L, X_MID), (X_MID, X_MID + COMB_L)]             # front bar, rear bar
+COMB_COUNT = POLES * N_AX                        # 80
 
 
 def summary():
@@ -103,8 +119,23 @@ def summary():
                 r_corner=round(R_CORNER, 3), r_in_corner=round(R_IN_CORNER, 3), bond_mid=round(BOND_MID, 3),
                 sleeve_min=round(SLEEVE_MIN, 3), sleeve_max=round(SLEEVE_MAX, 3),
                 gap_between=round(gap_between_blocks(), 3), comb_w_in=wi, comb_w_out=wo, comb_h=hc,
+                comb_face_deg=round(comb_face_deg(), 2), comb_l=COMB_L, comb_x=COMB_X, comb_count=COMB_COUNT,
+                pitch_deg=round(PITCH, 3), span_deg=round(SPAN_W, 3), alpha=round(SPAN_W / TAU, 3),
+                skew_deg=SKEW, row_shift_deg=ROW_SHIFT, rows_len=round(ROWS_LEN, 2), overhang=round(OVERHANG, 2),
+                seat_x=[round(v, 2) for v in SEAT_X], ring_w=RING_W, gap_between_outer=round(gap_between_outer(), 3),
                 mass_g=round(MASS_G, 1), count=COUNT, total_kg=round(TOTAL_KG, 2),
-                yoke_under_magnets=round(323.0 - R_SEAT, 2), x_blocks=X_BLOCKS)
+                yoke_under_magnets=round(323.0 - R_SEAT, 2), x_blocks=[round(v, 2) for v in X_BLOCKS])
+
+
+def comb_face_deg():
+    wi, wo, h = comb_bar()
+    return math.degrees(math.atan((wo - wi) / 2 / h))
+
+
+def gap_between_outer():
+    """Gap between the two blocks of one pole at their outer (back) corners (mm)."""
+    a = math.radians(PITCH / 2)
+    return 2 * (R_BACK * math.sin(a) - W / 2 * math.cos(a))
 
 
 if __name__ == "__main__":

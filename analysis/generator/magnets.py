@@ -73,10 +73,18 @@ class Shape:
     flat: bool = False
     alpha: float = POLE_ARC    # pole span / pole pitch
     hm: float = 0.0077         # magnet thickness [m]
+    b: float = 0.0             # fixed block width [m] (catalogue size); 0 = from alpha
+    n_ax: int = 2              # pieces along the stack
+    l_ax: float = 0.0          # fixed piece length along the stack [m]; 0 = fill the stack
 
     def blocks(self, geo):
         """Block centre angles (rad, from pole centre) and width b [m] (flat) or arc (rad)."""
         tau = 2 * math.pi / geo.poles
+        if self.b:
+            # catalogue block: neighbouring blocks of a pole CLEAR apart at their inner corners
+            pitch = 2 * math.atan((self.b + CLEAR) / (2 * geo.r_m1))
+            phis = [(j - (self.k - 1) / 2) * pitch for j in range(self.k)]
+            return phis, self.b
         span = self.alpha * tau
         pitch = span / self.k
         phis = [(j - (self.k - 1) / 2) * pitch for j in range(self.k)]
@@ -99,7 +107,16 @@ SHAPES = [Shape("A", "Arc segment, radial (doc 18)", 1, False),
           Shape("F3", "3 flat blocks per pole", 3, True),
           Shape("F2w", "2 flat blocks, span 0.84", 2, True, alpha=0.84),
           Shape("F2t", "2 flat blocks, 8.2 mm thick", 2, True, hm=0.0082),
-          Shape("F2wt", "2 flat blocks, span 0.84, 8.0 mm", 2, True, alpha=0.84, hm=0.0080)]
+          Shape("F2wt", "2 flat blocks, span 0.84, 8.0 mm", 2, True, alpha=0.84, hm=0.0080),
+          # catalogue 40 x 20 mm blocks (doc 19 §13); the rows overhang the 74 mm stack
+          Shape("C2", "40x20: 2 across (20 wide), 2 along (40 long)", 2, True, hm=0.0082, b=0.020,
+                n_ax=2, l_ax=0.040),
+          Shape("C1", "40x20: 1 across (40 wide), 4 along (20 long)", 1, True, hm=0.0082, b=0.040,
+                n_ax=4, l_ax=0.020),
+          Shape("C2t", "40x20: 2 across, 2 along, 7.5 mm", 2, True, hm=0.0075, b=0.020,
+                n_ax=2, l_ax=0.040),
+          Shape("C2s", "40x20: 2 across, 2 along, 7.0 mm", 2, True, hm=0.0070, b=0.020,
+                n_ax=2, l_ax=0.040)]
 
 
 @dataclass
@@ -253,6 +270,18 @@ def fourier(y, n):
     return abs(c), math.atan2(-c.imag, c.real)
 
 
+def shift_avg(y, period, offsets):
+    """Mean of a periodic sampled curve shifted by each offset (Fourier interpolation)."""
+    y = np.asarray(y, float)
+    n = len(y)
+    F = np.fft.rfft(y)
+    k = np.arange(len(F))
+    out = np.zeros(n)
+    for o in offsets:
+        out += np.fft.irfft(F * np.exp(2j * math.pi * k * o / period), n=n)
+    return out / len(offsets)
+
+
 def torsion_factor(w, l, terms=40):
     """Eddy loss of a w x l piece relative to the same width in 2D (infinitely long).
     Exact for a uniform alternating field normal to the piece (Prandtl torsion analogy)."""
@@ -283,7 +312,7 @@ def run_variant(shape: Shape, NI_load=None):
     else:
         res["arc_deg"] = round(math.degrees(bw), 3)
         area = bw / 2 * ((geo.r_m1 + geo.hm) ** 2 - geo.r_m1 ** 2)
-    res["magnet_mass_kg"] = round(area * STACK * RHO_MAG * geo.poles, 3)
+    res["magnet_mass_kg"] = round(area * (shape.n_ax * shape.l_ax or STACK) * RHO_MAG * geo.poles, 3)
 
     # ---- no-load, 36 positions over one electrical period
     th_nl = np.arange(36) * el_period / 36
@@ -395,6 +424,15 @@ def run_variant(shape: Shape, NI_load=None):
         seg[str(n_ax)] = round(loss_2d * STACK * torsion_factor(width, l), 1)
     res["eddy_loss_rated_W"] = dict(width_mm=round(width * 1e3, 2), loss_2d_W=round(loss_2d * STACK, 1),
                                     by_axial_pieces=seg)
+    if shape.l_ax:      # catalogue pieces: the whole magnet length is in the field (overhang ignored)
+        res["eddy_loss_rated_W"]["catalogue_pieces"] = round(loss_2d * STACK * torsion_factor(width, shape.l_ax), 1)
+    # step skew: the axial rows shifted by 1/n_ax of the 1 deg cogging period (2D superposition)
+    n_r = shape.n_ax
+    offs = [i / n_r * cog_period for i in range(n_r)]
+    res["skewed_rows"] = dict(rows=n_r, step_deg=round(math.degrees(cog_period / n_r), 3),
+                              cogging_pp_Nm=round(float(np.ptp(shift_avg(cog, cog_period, offs))), 3),
+                              ripple_pp_pct=round(float(np.ptp(shift_avg(tq, el_period, offs)) / tq.mean() * 100), 2),
+                              emf_factor=round(float(abs(np.mean([np.exp(1j * p * o) for o in offs]))), 4))
 
     # ---- short-circuit demagnetisation at 120 C (as run_fea.py)
     geo.t_mag = 120.0
@@ -449,6 +487,9 @@ def tolerance_study(key):
             M.solve(th)
             cog.append(M.torque())
         out[name] = round(float(np.ptp(cog)), 3)
+        if name != "nominal" and shape.n_ax > 1 and shape.l_ax:    # catalogue rows step skewed
+            offs = [i / shape.n_ax * (2 * math.pi / 360) for i in range(shape.n_ax)]
+            out[name + ", rows skewed"] = round(float(np.ptp(shift_avg(cog, 2 * math.pi / geo.slots, offs))), 3)
         print(name, out[name], flush=True)
     suffix = "_quick" if QUICK else ""
     (OUT / f"magnets_tolerance_{key}{suffix}.json").write_text(json.dumps(out, indent=2))
