@@ -1,0 +1,30 @@
+{
+  "key": "B70_12",
+  "name": "block span 0.7, 12 mm",
+  "hm_mm": 12.0,
+  "seat_d_mm": 628.18,
+  "yoke_mm": 8.91,
+  "magnet_kg": 8.96,
+  "width_mm": 33.19,
+  "alpha": 0.7,
+  "line_emf_100C_V": 385.3,
+  "line_emf_100C_skewed_V": 383.5,
+  "phase_thd_pct": 5.86,
+  "turns_for_380V": 27.7,
+  "copper_loss_vs_revB": 0.982,
+  "cogging_pp_Nm": 1.36,
+  "cogging_skewed_pp_Nm": 0.01,
+  "demag_margin_pct": {
+    "100C": {
+      "rated": 53.8,
+      "steady_sc": 40.5,
+      "transient_sc": 26.9
+    },
+    "120C": {
+      "rated": 41.2,
+      "steady_sc": 24.7,
+      "transient_sc": 7.3
+    }
+  },
+  "t20_C": 107.0
+}
