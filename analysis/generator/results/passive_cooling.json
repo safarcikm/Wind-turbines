@@ -1,0 +1,302 @@
+{
+ "parts": {
+  "inner_fins": {
+   "n": 36,
+   "t_mm": 3.0,
+   "area_m2": 0.595,
+   "eff": 0.78,
+   "mass_kg": 7.0
+  },
+  "outer_ribs": {
+   "n": 48,
+   "t_mm": 4.0,
+   "height_mm": 17.5,
+   "area_m2": 0.389,
+   "eff": 0.95,
+   "mass_kg": 5.5
+  },
+  "outer_ribs_big": {
+   "n": 60,
+   "t_mm": 4.0,
+   "height_mm": 27.5,
+   "area_m2": 0.736,
+   "eff": 0.89,
+   "mass_kg": 10.8
+  },
+  "inner_area_m2": 0.899,
+  "outer_area_m2": 0.721
+ },
+ "configs": {
+  "A_no_cooling_parts": {
+   "fin_in": 1.0,
+   "fin_out": 1.0,
+   "h_int": 15,
+   "cases": {
+    "hot_rated": {
+     "hot": 144.1,
+     "mag": 65.5,
+     "air": 92.1
+    },
+    "hot_rated_weak_wake": {
+     "hot": 148.9,
+     "mag": 70.7,
+     "air": 97.1
+    },
+    "hot_110pct": {
+     "hot": 167.7,
+     "mag": 70.3,
+     "air": 103.1
+    },
+    "iceland_10C_rated": {
+     "hot": 113.4,
+     "mag": 39.1,
+     "air": 64.3
+    }
+   }
+  },
+  "B_cover_blades_RevC": {
+   "fin_in": 1.07,
+   "fin_out": 1.0,
+   "h_int": 40,
+   "cases": {
+    "hot_rated": {
+     "hot": 108.8,
+     "mag": 66.8,
+     "air": 80.1
+    },
+    "hot_rated_weak_wake": {
+     "hot": 114.0,
+     "mag": 72.2,
+     "air": 85.4
+    },
+    "hot_110pct": {
+     "hot": 122.1,
+     "mag": 71.1,
+     "air": 87.2
+    },
+    "iceland_10C_rated": {
+     "hot": 80.0,
+     "mag": 40.4,
+     "air": 53.0
+    }
+   }
+  },
+  "C_inner_fins_only_h15": {
+   "fin_in": 1.52,
+   "fin_out": 1.0,
+   "h_int": 15,
+   "cases": {
+    "hot_rated": {
+     "hot": 139.1,
+     "mag": 65.7,
+     "air": 84.3
+    },
+    "hot_rated_weak_wake": {
+     "hot": 143.9,
+     "mag": 70.9,
+     "air": 89.4
+    },
+    "hot_110pct": {
+     "hot": 161.1,
+     "mag": 70.4,
+     "air": 93.3
+    },
+    "iceland_10C_rated": {
+     "hot": 108.6,
+     "mag": 39.3,
+     "air": 56.9
+    }
+   }
+  },
+  "C_inner_fins_only_h25": {
+   "fin_in": 1.52,
+   "fin_out": 1.0,
+   "h_int": 25,
+   "cases": {
+    "hot_rated": {
+     "hot": 120.4,
+     "mag": 66.4,
+     "air": 79.9
+    },
+    "hot_rated_weak_wake": {
+     "hot": 125.4,
+     "mag": 71.7,
+     "air": 85.1
+    },
+    "hot_110pct": {
+     "hot": 136.8,
+     "mag": 70.9,
+     "air": 87.3
+    },
+    "iceland_10C_rated": {
+     "hot": 90.9,
+     "mag": 40.0,
+     "air": 52.8
+    }
+   }
+  },
+  "D_outer_ribs_only": {
+   "fin_in": 1.0,
+   "fin_out": 1.51,
+   "h_int": 15,
+   "cases": {
+    "hot_rated": {
+     "hot": 133.6,
+     "mag": 54.1,
+     "air": 81.0
+    },
+    "hot_rated_weak_wake": {
+     "hot": 136.9,
+     "mag": 57.7,
+     "air": 84.6
+    },
+    "hot_110pct": {
+     "hot": 155.0,
+     "mag": 57.2,
+     "air": 90.3
+    },
+    "iceland_10C_rated": {
+     "hot": 104.7,
+     "mag": 29.7,
+     "air": 55.2
+    }
+   }
+  },
+  "E_inner_fins_outer_ribs_h25": {
+   "fin_in": 1.52,
+   "fin_out": 1.51,
+   "h_int": 25,
+   "cases": {
+    "hot_rated": {
+     "hot": 109.2,
+     "mag": 54.7,
+     "air": 68.5
+    },
+    "hot_rated_weak_wake": {
+     "hot": 112.8,
+     "mag": 58.5,
+     "air": 72.1
+    },
+    "hot_110pct": {
+     "hot": 123.7,
+     "mag": 57.6,
+     "air": 74.2
+    },
+    "iceland_10C_rated": {
+     "hot": 81.6,
+     "mag": 30.3,
+     "air": 43.3
+    }
+   }
+  },
+  "F_blades_inner_fins": {
+   "fin_in": 1.59,
+   "fin_out": 1.0,
+   "h_int": 40,
+   "cases": {
+    "hot_rated": {
+     "hot": 105.5,
+     "mag": 66.9,
+     "air": 76.2
+    },
+    "hot_rated_weak_wake": {
+     "hot": 110.7,
+     "mag": 72.3,
+     "air": 81.5
+    },
+    "hot_110pct": {
+     "hot": 117.9,
+     "mag": 71.2,
+     "air": 82.3
+    },
+    "iceland_10C_rated": {
+     "hot": 76.9,
+     "mag": 40.5,
+     "air": 49.3
+    }
+   }
+  },
+  "G_blades_inner_fins_outer_ribs": {
+   "fin_in": 1.59,
+   "fin_out": 1.51,
+   "h_int": 40,
+   "cases": {
+    "hot_rated": {
+     "hot": 94.0,
+     "mag": 55.1,
+     "air": 64.5
+    },
+    "hot_rated_weak_wake": {
+     "hot": 97.7,
+     "mag": 58.9,
+     "air": 68.2
+    },
+    "hot_110pct": {
+     "hot": 104.6,
+     "mag": 57.8,
+     "air": 69.0
+    },
+    "iceland_10C_rated": {
+     "hot": 67.3,
+     "mag": 30.6,
+     "air": 39.5
+    }
+   }
+  },
+  "G_if_inside_air_only_h25": {
+   "fin_in": 1.59,
+   "fin_out": 1.51,
+   "h_int": 25,
+   "cases": {
+    "hot_rated": {
+     "hot": 108.8,
+     "mag": 54.7,
+     "air": 67.9
+    },
+    "hot_rated_weak_wake": {
+     "hot": 112.4,
+     "mag": 58.5,
+     "air": 71.6
+    },
+    "hot_110pct": {
+     "hot": 123.2,
+     "mag": 57.6,
+     "air": 73.5
+    },
+    "iceland_10C_rated": {
+     "hot": 81.2,
+     "mag": 30.3,
+     "air": 42.8
+    }
+   }
+  },
+  "H_G_with_25mm_ribs": {
+   "fin_in": 1.59,
+   "fin_out": 1.91,
+   "h_int": 40,
+   "cases": {
+    "hot_rated": {
+     "hot": 89.2,
+     "mag": 50.1,
+     "air": 59.5
+    },
+    "hot_rated_weak_wake": {
+     "hot": 92.2,
+     "mag": 53.2,
+     "air": 62.6
+    },
+    "hot_110pct": {
+     "hot": 99.1,
+     "mag": 52.2,
+     "air": 63.5
+    },
+    "iceland_10C_rated": {
+     "hot": 63.3,
+     "mag": 26.5,
+     "air": 35.4
+    }
+   }
+  }
+ },
+ "limit_hotspot_C": 130
+}

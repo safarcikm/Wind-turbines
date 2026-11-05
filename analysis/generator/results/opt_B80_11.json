@@ -1,0 +1,30 @@
+{
+  "key": "B80_11",
+  "name": "block span 0.8, 11 mm",
+  "hm_mm": 11.0,
+  "seat_d_mm": 626.45,
+  "yoke_mm": 9.77,
+  "magnet_kg": 9.39,
+  "width_mm": 37.94,
+  "alpha": 0.8,
+  "line_emf_100C_V": 400.2,
+  "line_emf_100C_skewed_V": 398.3,
+  "phase_thd_pct": 10.75,
+  "turns_for_380V": 26.7,
+  "copper_loss_vs_revB": 0.91,
+  "cogging_pp_Nm": 0.33,
+  "cogging_skewed_pp_Nm": 0.0,
+  "demag_margin_pct": {
+    "100C": {
+      "rated": 50.5,
+      "steady_sc": 36.6,
+      "transient_sc": 22.8
+    },
+    "120C": {
+      "rated": 37.2,
+      "steady_sc": 19.8,
+      "transient_sc": 2.3
+    }
+  },
+  "t20_C": 103.0
+}

@@ -1,0 +1,15 @@
+{
+  "nominal": 6.644,
+  "sorted poles, +-0.5 % alternating strong/weak": 6.88,
+  "sorted poles, +-0.5 % alternating strong/weak, rows skewed": 0.236,
+  "unsorted, random +-1.5 %": 8.03,
+  "unsorted, random +-1.5 %, rows skewed": 1.369,
+  "one pole 3 % weak": 7.823,
+  "one pole 3 % weak, rows skewed": 1.276,
+  "pole centres random +-0.05 deg": 7.699,
+  "pole centres random +-0.05 deg, rows skewed": 1.133,
+  "pole centres random +-0.10 deg": 13.241,
+  "pole centres random +-0.10 deg, rows skewed": 6.32,
+  "pole centres random +-0.25 deg": 16.683,
+  "pole centres random +-0.25 deg, rows skewed": 10.791
+}

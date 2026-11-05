@@ -1,0 +1,210 @@
+{
+ "thermal": {
+  "as_P1_drawn_no_fan": {
+   "hot_rated": {
+    "T_hotspot": 144.1,
+    "T_winding": 142.3,
+    "T_core": 137.2,
+    "T_internal_air": 92.1,
+    "T_rotor_magnets": 65.5
+   },
+   "hot_rated_weak_wake": {
+    "T_hotspot": 148.9,
+    "T_winding": 147.1,
+    "T_core": 141.9,
+    "T_internal_air": 97.1,
+    "T_rotor_magnets": 70.7
+   },
+   "hot_110pct": {
+    "T_hotspot": 167.7,
+    "T_winding": 165.4,
+    "T_core": 158.7,
+    "T_internal_air": 103.1,
+    "T_rotor_magnets": 70.3
+   },
+   "iceland_10C_rated": {
+    "T_hotspot": 113.4,
+    "T_winding": 111.8,
+    "T_core": 107.3,
+    "T_internal_air": 64.3,
+    "T_rotor_magnets": 39.1
+   }
+  },
+  "fan_blades_RevC_as_drawn": {
+   "hot_rated": {
+    "T_hotspot": 108.8,
+    "T_winding": 107.6,
+    "T_core": 104.1,
+    "T_internal_air": 80.1,
+    "T_rotor_magnets": 66.8
+   },
+   "hot_rated_weak_wake": {
+    "T_hotspot": 114.0,
+    "T_winding": 112.7,
+    "T_core": 109.1,
+    "T_internal_air": 85.4,
+    "T_rotor_magnets": 72.2
+   },
+   "hot_110pct": {
+    "T_hotspot": 122.1,
+    "T_winding": 120.5,
+    "T_core": 115.9,
+    "T_internal_air": 87.2,
+    "T_rotor_magnets": 71.1
+   },
+   "iceland_10C_rated": {
+    "T_hotspot": 80.0,
+    "T_winding": 78.9,
+    "T_core": 75.9,
+    "T_internal_air": 53.0,
+    "T_rotor_magnets": 40.4
+   }
+  },
+  "fan_plus_inner_fins": {
+   "hot_rated": {
+    "T_hotspot": 102.1,
+    "T_winding": 100.9,
+    "T_core": 97.7,
+    "T_internal_air": 72.1,
+    "T_rotor_magnets": 67.1
+   },
+   "hot_rated_weak_wake": {
+    "T_hotspot": 107.4,
+    "T_winding": 106.2,
+    "T_core": 102.8,
+    "T_internal_air": 77.4,
+    "T_rotor_magnets": 72.4
+   },
+   "hot_110pct": {
+    "T_hotspot": 113.6,
+    "T_winding": 112.1,
+    "T_core": 107.9,
+    "T_internal_air": 77.3,
+    "T_rotor_magnets": 71.3
+   },
+   "iceland_10C_rated": {
+    "T_hotspot": 73.7,
+    "T_winding": 72.6,
+    "T_core": 69.8,
+    "T_internal_air": 45.4,
+    "T_rotor_magnets": 40.6
+   }
+  },
+  "full_doc06_package": {
+   "hot_rated": {
+    "T_hotspot": 93.0,
+    "T_winding": 91.8,
+    "T_core": 88.9,
+    "T_internal_air": 61.6,
+    "T_rotor_magnets": 56.2
+   },
+   "hot_rated_weak_wake": {
+    "T_hotspot": 97.0,
+    "T_winding": 95.9,
+    "T_core": 92.8,
+    "T_internal_air": 65.6,
+    "T_rotor_magnets": 60.3
+   },
+   "hot_110pct": {
+    "T_hotspot": 103.1,
+    "T_winding": 101.7,
+    "T_core": 97.9,
+    "T_internal_air": 65.4,
+    "T_rotor_magnets": 59.1
+   },
+   "iceland_10C_rated": {
+    "T_hotspot": 66.2,
+    "T_winding": 65.2,
+    "T_core": 62.6,
+    "T_internal_air": 36.7,
+    "T_rotor_magnets": 31.7
+   }
+  }
+ },
+ "mechanical": {
+  "bond_area_mm2": 450.0,
+  "bond_shear_rated_kPa": 28.4,
+  "bond_shear_short_circuit_kPa": 170,
+  "bond_allow_120C_MPa": 5.0,
+  "bond_margin_short_circuit": 29.4,
+  "centrifugal_per_block_250rpm_N": 8.6,
+  "magnet_pull_per_block_rated_N": 30.4,
+  "bond_load": "compression (both forces push the block outward into the seat)",
+  "drum_wall_under_seat_mm": 8.98,
+  "magnetic_pressure_kPa": 43.6,
+  "hoop_stress_MPa": 2.48,
+  "S355_yield_MPa": 355,
+  "ump_kN_per_mm": 1.29,
+  "ump_doc18_kN_per_mm": 1.9,
+  "ump_at_1p5mm_kN": 1.9,
+  "magnetic_neg_stiffness_Pa_per_m": "1.85e+07",
+  "drum_ring_stiffness_n2_Pa_per_m": "1.11e+07",
+  "drum_stability_margin_ring_only": 0.6,
+  "drum_shell_stiffness_ends_round_Pa_per_m": "5.60e+09",
+  "drum_stability_margin_ends_round": 302
+ },
+ "electrical": {
+  "turns": 28,
+  "line_emf_V": {
+   "20C": 404.6,
+   "60C": 388.7,
+   "100C": 372.0
+  },
+  "line_emf_m30C_178rpm_V": 428.9,
+  "peak_line_V_m30C_250rpm": 852,
+  "limit_V": 1200,
+  "copper_loss_W": 518,
+  "copper_loss_RevB_W": 496.0,
+  "torque_2D_at_sizing_current_100C_Nm": 772.6,
+  "cogging_unskewed_pp_Nm": 5.35,
+  "cogging_skewed_pp_Nm": 0.01
+ },
+ "demag": {
+  "table": {
+   "60C": {
+    "HcJ_kA_m": 1210,
+    "I_sc_A_peak": 66.3,
+    "rated_load_q": 68.2,
+    "steady_sc_d": 60.5,
+    "transient_sc_d": 49.7
+   },
+   "80C": {
+    "HcJ_kA_m": 1019,
+    "I_sc_A_peak": 64.4,
+    "rated_load_q": 63.0,
+    "steady_sc_d": 54.3,
+    "transient_sc_d": 41.7
+   },
+   "100C": {
+    "HcJ_kA_m": 828,
+    "I_sc_A_peak": 62.6,
+    "rated_load_q": 55.4,
+    "steady_sc_d": 45.3,
+    "transient_sc_d": 30.1
+   },
+   "110C": {
+    "HcJ_kA_m": 732,
+    "I_sc_A_peak": 61.7,
+    "rated_load_q": 50.2,
+    "steady_sc_d": 39.0,
+    "transient_sc_d": 22.0
+   },
+   "120C": {
+    "HcJ_kA_m": 637,
+    "I_sc_A_peak": 60.8,
+    "rated_load_q": 43.3,
+    "steady_sc_d": 30.8,
+    "transient_sc_d": 11.4
+   }
+  },
+  "rule": "transient SC margin >= 20 % at 100 C",
+  "margin_at_100C": 30.1,
+  "magnet_T_worst_fan_case_C": 71.1,
+  "margin_at_worst_magnet_T": 45.3
+ },
+ "limits": {
+  "hotspot_design_C": 130,
+  "class_H_C": 180,
+  "magnet_design_C": 100
+ }
+}

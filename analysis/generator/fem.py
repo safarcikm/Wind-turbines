@@ -134,7 +134,8 @@ class Mesh:
     layers: dict = field(default_factory=lambda: dict(
         yoke=4, slot=22, wedge=3, tip=3, gap=6, sleeve=1, mag=6, ryoke=5, air=2))
 
-    def __post_init__(self):
+    def radial_edges(self):
+        """Radii of the element rings (inner to outer). Subclasses may add rings."""
         g = self.geo
         edges_r = [g.r_in]
         def add(r_to, n):
@@ -149,7 +150,11 @@ class Mesh:
         add(g.r_m2, self.layers["mag"])
         add(g.r_ry, self.layers["ryoke"])
         add(g.r_ry + 0.004, self.layers["air"])
-        self.r = np.array(edges_r)
+        return edges_r
+
+    def __post_init__(self):
+        g = self.geo
+        self.r = np.array(self.radial_edges())
         nr, nt = len(self.r), self.n_theta
         self.theta = np.arange(nt) * g.sec_angle / nt
         self.nr, self.nt = nr, nt
@@ -257,9 +262,9 @@ def winding_layout(Q: int, poles: int, n_sec_slots: int):
 
 # ------------------------------------------------------------------- solver
 class Model:
-    def __init__(self, geo: Geometry | None = None, n_theta: int = 1440):
+    def __init__(self, geo: Geometry | None = None, n_theta: int = 1440, mesh_cls=None):
         self.geo = geo or Geometry()
-        self.mesh = Mesh(self.geo, n_theta=n_theta)
+        self.mesh = (mesh_cls or Mesh)(self.geo, n_theta=n_theta)
         m = self.mesh
         self.n_sec_slots = self.geo.slots // self.geo.sym
         self.coils = winding_layout(self.geo.slots, self.geo.poles, self.n_sec_slots)
@@ -294,12 +299,16 @@ class Model:
         frac = inside.mean(1)
         return brx, bry, frac
 
+    def ring_nu(self, nu_mag, frac):
+        """Reluctivity of the magnet-ring elements (hook: magnets.py adds steel filler plates)."""
+        return nu_mag
+
     def solve(self, theta_r: float, i_abc=(0.0, 0.0, 0.0), turns_amp=1.0, iters=40, tol=1e-4,
               verbose=False):
         """i_abc: phase ampere-turns per coil side (instantaneous)."""
         m, g = self.mesh, self.geo
         brx, bry, frac = self.magnet_source(theta_r)
-        nu_mag = NU0 / (1 + (g.mu_rm - 1) * frac)
+        nu_mag = self.ring_nu(NU0 / (1 + (g.mu_rm - 1) * frac), frac)
         self.nu[m.mag_el] = nu_mag
         # load vector: magnets
         f = np.zeros(m.n_nodes)

@@ -1,0 +1,30 @@
+{
+  "key": "AR72_11",
+  "name": "arc radial span 0.72, 11 mm",
+  "hm_mm": 11.0,
+  "seat_d_mm": 625.3,
+  "yoke_mm": 10.35,
+  "magnet_kg": 8.59,
+  "width_mm": 34.08,
+  "alpha": 0.72,
+  "line_emf_100C_V": 403.4,
+  "line_emf_100C_skewed_V": 401.5,
+  "phase_thd_pct": 8.0,
+  "turns_for_380V": 26.5,
+  "copper_loss_vs_revB": 0.896,
+  "cogging_pp_Nm": 6.46,
+  "cogging_skewed_pp_Nm": 0.0,
+  "demag_margin_pct": {
+    "100C": {
+      "rated": 51.9,
+      "steady_sc": 36.1,
+      "transient_sc": 22.0
+    },
+    "120C": {
+      "rated": 38.9,
+      "steady_sc": 19.1,
+      "transient_sc": 1.3
+    }
+  },
+  "t20_C": 102.0
+}

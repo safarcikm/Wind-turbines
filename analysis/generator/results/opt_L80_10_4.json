@@ -1,0 +1,30 @@
+{
+  "key": "L80_10_4",
+  "name": "loaf span 0.80, 10 mm, edge lift 4",
+  "hm_mm": 10.0,
+  "seat_d_mm": 623.3,
+  "yoke_mm": 11.35,
+  "magnet_kg": 7.52,
+  "width_mm": 37.86,
+  "alpha": 0.8,
+  "line_emf_100C_V": 370.7,
+  "line_emf_100C_skewed_V": 368.9,
+  "phase_thd_pct": 5.07,
+  "turns_for_380V": 28.8,
+  "copper_loss_vs_revB": 1.061,
+  "cogging_pp_Nm": 0.34,
+  "cogging_skewed_pp_Nm": 0.0,
+  "demag_margin_pct": {
+    "100C": {
+      "rated": 30.3,
+      "steady_sc": 24.2,
+      "transient_sc": 14.9
+    },
+    "120C": {
+      "rated": 11.5,
+      "steady_sc": 4.0,
+      "transient_sc": -7.8
+    }
+  },
+  "t20_C": 96.0
+}

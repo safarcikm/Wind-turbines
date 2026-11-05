@@ -1,0 +1,23 @@
+{
+  "key": "D290",
+  "poles": 16,
+  "slots": 18,
+  "drum_od_mm": 290.0,
+  "gap_d_mm": 243.0,
+  "r_s_mm": 120.52,
+  "seat_d_mm": 272.0,
+  "stator_bore_mm": 153.0,
+  "slot_depth_mm": 30.0,
+  "tooth_mm": 22.47,
+  "slot_side_mm2": 193.7,
+  "pole_pitch_mm": 48.3,
+  "alpha": 0.618,
+  "f_el_rated_Hz": 23.7,
+  "line_emf_per_turn_100C_V": 2.046,
+  "turns_for_380V": 185.7,
+  "NI_peak_per_side": 372.2,
+  "torque_74mm_Nm": 49.9,
+  "NI_sc_over_NI_rated": 5.31,
+  "steady_sc_margin_100C_pct": 42.4,
+  "transient_sc_margin_100C_pct": 27.0
+}

@@ -1,10 +1,11 @@
 // Build the illustrated PDF of doc 18: pandoc (markdown -> HTML with embedded SVGs), then
-// Playwright Chromium prints it to A4. Usage: node build_pdf.js <html_in> <pdf_out>
+// Playwright Chromium prints it to A4. Usage: node build_pdf.js <html_in> <pdf_out> [footer title]
 const { chromium } = require('playwright');
 const path = require('path');
 
 (async () => {
-  const [html, pdf] = process.argv.slice(2);
+  const [html, pdf, title] = process.argv.slice(2);
+  const label = title || 'Doc 18 Generator manufacturing instructions (P1)';
   const browser = await chromium.launch();
   const page = await browser.newPage();
   await page.goto('file://' + path.resolve(html), { waitUntil: 'load' });
@@ -14,7 +15,7 @@ const path = require('path');
     displayHeaderFooter: true,
     headerTemplate: '<span></span>',
     footerTemplate: '<div style="font-size:8px;width:100%;text-align:center;color:#666">' +
-      'Doc 18 Generator manufacturing instructions (P1) · page <span class="pageNumber"></span> of <span class="totalPages"></span></div>',
+      label + ' · page <span class="pageNumber"></span> of <span class="totalPages"></span></div>',
   });
   await browser.close();
 })();

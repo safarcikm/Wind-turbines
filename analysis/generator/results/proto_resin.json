@@ -1,0 +1,88 @@
+{
+  "filler": "resin",
+  "block": "N42 40 x 20 x 5",
+  "fill_mm": 2.5,
+  "line_emf_20C_V": 291.6,
+  "line_emf_60C_V": 277.8,
+  "cogging_pp_Nm": 5.02,
+  "cogging_skewed_pp_Nm": 0.01,
+  "torque_at_sizing_current_60C_Nm": 577.6,
+  "demag": {
+    "20C": {
+      "HcJ_kA_m": 955,
+      "Ld_mH": 14.2,
+      "I_sc_A_peak": 47.3,
+      "rated_load_q": {
+        "Hmin_kA_m": -625.6,
+        "margin_pct": 34.5
+      },
+      "steady_sc_d": {
+        "Hmin_kA_m": -674.2,
+        "margin_pct": 29.4
+      },
+      "transient_sc_d": {
+        "Hmin_kA_m": -807.6,
+        "margin_pct": 15.4
+      },
+      "max_d_current_20pct_margin_A_peak": 91.3,
+      "max_d_current_20pct_margin_x_Isc": 1.93
+    },
+    "40C": {
+      "HcJ_kA_m": 837,
+      "Ld_mH": 14.21,
+      "I_sc_A_peak": 46.2,
+      "rated_load_q": {
+        "Hmin_kA_m": -612.4,
+        "margin_pct": 26.8
+      },
+      "steady_sc_d": {
+        "Hmin_kA_m": -657.9,
+        "margin_pct": 21.4
+      },
+      "transient_sc_d": {
+        "Hmin_kA_m": -788.7,
+        "margin_pct": 5.7
+      },
+      "max_d_current_20pct_margin_A_peak": 51.7,
+      "max_d_current_20pct_margin_x_Isc": 1.12
+    },
+    "60C": {
+      "HcJ_kA_m": 718,
+      "Ld_mH": 14.21,
+      "I_sc_A_peak": 45.0,
+      "rated_load_q": {
+        "Hmin_kA_m": -599.2,
+        "margin_pct": 16.6
+      },
+      "steady_sc_d": {
+        "Hmin_kA_m": -641.7,
+        "margin_pct": 10.7
+      },
+      "transient_sc_d": {
+        "Hmin_kA_m": -769.8,
+        "margin_pct": -7.2
+      },
+      "max_d_current_20pct_margin_A_peak": 12.2,
+      "max_d_current_20pct_margin_x_Isc": 0.27
+    },
+    "80C": {
+      "HcJ_kA_m": 600,
+      "Ld_mH": 14.22,
+      "I_sc_A_peak": 43.9,
+      "rated_load_q": {
+        "Hmin_kA_m": -586.0,
+        "margin_pct": 2.3
+      },
+      "steady_sc_d": {
+        "Hmin_kA_m": -625.4,
+        "margin_pct": -4.3
+      },
+      "transient_sc_d": {
+        "Hmin_kA_m": -750.9,
+        "margin_pct": -25.2
+      },
+      "max_d_current_20pct_margin_A_peak": -27.4,
+      "max_d_current_20pct_margin_x_Isc": -0.62
+    }
+  }
+}

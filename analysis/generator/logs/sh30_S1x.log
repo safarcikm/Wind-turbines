@@ -1,0 +1,9 @@
+S1x 20.0 404.6
+S1x 60.0 388.7
+S1x 100.0 372.0
+S1x 60.0 {"HcJ_kA_m": 1210, "I_sc_A_peak": 66.3, "rated_load_q": 68.2, "steady_sc_d": 60.5, "transient_sc_d": 49.7}
+S1x 80.0 {"HcJ_kA_m": 1019, "I_sc_A_peak": 64.4, "rated_load_q": 63.0, "steady_sc_d": 54.3, "transient_sc_d": 41.7}
+S1x 100.0 {"HcJ_kA_m": 828, "I_sc_A_peak": 62.6, "rated_load_q": 55.4, "steady_sc_d": 45.3, "transient_sc_d": 30.1}
+S1x 110.0 {"HcJ_kA_m": 732, "I_sc_A_peak": 61.7, "rated_load_q": 50.2, "steady_sc_d": 39.0, "transient_sc_d": 22.0}
+S1x 120.0 {"HcJ_kA_m": 637, "I_sc_A_peak": 60.8, "rated_load_q": 43.3, "steady_sc_d": 30.8, "transient_sc_d": 11.4}
+{"key": "S1x", "name": "N45SH 30x15x12 solid: 1 across x 5 along", "seat_d_mm": 628.02, "span_alpha": 0.633, "rows_mm": 75.8, "pieces": 200, "magnet_kg": 8.21, "skew_step_deg": 0.2, "skew_emf_factor": 0.9951, "line_emf_20C_V": 404.6, "line_emf_60C_V": 388.7, "line_emf_100C_V": 372.0, "turns_for_380V_100C": 28.6, "cogging_pp_Nm": 5.35, "cogging_skewed_pp_Nm": 0.01, "torque_at_sizing_current_100C_Nm": 772.6, "demag_margin_pct": {"60C": {"HcJ_kA_m": 1210, "I_sc_A_peak": 66.3, "rated_load_q": 68.2, "steady_sc_d": 60.5, "transient_sc_d": 49.7}, "80C": {"HcJ_kA_m": 1019, "I_sc_A_peak": 64.4, "rated_load_q": 63.0, "steady_sc_d": 54.3, "transient_sc_d": 41.7}, "100C": {"HcJ_kA_m": 828, "I_sc_A_peak": 62.6, "rated_load_q": 55.4, "steady_sc_d": 45.3, "transient_sc_d": 30.1}, "110C": {"HcJ_kA_m": 732, "I_sc_A_peak": 61.7, "rated_load_q": 50.2, "steady_sc_d": 39.0, "transient_sc_d": 22.0}, "120C": {"HcJ_kA_m": 637, "I_sc_A_peak": 60.8, "rated_load_q": 43.3, "steady_sc_d": 30.8, "transient_sc_d": 11.4}}}
