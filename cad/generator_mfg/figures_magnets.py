@@ -266,7 +266,7 @@ def m03_block():
     # title block
     tx, ty, tw = 620, 470, 590
     rows = [("Part", "NP1-220 Rev C  magnet block (replaces NP1-220-N and -S arcs)"),
-            ("Material", "Sintered NdFeB N40UH, Br ≥ 1.26 T, HcJ ≥ 1990 kA/m (20 °C)"),
+            ("Material", "Sintered NdFeB N40EH preferred, N40UH accepted (doc 19 §12)"),
             ("Magnetised", f"Fully, parallel, through the {MG.H:.2f} thickness"),
             ("Coating", "NiCuNi ≥ 15 µm + epoxy ≥ 15 µm (total 30 to 45 µm, in the sizes)"),
             ("Mark", "White dot Ø3 on the N face, one corner"),
@@ -643,6 +643,49 @@ def m10_bond():
             S.text(x + 332, y + 37, "N", 20, weight="bold")
             S.line(x + 300, y + 40, x + 250, y + 70, C["ink"], 3)
             S.tick(x + 70, y + 30)
+    return S
+
+
+# ============================================================ M11 grade ladder
+@fig
+def m11_grades():
+    gr = {g["grade"]: g for g in json.loads((RES / "grades_summary.json").read_text())}
+    S = Svg(1240, 860, "M11 Which magnet grade")
+    S.header("M11  Which magnet grade? Safety against demagnetising, EMF, and how easy it is to buy",
+             "Same flat block (8.20 mm) for every grade. Worst short circuit with the magnets at 120 °C (design case) and 150 °C (extra).")
+    order = [("N40EH", "best", 2), ("N38EH", "good", 3), ("N40UH", "chosen", 4), ("N42UH", "good", 4),
+             ("N45UH", "good", 2), ("N38UH", "ok", 4), ("N35AH", "ok", 1), ("SmCo 30H", "ok", 1),
+             ("N42SH", "no", 4), ("N48SH", "no", 4)]
+    x0, y0, rowh = 250, 130, 62
+    scale = 5.0                       # px per % margin
+    zero = x0 + 160
+    S.text(zero, y0 - 18, "0 %", 13, color=C["grey"])
+    S.line(zero, y0 - 10, zero, y0 + rowh * len(order), C["ink"], 1.5)
+    S.line(zero + 20 * scale, y0 - 10, zero + 20 * scale, y0 + rowh * len(order), C["ok"], 2, "8,5")
+    S.text(zero + 20 * scale, y0 - 18, "20 % = enough", 13, weight="bold", color=C["ok"])
+    S.text(x0 + 470, y0 - 40, "margin to demagnetising", 15, weight="bold")
+    S.text(1010, y0 - 40, "EMF at 8.2 mm", 15, weight="bold")
+    S.text(1150, y0 - 40, "easy to buy", 15, weight="bold")
+    for i, (k, verdict, buy) in enumerate(order):
+        g = gr[k]
+        y = y0 + i * rowh
+        col = {"best": C["ok"], "chosen": C["mag_s"], "good": "#2f7ed8", "ok": C["grey"], "no": C["bad"]}[verdict]
+        S.rect(20, y + 4, 1200, rowh - 8, fill=C["light"] if i % 2 == 0 else "white", stroke="none", rx=6)
+        S.text(40, y + 32, k, 18, "start", "bold", col)
+        S.text(40, y + 50, g["family"], 12, "start", color=C["grey"])
+        for j, (T, shade_) in enumerate(((120, col), (150, "#c9ced6"))):
+            mg = g[f"margin_{T}C_pct"]
+            w = max(-28, mg) * scale
+            yy = y + 12 + j * 20
+            S.rect(min(zero, zero + w), yy, abs(w), 16, fill=shade_ if mg > 0 else C["bad"], stroke="none", rx=2)
+            S.text(zero + max(w, 0) + 6 if mg > 0 else zero + 6, yy + 13, f"{mg:.0f} % at {T} °C", 12, "start")
+        S.text(1010, y + 36, f"{g['line_emf_V']:.0f} V", 16, weight="bold")
+        S.text(1150, y + 36, "●" * buy + "○" * (4 - buy), 18, color=C["ink"])
+    yb = y0 + rowh * len(order) + 20
+    S.rect(20, yb, 1200, 90, fill="#ebfbee", stroke=C["ok"], sw=2, rx=8)
+    S.lines(40, yb + 30, ["Ask every maker for N40EH AND N40UH on the same drawing. Same size, same EMF (381 V):",
+                          "N40EH is the better magnet (safe even at 150 °C), N40UH is the easier one to buy and still meets the 120 °C design case.",
+                          "SH grades fail the short-circuit check. AH and samarium-cobalt are safe but weak: blocks would need 10 to 11 mm."], 15, "start")
     return S
 
 

@@ -307,7 +307,8 @@ Conclusions:
 | Item | Requirement |
 |---|---|
 | Part | NP1-220 Rev C magnet block, drawing M03 (doc 19) |
-| Material | Sintered NdFeB **N40UH** (GB/T 13560 designation): Br ≥ 1.26 T, HcJ ≥ 1,990 kA/m (25 kOe), (BH)max ≥ 302 kJ/m³ at 20 °C. Grain-boundary-diffused Dy/Tb grades accepted if they meet all values |
+| Material | Sintered NdFeB (GB/T 13560 designation), quote both: **N40EH preferred** (Br ≥ 1.25 T, HcJ ≥ 2,388 kA/m / 30 kOe) and **N40UH accepted** (Br ≥ 1.26 T, HcJ ≥ 1,990 kA/m / 25 kOe), values at 20 °C (§12). Grain-boundary-diffused Dy/Tb grades accepted if they meet all values |
+| Export | State country of manufacture, origin of the Dy/Tb, and lead time including any export licence |
 | Test data per lot | J-H and B-H demagnetisation curves at 20, 60, 100, 120 and 150 °C on samples from the lot; temperature coefficients of Br and HcJ; density |
 | Size | 18.75 ±0.03 × 36.90 ±0.05 × 8.20 ±0.02 mm **including coating**; chamfer 0.2 to 0.3 on all edges; flatness and parallelism of the pole faces 0.02 |
 | Magnetisation | Parallel through the 8.20 dimension, fully saturated; deviation of the magnetic axis from the face normal ≤ 2° |
@@ -370,11 +371,99 @@ Bonding is as doc 18 §6.4 and §6.5 with these changes:
 | # | Item | Owner | Due |
 |---|---|---|---|
 | 1 | Approve this magnet definition (flat blocks, F2t) | Martin | Now |
-| 2 | Send §8 and drawing M03 for quotation to at least three makers; first article 5 pieces | Cat. 10 | Week 1 |
+| 2 | Send §8 and drawing M03 for quotation (N40EH and N40UH) to at least three makers, at least one outside China; first article 5 pieces | Cat. 10 | Week 1 |
 | 3 | Order 8 test pieces early for the Q1 magnet panels (unmagnetised acceptable) | Cat. 10 | Week 1 |
 | 4 | Drawings NP1-221 comb bar, NP1-222 end ring, jig shoe NP1-T02 Rev C; drum drawing NP1-210 seat Ø620.00 | Cat. 4/10 | Week 2 |
 | 5 | Update doc 18 to Rev B with §10 (after Q1) | Cat. 10 | Weeks 3 to 8 |
 | 6 | Bench check of magnet temperature at rated load (confirms §3) | Cat. 11 | Bench T2 |
+
+## 12. Magnet grade assessment
+
+Question (Martin, 2026-11-05): which grade is best for this generator, which
+is easiest to buy, and which is feasible?
+
+### 12.1 What the grade must do
+
+The grade sets two things on the fixed block size: the **EMF** (through the
+remanence Br) and the **resistance to demagnetising** in the worst fault
+(through the intrinsic coercivity HcJ, which falls as the magnet warms). The
+design case is the doc 06 transient short circuit with the magnets at
+**120 °C**; a margin of at least **20 %** between the worst field in the
+magnet and HcJ is required. 150 °C is run as an extra check, because the
+magnet temperature in service is still a model value until the bench test.
+
+Every grade was run on the final F2t geometry with its catalogue minimum
+values ([`grades.py`](../analysis/generator/grades.py) →
+[`grades_summary.json`](../analysis/generator/results/grades_summary.json)).
+
+![M11-grades Which magnet grade](../cad/generator_mfg/out/M11-grades.svg)
+
+| Grade | Br / HcJ at 20 °C (min) | Line EMF, 8.20 mm block | Block for 380 V | Margin at 120 °C | Margin at 150 °C | Heavy rare earth (Dy/Tb) |
+|---|---|---|---|---|---|---|
+| N42SH | 1.29 T / 1,592 kA/m | 389 V | 7.4 mm | **2 %** (fails) | −70 % | low, ≈ 2 to 4 % |
+| N48SH | 1.37 T / 1,592 kA/m | 409 V | 5.7 mm | **−4 %** (fails) | −81 % | low |
+| N38UH | 1.22 T / 1,990 kA/m | 370 V | 9.2 mm | 34 % | 0 % | ≈ 4 to 6 % |
+| **N40UH** | 1.26 T / 1,990 kA/m | **381 V** | 8.1 mm | **32 %** | −3 % | ≈ 4 to 6 % (≈ 1 % with GBD) |
+| N42UH | 1.28 T / 1,990 kA/m | 386 V | 7.6 mm | 31 % | −4 % | ≈ 4 to 6 % |
+| N45UH (GBD) | 1.32 T / 1,990 kA/m | 400 V | 6.4 mm | 31 % | 0 % | ≈ 1 to 2 % Tb |
+| N38EH | 1.22 T / 2,388 kA/m | 373 V | 8.9 mm | 50 % | 31 % | ≈ 6 to 9 % |
+| **N40EH (GBD)** | 1.25 T / 2,388 kA/m | **381 V** | 8.1 mm | **49 %** | **30 %** | ≈ 1.5 to 3 % Tb |
+| N35AH | 1.17 T / 2,786 kA/m | 359 V | 10.3 mm | 61 % | 49 % | ≈ 9 to 12 % |
+| SmCo 30H (Sm2Co17) | 1.08 T / 1,990 kA/m | 355 V | 10.9 mm | 64 % | 61 % | none (samarium and cobalt instead) |
+
+"Block for 380 V" is an estimate from the EMF slope found in §2; anything
+other than about 8.2 mm means new block, seat and sleeve numbers. Heavy rare
+earth contents are typical industry values, not supplier data.
+
+### 12.2 Sourcing (status 2026-11-05)
+
+- **Every grade that passes contains dysprosium or terbium** (or, for SmCo,
+  samarium). China's MOFCOM Announcement No. 18 (4 April 2025) puts seven
+  medium and heavy rare earths, including Dy, Tb and Sm, **and magnets
+  containing them** under export licensing. It has never been suspended:
+  each shipment needs a licence, unless the maker holds one of the
+  year-long general licences issued since December 2025 (first to JL MAG,
+  Zhong Ke San Huan and Yunsheng). Dy and Tb exports are reported at about
+  half their earlier level.
+- A wider second wave of controls announced in October 2025 was suspended,
+  and **that suspension runs out on 10 November 2026**, five days after this
+  document. What follows is not known yet, so quotes should state the lead
+  time including any export licence.
+- **Makers outside China** produce UH and EH grades: in Japan (Shin-Etsu,
+  Proterial, TDK), in Germany (VAC) and, since 2025, in Estonia (Neo
+  Performance Materials, Narva). They are usually dearer and prefer larger
+  orders; 7 kg per generator is small, so a distributor may be needed.
+  Their plants also depend partly on Chinese heavy rare earth feed.
+- **UH grades are the most common high-temperature grades**: wind, servo and
+  traction motors use them, many makers stock the alloy, and N40UH and
+  N42UH are standard. **EH grades** are made by fewer makers; N40EH needs
+  grain-boundary diffusion (GBD) of terbium, which only the larger makers
+  run. **AH and SmCo** are specialist products with few makers, long lead
+  times and the highest prices.
+
+### 12.3 Ranking
+
+| Rank | Grade | Best for the turbine | Easy to buy | Feasible for P1 |
+|---|---|---|---|---|
+| 1 | **N40EH (GBD)** | ★★★★ Same size and EMF as N40UH, safe even at 150 °C | ★★ Larger makers only, Tb content | **Yes: drop-in on the same drawing, ask for it** |
+| 2 | **N40UH** | ★★★ Meets the 120 °C case with 32 %, no reserve at 150 °C | ★★★★ Standard grade, many makers | **Yes: current choice, safe fallback** |
+| 3 | N38EH | ★★★ Like N40EH but 2 % less EMF (block 8.9 mm or 29 turns) | ★★★ Common EH grade | Yes, with a geometry change |
+| 4 | N42UH | ★★★ +1.4 % EMF over N40UH, same margin | ★★★★ | Yes, drop-in (EMF slightly above target) |
+| 5 | N45UH (GBD) | ★★ High EMF, but no reserve at 150 °C | ★★ | Only with a thinner block (6.4 mm) |
+| 6 | N38UH | ★★ Low EMF | ★★★★ | Needs 9.2 mm block |
+| 7 | N35AH | ★★ Very safe, low EMF | ★ | Needs 10.3 mm; long lead time |
+| 8 | SmCo 30H | ★★ Most temperature-proof, low EMF, brittle | ★ | Needs 10.9 mm and a new drum seat; costly |
+| – | N42SH, N48SH | ✗ Demagnetise in the worst short circuit | ★★★★ | **No** (as doc 06 found for N42SH) |
+
+**Recommendation.** Keep the drawing as it is (8.20 mm) and ask every maker
+to quote **N40EH (preferred) and N40UH (accepted)** on the same drawing.
+Both give 381 V. N40EH gives 30 % margin even at 150 °C, which covers an
+error in the magnet temperature model at no cost in size or EMF. N40UH
+meets the 120 °C design case with 32 % margin and is the easier part to
+buy. Choose N40EH if a qualified maker can deliver it, with its export
+licence, inside the 8 to 12 weeks planned in doc 18; otherwise N40UH. The
+bench test (doc 15) measures the real magnet temperature and settles which
+grade the production version needs.
 
 ## Appendix A. How to rerun
 
@@ -382,6 +471,7 @@ Bonding is as doc 18 §6.4 and §6.5 with these changes:
 cd analysis/generator
 python3 magnets.py              # all 7 shapes, ~40 min (2 processes in parallel: A F1 F2 F3 / F2w F2t F2wt)
 python3 magnets.py tol F2t      # tolerance scatter on the chosen shape, ~20 min
+python3 grades.py               # magnet grade assessment (§12), ~10 min
 cd ../../cad/generator_mfg
 python3 magnet_geom.py          # final dimensions
 python3 figures_magnets.py --png
