@@ -118,6 +118,28 @@ button.primary { border-color: var(--accent); color: var(--accent); }
     <p>Ø7.5 m rotor, direct-drive outer-rotor generator, collective pitch, active yaw. Geometry from the design files (mm).</p>
   </header>
 
+  <section class="grp" aria-label="Wind">
+    <h2>Wind</h2>
+    <div class="slider">
+      <label for="windDir">Wind from</label><output id="windDirOut">270° W</output>
+      <input id="windDir" type="range" min="0" max="359" step="1" value="270">
+    </div>
+    <div class="slider">
+      <label for="windSpd">Wind speed</label><output id="windSpdOut">9.0 m/s</output>
+      <input id="windSpd" type="range" min="0" max="40" step="0.5" value="9">
+    </div>
+    <div class="checks">
+      <label><input id="cAuto" type="checkbox" checked> Turbine follows wind</label>
+      <label><input id="cGust" type="checkbox"> Gusts</label>
+      <label><input id="cStreaks" type="checkbox" checked> Wind streaks</label>
+    </div>
+    <dl class="readout">
+      <dt>Controller</dt><dd id="vState">–</dd>
+      <dt>Power, electric</dt><dd id="vPower">–</dd>
+      <dt>Yaw error</dt><dd id="vYawErr">–</dd>
+    </dl>
+  </section>
+
   <section class="grp" aria-label="Operation">
     <h2>Operation</h2>
     <div class="row">
@@ -137,7 +159,7 @@ button.primary { border-color: var(--accent); color: var(--accent); }
       <label for="yaw">Nacelle yaw</label><output id="yawOut">0°</output>
       <input id="yaw" type="range" min="-180" max="180" step="1" value="0">
     </div>
-    <div class="row"><button id="btnAutoYaw" type="button">Follow wind</button></div>
+    <p class="note">Moving rotor speed, pitch or yaw by hand switches off "Turbine follows wind". Run switches it back on. Yaw is shown 10× faster than the real 0.5 °/s.</p>
   </section>
 
   <section class="grp" aria-label="View">
@@ -171,7 +193,6 @@ button.primary { border-color: var(--accent); color: var(--accent); }
       <dt>Generator frequency</dt><dd id="vFreq">–</dd>
       <dt>Pitch yoke position</dt><dd id="vYoke">–</dd>
       <dt>Yaw pinion angle</dt><dd id="vPin">–</dd>
-      <dt>Wind direction</dt><dd id="vWind">–</dd>
     </dl>
     <p class="note">Hover a part for its name, click it for details. Drag to orbit, scroll or pinch to zoom, right-drag to pan.</p>
   </section>
@@ -679,7 +700,8 @@ const labelEls = LABELS.map(([k]) => { const d = document.createElement("div"); 
 /* =====================================================================
    STATE + ANIMATION
    ===================================================================== */
-const st = { rpm: 178, rpmTarget: 178, pitch: 0, pitchTarget: 0, yaw: 0, yawTarget: 0, autoYaw: false, wind: 0, windT: 0, slow: true, explode: 0, spin: 0 };
+const st = { rpm: 149, rpmTarget: 149, pitch: 0, pitchTarget: 0, pitchRate: 30, yaw: 0, slow: true, explode: 0, spin: 0,
+  auto: true, windDir: 270, windSpd: 9, gust: false, gDir: 0, gSpd: 0, vEff: 9, hEff: 270, mode: "run", stopped: false, power: 0, yawing: false };
 let userPitch = false;
 
 function syncUI() {
@@ -687,13 +709,20 @@ function syncUI() {
   $("pitch").value = st.pitch; $("pitchOut").textContent = `${st.pitch.toFixed(1)}°`;
   $("yaw").value = Math.round(st.yaw); $("yawOut").textContent = `${st.yaw.toFixed(0)}°`;
 }
-$("rpm").addEventListener("input", (e) => { st.rpm = st.rpmTarget = +e.target.value; syncUI(); });
-$("pitch").addEventListener("input", (e) => { st.pitch = st.pitchTarget = +e.target.value; syncUI(); });
-$("yaw").addEventListener("input", (e) => { st.yaw = st.yawTarget = +e.target.value; st.autoYaw = false; $("btnAutoYaw").classList.remove("on"); syncUI(); });
-$("btnRun").addEventListener("click", () => { st.pitchTarget = 0; st.rpmTarget = 178; });
-$("btnStop").addEventListener("click", () => { st.pitchTarget = 92; st.rpmTarget = 0; });
+function setAuto(on) { st.auto = on; $("cAuto").checked = on; }
+$("rpm").addEventListener("input", (e) => { setAuto(false); st.rpm = st.rpmTarget = +e.target.value; syncUI(); });
+$("pitch").addEventListener("input", (e) => { setAuto(false); st.pitch = st.pitchTarget = +e.target.value; syncUI(); });
+$("yaw").addEventListener("input", (e) => { setAuto(false); st.yaw = +e.target.value; syncUI(); });
+$("btnRun").addEventListener("click", () => { st.stopped = false; setAuto(true); });
+$("btnStop").addEventListener("click", () => { setAuto(false); st.stopped = true; st.pitchTarget = 92; st.pitchRate = 30; st.rpmTarget = 0; });
+$("cAuto").addEventListener("change", (e) => { st.auto = e.target.checked; if (st.auto) st.stopped = false; });
+$("cGust").addEventListener("change", (e) => (st.gust = e.target.checked));
+const COMPASS = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"];
+const compass = (h) => COMPASS[Math.round((((h % 360) + 360) % 360) / 22.5) % 16];
+function syncWind() { $("windDirOut").textContent = `${st.windDir}° ${compass(st.windDir)}`; $("windSpdOut").textContent = `${st.windSpd.toFixed(1)} m/s`; }
+$("windDir").addEventListener("input", (e) => { st.windDir = +e.target.value; syncWind(); });
+$("windSpd").addEventListener("input", (e) => { st.windSpd = +e.target.value; syncWind(); });
 $("btnSlow").addEventListener("click", (e) => { st.slow = !st.slow; e.target.classList.toggle("on", st.slow); });
-$("btnAutoYaw").addEventListener("click", (e) => { st.autoYaw = !st.autoYaw; e.target.classList.toggle("on", st.autoYaw); if (st.autoYaw) { st.wind = st.yaw + 40; st.windT = st.wind; } });
 $("explode").addEventListener("input", (e) => { st.explode = +e.target.value; $("explodeOut").textContent = `${Math.round(st.explode * 100)} %`; });
 const vis = { cSpinner: spinnerG, cCover: shellG, cBlades: null, cHub: hubShell };
 for (const id of Object.keys(vis)) $(id).addEventListener("change", (e) => {
@@ -733,20 +762,101 @@ function updateMechanism() {
   cylRod.position.set((x0 + x1) / 2, 0, 0); cylRod.scale.set(Math.max(x1 - x0, 1), 1, 1);
 }
 
+/* =====================================================================
+   WIND + CONTROLLER (doc 11): heading = direction the wind comes FROM, 0 = N (−z), 90 = E (+x)
+   ===================================================================== */
+const RHO_AIR = 1.25, AREA = Math.PI * 3.75 ** 2, CP = 0.48, ETA = 12.0 / 13.6;
+const wrap180 = (a) => ((a % 360) + 540) % 360 - 180;
+const yawForHeading = (h) => wrap180(h + 90);          // nacelle yaw that points the rotor into the wind
+function pitchFor(v) { return v <= 10.75 ? 0 : Math.min(3.0 * Math.pow(v - 10.75, 0.85), 40) + (v > 25 ? (v - 25) * 2.5 : 0); }
+function windControl(dt) {
+  // gusts: low-pass random walk on speed (≈ 15 %) and direction (≈ 10°)
+  if (st.gust) { st.gSpd += ((Math.random() - 0.5) * 2.2 - st.gSpd * 0.6) * dt * 2.5; st.gDir += ((Math.random() - 0.5) * 30 - st.gDir * 0.5) * dt; }
+  else { st.gSpd *= 1 - Math.min(dt * 2, 1); st.gDir *= 1 - Math.min(dt * 2, 1); }
+  st.vEff = Math.max(0, st.windSpd * (1 + 0.15 * Math.max(-1.5, Math.min(1.5, st.gSpd))));
+  st.hEff = st.windDir + Math.max(-15, Math.min(15, st.gDir));
+  const v = st.vEff;
+  let shaftKW = 0;
+  if (st.auto) {
+    // yaw: deadband 8°, stop yawing inside 2°; 0.5 °/s real, shown ×10
+    const err = wrap180(yawForHeading(st.hEff) - st.yaw);
+    if (Math.abs(err) > 8) st.yawing = true; else if (Math.abs(err) < 2) st.yawing = false;
+    if (st.yawing) st.yaw = wrap180(st.yaw + Math.sign(err) * Math.min(Math.abs(err), 5 * dt));
+    // operating state with hysteresis: start ≥ 3 m/s, stop < 2.5; storm cut-out > 32, restart < 25
+    if (st.mode === "run" && (v < 2.5 || v > 32)) st.mode = v > 32 ? "storm-stop" : "low-stop";
+    else if (st.mode === "low-stop" && v >= 3 && v <= 25) st.mode = "run";
+    else if (st.mode === "storm-stop" && v < 25) st.mode = "run";
+    if (st.mode !== "run") { st.pitchTarget = 92; st.pitchRate = 8; st.rpmTarget = 0; }
+    else {
+      let rpm = Math.min(6.5 * v / 3.75 * 60 / (2 * Math.PI), 178);
+      if (rpm > 66 && rpm < 80) rpm = rpm < 73 ? 66 : 80;            // 1P tower exclusion zone (18 m tower)
+      if (v > 25) rpm = 178 - (178 - 134) * Math.min((v - 25) / 5, 1); // storm control 25–30 m/s
+      st.rpmTarget = Math.max(rpm, 40); st.pitchTarget = pitchFor(v); st.pitchRate = 30;
+    }
+  }
+  // shaft power: Cp at fine pitch below rated, capped by the controller (13.6 kW, storm 13.6 → 5.4 kW)
+  if (st.rpm > 30 && st.pitch < 60) {
+    const cap = v > 25 ? 13.6 - (13.6 - 5.4) * Math.min((v - 25) / 5, 1) : 13.6;
+    const yawLoss = Math.cos(Math.min(Math.abs(wrap180(yawForHeading(st.hEff) - st.yaw)), 89) * D2R) ** 3;
+    shaftKW = Math.min(0.5 * RHO_AIR * AREA * CP * v ** 3 / 1000 * yawLoss * Math.min(st.rpm / Math.max(6.5 * v / 3.75 * 9.549, 1), 1), cap);
+  }
+  st.power = shaftKW * ETA;
+  const label = !st.auto ? (st.stopped ? "Stopped" : "Manual") : st.mode === "low-stop" ? "Parked, wind too low"
+    : st.mode === "storm-stop" ? "Storm stop (> 32 m/s)" : v > 25 ? "Storm control" : v > 10.75 ? "Rated, pitching" : "Below rated";
+  $("vState").textContent = label;
+  $("vPower").textContent = `${st.power.toFixed(1)} kW`;
+  $("vYawErr").textContent = `${wrap180(yawForHeading(st.hEff) - st.yaw).toFixed(0)}°`;
+}
+
+// wind streaks around the rotor (metres, world frame)
+const N_STREAK = 420, streakPos = new Float32Array(N_STREAK * 6), streakUVW = [];
+const streakGeo = new THREE.BufferGeometry(); streakGeo.setAttribute("position", new THREE.BufferAttribute(streakPos, 3));
+const streakMat = new THREE.LineBasicMaterial({ color: 0x5b6b75, transparent: true, opacity: 0.45, depthWrite: false });
+const streaks = new THREE.LineSegments(streakGeo, streakMat); streaks.frustumCulled = false; scene.add(streaks);
+const SU = 14, SV = 8, SW = 6;
+for (let i = 0; i < N_STREAK; i++) streakUVW.push([(Math.random() * 2 - 1) * SU, (Math.random() * 2 - 1) * SV, (Math.random() * 2 - 1) * SW]);
+function updateStreaks(dts) {
+  streaks.visible = $("cStreaks").checked && st.vEff > 0.2;
+  if (!streaks.visible) return;
+  const h = st.hEff * D2R, du = V(-Math.sin(h), 0, Math.cos(h)), dv = V(Math.cos(h), 0, Math.sin(h));
+  const c = V(-0.75, 0.57, 0), len = 0.06 * st.vEff + 0.1;
+  for (let i = 0; i < N_STREAK; i++) {
+    const p = streakUVW[i]; p[0] += st.vEff * dts * (0.9 + 0.2 * ((i * 7919) % 13) / 13);
+    if (p[0] > SU) { p[0] -= 2 * SU; p[1] = (Math.random() * 2 - 1) * SV; p[2] = (Math.random() * 2 - 1) * SW; }
+    const x = c.x + du.x * p[0] + dv.x * p[1], y = c.y + p[2], z = c.z + du.z * p[0] + dv.z * p[1];
+    streakPos.set([x, y, z, x - du.x * len, y, z - du.z * len], i * 6);
+  }
+  streakGeo.attributes.position.needsUpdate = true;
+}
+
+// compass rose on the ground with a wind arrow
+{
+  const cv = document.createElement("canvas"); cv.width = cv.height = 1024; const g = cv.getContext("2d");
+  g.translate(512, 512); g.strokeStyle = "rgba(40,55,65,0.75)"; g.fillStyle = "rgba(40,55,65,0.85)"; g.lineWidth = 6;
+  g.beginPath(); g.arc(0, 0, 480, 0, 2 * Math.PI); g.stroke(); g.lineWidth = 3; g.beginPath(); g.arc(0, 0, 400, 0, 2 * Math.PI); g.stroke();
+  for (let k = 0; k < 72; k++) { const a = k * 5 * D2R, r0 = k % 18 === 0 ? 380 : k % 2 ? 455 : 435; g.beginPath(); g.moveTo(r0 * Math.sin(a), -r0 * Math.cos(a)); g.lineTo(480 * Math.sin(a), -480 * Math.cos(a)); g.stroke(); }
+  g.font = "bold 110px Barlow Semi Condensed, Arial Narrow, sans-serif"; g.textAlign = "center"; g.textBaseline = "middle";
+  [["N", 0], ["E", 90], ["S", 180], ["W", 270]].forEach(([t, a]) => g.fillText(t, 300 * Math.sin(a * D2R), -300 * Math.cos(a * D2R)));
+  const tex = new THREE.CanvasTexture(cv); tex.colorSpace = THREE.SRGBColorSpace;
+  const rose = new THREE.Mesh(new THREE.PlaneGeometry(14, 14).rotateX(-Math.PI / 2), new THREE.MeshBasicMaterial({ map: tex, transparent: true, depthWrite: false }));
+  rose.position.y = groundY / 1000 + 0.02; scene.add(rose);
+}
+const windArrow = new THREE.Group(); scene.add(windArrow);
+{
+  const m = new THREE.MeshStandardMaterial({ color: 0x1f6f9c, roughness: 0.5 });
+  const head = new THREE.Mesh(new THREE.ConeGeometry(0.45, 1.2, 24), m); head.rotation.x = -Math.PI / 2; head.position.z = 6.1;  // points toward the centre (+z local)
+  const shaft = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.12, 2.2, 12), m); shaft.rotation.x = Math.PI / 2; shaft.position.z = 7.7;
+  windArrow.add(head, shaft); windArrow.position.y = groundY / 1000 + 0.3;
+}
+
 const clock = new THREE.Clock();
 let fpsLow = 0;
 function tick() {
   const dt = Math.min(clock.getDelta(), 0.05);
-  // pitch at the real rate (30 °/s); rotor speed ramps
-  if (st.pitch !== st.pitchTarget) { const d = st.pitchTarget - st.pitch, stp = 30 * dt; st.pitch = Math.abs(d) <= stp ? st.pitchTarget : st.pitch + Math.sign(d) * stp; }
+  windControl(dt);
+  // pitch at the real rate (30 °/s, normal stop 8 °/s); rotor speed ramps
+  if (st.pitch !== st.pitchTarget) { const d = st.pitchTarget - st.pitch, stp = st.pitchRate * dt; st.pitch = Math.abs(d) <= stp ? st.pitchTarget : st.pitch + Math.sign(d) * stp; }
   if (st.rpm !== st.rpmTarget) { const d = st.rpmTarget - st.rpm, stp = (d < 0 ? 90 : 45) * dt; st.rpm = Math.abs(d) <= stp ? st.rpmTarget : st.rpm + Math.sign(d) * stp; }
-  // wind wander and yaw tracking (yaw rate ≈ 0.5 °/s real; shown ×10 so it is visible)
-  if (st.autoYaw) {
-    if (Math.random() < dt * 0.15) st.windT = st.wind + (Math.random() - 0.5) * 120;
-    st.wind += (st.windT - st.wind) * Math.min(dt * 0.4, 1);
-    const err = st.wind - st.yaw; if (Math.abs(err) > 3) st.yaw += Math.sign(err) * Math.min(Math.abs(err), 5 * dt);
-    if (st.yaw > 180) { st.yaw -= 360; st.wind -= 360; st.windT -= 360; } if (st.yaw < -180) { st.yaw += 360; st.wind += 360; st.windT += 360; }
-  }
   const speed = st.slow ? 0.1 : 1;
   st.spin += (st.rpm / 60) * 2 * Math.PI * dt * speed;
   rotorG.rotation.x = st.spin % (2 * Math.PI);
@@ -761,7 +871,8 @@ function tick() {
   $("vFreq").textContent = `${(st.rpm * 20 / 60).toFixed(1)} Hz`;
   $("vYoke").textContent = `x ${yokeX(st.pitch).toFixed(0)} mm`;
   $("vPin").textContent = `${((st.yaw * 150 / 14) % 360).toFixed(0)}°`;
-  $("vWind").textContent = st.autoYaw ? `${(((st.wind % 360) + 540) % 360 - 180).toFixed(0)}° (error ${(st.wind - st.yaw).toFixed(0)}°)` : "set by hand";
+  updateStreaks(dt * speed);
+  windArrow.rotation.y = Math.PI - st.hEff * D2R;   // arrow sits on the upwind side, pointing downwind
   controls.update();
   renderer.render(scene, camera);
   updateLabels();
@@ -893,7 +1004,7 @@ function resize() {
 }
 addEventListener("resize", resize);
 
-applyTheme(); resize();
+applyTheme(); resize(); syncWind();
 goCam("rotor", true);
 $("loading").hidden = true;
 requestAnimationFrame(tick); requestAnimationFrame(camStep);

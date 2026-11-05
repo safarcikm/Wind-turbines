@@ -17,6 +17,12 @@ What it shows (all dimensions in mm, copied from the design sources):
 
 Indicative only (not designed yet): spinner shape, nacelle shell, brake caliper envelopes.
 
+Wind: set the heading the wind comes from (0° N, 90° E) and its speed (0–40 m/s), optionally with
+gusts. With "Turbine follows wind" on, the doc 11 control logic runs: yaw with an 8° deadband,
+start at 3 m/s and stop below 2.5, variable speed at TSR 6.5 with the 66–80 rpm tower exclusion
+zone, rated 178 rpm with pitch above 10.75 m/s, storm control 25–30 m/s, storm stop above 32 m/s
+(feather at 8 °/s). Power is estimated with Cp 0.48 and the cos³ yaw-error loss.
+
 Controls: Run / Stop (feather at the real 30 °/s), rotor speed 0–250 rpm (slow motion ×0.1 by
 default), pitch −2…92°, yaw ±180° or "Follow wind", exploded view, section cut through the rotor
 axis, camera presets, hover/click any part for its drawing number and key data.
