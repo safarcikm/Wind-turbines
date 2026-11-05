@@ -1,0 +1,208 @@
+{
+ "current_D7.5_head1103": {
+  "tower": {
+   "mass_kg": 1940.0,
+   "D_over_t_max": 55.0,
+   "util_max": 0.851,
+   "util_SLM": 1.627,
+   "util_tilt_up": 0.589,
+   "tilt_up_base_moment_kNm": 451.9,
+   "winch_line_pull_kN_ginpole_033H": 76.1,
+   "governing": "parked V_e50",
+   "M_base_design_kNm": {
+    "operation and faults (simulation)": 221.0,
+    "parked V_e50": 652.5,
+    "parked V_e1 + ice": 524.7,
+    "earthquake 0.5 g (ground D) + operation": 641.2
+   },
+   "M_base_SLM_kNm": 1247.5,
+   "f1_rigid_Hz": 0.91,
+   "f2_rigid_Hz": 6.26,
+   "f1_soft_ice_Hz": 0.85,
+   "geometry": {
+    "H": 18.0,
+    "D_base": 0.55,
+    "D_top": 0.32,
+    "t_mm": [
+     10,
+     8
+    ]
+   },
+   "exclusion_zone_rpm": [
+    49.6,
+    60.1
+   ],
+   "fatigue_damage": {
+    "z=0.0 m": 0.2206,
+    "z=9.0 m": 0.2301
+   },
+   "flange_mid": {
+    "M_design_kNm": 300.2,
+    "bolts": 12,
+    "size": "M24 10.9",
+    "circle_m": 0.54,
+    "F_bolt_kN": 243.2,
+    "F_t_Rd_kN": 254.2
+   },
+   "base_flange": {
+    "M_design_kNm": 652.5,
+    "bolts": 24,
+    "size": "M24 10.9",
+    "circle_m": 0.65,
+    "F_bolt_kN": 217.5,
+    "F_t_Rd_kN": 254.2
+   }
+  },
+  "foundations": {
+   "firm soil (dense gravel, moraine)": {
+    "B": 3.8,
+    "depth": 1.6,
+    "concrete_m3": 9.5,
+    "weight_kN": 520.0,
+    "e_char_over_B": 0.248,
+    "bearing_kPa": 206.4,
+    "q_rd_kPa": 300.0,
+    "K_theta_MNm_per_rad": 2332
+   },
+   "soft volcanic soil (loose ash, pumice sand)": {
+    "B": 4.3,
+    "depth": 1.6,
+    "concrete_m3": 11.9,
+    "weight_kN": 566.0,
+    "e_char_over_B": 0.201,
+    "bearing_kPa": 92.8,
+    "q_rd_kPa": 100.0,
+    "K_theta_MNm_per_rad": 910
+   },
+   "frost-susceptible silt (thawed)": {
+    "B": 4.0,
+    "depth": 1.6,
+    "concrete_m3": 10.4,
+    "weight_kN": 556.7,
+    "e_char_over_B": 0.22,
+    "bearing_kPa": 130.1,
+    "q_rd_kPa": 150.0,
+    "K_theta_MNm_per_rad": 976
+   },
+   "rock (anchored plinth)": {
+    "plinth_m": "1.6 x 1.6 x 0.8",
+    "anchors": 8,
+    "circle_m": 1.2,
+    "T_design_kN": 263.0,
+    "bar_mm": 28,
+    "bond_length_m": 3.0,
+    "concrete_m3": 2.0
+   }
+  },
+  "head_mass_kg": 1103.0,
+  "F_side_Ve50_kN": 13.8,
+  "ops_M_base_char_kNm": 163.7,
+  "window_Hz": [
+   0.73,
+   1.82
+  ]
+ },
+ "V5": {
+  "tower": {
+   "mass_kg": 2734.0,
+   "D_over_t_max": 57.5,
+   "util_max": 0.963,
+   "util_SLM": 2.119,
+   "util_tilt_up": 0.569,
+   "tilt_up_base_moment_kNm": 577.0,
+   "winch_line_pull_kN_ginpole_033H": 97.1,
+   "governing": "earthquake 0.5 g (ground D) + operation",
+   "M_base_design_kNm": {
+    "operation and faults (simulation)": 321.7,
+    "parked V_e50": 931.0,
+    "parked V_e1 + ice": 729.5,
+    "earthquake 0.5 g (ground D) + operation": 884.3
+   },
+   "M_base_SLM_kNm": 2091.1,
+   "f1_rigid_Hz": 0.97,
+   "f2_rigid_Hz": 6.49,
+   "f1_soft_ice_Hz": 0.91,
+   "geometry": {
+    "H": 18.0,
+    "D_base": 0.5,
+    "D_top": 0.42,
+    "t_mm": [
+     16,
+     8
+    ]
+   },
+   "exclusion_zone_rpm": [
+    52.9,
+    64.0
+   ],
+   "fatigue_damage": {
+    "z=0.0 m": 0.344,
+    "z=9.0 m": 0.8356
+   },
+   "flange_mid": {
+    "M_design_kNm": 413.2,
+    "bolts": 16,
+    "size": "M24 10.9",
+    "circle_m": 0.56,
+    "F_bolt_kN": 239.8,
+    "F_t_Rd_kN": 254.2
+   },
+   "base_flange": {
+    "M_design_kNm": 931.0,
+    "bolts": 32,
+    "size": "M24 10.9",
+    "circle_m": 0.6,
+    "F_bolt_kN": 252.2,
+    "F_t_Rd_kN": 254.2
+   }
+  },
+  "foundations": {
+   "firm soil (dense gravel, moraine)": {
+    "B": 4.3,
+    "depth": 1.6,
+    "concrete_m3": 11.9,
+    "weight_kN": 665.7,
+    "e_char_over_B": 0.242,
+    "bearing_kPa": 185.0,
+    "q_rd_kPa": 300.0,
+    "K_theta_MNm_per_rad": 3379
+   },
+   "soft volcanic soil (loose ash, pumice sand)": {
+    "B": 4.8,
+    "depth": 1.6,
+    "concrete_m3": 14.7,
+    "weight_kN": 705.7,
+    "e_char_over_B": 0.204,
+    "bearing_kPa": 95.9,
+    "q_rd_kPa": 100.0,
+    "K_theta_MNm_per_rad": 1265
+   },
+   "frost-susceptible silt (thawed)": {
+    "B": 4.5,
+    "depth": 1.6,
+    "concrete_m3": 13.0,
+    "weight_kN": 704.9,
+    "e_char_over_B": 0.218,
+    "bearing_kPa": 127.4,
+    "q_rd_kPa": 150.0,
+    "K_theta_MNm_per_rad": 1390
+   },
+   "rock (anchored plinth)": {
+    "plinth_m": "1.6 x 1.6 x 0.8",
+    "anchors": 8,
+    "circle_m": 1.2,
+    "T_design_kN": 377.9,
+    "bar_mm": 40,
+    "bond_length_m": 3.0,
+    "concrete_m3": 2.0
+   }
+  },
+  "head_mass_kg": 1377.0,
+  "F_side_Ve50_kN": 22.7,
+  "ops_M_base_char_kNm": 238.3,
+  "window_Hz": [
+   0.55,
+   1.36
+  ]
+ }
+}

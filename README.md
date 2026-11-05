@@ -69,3 +69,6 @@ possible manufactured in-house.
   links and cranks, feathering from one supercap module; rotor brake as the
   second braking system; welded S355NL hub; mass and part count
   ([analysis/hub/collective.py](analysis/hub/collective.py)).
+- [26 – Slow-running variant V5](docs/26-slow-rotor-variant-v5.md): Ø8.3 m,
+  TSR 5, 110 rpm, every subsystem re-sized; +11–14 % yearly energy against
+  about double the storm loads (models in [analysis/variant_tsr5](analysis/variant_tsr5/)).
