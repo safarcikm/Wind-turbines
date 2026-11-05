@@ -45,6 +45,8 @@ import matplotlib.pyplot as plt
 
 from fem import Geometry, Mesh, Model, MU0
 
+MU0_INV = 1 / MU0
+
 OUT = Path(__file__).parent / "results"
 OUT.mkdir(exist_ok=True)
 QUICK = "quick" in sys.argv
@@ -170,6 +172,9 @@ class MagModel(Model):
         n_sec = geo.poles // geo.sym
         self.pole_scale = np.ones(n_sec)          # tolerance study: remanence of each pole
         self.pole_shift = np.zeros(n_sec)         # tolerance study: pole centre error [rad]
+        self.fill_h = 0.0                          # filler plate behind each block [m] (prototype, proto.py)
+        self.fill_mu = 1.0                         # its relative permeability (1 = resin/G11, ~1000 = steel)
+        self._ffrac = 0.0
 
     def inside(self, r, th_rot):
         """Piece index (0..k-1) or -1 for points given in rotor-frame polar coords; also pole and sign."""
@@ -204,7 +209,22 @@ class MagModel(Model):
         brx = np.where(inside, sign * g.br * np.cos(ang), 0.0).mean(1)
         bry = np.where(inside, sign * g.br * np.sin(ang), 0.0).mean(1)
         self._frac = inside.mean(1)
+        if self.fill_h and self.shape.flat:
+            r, th = self.pts_r, th_rot
+            pole = np.floor(th / tau + 0.5)
+            pk = pole.astype(int) % len(self.pole_shift)
+            dth = th - pole * tau - self.pole_shift[pk]
+            ff = np.zeros_like(r, dtype=bool)
+            for phi in self.phis:
+                u, v = r * np.sin(dth - phi), r * np.cos(dth - phi)
+                ff |= (np.abs(u) <= self.bw / 2) & (v > g.r_m1 + g.hm) & (v <= g.r_m1 + g.hm + self.fill_h)
+            self._ffrac = ff.mean(1)
         return brx, bry, self._frac
+
+    def ring_nu(self, nu_mag, frac):
+        if not self.fill_h or self.fill_mu == 1.0:
+            return nu_mag
+        return MU0_INV / (1 + (self.geo.mu_rm - 1) * frac + (self.fill_mu - 1) * self._ffrac)
 
     def magnet_field_along_magnetisation(self, A=None):
         """As fem.Model, but only for elements completely inside a magnet: in elements cut by a

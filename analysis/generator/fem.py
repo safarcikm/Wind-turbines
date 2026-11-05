@@ -299,12 +299,16 @@ class Model:
         frac = inside.mean(1)
         return brx, bry, frac
 
+    def ring_nu(self, nu_mag, frac):
+        """Reluctivity of the magnet-ring elements (hook: magnets.py adds steel filler plates)."""
+        return nu_mag
+
     def solve(self, theta_r: float, i_abc=(0.0, 0.0, 0.0), turns_amp=1.0, iters=40, tol=1e-4,
               verbose=False):
         """i_abc: phase ampere-turns per coil side (instantaneous)."""
         m, g = self.mesh, self.geo
         brx, bry, frac = self.magnet_source(theta_r)
-        nu_mag = NU0 / (1 + (g.mu_rm - 1) * frac)
+        nu_mag = self.ring_nu(NU0 / (1 + (g.mu_rm - 1) * frac), frac)
         self.nu[m.mag_el] = nu_mag
         # load vector: magnets
         f = np.zeros(m.n_nodes)

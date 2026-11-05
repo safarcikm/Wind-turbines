@@ -601,6 +601,70 @@ rear bar per gap anyway (each 44 mm long), so the rear set is simply placed
 0.50° further round with the indexing template. The blocks, end rings and
 jig are the same for both rows.
 
+## 14. Prototype magnets: plain N42, 40 × 20 × 5 mm
+
+Question (Martin, 2026-11-05): calculate plain N42 blocks 20 × 40 × 5 mm (no
+temperature rating) for prototyping, with the missing thickness made up by a
+filler.
+
+**Set-up.** Same Rev B rotor (seat Ø618.65, sleeve, comb bars, rows skewed
+0.50°), but a 5 mm block instead of 7.5 mm. The block's inner face stays at
+r 301.5, so the air gap and sleeve do not change; the 2.5 mm gap between the
+block's back and the seat is filled. Two fillers were run: a non-magnetic
+plate (G11 or epoxy) and a **mild steel plate** (20 × 40 × 2.5, one behind
+each block). N42 catalogue minimum values: Br 1.28 T, HcJ 955 kA/m (12 kOe)
+at 20 °C, −0.12 %/K and −0.62 %/K, maximum working temperature about 80 °C.
+Model: [`proto.py`](../analysis/generator/proto.py) →
+`results/proto_steel.json`, `results/proto_resin.json`.
+
+| | Rev B production (N40EH/UH 7.5, 100 °C) | **N42 5 mm + steel filler** | N42 5 mm + resin filler |
+|---|---|---|---|
+| Line EMF, 178 rpm, 28 turns | 380 V | **374 V at 20 °C, 358 V at 60 °C** | 292 V at 20 °C, 278 V at 60 °C |
+| Torque at the sizing current (22.6 A rms) | 787 Nm | 739 Nm (−6 %, 60 °C) | 578 Nm (−27 %) |
+| Cogging, rows skewed (not skewed) | < 0.1 (6.6) Nm | < 0.1 (7.4) Nm | < 0.1 (5.0) Nm |
+| Magnet mass | 7.30 kg | 4.86 kg | 4.86 kg |
+
+The **steel filler is the one to use**: it works as part of the drum yoke,
+so the thin magnet loses only 2 to 6 % of EMF against the production
+magnet. A resin filler adds 2.5 mm of "air" to the magnet circuit and loses
+a quarter of the EMF and torque.
+
+**Demagnetisation (steel filler).** Worst field in the magnet against N42's
+HcJ at that temperature; ≥ 20 % margin is the design rule:
+
+| Magnet temperature | 20 °C | 40 °C | 60 °C | 80 °C |
+|---|---|---|---|---|
+| Rated load (q-axis current, normal running) | 36 % | 29 % | 18 % | 4 % |
+| Steady three-phase short circuit (≈ 39 A rms) | 21 % | 12 % | 0 % | −16 % |
+| Transient short circuit (2 × steady, design case) | **−7 %** | −19 % | −36 % | −58 % |
+| Largest d-axis current with 20 % margin | 60 A peak | 40 A peak | 20 A peak | 0 |
+
+(The non-magnetic filler is more robust, −7 % in the transient case only at
+60 °C, but it is too weak to be a useful prototype.)
+
+What this means for the prototype:
+
+- **Normal running at rated current is fine while the magnets stay below
+  about 50 °C.** A bench or short field test easily stays there; put a
+  temperature probe on the drum (doc 15) and stop at 50 °C.
+- **No short circuits, ever.** Even at 20 °C the transient short circuit
+  partly demagnetises the block corners. So no short-circuit tests on the
+  N42 rotor, no braking by shorting the phases, and the rectifier must not
+  crowbar the generator. Fuse or open the circuit instead.
+- **Field weakening (negative d-axis current) is limited** to 40 A peak
+  (28 A rms) at 40 °C and 20 A peak at 60 °C.
+- Expect 2 to 6 % less voltage and torque than the production rotor: at
+  60 °C, 358 V and 739 Nm at the same current. Everything else (sleeve, comb
+  bars, skew, jig, inspection) is the production process, so the prototype
+  still qualifies the build.
+- The steel plate is bonded with the same glue and glass beads, so each
+  position becomes seat → bond → steel plate → bond (0.15 mm) → magnet. The
+  plate thickness must take up the second bond line: **2.35 ±0.03 mm**,
+  flat ground, DC01 or S235, any corrosion protection that the glue accepts.
+  The extra 0.15 mm glue line between magnet and plate (not in the model)
+  costs roughly another 1 % of EMF.
+- Swap to the N40EH/UH blocks for any unattended or field use.
+
 ## Appendix A. How to rerun
 
 ```
@@ -611,6 +675,7 @@ python3 grades.py               # magnet grade assessment on Rev A (F2t), ~10 mi
 python3 magnets.py C2 C1 C2t C2s   # Rev B: 40 x 20 cases incl. step skew, ~30 min
 python3 magnets.py tol C2t      # Rev B tolerance scatter, with and without skew
 python3 grades.py C2t           # Rev B grade assessment (§12) -> grades_summary_C2t.json
+python3 proto.py steel          # §14 prototype N42 5 mm + steel filler (also: resin), ~10 min
 cd ../../cad/generator_mfg
 python3 magnet_geom.py          # final dimensions
 python3 figures_magnets.py --png
