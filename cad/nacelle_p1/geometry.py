@@ -182,6 +182,12 @@ END_WINDING = 22.0   # axial overhang of the tooth-coil end turns (estimate)
 # per pole across, magnetised through 12, five rows along the stack with 0.20
 # shims, rows step-skewed 0.20 deg (-0.4 ... +0.4 front to rear)
 _ROWS_LEN = 5 * MAG_L + 4 * 0.20
+# Rev C passive rotor cooling (doc 23 §4a): L-shaped inner fins welded to the hub web and shell bore in the
+# front cavity (clear of the end windings, which start at x 321), and axial outer ribs on the shell.
+ROTOR_FINS = dict(n=36, t=3.0, x0=220.0, x1=312.0, r0=262.0, r1=312.0, leg_x1=250.0, leg_r0=140.0)
+DRUM_RIBS = dict(n=48, t=4.0, x0=222.0, x1=430.0, r_tip=338.0)
+
+
 MAGNET = dict(grade="N45SH", shape="block", W=MAG_W, L=MAG_L, T=GEN["hm"],
               r_in=GEN["r_m1"], r_out=GEN["r_m2"], r_seat=R_SEAT,
               arc_deg=math.degrees(2 * math.atan(MAG_W / 2 / GEN["r_m1"])),     # 5.70 deg span
@@ -324,6 +330,11 @@ def mass_table():
     items.append(MassItem("Brake disc NP1-230", revolved_volume(DISC_POLY) * st))
     mag = MAGNET["count"] * MAGNET["W"] * MAGNET["L"] * MAGNET["T"] * RHO["ndfeb"]
     items.append(MassItem("Magnets NP1-220 (200 pcs)", mag, "N45SH"))
+    f = ROTOR_FINS
+    fin = f["n"] * f["t"] * ((f["x1"] - f["x0"]) * (f["r1"] - f["r0"]) + (f["leg_x1"] - f["x0"]) * (f["r0"] - f["leg_r0"]))
+    rb = DRUM_RIBS
+    rib = rb["n"] * rb["t"] * (rb["x1"] - rb["x0"]) * (rb["r_tip"] - 320.5)
+    items.append(MassItem("Rotor fins (36 inner) + ribs (48 outer)", (fin + rib) * st, "S355, welded"))
     items.append(MassItem("Main bearings 32028 X (2)", 2 * BRG["mass"]))
     items.append(MassItem("Stator carrier NP1-200", revolved_volume(CARRIER) * st, "S355J2+N"))
     lam = lamination_area() * GEN["stack"] * GEN["stacking"] * RHO["iron_lam"]

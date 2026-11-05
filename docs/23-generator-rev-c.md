@@ -5,7 +5,7 @@ Replaces for building: rotor of [19 – Magnet geometry Rev B](19-magnet-geometr
 Builds on: [06 – Generator round 2](06-generator-round2.md) (electromagnetic design, thermal model), [18](18-generator-manufacturing.md) (segmented stator, process), [21 – Optimal N42SH shape](21-n42sh-optimal-shape.md), [22 – Smaller drum](22-smaller-generator-drum.md) (Ø646 kept)  
 Geometry: [`cad/nacelle_p1/geometry.py`](../cad/nacelle_p1/geometry.py) (master, now Rev C) and [`cad/generator_rc/rotor_rc.py`](../cad/generator_rc/rotor_rc.py)  
 Drawings: [`cad/generator_rc/`](../cad/generator_rc/) → `out/NP1-generator-RevC.pdf` (11 sheets), `out/dxf/` (CAD), `out/iso/` (isometric views)  
-Analysis: [`analysis/generator/sh30.py`](../analysis/generator/sh30.py) `S1x` → [`sh30_S1x.json`](../analysis/generator/results/sh30_S1x.json); [`checks_rc.py`](../analysis/generator/checks_rc.py) → [`rc_checks.json`](../analysis/generator/results/rc_checks.json)
+Analysis: [`analysis/generator/sh30.py`](../analysis/generator/sh30.py) `S1x` → [`sh30_S1x.json`](../analysis/generator/results/sh30_S1x.json); [`checks_rc.py`](../analysis/generator/checks_rc.py) → [`rc_checks.json`](../analysis/generator/results/rc_checks.json); [`passive_cooling.py`](../analysis/generator/passive_cooling.py) → [`passive_cooling.json`](../analysis/generator/results/passive_cooling.json)
 
 ## Summary
 
@@ -41,12 +41,13 @@ sleeve, stator, coils, carrier and the doc 18 process.
 - **Demagnetisation: OK.** 30.1 % transient short-circuit margin at
   100 °C, 22 % at 110 °C. The magnets run at 67 to 72 °C in the worst hot
   case, where the margin is about 45 %.
-- **Thermal: one finding.** The doc 06 cooling package (fan blades,
-  inner fins, outer ribs) was assumed in the thermal sign-off but never
-  drawn in P1. As drawn, the winding hot spot reaches 144 to 168 °C on a
-  30 °C day, above the 130 °C design limit. Rev C adds **24 fan blades on
-  the rear cover** (NP1-212C), which brings it to 109 to 122 °C. Inner fins
-  would give another 7 to 9 K (§4).
+- **Thermal: one finding, now fixed with passive cooling.** The doc 06
+  cooling package (fan blades, inner fins, outer ribs) was assumed in the
+  thermal sign-off but never drawn in P1. Without it the winding hot spot
+  reaches 144 to 168 °C on a 30 °C day, above the 130 °C design limit.
+  Rev C now has a **purely passive** package that turns with the rotor: 24
+  blades on the rear cover, 36 inner fins and 48 outer ribs on the drum.
+  Hot spot **94 to 105 °C**, magnets 55 to 59 °C (§4, §4a).
 - **Mechanical: OK, with one condition.** Bond shear is 28 kPa at rated
   torque and 170 kPa at a short circuit, against ≥ 5 MPa. The drum is
   stable only because both ends are held round: the front disc and the
@@ -54,9 +55,9 @@ sleeve, stator, coils, carrier and the doc 18 process.
 - **Voltage: OK.** Highest line peak 852 V (−30 °C, 250 rpm overspeed)
   against 1,200 V.
 
-**Questions and suggestions for Martin** are in §10. The main one is still
-open: add inner drum fins on top of the fan blades (recommended), or test
-first with fan blades only.
+**Questions and suggestions for Martin** are in §10. Martin chose rotor
+fins and passive cooling on 2026-11-05; the open item is the nacelle fit
+check of the outer ribs (Ø676 over the ribs).
 
 ![IR01 Exploded generator](../cad/generator_rc/out/iso/IR01-iso-exploded.png)
 
@@ -73,7 +74,8 @@ first with fan blades only.
 | Magnet | N45SH, 30 (across) × 15 (along) × 12 (radial), NiCuNi, 41.0 g |
 | Pole | 1 block across, 5 rows along, rows skewed 0.20° (−0.4° to +0.4°), span 5.70° (α 0.633) |
 | Encapsulation | Glass-epoxy sleeve, 0.52 mm at the block centre to 0.89 mm at the edges |
-| Masses | Rotor ≈ 148 kg (drum 91.8, brake disc 34.5, covers 10, magnets 8.2, G11 2); stator ≈ 115 kg (carrier 40.6, core 48.0, winding 24, clamp ring 2.2) |
+| Cooling | Passive only: 24 blades on the rear cover, 36 inner fins, 48 outer ribs (no motor, no power) |
+| Masses | Rotor ≈ 161 kg (drum 91.8, fins and ribs 12.5, brake disc 34.5, covers 10, magnets 8.2, G11 2); stator ≈ 115 kg (carrier 40.6, core 48.0, winding 24, clamp ring 2.2) |
 
 ## 2. Design basis
 
@@ -138,20 +140,83 @@ Winding hot spot / magnet temperature (°C), ambient 30 °C, 100 W sun:
 |---|---|---|---|---|
 | P1 as drawn before Rev C (no fan) | **144.1** / 66 | **148.9** / 71 | **167.7** / 70 | 113.4 / 39 |
 | **Rev C as drawn: 24 fan blades on the rear cover** | 108.8 / 67 | 114.0 / 72 | 122.1 / 71 | 80.0 / 40 |
-| + inner drum fins (recommended) | 102.1 / 67 | 107.4 / 72 | 113.6 / 71 | 73.7 / 41 |
-| Full doc 06 package (+ outer ribs, aluminium path) | 93.0 / 56 | 97.0 / 60 | 103.1 / 59 | 66.2 / 32 |
+| **Rev C passive package (blades + inner fins + outer ribs), §4a** | **94.0** / 55 | **97.7** / 59 | **104.6** / 58 | 67.3 / 31 |
+| Doc 06 assumption, for reference (3 × inner area, 1.5 × outer) | 93.0 / 56 | 97.0 / 60 | 103.1 / 59 | 66.2 / 32 |
 
 Design limit 130 °C hot spot, 100 °C magnet.
 
 - **Fan blades** (NP1-212C): 24 blades 4 mm × 18 mm high, r 240 to 308,
   welded on the inside of the rear cover at x 447 to 465. They stir the air
   between end windings and drum, 4 mm clear of the drum bore (Ø624).
-- **Inner fins** (not drawn yet, waiting for Martin's choice): axial fins
-  welded on the drum bore beside the end windings, front and rear of the
-  magnet seat, for about 3 × the inside drum area. They are drawn once the
-  choice is made, then the rotor is balanced with them.
-- Magnet temperatures stay at 67 to 72 °C in every hot case, well inside
-  the 100 °C design point (demag margin ≈ 45 % at 71 °C).
+- **Inner fins and outer ribs:** see §4a.
+- Magnet temperatures stay at 55 to 59 °C with the passive package (67 to
+  72 °C with blades only), well inside the 100 °C design point.
+
+## 4a. Passive cooling study (Martin, 2026-11-05: "I think the rotor deserves fins, can we explore purely passive cooling")
+
+**Everything here is passive.** There is no electric fan, pump or power
+draw. The parts are welded to the rotor, and they move air only because
+the rotor turns. The 24 "fan blades" on the rear cover are themselves just
+radial fins on a part that turns. Script:
+[`passive_cooling.py`](../analysis/generator/passive_cooling.py) →
+[`passive_cooling.json`](../analysis/generator/results/passive_cooling.json).
+
+**Parts (now on NP1-210C and NP1-G00):**
+
+| Part | Geometry | Added area | Fin efficiency | Mass |
+|---|---|---|---|---|
+| 36 inner fins | L-shaped 3 mm S355 plates every 10°, welded to the hub web and the shell bore in the front cavity: x 220 to 312, r 262 to 312, plus a web leg x 220 to 250, r 140 to 262. 9 mm clear of the end windings (x 321) | 0.60 m² (+66 % of the inside area 0.90 m²) | 0.78 | 7.0 kg |
+| 48 outer ribs | 4 × 20 S355 flat bars every 7.5° on the shell outside, x 222 to 430, tips Ø676, clear of the brake disc (x 435) | 0.39 m² (+54 % of the outside area 0.72 m²) | 0.95 | 5.5 kg |
+| 24 cover blades | as §4 (NP1-212C) | small | | in the cover |
+
+The doc 06 assumption of 3 × the inside area cannot be reached in the real
+cavity; the drawn fins give about 1.5 ×. So the earlier "inner fins give 7 to
+9 K" in this document's first issue was too optimistic: they give 3 to 4 K
+on their own. The outer ribs are the bigger passive gain.
+
+**Winding hot spot / magnet temperature (°C), 30 °C ambient unless stated:**
+
+| Passive option | Rated | Weak wake | 110 % load | Iceland 10 °C |
+|---|---|---|---|---|
+| A. No cooling parts | 144.1 / 66 | 148.9 / 71 | 167.7 / 70 | 113.4 / 39 |
+| B. Cover blades only (Rev C first issue) | 108.8 / 67 | 114.0 / 72 | 122.1 / 71 | 80.0 / 40 |
+| C. Inner fins only, air barely stirred (h 15) | 139.1 / 66 | 143.9 / 71 | 161.1 / 70 | 108.6 / 39 |
+| C'. Inner fins only, fins stir the air (h 25) | 120.4 / 66 | 125.4 / 72 | 136.8 / 71 | 90.9 / 40 |
+| D. Outer ribs only | 133.6 / 54 | 136.9 / 58 | 155.0 / 57 | 104.7 / 30 |
+| E. Inner fins + outer ribs, no blades (h 25) | 109.2 / 55 | 112.8 / 58 | 123.7 / 58 | 81.6 / 30 |
+| F. Blades + inner fins | 105.5 / 67 | 110.7 / 72 | 117.9 / 71 | 76.9 / 40 |
+| **G. Blades + inner fins + outer ribs (chosen)** | **94.0** / 55 | **97.7** / 59 | **104.6** / 58 | 67.3 / 31 |
+| G with the inside air only half as stirred (h 25) | 108.8 / 55 | 112.4 / 58 | 123.2 / 58 | 81.2 / 30 |
+| H. G with 25 mm ribs (tips Ø696) | 89.2 / 50 | 92.2 / 53 | 99.1 / 52 | 63.3 / 26 |
+
+**What the numbers say:**
+
+- **Moving the inside air is the biggest lever, more than fin area.** Heat
+  leaves the coils into the inside air and the stator core. Fins on the
+  drum only help if that air is moving over the end windings. Inner fins
+  in still air (C) gain only 5 K. Inner fins alone are not enough
+  (C', 137 °C at 110 %).
+- **Outer ribs cool the magnets and the drum** (11 to 13 K lower magnet
+  temperature) and take 10 to 14 K off the hot spot.
+- **G is the recommended passive package:** 94 to 105 °C on the hot
+  cases, 25 K under the 130 °C limit. Even if the inside air moves only
+  half as well as doc 06 assumed, it stays at 123 °C or lower (row "G with
+  h 25"). The magnets stay below 60 °C, where the demag margin is about
+  50 %.
+- **H (taller ribs)** gains another 5 K. It is only worth it if the bench
+  test shows the hot spot above about 110 °C, and only if the nacelle
+  cover has room.
+
+**Costs and checks:**
+
+- 12.5 kg more on the rotor (161 kg). Welded before stress relief and
+  machining, so the drum is machined and balanced with them.
+- **Nacelle fit check** for Ø676 over the ribs: hub flange, nacelle
+  cover lip and brake caliper (docs 07, 16). This is open.
+- Rib windage at 178 rpm is a few watts. The ribs are 4 mm flat bars with
+  rounded ends, so they whistle less than thin blades.
+- Paint the ribs as the drum (zinc spray + epoxy, C5). Keep the inside
+  fins bare or thinly primed: paint is a thermal barrier.
 
 ## 5. Mechanical checks
 
@@ -260,12 +325,12 @@ PDF and a DXF of each sheet. Regenerate with `python3 build_rc.py --png`.
 
 | Drawing | Title | Material | Mass |
 |---|---|---|---|
-| NP1-G00 | Generator Rev C, assembly section with parts list | | ≈ 263 kg generator |
+| NP1-G00 | Generator Rev C, assembly section with parts list | | ≈ 276 kg generator |
 | NP1-201C | Stator tooth segment lamination (45 + 3) | M270-35A, 0.35 mm, self-bonding | 1.07 kg per stack |
 | NP1-200C | Stator carrier with 45 dovetail grooves | S355J2+N | 40.6 kg |
 | NP1-203C | Coil on segment | Cu Ø1.55 grade 2, class 200; NKN; PPS GF40 | ≈ 0.45 kg Cu |
 | NP1-202 | Stator front clamp ring (unchanged) | 1.4404 | 2.2 kg |
-| NP1-210C | Rotor drum weldment | S355J2+N | 91.8 kg |
+| NP1-210C | Rotor drum weldment with inner fins and outer ribs | S355J2+N | 91.8 + 12.5 kg |
 | NP1-220E | Magnet block 30 × 15 × 12 (purchase drawing) | N45SH, NiCuNi | 41.0 g |
 | NP1-221C | Stepped pole comb bar (40 + 4) | G11 | ≈ 25 g |
 | NP1-222C | Magnet end rings, front and rear | G11 | ≈ 0.12 kg each |
@@ -311,15 +376,15 @@ IR05 segment, IR06 segments into the carrier.
 | §6.4 comb | Stepped G11 bars NP1-221C, end rings NP1-222C |
 | §6.5 bonding | One block at a time, row by row, no pair bonding |
 | §6.8 sleeve | Sleeve 0.52 to 0.89 (Q1 checks the full range) |
+| §6.1 drum weldment | 36 inner fins and 48 outer ribs welded before stress relief (NP1-210C note 7) |
 | §6.8 complete the rotor | Rear cover NP1-212C with 24 fan blades; balance with it fitted |
 | §5 stator | Unchanged, 28 turns |
 | Controller | Magnet temperature: derate 85 °C, stop 95 °C (doc 19 §16.3) |
 
 **Questions for Martin:**
 
-1. **Inner drum fins** (open decision): fan blades alone keep the hot spot
-   at 109 to 122 °C (limit 130). Inner fins add 7 to 9 K of margin for a
-   few hours of welding and machining. Recommended: add them.
+1. **Outer ribs fit:** the ribs make the drum Ø676 over 208 mm. Can the
+   nacelle cover and hub take that, or should the ribs be shortened?
 2. **Magnet supplier:** 30 × 15 × 12 N45SH is less common than
    30 × 15 × 6. Should I prepare a quote request for Neo Narva, VAC and two
    Chinese makers with this drawing?
@@ -329,9 +394,9 @@ IR05 segment, IR06 segments into the carrier.
 - **Q1 test panel with the real blocks:** bond 10 blocks on a seat sector
   with the stepped comb, cure, then a push-off test at 120 °C. This proves
   the single-block bond before the full rotor.
-- **Bench test of temperatures** (doc 15): measure the hot spot at rated
-  and 110 % with the fan blades. If it is below 115 °C the inner fins can
-  wait for the production version.
+- **Bench test of temperatures** (doc 15): thermocouples on the end
+  windings, slot centre, inside air and drum, at rated and 110 %. This
+  calibrates the inside-air coefficient, the largest uncertainty in §4a.
 - **3D end-effect check** of the five short rows (open from doc 20 O5).
 
 ## Appendix. How to rerun
@@ -340,6 +405,7 @@ IR05 segment, IR06 segments into the carrier.
 cd analysis/generator
 python3 sh30.py S1x              # FEA of the Rev C pole, ~40 min -> results/sh30_S1x.json
 python3 checks_rc.py             # thermal, mechanical, voltage -> results/rc_checks.json
+python3 passive_cooling.py       # passive cooling options -> results/passive_cooling.json
 cd ../../cad/generator_rc
 python3 build_rc.py --png        # drawing set: PDF, DXF, PNG
 python3 iso_rc.py --png          # isometric views IR01 to IR06

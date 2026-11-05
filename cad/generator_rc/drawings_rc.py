@@ -55,6 +55,19 @@ FAN = dict(n=24, r0=240.0, r1=308.0, h=18.0, t=4.0)   # x 447 to 465, inside the
 
 
 # ====================================================================== GA
+
+def fin_poly():
+    f = G.ROTOR_FINS
+    return [(f["x0"], f["leg_r0"]), (f["leg_x1"], f["leg_r0"]), (f["leg_x1"], f["r0"]), (f["x1"], f["r0"]),
+            (f["x1"], f["r1"]), (f["x0"], f["r1"])]
+
+
+def rib_poly():
+    rb = G.DRUM_RIBS
+    return [(rb["x0"], 318.0), (335.0, 318.0), (335.0, 323.0), (425.0, 323.0), (425.0, 318.0), (rb["x1"], 318.0),
+            (rb["x1"], rb["r_tip"]), (rb["x0"], rb["r_tip"])]
+
+
 @reg
 def ga_generator():
     s = sheet("NP1-G00", "GENERATOR REV C · ASSEMBLY SECTION", "see parts list",
@@ -84,6 +97,9 @@ def ga_generator():
         v.poly(p, hatch=True)
     # fan blades on the rear cover (inside face)
     v.poly([(465 - FAN["h"], FAN["r0"]), (465, FAN["r0"]), (465, FAN["r1"]), (465 - FAN["h"], FAN["r1"])], "THIN")
+    # passive cooling: inner fins (front cavity) and outer ribs, rotating with the drum
+    v.poly(fin_poly(), fill="0.8")
+    v.poly(rib_poly(), fill="0.8")
     # magnets, comb/end rings, sleeve
     for x in R.X_BLOCKS:
         v.poly([(x, R.R_IN), (x + R.L, R.R_IN), (x + R.L, R.R_BACK), (x, R.R_BACK)], fill="0.15")
@@ -103,6 +119,8 @@ def ga_generator():
             ((428, 150), (500, 180), "carrier, 45 dovetails (NP1-200C)"),
             ((456, 280), (500, 150), f"rear cover + {FAN['n']} fan blades (NP1-212C)"),
             ((443, 400), (500, 120), "brake disc NP1-230"),
+            ((240, 200), (195, 220), f"{G.ROTOR_FINS['n']} inner fins, 3 mm, on hub web + shell (NP1-210C)"),
+            ((300, 336), (195, 380), f"{G.DRUM_RIBS['n']} outer ribs 4 mm, tips Ø{2 * G.DRUM_RIBS['r_tip']:.0f}"),
             ((338, 215), (500, 90), "clamp ring NP1-202")]
     for p, q, t in tags:
         v.leader(p, q, t, 2.0)
@@ -127,7 +145,7 @@ def ga_generator():
         "Rev C generator (doc 23): segmented stator of doc 18 (45 tooth segments in carrier dovetail grooves) and the block rotor: one N45SH block 30 × 15 × 12 per pole across, five rows along the 74 mm stack, rows step-skewed 0.20° by the stepped comb bars.",
         "Air gap 2.0 (stator Ø598.0 to sleeve bore Ø602.0); sleeve 0.52 at the block centre, 0.89 at the block edges; magnet face r 301.52.",
         "Interfaces to the nacelle (spindle, bearings, hub flange, disc, bedplate) unchanged from NP1-000 Rev B. Drum OD Ø646 unchanged.",
-        "Cooling (doc 23 §6): carrier → spindle → finned insert path (doc 14 §6) plus 24 fan blades on the inside of the rear cover; hot spot ≤ 130 °C on the hot-day cases.",
+        "Cooling, all passive (doc 23 §4 and §4a): carrier → spindle → finned insert path (doc 14 §6), 24 blades on the rear cover, 36 inner fins and 48 outer ribs on the drum; hot spot 94 to 105 °C on the hot-day cases (limit 130).",
     ]
     s.notes_top = (243, 214)
     s.notes_wrap = 92
@@ -288,13 +306,17 @@ def coil():
 @reg
 def drum():
     s = sheet("NP1-210C", "ROTOR DRUM WELDMENT (GENERATOR YOKE + BEARING HOUSING)", "S355J2+N, welded, stress relieved",
-              kg("Rotor drum"), "1:3.8", rev="C")
+              f'{kg("Rotor drum")} + {kg("Rotor fins")} fins/ribs', "1:3.8", rev="C")
     v = s.view("A", 0.265, (40, 168))
     X = lambda x: x - 90  # noqa: E731
     for p in G.DRUM_PARTS.values():
         q = [(X(x), r) for x, r in p]
         v.poly(q, hatch=True)
         v.poly([(x, -r) for x, r in q])
+    v.poly([(X(x), r) for x, r in fin_poly()], fill="0.8")
+    v.poly([(X(x), r) for x, r in rib_poly()], fill="0.8")
+    v.leader((X(240), 180), (X(560), 150), f"FIN, {G.ROTOR_FINS['n']}× equally spaced, t3 (note 7)", 2.0)
+    v.leader((X(380), 333), (X(560), 190), f"RIB 4×20, {G.DRUM_RIBS['n']}× equally spaced (note 7)", 2.0)
     v.centerline((0, 0), (X(470), 0))
     v.dim((X(92), 120), (X(385), 120), 8, kind="h", h=2.0)
     v.dim((X(195), 345), (X(465), 345), 6, kind="h", h=2.0)
@@ -313,7 +335,9 @@ def drum():
                ["seat land x", "335 to 425", "as Rev B"],
                ["shell OD", "Ø646", "steel under seat 8.98"],
                ["shell ID (free)", "Ø624", "clearance to magnets"],
-               ["rear flange ring", "Ø624/Ø710 × 14", "M10 PCD 644 + M10 PCD 678"]]
+               ["rear flange ring", "Ø624/Ø710 × 14", "M10 PCD 644 + M10 PCD 678"],
+               ["inner fins (36)", "t3, x 220-312, r 140-312", "L-plate, web + bore, every 10°"],
+               ["outer ribs (48)", "4 × 20, x 222-430", "tips Ø676, every 7.5°"]]
     s.table_pos = (195, 283)
     s.table_widths = [36, 32, 54]
     title(v, 0, 380, "SECTION A-A (weld preps not shown, note 2)", 3.0)
@@ -324,6 +348,7 @@ def drum():
         "Hub web 12× M16 thru PCD 400; rear flange ring 24× M10 PCD 644 (rear cover) and 24× M10 PCD 678 (disc).",
         "Magnet seat: degrease, grit blast Sa 2½ just before bonding; no paint inside. Outside zinc spray + epoxy (C5).",
         "Balance finished rotor (drum, magnets, sleeve, disc, cover) to ISO 21940-11 G2.5 at 250 rpm, correction on the rear flange ring.",
+        "Passive cooling (doc 23 §4a): 36 inner fins t3 S355, L-shaped, fillet-welded both sides to hub web and shell bore, every 10°, 9 mm clear of the end windings; 48 outer ribs 4 × 20 S355 on the shell outside, every 7.5°, intermittent fillet welds 30/60 both sides, ends rounded. Weld fins and ribs before stress relief and machining.",
         "Rear flange ring welded to the shell full round, continuous: with the hub web it keeps the 9 mm shell round against the magnet pull (doc 23 §5). Seat roundness 0.05 after stress relief.",
     ]
     return s

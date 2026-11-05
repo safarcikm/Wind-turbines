@@ -51,7 +51,7 @@ def zspan(x0, x1, dz, front_up):
 
 
 def add_rotor_rc(sc, dz=0.0, cut=(90.0, 360.0), front_up=True, magnets=True, disc=True, combs=True,
-                 rings=True, step=4.0, layer=0):
+                 rings=True, fins=True, step=4.0, layer=0):
     """Rev C drum with 200 blocks (5 skewed rows), comb bars and end rings, cut open between 0 and 90 deg."""
     axial = (X0 + dz, -1) if front_up else (dz, 1)
     for pts in G.DRUM_PARTS.values():
@@ -62,6 +62,8 @@ def add_rotor_rc(sc, dz=0.0, cut=(90.0, 360.0), front_up=True, magnets=True, dis
         for x0, x1 in ((R.SEAT_X[0], R.X_BLOCKS[0]), (R.X_BLOCKS[-1] + R.L, R.SEAT_X[1])):
             prof = [(x0, R.R_IN), (x1, R.R_IN), (x1, R.R_SEAT), (x0, R.R_SEAT)]
             sc.revolve(prof, C["g10"], cut[0], cut[1], step=step, axial=axial, layer=layer, bias=10.0)
+    if fins:
+        add_fins_ribs(sc, dz, cut, front_up, layer)
     if not magnets:
         return
     for p in range(GEN["poles"]):
@@ -81,6 +83,37 @@ def add_rotor_rc(sc, dz=0.0, cut=(90.0, 360.0), front_up=True, magnets=True, dis
                 ac = a + POLE / 2
                 if ac + 1.5 < cut[1]:
                     sc.prism([comb_loop(ac)], z0 - 0.1, z1 + 0.1, C["grp"], layer=layer, bias=12.0)
+
+
+def radial_plate(a_deg, r0, r1, t):
+    c, s_ = math.cos(math.radians(a_deg)), math.sin(math.radians(a_deg))
+    h = t / 2
+    return [(r0 * c + h * s_, r0 * s_ - h * c), (r1 * c + h * s_, r1 * s_ - h * c),
+            (r1 * c - h * s_, r1 * s_ + h * c), (r0 * c - h * s_, r0 * s_ + h * c)]
+
+
+FIN_COL = "#b4bcc5"
+
+
+def add_fins_ribs(sc, dz=0.0, cut=(90.0, 360.0), front_up=True, layer=0):
+    """Passive cooling parts on the drum: L-shaped inner fins (front cavity) and outer ribs."""
+    f, rb = G.ROTOR_FINS, G.DRUM_RIBS
+    for k in range(f["n"]):
+        a = 360.0 / f["n"] * k + 5.0
+        if not cut[0] + 2 < a < cut[1] - 2:
+            continue
+        if front_up and cut[0] + 15.0 < a < cut[1] - 15.0:      # front up: hidden under the closed end, keep the cut faces
+            continue
+        z0, z1 = zspan(f["x0"], f["x1"], dz, front_up)
+        sc.prism([radial_plate(a, f["r0"], f["r1"] - 0.5, f["t"])], z0, z1, FIN_COL, layer=layer, bias=5.0)
+        z0, z1 = zspan(f["x0"], f["leg_x1"], dz, front_up)
+        sc.prism([radial_plate(a, f["leg_r0"], f["r0"], f["t"])], z0, z1, FIN_COL, layer=layer, bias=5.0)
+    for k in range(rb["n"]):
+        a = 360.0 / rb["n"] * k + 3.75
+        if not cut[0] + 1 < a < cut[1] - 1 or 150.0 < a < 300.0:     # far side is hidden behind the drum
+            continue
+        z0, z1 = zspan(rb["x0"], rb["x1"], dz, front_up)
+        sc.prism([radial_plate(a, 318.5, rb["r_tip"], rb["t"])], z0, z1, FIN_COL, layer=layer, bias=5.0)
 
 
 def add_rear_cover_fan(sc, dz=0.0, cut=(0.0, 360.0), layer=0):
@@ -153,6 +186,8 @@ def ir02_rotor():
     tag(S, sc, F, cyl_pt(316, 90, zm), 1040, 420, 4, ["drum wall (cut)", f"seat Ø{R.SEAT_D:.2f}"])
     tag(S, sc, F, cyl_pt(437, 330, G.DISC_POLY[0][0] - 80 + 8), 1040, 230, 5, ["brake disc", "(open end)"])
     tag(S, sc, F, cyl_pt(R.R_IN + 3, 270.0, R.SEAT_X[1] - 80 - 3), 1040, 580, 6, ["G11 end ring", "(front and rear)"])
+    tag(S, sc, F, cyl_pt(292, 245, 270 - 80), 1040, 700, 7, ["36 inner fins (passive", "cooling, front cavity)"])
+    tag(S, sc, F, cyl_pt(330, 340, 330 - 80), 1040, 810, 8, ["48 outer ribs, tips Ø676"])
     S.rect(20, 690, 360, 140, fill=C["light"], stroke="#c9ced6", rx=8)
     S.lines(35, 718, ["Glue one row at a time, all 40", "blocks of the row, N and S", "alternating in the comb.",
                       "Every block pulls hard: one at", "a time, in the jig, never two."], 15, "start")
@@ -224,6 +259,7 @@ def ir04_assembled():
     tag(S, sc, F, cyl_pt(323, 139, zc + 20), 300, 380, 1, ["rotor drum (turns)"])
     tag(S, sc, F, cyl_pt(R.R_IN + 6, 138.5, zc), 300, 480, 2, ["N45SH blocks, 12 mm", "gap 2.0 mm to the teeth"])
     tag(S, sc, F, cyl_pt(437, 140, X0 - 443), 300, 780, 7, ["brake disc"])
+    tag(S, sc, F, cyl_pt(290, 137, X0 - 300), 300, 250, 8, ["36 inner fins (passive cooling)"])
     tag(S, sc, F, cyl_pt(300, 136, X0 - 470), 300, 860, 6, ["rear cover + 24 fan blades"])
     tag(S, sc, F, cyl_pt(285, 316, zc), 1040, 430, 3, ["stator teeth + coils", "(fixed)"])
     tag(S, sc, F, cyl_pt(206, 316, zc + 20), 1040, 560, 4, ["carrier"])
