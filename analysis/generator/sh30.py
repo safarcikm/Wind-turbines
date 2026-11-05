@@ -5,6 +5,7 @@ block inner face r 301.5, drum seat fitted to the block):
 
   S1  1 block across (30 wide) x 5 along (15 long)  -> 75.8 mm rows, span 0.63
   S3  3 blocks across (15 wide) x 3 along (30 long) -> 90.4 mm rows, span 0.96
+  S1d as S1 with two blocks stacked (12 mm magnet), 400 pieces
 
 (2 across x 15 wide gives the same span as S1 with more pieces and 90.4 mm
 rows, so it is not run separately.) For each: line EMF at 60 and 100 °C with
@@ -30,7 +31,10 @@ OUT = Path(__file__).parent / "results"
 NI_LOAD = 895.5
 N42SH = dict(br20=1.29, hcj20=1592e3, a_br=-0.0012, b_hcj=-0.0060)
 SHAPES = {"S1": Shape("S1", "N42SH 30x15x6: 1 across x 5 along", 1, True, hm=0.006, b=0.030, n_ax=5, l_ax=0.015),
-          "S3": Shape("S3", "N42SH 30x15x6: 3 across x 3 along", 3, True, hm=0.006, b=0.015, n_ax=3, l_ax=0.030)}
+          "S3": Shape("S3", "N42SH 30x15x6: 3 across x 3 along", 3, True, hm=0.006, b=0.015, n_ax=3, l_ax=0.030),
+          # two blocks stacked (bonded N face to S face) = one 12 mm magnet
+          "S1d": Shape("S1d", "N42SH 30x15x6 x2 stacked: 1 across x 5 along x 2 high", 1, True, hm=0.012, b=0.030,
+                       n_ax=5, l_ax=0.015)}
 
 
 def main(key):
@@ -50,7 +54,7 @@ def main(key):
     rows = shape.n_ax * shape.l_ax + (shape.n_ax - 1) * 0.0002
     out = dict(key=key, name=shape.name, seat_d_mm=round(2e3 * geo.r_seat, 2),
                span_alpha=round(span / (2 * math.pi / geo.poles), 3), rows_mm=round(rows * 1e3, 1),
-               pieces=geo.poles * shape.k * shape.n_ax,
+               pieces=geo.poles * shape.k * shape.n_ax * round(shape.hm / 0.006),
                magnet_kg=round(geo.poles * shape.k * shape.n_ax * bw * shape.l_ax * shape.hm * 7600, 2),
                skew_step_deg=round(math.degrees(per / shape.n_ax), 3), skew_emf_factor=round(skf, 4))
     deltas = None

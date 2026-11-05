@@ -118,7 +118,9 @@ SHAPES = [Shape("A", "Arc segment, radial (doc 18)", 1, False),
           Shape("C2t", "40x20: 2 across, 2 along, 7.5 mm", 2, True, hm=0.0075, b=0.020,
                 n_ax=2, l_ax=0.040),
           Shape("C2s", "40x20: 2 across, 2 along, 7.0 mm", 2, True, hm=0.0070, b=0.020,
-                n_ax=2, l_ax=0.040)]
+                n_ax=2, l_ax=0.040),
+          # doc 20: 30 x 15 x 6 blocks, 1 across (30 wide) x 5 along (15 long), two stacked = 12 mm
+          Shape("S1d", "30x15x6 x2 stacked: 1 across, 5 along", 1, True, hm=0.012, b=0.030, n_ax=5, l_ax=0.015)]
 
 
 @dataclass

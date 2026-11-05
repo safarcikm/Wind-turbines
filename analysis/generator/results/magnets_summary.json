@@ -754,5 +754,79 @@
       "margin_pct": 28.7
     },
     "runtime_s": 361
+  },
+  {
+    "key": "S1d",
+    "name": "30x15x6 x2 stacked: 1 across, 5 along",
+    "pieces_per_pole_width": 1,
+    "flat": true,
+    "seat_diameter_mm": 628.017,
+    "block_width_mm": 30.0,
+    "bond_centre_mm": 0.509,
+    "inner_corner_radius_mm": 301.873,
+    "magnet_mass_kg": 8.208,
+    "force_no_load_N_per_pole": [
+      49.6,
+      152.7
+    ],
+    "no_load": {
+      "psi1_per_turn_Wb": 0.02807,
+      "line_emf_178rpm_100C_V": 358.9,
+      "phase_thd_pct": 2.01,
+      "line_thd_pct": 1.78,
+      "harmonics_pct": {
+        "3": 0.93,
+        "5": 1.75,
+        "7": 0.27,
+        "11": 0.13,
+        "13": 0.07
+      }
+    },
+    "cogging_pp_Nm": 5.277,
+    "load": {
+      "NI_peak_per_side": 895.5,
+      "mean_torque_Nm": 743.8,
+      "ripple_pp_pct": 3.46,
+      "phase_current_rms_A": 22.61
+    },
+    "force_load_N_per_pole": [
+      145.3,
+      -92.0
+    ],
+    "rotor_field_main_freqs_Hz": [
+      44.5,
+      133.5,
+      89.0,
+      178.0,
+      267.0
+    ],
+    "eddy_loss_rated_W": {
+      "width_mm": 30.0,
+      "loss_2d_W": 27.2,
+      "by_axial_pieces": {
+        "1": 20.2,
+        "2": 13.8,
+        "3": 9.2,
+        "4": 6.3,
+        "6": 3.3,
+        "8": 2.0
+      },
+      "catalogue_pieces": 4.7
+    },
+    "skewed_rows": {
+      "rows": 5,
+      "step_deg": 0.2,
+      "cogging_pp_Nm": 0.007,
+      "ripple_pp_pct": 2.26,
+      "emf_factor": 0.9951
+    },
+    "demag_120C": {
+      "Ld_mH": 13.22,
+      "transient_peak_A": 115.9,
+      "min_H_kA_m": -539.4,
+      "H_1pct_kA_m": -447.2,
+      "margin_pct": 39.8
+    },
+    "runtime_s": 694
   }
 ]
