@@ -1,0 +1,9 @@
+{
+  "nominal": 0.956,
+  "sorted poles, +-0.5 % alternating strong/weak": 1.135,
+  "unsorted, random +-1.5 %": 2.739,
+  "one pole 3 % weak": 2.412,
+  "pole centres random +-0.05 deg": 2.352,
+  "pole centres random +-0.10 deg": 8.501,
+  "pole centres random +-0.25 deg": 14.801
+}
