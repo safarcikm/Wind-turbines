@@ -1,4 +1,5 @@
 {
+ "chosen": "collective, one electric cylinder feathering from one supercap module (Martin 2026-11-05)",
  "geometry": {
   "theta_range": [
    -2.0,
@@ -29,69 +30,93 @@
   "design_max": 17.28,
   "single_max": 9.85
  },
- "springs": {
-  "n": 2,
-  "type": "nitrogen gas spring (die spring, ISO 11901 type), low-temperature seals",
-  "stroke_mm": 186,
-  "F_extended_20C_each_kN": 13.5,
-  "F_compressed_20C_each_kN": 17.6,
-  "progression": 1.3,
-  "margin_one_spring_cold_vs_sim_estop": 1.23,
-  "margin_both_cold_vs_SLM_G": 1.4,
-  "F_latched_both_40C_kN": 37.5,
-  "energy_released_both_kJ": 5.42,
-  "cycles": "trips and weekly tests only (about 2,000 in 20 years); the springs do not move in normal pitching"
- },
- "damper": {
-  "type": "hydraulic speed controller (sealed, adjustable), in parallel with the springs",
-  "v_design_m_s": 0.064,
-  "F_max_kN": 36.7,
-  "c_Ns_per_m": 572122,
-  "feather_time_s": 3.1,
-  "end_buffer": "industrial shock absorber on the carriage end stop + rubber blade stops at 93 deg"
- },
- "actuator": {
-  "type": "electric cylinder, ball screw, parallel servo motor with spring-applied holding brake",
-  "stroke_mm": 196,
-  "F_normal_cont_kN": 3.5,
-  "F_normal_peak_kN": 4.74,
-  "F_recock_kN": 41.2,
-  "F_rated_required_kN": 42,
-  "lead_mm": 10.0,
-  "belt_ratio": 3.0,
-  "v_15dps_m_s": 0.032,
-  "motor_rpm_15dps": 577,
-  "motor_T_cont_Nm": 2.06,
-  "motor_T_peak_normal_Nm": 2.79,
-  "motor_T_recock_Nm": 24.31,
-  "motor": "48 V PMSM servo, about 4 Nm peak / 1.3 Nm continuous, 0.4 kW (re-cocking is slow: 10 mm/s)",
-  "C_dyn_needed": "ball screw dynamic rating >= 25 kN; screw travel 20 years from pitch duty below",
-  "screw_travel_20y_km": 1352.0
- },
- "latch": {
-  "holding_kN": 37.5,
-  "type": "roller pawl over a hardened step, toggle ratio >= 25:1, held by a power-on solenoid",
-  "solenoid_force_N": 337,
-  "release": "safety chain opens solenoid power: release < 50 ms; weekly test = real trip at low wind"
- },
- "links": {
-  "eye": "spherical plain bearings, steel/steel, greased from the hub lubricator (not PTFE: 230 million reversals)",
-  "tube": "\u00d830 x 4 S355 with M20 turnbuckle",
-  "L_mm": 220.0,
-  "F_tension_trip_kN": 7.3,
-  "F_tension_recock_kN": 14.4,
-  "F_compression_max_kN": 14.4,
-  "buckling_kN": 1210,
-  "angle_max_deg": 17.7
- },
- "crank": {
-  "r_mm": 120.0,
-  "pin_plane_s_mm": 130.0,
-  "form": "welded S355 tube \u00d8168 x 8 from the blade-ring flange (clamped by the 10 blade studs) down to the pin plane, lever 25 thick, pin \u00d830",
-  "T_recock_Nm": 1732,
-  "T_trip_design_Nm": 520,
-  "storm_hold_Nm": 440,
-  "storm_note": "storm holding: the cylinder's holding brake + screw hold all three blades; one blade's 440 Nm gives 5.6 kN on the yoke, far below the cylinder rating"
+ "supercap_variant": {
+  "actuator": {
+   "type": "electric cylinder: ball screw lead 5 mm, belt 1:2 to a parallel 48 V PMSM servo, spring-applied holding brake",
+   "stroke_mm": 196,
+   "F_trip_design_kN": 17.3,
+   "F_rated_kN": 20.7,
+   "F_normal_peak_kN": 4.7,
+   "v_30dps_m_s": 0.064,
+   "motor_rpm_30dps": 1539,
+   "motor_T_peak_Nm": 9.2,
+   "motor_T_cont_Nm": 2.09,
+   "P_mech_peak_W": 796,
+   "brake_motor_Nm": 6.4,
+   "F_storm_on_screw_kN": 16.7,
+   "screw": "ball screw \u00d832 x 5, C_dyn >= 30 kN, C_0 >= 60 kN; 20-year travel 1352.0 km at small strokes: L10 by supplier",
+   "current_limit": "force limit 21 kN (current), so an end-stop stall cannot overload links, cranks or stops"
+  },
+  "supercap": {
+   "module": "21 x 2.7 V / 350 F in series (56.7 V, 16.7 F), active balancing, heater pad (same module as doc 13, one instead of three)",
+   "window_V": [
+    56.0,
+    30.0
+   ],
+   "E_usable_kJ": 18.7,
+   "E_stroke_kJ": 2.93,
+   "strokes_end_of_life": 5.1,
+   "required": 2,
+   "I_peak_A": 31
+  },
+  "fail_safe": {
+   "triggers": [
+    "safety chain opens (STO input + supercap-only mode)",
+    "48 V slip-ring supply lost",
+    "controller watchdog / bus loss",
+    "supercap below 2-stroke reserve: feather and stop"
+   ],
+   "sequence": "fixed in the drive firmware (certified with the safety system, PL d): drive to 91 deg at 30 deg/s on supercap power, stop on the feather limit switch, set the holding brake",
+   "drive_dead": "if the drive itself fails, the blades stay where they are; the two spring-applied rotor brakes (8.7 kNm, 12 x rated torque) stop the rotor as the independent second system (doc 11)"
+  },
+  "links": {
+   "eye": "spherical plain bearings, steel/steel, greased from the hub lubricator (not PTFE: 230 million reversals)",
+   "tube": "\u00d830 x 4 S355 with M20 turnbuckle",
+   "L_mm": 220.0,
+   "F_tension_trip_kN": 7.3,
+   "F_compression_max_kN": 7.3,
+   "buckling_kN": 1210,
+   "angle_max_deg": 17.7
+  },
+  "crank": {
+   "r_mm": 120.0,
+   "pin_plane_s_mm": 130.0,
+   "form": "welded S355 tube \u00d8168 x 8 from the blade-ring flange (clamped by the 10 blade studs) down to the pin plane, lever 25 thick, pin \u00d830",
+   "T_trip_design_Nm": 520,
+   "storm_hold_Nm": 440,
+   "storm_note": "storm holding: worst case all three blades push the same way, 16.7 kN on the screw, held by the motor brake through the back-driven screw (ball screws are not self-locking)",
+   "T_max_Nm": 847
+  },
+  "mass": {
+   "parts": {
+    "pitch bearings x 3 (ungeared)": 57.4,
+    "cranks x 3": 12.0,
+    "links x 3": 3.6,
+    "yoke + guide rods": 6.5,
+    "electric cylinder + motor": 9.5,
+    "nose housing (Al 6082, welded)": 5.0,
+    "pitch controller, position sensor, limit switches": 3.0,
+    "spinner, boots, slip ring rotor, cabling": 8.0,
+    "supercap module + heater": 3.5
+   },
+   "pitch_system": 108.5,
+   "hub_welded": 117.3,
+   "total_welded_hub": 225.8,
+   "total_with_cast_hub": 204.5,
+   "doc13_total": 199.4,
+   "spring_variant_total_welded": 239.8
+  },
+  "part_count": {
+   "electric_cylinder": 1,
+   "drive_controller": 1,
+   "supercap_module": 1,
+   "linear_position_sensor": 1,
+   "limit_switch_set": 1,
+   "heater_pads": 2,
+   "links": 3,
+   "cranks": 3,
+   "yoke": 1
+  }
  },
  "yoke": {
   "form": "S355 three-arm plate yoke 20 thick, eyes at R 110, central boss on the cylinder rod, guided by 2 rods \u00d825 (also take the yoke torque from the link angles)",
@@ -130,54 +155,86 @@
    "shear_demand_kN": 141.9
   }
  },
- "mass": {
-  "parts": {
-   "pitch bearings x 3 (ungeared)": 57.4,
-   "cranks x 3": 12.0,
-   "links x 3": 3.6,
-   "yoke + guide rods": 6.5,
-   "electric cylinder + motor": 11.0,
-   "carriage, latch, solenoid": 5.0,
-   "gas springs x 2": 7.0,
-   "damper + end buffer": 2.0,
-   "nose housing (Al 6082, welded)": 7.0,
-   "pitch controller, position sensor, limit switches": 3.0,
-   "spinner, boots, slip ring rotor, cabling": 8.0
+ "spring_variant_rejected": {
+  "springs": {
+   "n": 2,
+   "type": "nitrogen gas spring (die spring, ISO 11901 type), low-temperature seals",
+   "stroke_mm": 186,
+   "F_extended_20C_each_kN": 13.5,
+   "F_compressed_20C_each_kN": 17.6,
+   "progression": 1.3,
+   "margin_one_spring_cold_vs_sim_estop": 1.23,
+   "margin_both_cold_vs_SLM_G": 1.4,
+   "F_latched_both_40C_kN": 37.5,
+   "energy_released_both_kJ": 5.42,
+   "cycles": "trips and weekly tests only (about 2,000 in 20 years); the springs do not move in normal pitching"
   },
-  "pitch_system": 122.5,
-  "hub_welded": 117.3,
-  "total_welded_hub": 239.8,
-  "total_with_cast_hub": 218.5,
-  "doc13": {
-   "hub_cast": 90.0,
-   "three_pitch_axes": 101.39999999999999,
-   "spinner_slip_ring": 8.0,
-   "total": 199.4
+  "damper": {
+   "type": "hydraulic speed controller (sealed, adjustable), in parallel with the springs",
+   "v_design_m_s": 0.064,
+   "F_max_kN": 36.7,
+   "c_Ns_per_m": 572122,
+   "feather_time_s": 3.1,
+   "end_buffer": "industrial shock absorber on the carriage end stop + rubber blade stops at 93 deg"
+  },
+  "actuator": {
+   "type": "electric cylinder, ball screw, parallel servo motor with spring-applied holding brake",
+   "stroke_mm": 196,
+   "F_normal_cont_kN": 3.5,
+   "F_normal_peak_kN": 4.74,
+   "F_recock_kN": 41.2,
+   "F_rated_required_kN": 42,
+   "lead_mm": 10.0,
+   "belt_ratio": 3.0,
+   "v_15dps_m_s": 0.032,
+   "motor_rpm_15dps": 577,
+   "motor_T_cont_Nm": 2.06,
+   "motor_T_peak_normal_Nm": 2.79,
+   "motor_T_recock_Nm": 24.31,
+   "motor": "48 V PMSM servo, about 4 Nm peak / 1.3 Nm continuous, 0.4 kW (re-cocking is slow: 10 mm/s)",
+   "C_dyn_needed": "ball screw dynamic rating >= 25 kN; screw travel 20 years from pitch duty below",
+   "screw_travel_20y_km": 1352.0
+  },
+  "latch": {
+   "holding_kN": 37.5,
+   "type": "roller pawl over a hardened step, toggle ratio >= 25:1, held by a power-on solenoid",
+   "solenoid_force_N": 337,
+   "release": "safety chain opens solenoid power: release < 50 ms; weekly test = real trip at low wind"
+  },
+  "mass": {
+   "parts": {
+    "pitch bearings x 3 (ungeared)": 57.4,
+    "cranks x 3": 12.0,
+    "links x 3": 3.6,
+    "yoke + guide rods": 6.5,
+    "electric cylinder + motor": 11.0,
+    "carriage, latch, solenoid": 5.0,
+    "gas springs x 2": 7.0,
+    "damper + end buffer": 2.0,
+    "nose housing (Al 6082, welded)": 7.0,
+    "pitch controller, position sensor, limit switches": 3.0,
+    "spinner, boots, slip ring rotor, cabling": 8.0
+   },
+   "pitch_system": 122.5,
+   "hub_welded": 117.3,
+   "total_welded_hub": 239.8,
+   "total_with_cast_hub": 218.5,
+   "doc13": {
+    "hub_cast": 90.0,
+    "three_pitch_axes": 101.39999999999999,
+    "spinner_slip_ring": 8.0,
+    "total": 199.4
+   }
   }
  },
- "part_count": {
-  "doc13": {
-   "servo_gearmotors": 3,
-   "drive_controllers": 3,
-   "supercap_modules": 3,
-   "encoders": 3,
-   "ring_gears_pinions": 3,
-   "limit_switch_sets": 3,
-   "heater_pads": 6
-  },
-  "doc24": {
-   "electric_cylinder": 1,
-   "controller": 1,
-   "linear_position_sensor": 1,
-   "limit_switch_set": 1,
-   "gas_springs": 2,
-   "latch_solenoid": 1,
-   "damper": 1,
-   "heater_pads": 2,
-   "links": 3,
-   "cranks": 3,
-   "yoke": 1
-  }
+ "doc13_part_count": {
+  "servo_gearmotors": 3,
+  "drive_controllers": 3,
+  "supercap_modules": 3,
+  "encoders": 3,
+  "ring_gears_pinions": 3,
+  "limit_switch_sets": 3,
+  "heater_pads": 6
  },
  "curves": {
   "theta": [

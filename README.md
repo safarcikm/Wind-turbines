@@ -64,3 +64,8 @@ possible manufactured in-house.
   swap path from printed to steel, component list
   ([cad/nacelle_w](cad/nacelle_w/), [bom_w.csv](cad/nacelle_w/bom_w.csv)) and
   the car-industry evaluation.
+- [24 – Collective pitch and welded hub](docs/24-collective-pitch-hub.md):
+  replaces the three pitch drives of doc 13 with one electric cylinder, yoke,
+  links and cranks, feathering from one supercap module; rotor brake as the
+  second braking system; welded S355NL hub; mass and part count
+  ([analysis/hub/collective.py](analysis/hub/collective.py)).

@@ -271,10 +271,83 @@ def size():
                             F_req_single_kN=(F_req_single[::12] / 1e3).round(2).tolist()))
 
 
+
+def size_supercap(sp):
+    """Chosen variant (Martin, 2026-11-05): no springs; the electric cylinder feathers the blades itself,
+    from one supercapacitor module, when the safety chain opens or power is lost."""
+    T, brg = blade_torques()
+    th, xy, dxdth, ang = kinematics()
+    lever = np.abs(dxdth) / 1e3                        # m per rad
+    F_des = 3 * T["trip_design"] / lever / ETA_LINK    # N along the stroke
+    F_rated = float(F_des.max()) * 1.2
+    lead, belt, eta_s, eta_back, eta_el = 5.0e-3, 2.0, 0.90, 0.80, 0.85
+    w = math.radians(30.0)
+    v = lever * w                                      # m/s at 30 deg/s
+    P_mech = F_des * v / eta_s
+    T_mot = F_rated * lead / (2 * math.pi * eta_s * belt)
+    n_mot = float(v.max()) / lead * belt * 60
+    E_stroke = float(np.trapezoid(F_des / eta_s, xy / 1e3).__abs__()) / eta_el
+    C, V1, V2 = 16.7, 56.0, 30.0
+    E_mod = 0.5 * C * (V1 ** 2 - V2 ** 2)
+    strokes_eol = 0.8 * E_mod / E_stroke
+    I_peak = float(P_mech.max()) / eta_el / V2
+    # storm: all three blades pushing the same way through the screw (back-driving) onto the motor brake
+    F_storm = 3 * T["storm_hold"] / float(lever.min())
+    T_brake = F_storm * lead * eta_back / (2 * math.pi * belt)
+    F_norm = 3 * (T["normal_cold_eq"] * 1.35) / lever / ETA_LINK
+    T_cont = float(F_norm.max()) * lead / (2 * math.pi * eta_s * belt)
+    links = dict(sp["links"])
+    links["F_tension_trip_kN"] = round(F_rated / 3 / math.cos(math.radians(float(ang.max()))) / 1e3, 1)
+    links["F_compression_max_kN"] = links["F_tension_trip_kN"]
+    links.pop("F_tension_recock_kN", None)
+    crank = dict(sp["crank"])
+    crank.pop("T_recock_Nm", None)
+    crank["T_max_Nm"] = round(F_rated / 3 * float(lever.max()))     # cylinder at its force limit on an end stop
+    crank["storm_note"] = (f"storm holding: worst case all three blades push the same way, {round(F_storm / 1e3, 1)} kN on the screw, "
+                           "held by the motor brake through the back-driven screw (ball screws are not self-locking)")
+    act = dict(type="electric cylinder: ball screw lead 5 mm, belt 1:2 to a parallel 48 V PMSM servo, spring-applied holding brake",
+               stroke_mm=round(float(xy.max() - xy.min()) + 20), F_trip_design_kN=round(float(F_des.max()) / 1e3, 1),
+               F_rated_kN=round(F_rated / 1e3, 1), F_normal_peak_kN=round(float(F_norm.max()) / 1e3, 1),
+               v_30dps_m_s=round(float(v.max()), 3), motor_rpm_30dps=round(n_mot),
+               motor_T_peak_Nm=round(T_mot, 1), motor_T_cont_Nm=round(T_cont, 2),
+               P_mech_peak_W=round(float(P_mech.max())), brake_motor_Nm=round(T_brake * 1.2, 1),
+               F_storm_on_screw_kN=round(F_storm / 1e3, 1),
+               screw="ball screw Ø32 x 5, C_dyn >= 30 kN, C_0 >= 60 kN; 20-year travel " + str(sp["actuator"]["screw_travel_20y_km"]) + " km at small strokes: L10 by supplier",
+               current_limit="force limit 21 kN (current), so an end-stop stall cannot overload links, cranks or stops")
+    sc = dict(module="21 x 2.7 V / 350 F in series (56.7 V, 16.7 F), active balancing, heater pad (same module as doc 13, one instead of three)",
+              window_V=[V1, V2], E_usable_kJ=round(E_mod / 1e3, 1), E_stroke_kJ=round(E_stroke / 1e3, 2),
+              strokes_end_of_life=round(strokes_eol, 1), required=2, I_peak_A=round(I_peak))
+    fail = dict(triggers=["safety chain opens (STO input + supercap-only mode)", "48 V slip-ring supply lost",
+                          "controller watchdog / bus loss", "supercap below 2-stroke reserve: feather and stop"],
+                sequence="fixed in the drive firmware (certified with the safety system, PL d): drive to 91 deg at 30 deg/s on supercap power, "
+                         "stop on the feather limit switch, set the holding brake",
+                drive_dead="if the drive itself fails, the blades stay where they are; the two spring-applied rotor brakes "
+                           "(8.7 kNm, 12 x rated torque) stop the rotor as the independent second system (doc 11)")
+    parts = dict(sp["mass"]["parts"])
+    for k in ("carriage, latch, solenoid", "gas springs x 2", "damper + end buffer"):
+        parts.pop(k)
+    parts["electric cylinder + motor"] = 9.5
+    parts["supercap module + heater"] = 3.5
+    parts["nose housing (Al 6082, welded)"] = 5.0
+    m_pitch = sum(parts.values())
+    m_hub = sp["hub"]["mass"]["total"]
+    mass = dict(parts={k: round(v, 1) for k, v in parts.items()}, pitch_system=round(m_pitch, 1), hub_welded=m_hub,
+                total_welded_hub=round(m_pitch + m_hub, 1), total_with_cast_hub=round(m_pitch + 96.0, 1),
+                doc13_total=199.4, spring_variant_total_welded=sp["mass"]["total_welded_hub"])
+    count = dict(electric_cylinder=1, drive_controller=1, supercap_module=1, linear_position_sensor=1,
+                 limit_switch_set=1, heater_pads=2, links=3, cranks=3, yoke=1)
+    return dict(actuator=act, supercap=sc, fail_safe=fail, links=links, crank=crank, mass=mass, part_count=count)
+
+
 def main():
     s = size()
-    (OUT / "collective_summary.json").write_text(json.dumps(s, indent=1, default=float))
-    print(json.dumps({k: v for k, v in s.items() if k != "curves"}, indent=1, default=float))
+    out = dict(chosen="collective, one electric cylinder feathering from one supercap module (Martin 2026-11-05)",
+               geometry=s["geometry"], blade_torques_Nm=s["blade_torques_Nm"], yoke_force_required_kN=s["yoke_force_required_kN"],
+               supercap_variant=size_supercap(s), yoke=s["yoke"], hub=s["hub"],
+               spring_variant_rejected={k: s[k] for k in ("springs", "damper", "actuator", "latch", "mass")},
+               doc13_part_count=s["part_count"]["doc13"], curves=s["curves"])
+    (OUT / "collective_summary.json").write_text(json.dumps(out, indent=1, default=float))
+    print(json.dumps({k: v for k, v in out.items() if k not in ("curves", "spring_variant_rejected")}, indent=1, default=float))
 
 
 if __name__ == "__main__":
