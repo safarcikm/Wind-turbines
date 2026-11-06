@@ -34,3 +34,13 @@ Run `python3 dlc6.py` (~28 min on 4 cores), then `recheck6.py` and `plots6.py`.
 | `brake_hold6.py` | parked 50-year storm, yaw lost, 300 s with the brake allowed to slip and K1 closed; brake torque 1.5 kNm and divided by 1.35 / 1.6 | `results/brake_hold6.json` |
 
 Drawings: `cad/turbine_6kw/drawings6.py`. 3D website: `viewer6/`.
+
+## Doc 33: timber blades
+
+| Script | What it does | Output |
+|---|---|---|
+| `timber6.py` | sizes wood-epoxy blades (moulded veneer shell, carved laminated, carved + carbon strips; Douglas fir and Sitka spruce; three airfoil thicknesses) with the doc 10 section model and the doc 31 loads; aero cost of thicker airfoils; glued-in stud root | `results/timber6.json` |
+| `timber6.py 12kw` | same for the 12 kW Ø7.5 m rotor with the doc 08/10 loads | `results/timber12.json` |
+| `timber_plots.py` | figures T01–T02 | `results/T0*.png` |
+
+Run after `recheck6.py` (and `analysis/blade/blade.py` for the 12 kW reference), ~10 s each.
