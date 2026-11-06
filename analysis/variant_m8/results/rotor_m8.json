@@ -1,0 +1,136 @@
+{
+ "R": 4.0,
+ "tip_cap": 54.9,
+ "polars": {
+  "clean": {
+   "current_D7.5_TSR6.5": {
+    "R": 3.75,
+    "D": 7.5,
+    "rated_wind": 10.5,
+    "cut_in": 2.5,
+    "rated_rpm": 178.3,
+    "tip_speed": 70.0,
+    "rated_torque_Nm": 729,
+    "max_steady_thrust_N": 2180,
+    "thrust_at_rated_N": 1871,
+    "max_steady_flap_Nm": 1570,
+    "cp_max": 0.478,
+    "c_max": 0.343,
+    "c_tip": 0.16,
+    "c_root": 0.189,
+    "blade_area": 0.849,
+    "solidity": 0.0577,
+    "parked_broadside_force_N": 6118,
+    "parked_broadside_root_moment_Nm": 9189,
+    "pitch_at_25": 26.9,
+    "aep_kWh": {
+     "5.0": 20350,
+     "6.0": 30907,
+     "7.0": 41005,
+     "8.0": 49902,
+     "10.0": 63509
+    }
+   },
+   "M8_TSR5.5_131rpm": {
+    "R": 4.0,
+    "D": 8.0,
+    "rated_wind": 10.0,
+    "cut_in": 2.5,
+    "rated_rpm": 131.0,
+    "tip_speed": 54.9,
+    "rated_torque_Nm": 991,
+    "max_steady_thrust_N": 2279,
+    "thrust_at_rated_N": 1992,
+    "max_steady_flap_Nm": 1760,
+    "cp_max": 0.473,
+    "c_max": 0.502,
+    "c_tip": 0.236,
+    "c_root": 0.276,
+    "blade_area": 1.337,
+    "solidity": 0.0798,
+    "parked_broadside_force_N": 9633,
+    "parked_broadside_root_moment_Nm": 15636,
+    "pitch_at_25": 31.5,
+    "aep_kWh": {
+     "5.0": 22461,
+     "6.0": 33442,
+     "7.0": 43663,
+     "8.0": 52490,
+     "10.0": 65729
+    }
+   },
+   "aep_gain_pct": {
+    "5.0": 10.4,
+    "6.0": 8.2,
+    "7.0": 6.5,
+    "8.0": 5.2,
+    "10.0": 3.5
+   }
+  },
+  "rough": {
+   "current_D7.5_TSR6.5": {
+    "R": 3.75,
+    "D": 7.5,
+    "rated_wind": 10.5,
+    "cut_in": 2.5,
+    "rated_rpm": 178.3,
+    "tip_speed": 70.0,
+    "rated_torque_Nm": 729,
+    "max_steady_thrust_N": 2136,
+    "thrust_at_rated_N": 2051,
+    "max_steady_flap_Nm": 1554,
+    "cp_max": 0.448,
+    "c_max": 0.343,
+    "c_tip": 0.16,
+    "c_root": 0.189,
+    "blade_area": 0.849,
+    "solidity": 0.0577,
+    "parked_broadside_force_N": 6118,
+    "parked_broadside_root_moment_Nm": 9189,
+    "pitch_at_25": 25.8,
+    "aep_kWh": {
+     "5.0": 19259,
+     "6.0": 29566,
+     "7.0": 39576,
+     "8.0": 48494,
+     "10.0": 62284
+    }
+   },
+   "M8_TSR5.5_131rpm": {
+    "R": 4.0,
+    "D": 8.0,
+    "rated_wind": 10.0,
+    "cut_in": 2.5,
+    "rated_rpm": 131.0,
+    "tip_speed": 54.9,
+    "rated_torque_Nm": 991,
+    "max_steady_thrust_N": 2236,
+    "thrust_at_rated_N": 2236,
+    "max_steady_flap_Nm": 1735,
+    "cp_max": 0.448,
+    "c_max": 0.502,
+    "c_tip": 0.236,
+    "c_root": 0.276,
+    "blade_area": 1.337,
+    "solidity": 0.0798,
+    "parked_broadside_force_N": 9633,
+    "parked_broadside_root_moment_Nm": 15636,
+    "pitch_at_25": 30.6,
+    "aep_kWh": {
+     "5.0": 21500,
+     "6.0": 32308,
+     "7.0": 42489,
+     "8.0": 51358,
+     "10.0": 64770
+    }
+   },
+   "aep_gain_pct": {
+    "5.0": 11.6,
+    "6.0": 9.3,
+    "7.0": 7.4,
+    "8.0": 5.9,
+    "10.0": 4.0
+   }
+  }
+ }
+}

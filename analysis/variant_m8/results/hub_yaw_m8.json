@@ -1,0 +1,322 @@
+{
+ "pitch_moments_Nm": {
+  "worst_resisting_feather": -81.1,
+  "worst_resisting_operating": -19.1,
+  "storm_hold": -677.2,
+  "J_blade_kgm2": 0.32
+ },
+ "pitch_bearing": {
+  "load_sets": {
+   "SLM H parked flap": {
+    "M": 43.71,
+    "Fa": 0.0,
+    "Fr": 21.85
+   },
+   "SLM E overspeed": {
+    "M": 0.0,
+    "Fa": 57.68,
+    "Fr": 0.0
+   },
+   "SLM G shutdown": {
+    "M": 15.61,
+    "Fa": 18.32,
+    "Fr": 0.0
+   },
+   "Simulated envelope": {
+    "M": 14.42,
+    "Fa": 22.55,
+    "Fr": 2.06
+   }
+  },
+  "chosen": {
+   "Dpw": 0.3,
+   "Dw": 0.03,
+   "Z": 28,
+   "s0": {
+    "SLM H parked flap": 1.37,
+    "SLM E overspeed": 16.12,
+    "SLM G shutdown": 3.79,
+    "Simulated envelope": 3.93
+   },
+   "L10_over_req": 210.2,
+   "ok": true
+  },
+  "od": 0.41,
+  "mass_kg": 25.4,
+  "friction_Nm": {
+   "warm": {
+    "emergency_SLM_G": 242,
+    "emergency_sim": 86,
+    "operating_eq": 44
+   },
+   "-30 C": {
+    "emergency_SLM_G": 502,
+    "emergency_sim": 191,
+    "operating_eq": 107
+   }
+  },
+  "doc24": {
+   "Dpw": 0.25,
+   "Dw": 0.0222,
+   "mass_kg": 19.0
+  }
+ },
+ "collective": {
+  "T_trip_per_blade_Nm": 611,
+  "resisting_aero_ctm_Nm": 109,
+  "options": {
+   "crank_r110": {
+    "stroke_mm": 160.3,
+    "F_trip_design_kN": 29.5,
+    "F_rated_kN": 35.5,
+    "motor_T_peak_Nm": 15.7,
+    "E_stroke_kJ": 4.14,
+    "strokes_EOL_one_module": 3.6,
+    "F_storm_on_screw_kN": 46.6,
+    "motor_brake_needed_Nm": 17.8
+   },
+   "crank_r125": {
+    "stroke_mm": 182.5,
+    "F_trip_design_kN": 25.3,
+    "F_rated_kN": 30.5,
+    "motor_T_peak_Nm": 13.5,
+    "E_stroke_kJ": 4.14,
+    "strokes_EOL_one_module": 3.6,
+    "F_storm_on_screw_kN": 40.0,
+    "motor_brake_needed_Nm": 15.3
+   },
+   "crank_r140": {
+    "stroke_mm": 204.9,
+    "F_trip_design_kN": 21.9,
+    "F_rated_kN": 26.5,
+    "motor_T_peak_Nm": 11.7,
+    "E_stroke_kJ": 4.14,
+    "strokes_EOL_one_module": 3.6,
+    "F_storm_on_screw_kN": 34.6,
+    "motor_brake_needed_Nm": 13.2
+   }
+  },
+  "doc24": {
+   "F_trip_design_kN": 20.9,
+   "F_rated_kN": 25.5,
+   "motor_T_peak_Nm": 11.3,
+   "strokes_EOL": 5.1
+  },
+  "chosen": "crank_r140"
+ },
+ "welded_hub": {
+  "neck_checks": [
+   {
+    "d_neck_mm": 360,
+    "t_mm": 10.0,
+    "static_MPa": 117,
+    "static_allow": 323,
+    "fat_MPa": 31.5,
+    "fat_allow": 42.1,
+    "ok": true
+   },
+   {
+    "d_neck_mm": 360,
+    "t_mm": 12.0,
+    "static_MPa": 99,
+    "static_allow": 323,
+    "fat_MPa": 26.7,
+    "fat_allow": 42.1,
+    "ok": true
+   },
+   {
+    "d_neck_mm": 360,
+    "t_mm": 15.0,
+    "static_MPa": 81,
+    "static_allow": 323,
+    "fat_MPa": 21.9,
+    "fat_allow": 42.1,
+    "ok": true
+   },
+   {
+    "d_neck_mm": 360,
+    "t_mm": 20.0,
+    "static_MPa": 63,
+    "static_allow": 323,
+    "fat_MPa": 17.1,
+    "fat_allow": 42.1,
+    "ok": true
+   },
+   {
+    "d_neck_mm": 380,
+    "t_mm": 10.0,
+    "static_MPa": 104,
+    "static_allow": 323,
+    "fat_MPa": 28.1,
+    "fat_allow": 42.1,
+    "ok": true
+   },
+   {
+    "d_neck_mm": 380,
+    "t_mm": 12.0,
+    "static_MPa": 88,
+    "static_allow": 323,
+    "fat_MPa": 23.8,
+    "fat_allow": 42.1,
+    "ok": true
+   },
+   {
+    "d_neck_mm": 380,
+    "t_mm": 15.0,
+    "static_MPa": 72,
+    "static_allow": 323,
+    "fat_MPa": 19.5,
+    "fat_allow": 42.1,
+    "ok": true
+   },
+   {
+    "d_neck_mm": 380,
+    "t_mm": 20.0,
+    "static_MPa": 56,
+    "static_allow": 323,
+    "fat_MPa": 15.2,
+    "fat_allow": 42.1,
+    "ok": true
+   }
+  ],
+  "chosen": {
+   "d_neck_mm": 360,
+   "t_mm": 10.0,
+   "static_MPa": 117,
+   "static_allow": 323,
+   "fat_MPa": 31.5,
+   "fat_allow": 42.1,
+   "ok": true
+  },
+  "shell_d_mm": 530,
+  "mass_kg": 179.8,
+  "doc24_mass_kg": 117.0,
+  "joint_loads": {
+   "M_kNm": 14.4,
+   "T_kNm": 42.3,
+   "Fx_kN": 65.6
+  },
+  "joint": {
+   "M16 PCD 400": {
+    "n": 12,
+    "Ft_kN": 17.4
+   },
+   "M16 PCD 440": {
+    "n": 12,
+    "Ft_kN": 16.3
+   },
+   "M20 PCD 400": {
+    "n": 12,
+    "Ft_kN": 17.4
+   },
+   "M20 PCD 440": {
+    "n": 12,
+    "Ft_kN": 16.3
+   }
+  },
+  "joint_doc24": "12 x M16 10.9 PCD 400"
+ },
+ "hub_pitch_mass": {
+  "parts": {
+   "pitch bearings x 3 (ungeared)": 76.2,
+   "cranks x 3": 30.0,
+   "links x 3": 4.5,
+   "yoke + guide rods": 8.0,
+   "electric cylinder + motor": 14.0,
+   "supercap module(s) + heater": 3.5,
+   "nose housing": 6.0,
+   "controller, sensors, switches": 3.0,
+   "spinner (larger), boots, slip ring, cabling": 12.0
+  },
+  "pitch_system": 157.2,
+  "hub": 179.8,
+  "total": 337.0,
+  "doc24_total": 239.0
+ },
+ "rotor_brake_standstill_aero_torque_kNm": {
+  "current_D7.5": {
+   "25 m/s": 0.3,
+   "32 m/s": 0.49,
+   "40 m/s": 0.77
+  },
+  "M8": {
+   "25 m/s": 0.61,
+   "32 m/s": 0.99,
+   "40 m/s": 1.55
+  },
+  "brake_kNm": 8.73
+ },
+ "rotor_brake": {
+  "parked_aero_torque_sim_char_kNm": 9.32,
+  "parked_aero_torque_sim_char_current_kNm": 5.78,
+  "governing": "DLC 6.x-parked-Vref at 55.0 m/s, yaw 30, azimuth 60",
+  "brake_current_kNm": 8.73,
+  "brake_M8_kNm": 13.1,
+  "ratio_M8": 1.41,
+  "note": "3 calipers of the doc 07 type on the same disc"
+ },
+ "slm_G_shaft_torque_kNm": 42.26,
+ "yaw": {
+  "m_above_bearing_kg": 1146,
+  "m_above_tower_flange_kg": 1280,
+  "x_cg_mm": -449,
+  "doc25": {
+   "m_above_bearing_kg": 969,
+   "m_total_kg": 1103,
+   "M_tilt_max_kNm": 34.6,
+   "s0": 1.44
+  },
+  "M_tilt_kNm": {
+   "SLM H parked thrust + SLM shaft moment (gamma 3.0)": 52.4,
+   "Simulated envelope (gamma 1.35)": 23.7
+  },
+  "ring_s0_Dpw360": {
+   "SLM H parked thrust + SLM shaft moment (gamma 3.0)": 0.95,
+   "Simulated envelope (gamma 1.35)": 2.37
+  },
+  "ring_options_s0": {
+   "Dpw 360": {
+    "SLM H parked thrust + SLM shaft moment (gamma 3.0)": 0.95,
+    "Simulated envelope (gamma 1.35)": 2.37
+   },
+   "Dpw 410": {
+    "SLM H parked thrust + SLM shaft moment (gamma 3.0)": 1.41,
+    "Simulated envelope (gamma 1.35)": 3.57
+   },
+   "Dpw 450": {
+    "SLM H parked thrust + SLM shaft moment (gamma 3.0)": 1.64,
+    "Simulated envelope (gamma 1.35)": 4.21
+   }
+  },
+  "ring_chosen": {
+   "Dpw_mm": 410,
+   "r_gear_m": 0.33,
+   "s0_min": 1.41,
+   "gear_face_mm": 60.0
+  },
+  "bolts": {
+   "Bedplate to inner ring, 16 x M16 10.9 PCD 300": {
+    "F_ext_kN": 43.0,
+    "ratio": 0.48
+   },
+   "Outer ring to adapter, 16 x M16 10.9 PCD 440": {
+    "F_ext_kN": 29.1,
+    "ratio": 0.32
+   },
+   "Adapter to tower flange, 16 x M20 10.9 PCD 380": {
+    "F_ext_kN": 49.3,
+    "ratio": 0.45
+   }
+  },
+  "yaw_hold_design_kNm": 13.6,
+  "gearbox_static_needed_Nm": 2308,
+  "gear_static_S_F": {
+   "pinion": 3.39,
+   "ring": 2.69
+  },
+  "gear_static_S_H": {
+   "pinion": 1.54,
+   "ring": 1.18
+  }
+ }
+}
