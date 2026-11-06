@@ -1,21 +1,39 @@
 [
  {
   "number": "NS6-000",
-  "title": "GENERAL ARRANGEMENT \u00b7 TURBINE",
-  "material": "see parts list",
-  "mass": "\u2248 912 kg head + 1824 kg tower"
+  "title": "GENERAL ARRANGEMENT \u00b7 TURBINE ON 8 m TOWER",
+  "material": "see BOM NS6-002/003",
+  "mass": "\u2248 982 kg head + 661 kg tower"
  },
  {
   "number": "NS6-001",
-  "title": "PARTS LIST AND REUSED 12 kW DRAWINGS",
+  "title": "DRAWING INDEX (S6 SET REV B + REUSED 12 kW DRAWINGS)",
   "material": "\u2013",
   "mass": "\u2013"
+ },
+ {
+  "number": "NS6-002",
+  "title": "BILL OF MATERIALS (1/2)",
+  "material": "see lines",
+  "mass": "see lines"
+ },
+ {
+  "number": "NS6-003",
+  "title": "BILL OF MATERIALS (2/2)",
+  "material": "see lines",
+  "mass": "see lines"
  },
  {
   "number": "NS6-010",
   "title": "GENERAL ARRANGEMENT \u00b7 NACELLE SECTION",
   "material": "see NS6-001",
-  "mass": "\u2248 912 kg above the tower flange"
+  "mass": "\u2248 982 kg above the tower flange"
+ },
+ {
+  "number": "NS6-020",
+  "title": "ROTOR ASSEMBLY \u00b7 HUB, BLADES, SPINNER",
+  "material": "see BOM",
+  "mass": "\u2248 162 kg (rotor + hub + spinner)"
  },
  {
   "number": "NS6-100",
@@ -24,10 +42,46 @@
   "mass": "20.6 kg"
  },
  {
+  "number": "NS6-101",
+  "title": "BLADE \u00b7 SECTIONS AND LAMINATE SCHEDULE",
+  "material": "E-glass/epoxy (infusion), PVC H80 core",
+  "mass": "20.6 kg"
+ },
+ {
+  "number": "NS6-105",
+  "title": "BLADE ROOT INSERT M12 (BONDED)",
+  "material": "C45E+QT, zinc-flake coated (Geomet 500)",
+  "mass": "0.33 kg"
+ },
+ {
+  "number": "NS6-110",
+  "title": "BLADE MOULD SET (PLUG, TWO HALVES, FRAME)",
+  "material": "GRP tooling laminate on S235 RHS frame",
+  "mass": "\u2248 2 \u00d7 75 kg + frame 155 kg"
+ },
+ {
+  "number": "NS6-115",
+  "title": "ROOT INSERT FIXTURE AND WEB MOULD (TOOLS)",
+  "material": "S355 machined; Al 5083 plate",
+  "mass": "9 kg (fixture)"
+ },
+ {
+  "number": "NS6-130",
+  "title": "PITCH SETTING \u00b7 ROOT SLOTS, WASHER PLATES, GAUGE",
+  "material": "C45 hardened 45 HRC; gauge Al 6082",
+  "mass": "30 \u00d7 15 g; gauge 1.6 kg"
+ },
+ {
   "number": "NS6-200",
   "title": "FIXED HUB WELDMENT",
-  "material": "S355NL (EN 10025-3), welded, stress relieved, machined",
-  "mass": "87 kg (+ 6 kg spinner)"
+  "material": "S355NL, welded, stress relieved",
+  "mass": "79 kg (CAD)"
+ },
+ {
+  "number": "NS6-210",
+  "title": "SPINNER (GRP) AND BRACKETS NS6-211",
+  "material": "glass/polyester 4 mm, gelcoat RAL 9010; brackets S235 galv.",
+  "mass": "8.7 kg + 3.6 kg"
  },
  {
   "number": "NS6-300",
@@ -36,16 +90,40 @@
   "mass": "127 kg"
  },
  {
+  "number": "NS6-310",
+  "title": "CALIPER BRACKET NP1-310 AND YAW DRIVE BRACKET NP1-420",
+  "material": "S355J2+N plate 25, welded, galv.",
+  "mass": "18.1 kg; 2 \u00d7 7.7 kg"
+ },
+ {
   "number": "NS6-400",
-  "title": "TOWER 18 m \u00b7 TILT-UP MONOPOLE",
+  "title": "TOWER 8 m \u00b7 ONE-PIECE TILT-UP MONOPOLE",
   "material": "S355J2+N, rolled and seam welded; hot-dip galvanised",
-  "mass": "1824 kg"
+  "mass": "661 kg (CAD 698)"
+ },
+ {
+  "number": "NS6-410",
+  "title": "BASE HINGE BRACKETS AND PIN",
+  "material": "S355J2+N 30 mm plate, galv.; pin 42CrMo4+QT \u00d850 h9",
+  "mass": "37 kg"
+ },
+ {
+  "number": "NS6-420",
+  "title": "GIN POLE AND TILT-UP RIGGING (ERECTION TOOL)",
+  "material": "S355 tube 168.3 \u00d7 6.3, plates 25",
+  "mass": "94 kg"
  },
  {
   "number": "NS6-500",
-  "title": "FOUNDATION \u00b7 SPREAD FOOTING AND ROCK PLINTH",
+  "title": "FOUNDATION \u00b7 SPREAD FOOTING AND ROCK PLINTH (8 m)",
   "material": "C30/37 XF4 air-entrained; B500C rebar",
-  "mass": "9.5\u201311.4 m\u00b3 (soil), 2.0 m\u00b3 (rock)"
+  "mass": "5.5\u20136.6 m\u00b3 (soil), 2.0 m\u00b3 (rock)"
+ },
+ {
+  "number": "NS6-510",
+  "title": "ANCHOR CAGE AND TEMPLATE",
+  "material": "M24 8.8 HDG threaded rod; S355 rings 100 \u00d7 20",
+  "mass": "144 kg"
  },
  {
   "number": "NS6-600",
@@ -58,5 +136,41 @@
   "title": "G6 PLAIN REAR COVER (NO FAN BLADES)",
   "material": "EN AW-5083-H111, 10 mm plate",
   "mass": "\u2248 7 kg"
+ },
+ {
+  "number": "NS6-620",
+  "title": "TOWER BASE CABINET, STAND AND RESISTOR BOX POSITION",
+  "material": "enclosure 1.4301 IP55; stand S235 galv.",
+  "mass": "95 kg + 18 kg"
+ },
+ {
+  "number": "NS6-700",
+  "title": "NACELLE COVER \u00b7 LOWER TRAY AND UPPER LID (GRP)",
+  "material": "glass/polyester 4 mm, gelcoat RAL 9010, PU foam ribs",
+  "mass": "19 + 22 kg"
+ },
+ {
+  "number": "NS6-710",
+  "title": "COVER ARMS, REAR RAIL, MET MAST NS6-720, JUNCTION BOX NS6-730",
+  "material": "S235 galv.; mast 1.4404 \u00d842.4 \u00d7 2",
+  "mass": "22 kg; 4.5 kg; 9 kg"
+ },
+ {
+  "number": "NS6-800",
+  "title": "CABLING ROUTES, EARTHING AND LIGHTNING",
+  "material": "see cable schedule",
+  "mass": "\u2013"
+ },
+ {
+  "number": "NS6-900",
+  "title": "FASTENER AND TORQUE SCHEDULE",
+  "material": "ISO 4014/4017, EN 14399-4 (HV), 10.9 zinc-flake unless stated",
+  "mass": "\u2013"
+ },
+ {
+  "number": "NS6-910",
+  "title": "BOUGHT PARTS SPECIFICATION (ENVELOPES AND INTERFACES)",
+  "material": "see lines",
+  "mass": "see lines"
  }
 ]

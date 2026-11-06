@@ -44,3 +44,7 @@ Drawings: `cad/turbine_6kw/drawings6.py`. 3D website: `viewer6/`.
 | `timber_plots.py` | figures T01–T02 | `results/T0*.png` |
 
 Run after `recheck6.py` (and `analysis/blade/blade.py` for the 12 kW reference), ~10 s each.
+
+## Doc 34: 8 m tower
+
+`python3 tower8.py` (after `design6.py`; reads the CAD head mass from `cad/turbine_6kw/out/model6-parts.json` if present): stiff 8 m tower, 3P exclusion zone, footings, energy/turbulence/noise at 8 m vs 18 m. Writes `results/tower8.json`, `E01-tower8.png`. The full CAD model, drawings and build book are in `cad/turbine_6kw/` (see doc 34 §7).
