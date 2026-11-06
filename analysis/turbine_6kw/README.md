@@ -14,3 +14,14 @@ Model limits: steady BEM with 2D Viterna polars. Deep stall at low tip speed rat
 ## Doc 30: complete first-pass design
 
 `python3 design6.py` (after `regulation.py` and `analysis/generator6/g6.py`; needs scipy): SLM loads, blade (doc 10 model), fixed hub, drivetrain reuse check against the 12 kW SLM, yaw ring and yaw-out torque, tower and footings (doc 09 model), electronics ratings. Writes `results/design6.json`, `results/slm_6kw.json`, D01–D02.
+
+## Doc 31: aeroelastic simulation with the stall controller
+
+| Script | What it does | Output |
+|---|---|---|
+| `sim6.py` | doc 08 simulator (`analysis/loads/sim.py`) with fixed pitch, stall speed control and the K1 resistor + spring brake safety chain | (library) |
+| `dlc6.py` | 113 load cases: DLC 1.1/1.3/EOG/ice, loss of torque and e-stop with each stopping system alone, normal stop, parked V_ref at all yaw errors | `results/dlc6/dlc_summary.json`, `ops_loads_6kw_18m.json`, `dlc_raw.json`, `ts_*.npz` |
+| `recheck6.py` | reruns the doc 30 blade, hub and tower models with the simulated loads | `results/recheck6.json` |
+| `plots6.py` | figures S01–S04 | `results/S0*.png` |
+
+Run `python3 dlc6.py` (~28 min on 4 cores), then `recheck6.py` and `plots6.py`.

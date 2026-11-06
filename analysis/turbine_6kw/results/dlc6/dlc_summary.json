@@ -1,0 +1,1148 @@
+{
+ "gamma_f": 1.35,
+ "ultimate_envelope": {
+  "thrust": {
+   "characteristic": 12831.0,
+   "design": 17321.8,
+   "governing": "DLC 6.x-parked-Vref at 55.0 m/s, yaw 180, azimuth 0"
+  },
+  "Mflap0": {
+   "characteristic": 6603.1,
+   "design": 8914.1,
+   "governing": "DLC 6.x-parked-Vref at 55.0 m/s, yaw 180, azimuth 0"
+  },
+  "Medge0": {
+   "characteristic": 574.9,
+   "design": 776.1,
+   "governing": "DLC 6.x-parked-Vref at 55.0 m/s, yaw 8, azimuth 90"
+  },
+  "Mres0": {
+   "characteristic": 6610.6,
+   "design": 8924.3,
+   "governing": "DLC 6.x-parked-Vref at 55.0 m/s, yaw 180, azimuth 0"
+  },
+  "Mtilt": {
+   "characteristic": 1977.1,
+   "design": 2669.1,
+   "governing": "DLC 6.x-parked-Vref at 55.0 m/s, yaw 30, azimuth 0"
+  },
+  "Myaw": {
+   "characteristic": 1669.7,
+   "design": 2254.1,
+   "governing": "DLC 6.x-parked-Vref at 55.0 m/s, yaw 8, azimuth 30"
+  },
+  "Mbase": {
+   "characteristic": 307949.0,
+   "design": 415731.1,
+   "governing": "DLC 6.x-parked-Vref at 55.0 m/s, yaw 0, azimuth 30"
+  },
+  "Qaero": {
+   "characteristic": 1448.3,
+   "design": 1955.2,
+   "governing": "DLC 6.x-parked-Vref at 55.0 m/s, yaw 8, azimuth 60"
+  },
+  "Qgen": {
+   "characteristic": 2211.3,
+   "design": 2985.3,
+   "governing": "DLC 2.2-loss-torque-EOG/both at 12.0 m/s, yaw 0, azimuth 0"
+  },
+  "rpm": {
+   "characteristic": 172.7,
+   "design": 172.7,
+   "governing": "DLC 2.2-loss-torque-EOG/brake-only at 12.0 m/s, yaw 0, azimuth 0"
+  },
+  "P": {
+   "characteristic": 10015.0,
+   "design": 10015.0,
+   "governing": "DLC 1.3 at 14 m/s, yaw 0, azimuth 0"
+  },
+  "Fimb": {
+   "characteristic": 3178.3,
+   "design": 4290.7,
+   "governing": "DLC 1.5-ice at 12 m/s, yaw 0, azimuth 0"
+  }
+ },
+ "operating_envelope": {
+  "thrust": {
+   "characteristic": 3769.1,
+   "design": 5088.2,
+   "governing": "DLC 1.1 at 30 m/s, yaw 0, azimuth 0"
+  },
+  "Mflap0": {
+   "characteristic": 1930.3,
+   "design": 2605.9,
+   "governing": "DLC 1.1 at 30 m/s, yaw 0, azimuth 0"
+  },
+  "Medge0": {
+   "characteristic": 497.8,
+   "design": 672.1,
+   "governing": "DLC 1.5-ice at 12 m/s, yaw 0, azimuth 0"
+  },
+  "Mres0": {
+   "characteristic": 1940.4,
+   "design": 2619.6,
+   "governing": "DLC 1.1 at 30 m/s, yaw 0, azimuth 0"
+  },
+  "Mtilt": {
+   "characteristic": 846.2,
+   "design": 1142.4,
+   "governing": "DLC 1.3 at 24 m/s, yaw 0, azimuth 0"
+  },
+  "Myaw": {
+   "characteristic": 831.0,
+   "design": 1121.9,
+   "governing": "DLC 1.3 at 24 m/s, yaw 0, azimuth 0"
+  },
+  "Mbase": {
+   "characteristic": 82928.8,
+   "design": 111953.9,
+   "governing": "DLC 1.1 at 30 m/s, yaw 0, azimuth 0"
+  },
+  "Qaero": {
+   "characteristic": 649.2,
+   "design": 876.4,
+   "governing": "DLC 1.1 at 26 m/s, yaw 0, azimuth 0"
+  },
+  "Qgen": {
+   "characteristic": 2211.3,
+   "design": 2985.3,
+   "governing": "DLC 2.2-loss-torque-EOG/both at 12.0 m/s, yaw 0, azimuth 0"
+  },
+  "rpm": {
+   "characteristic": 172.7,
+   "design": 172.7,
+   "governing": "DLC 2.2-loss-torque-EOG/brake-only at 12.0 m/s, yaw 0, azimuth 0"
+  },
+  "P": {
+   "characteristic": 10015.0,
+   "design": 10015.0,
+   "governing": "DLC 1.3 at 14 m/s, yaw 0, azimuth 0"
+  },
+  "Fimb": {
+   "characteristic": 3178.3,
+   "design": 4290.7,
+   "governing": "DLC 1.5-ice at 12 m/s, yaw 0, azimuth 0"
+  }
+ },
+ "per_dlc_max": {
+  "1.1": {
+   "thrust": 3769.1,
+   "Mflap0": 1930.3,
+   "Medge0": 402.9,
+   "Mres0": 1940.4,
+   "Mtilt": 838.6,
+   "Myaw": 735.2,
+   "Mbase": 82928.8,
+   "Qaero": 649.2,
+   "Qgen": 595.4,
+   "rpm": 168.0,
+   "P": 9641.6,
+   "Fimb": 0
+  },
+  "1.3": {
+   "thrust": 3281.6,
+   "Mflap0": 1759.9,
+   "Medge0": 393.4,
+   "Mres0": 1771.6,
+   "Mtilt": 846.2,
+   "Myaw": 831.0,
+   "Mbase": 70401.5,
+   "Qaero": 624.7,
+   "Qgen": 595.4,
+   "rpm": 168.4,
+   "P": 10015.0,
+   "Fimb": 0
+  },
+  "1.4-EOG": {
+   "thrust": 2461.8,
+   "Mflap0": 1403.7,
+   "Medge0": 381.0,
+   "Mres0": 1416.9,
+   "Mtilt": 74.4,
+   "Myaw": 41.3,
+   "Mbase": 51597.0,
+   "Qaero": 571.1,
+   "Qgen": 589.7,
+   "rpm": 161.2,
+   "P": 9028.5,
+   "Fimb": 0
+  },
+  "1.5-ice": {
+   "thrust": 1843.9,
+   "Mflap0": 1110.4,
+   "Medge0": 497.8,
+   "Mres0": 1175.3,
+   "Mtilt": 450.4,
+   "Myaw": 420.3,
+   "Mbase": 35355.8,
+   "Qaero": 463.1,
+   "Qgen": 563.4,
+   "rpm": 168.3,
+   "P": 9866.0,
+   "Fimb": 3178.3
+  },
+  "2.2-loss-torque-EOG/both": {
+   "thrust": 2461.8,
+   "Mflap0": 1403.7,
+   "Medge0": 385.5,
+   "Mres0": 1416.9,
+   "Mtilt": 74.3,
+   "Myaw": 31.6,
+   "Mbase": 51597.0,
+   "Qaero": 589.2,
+   "Qgen": 2211.3,
+   "rpm": 163.8,
+   "P": 8871.0,
+   "Fimb": 0
+  },
+  "2.2-loss-torque/both": {
+   "thrust": 2355.6,
+   "Mflap0": 1208.1,
+   "Medge0": 376.2,
+   "Mres0": 1223.4,
+   "Mtilt": 438.1,
+   "Myaw": 509.2,
+   "Mbase": 55907.9,
+   "Qaero": 545.1,
+   "Qgen": 2209.6,
+   "rpm": 161.9,
+   "P": 8639.7,
+   "Fimb": 0
+  },
+  "5.1-estop/both": {
+   "thrust": 2541.0,
+   "Mflap0": 1302.0,
+   "Medge0": 363.0,
+   "Mres0": 1315.5,
+   "Mtilt": 454.8,
+   "Myaw": 446.5,
+   "Mbase": 52895.4,
+   "Qaero": 497.3,
+   "Qgen": 2203.7,
+   "rpm": 160.4,
+   "P": 7822.6,
+   "Fimb": 0
+  },
+  "2.2-loss-torque-EOG/resistor-only": {
+   "thrust": 2461.8,
+   "Mflap0": 1403.7,
+   "Medge0": 385.5,
+   "Mres0": 1416.9,
+   "Mtilt": 74.3,
+   "Myaw": 31.6,
+   "Mbase": 51597.0,
+   "Qaero": 589.2,
+   "Qgen": 713.5,
+   "rpm": 163.8,
+   "P": 8871.0,
+   "Fimb": 0
+  },
+  "2.2-loss-torque/resistor-only": {
+   "thrust": 2174.4,
+   "Mflap0": 1208.1,
+   "Medge0": 376.2,
+   "Mres0": 1223.4,
+   "Mtilt": 438.1,
+   "Myaw": 509.2,
+   "Mbase": 54354.6,
+   "Qaero": 545.1,
+   "Qgen": 713.5,
+   "rpm": 161.9,
+   "P": 8639.7,
+   "Fimb": 0
+  },
+  "5.1-estop/resistor-only": {
+   "thrust": 2541.0,
+   "Mflap0": 1302.0,
+   "Medge0": 363.0,
+   "Mres0": 1315.5,
+   "Mtilt": 454.8,
+   "Myaw": 446.5,
+   "Mbase": 52895.4,
+   "Qaero": 497.3,
+   "Qgen": 713.5,
+   "rpm": 160.4,
+   "P": 7822.6,
+   "Fimb": 0
+  },
+  "2.2-loss-torque-EOG/brake-only": {
+   "thrust": 2543.5,
+   "Mflap0": 1403.7,
+   "Medge0": 396.3,
+   "Mres0": 1416.9,
+   "Mtilt": 75.3,
+   "Myaw": 31.6,
+   "Mbase": 51597.0,
+   "Qaero": 644.3,
+   "Qgen": 1500.0,
+   "rpm": 172.7,
+   "P": 8871.0,
+   "Fimb": 0
+  },
+  "2.2-loss-torque/brake-only": {
+   "thrust": 2310.8,
+   "Mflap0": 1208.1,
+   "Medge0": 376.2,
+   "Mres0": 1223.4,
+   "Mtilt": 438.1,
+   "Myaw": 509.2,
+   "Mbase": 54354.6,
+   "Qaero": 563.3,
+   "Qgen": 1500.0,
+   "rpm": 169.8,
+   "P": 8639.7,
+   "Fimb": 0
+  },
+  "5.1-estop/brake-only": {
+   "thrust": 2541.0,
+   "Mflap0": 1302.0,
+   "Medge0": 366.8,
+   "Mres0": 1315.5,
+   "Mtilt": 454.8,
+   "Myaw": 446.5,
+   "Mbase": 53113.3,
+   "Qaero": 508.5,
+   "Qgen": 1500.0,
+   "rpm": 161.9,
+   "P": 7822.6,
+   "Fimb": 0
+  },
+  "4.1-normal-stop": {
+   "thrust": 2351.7,
+   "Mflap0": 1290.6,
+   "Medge0": 370.4,
+   "Mres0": 1292.8,
+   "Mtilt": 467.9,
+   "Myaw": 465.1,
+   "Mbase": 55606.1,
+   "Qaero": 537.6,
+   "Qgen": 1500.0,
+   "rpm": 159.4,
+   "P": 9747.0,
+   "Fimb": 0
+  },
+  "6.x-parked-Vref": {
+   "thrust": 12831.0,
+   "Mflap0": 6603.1,
+   "Medge0": 574.9,
+   "Mres0": 6610.6,
+   "Mtilt": 1977.1,
+   "Myaw": 1669.7,
+   "Mbase": 307949.0,
+   "Qaero": 1448.3,
+   "Qgen": 0,
+   "rpm": 0,
+   "P": 0,
+   "Fimb": 0
+  },
+  "6.4-parked-V1": {
+   "thrust": 6591.8,
+   "Mflap0": 3484.1,
+   "Medge0": 402.4,
+   "Mres0": 3487.3,
+   "Mtilt": 1353.7,
+   "Myaw": 936.5,
+   "Mbase": 187253.4,
+   "Qaero": 848.4,
+   "Qgen": 0,
+   "rpm": 0,
+   "P": 0,
+   "Fimb": 0
+  }
+ },
+ "fatigue_DEL": {
+  "Mflap0": {
+   "m": 10,
+   "DEL_1e7": 775.9
+  },
+  "Medge0": {
+   "m": 10,
+   "DEL_1e7": 733.6
+  },
+  "thrust": {
+   "m": 4,
+   "DEL_1e7": 1129.8
+  },
+  "Mtilt": {
+   "m": 4,
+   "DEL_1e7": 1028.8
+  },
+  "Myaw": {
+   "m": 4,
+   "DEL_1e7": 1026.6
+  },
+  "Mbase": {
+   "m": 4,
+   "DEL_1e7": 27522.9
+  },
+  "Qaero": {
+   "m": 4,
+   "DEL_1e7": 314.8
+  }
+ },
+ "power_by_wind": {
+  "4": {
+   "P_mean": 496,
+   "P_std": 388,
+   "P_max": 2233,
+   "rpm_mean": 70.8,
+   "Qgen_max": 172,
+   "trips": 0
+  },
+  "6": {
+   "P_mean": 1697,
+   "P_std": 1105,
+   "P_max": 6996,
+   "rpm_mean": 109.1,
+   "Qgen_max": 403,
+   "trips": 0
+  },
+  "8": {
+   "P_mean": 3723,
+   "P_std": 1808,
+   "P_max": 8805,
+   "rpm_mean": 141.1,
+   "Qgen_max": 505,
+   "trips": 0
+  },
+  "10": {
+   "P_mean": 5631,
+   "P_std": 1593,
+   "P_max": 9145,
+   "rpm_mean": 157.3,
+   "Qgen_max": 524,
+   "trips": 0
+  },
+  "12": {
+   "P_mean": 6547,
+   "P_std": 987,
+   "P_max": 9380,
+   "rpm_mean": 159.8,
+   "Qgen_max": 538,
+   "trips": 0
+  },
+  "14": {
+   "P_mean": 6759,
+   "P_std": 585,
+   "P_max": 9642,
+   "rpm_mean": 158.1,
+   "Qgen_max": 553,
+   "trips": 0
+  },
+  "16": {
+   "P_mean": 6793,
+   "P_std": 441,
+   "P_max": 9369,
+   "rpm_mean": 156.0,
+   "Qgen_max": 537,
+   "trips": 0
+  },
+  "18": {
+   "P_mean": 6796,
+   "P_std": 431,
+   "P_max": 8505,
+   "rpm_mean": 153.8,
+   "Qgen_max": 529,
+   "trips": 0
+  },
+  "20": {
+   "P_mean": 6796,
+   "P_std": 491,
+   "P_max": 8848,
+   "rpm_mean": 151.6,
+   "Qgen_max": 559,
+   "trips": 0
+  },
+  "22": {
+   "P_mean": 6796,
+   "P_std": 567,
+   "P_max": 9195,
+   "rpm_mean": 149.1,
+   "Qgen_max": 590,
+   "trips": 0
+  },
+  "24": {
+   "P_mean": 6760,
+   "P_std": 668,
+   "P_max": 9246,
+   "rpm_mean": 146.2,
+   "Qgen_max": 595,
+   "trips": 0
+  },
+  "26": {
+   "P_mean": 5940,
+   "P_std": 978,
+   "P_max": 9030,
+   "rpm_mean": 135.2,
+   "Qgen_max": 595,
+   "trips": 0
+  },
+  "28": {
+   "P_mean": 4433,
+   "P_std": 1036,
+   "P_max": 8713,
+   "rpm_mean": 114.3,
+   "Qgen_max": 595,
+   "trips": 0
+  },
+  "30": {
+   "P_mean": 3169,
+   "P_std": 801,
+   "P_max": 8414,
+   "rpm_mean": 92.1,
+   "Qgen_max": 595,
+   "trips": 0
+  }
+ },
+ "aep_rayleigh_vave10_kwh": 37137,
+ "stops": [
+  {
+   "case": "2.2-loss-torque-EOG/both",
+   "V": 12.0,
+   "rpm_event": 160.5,
+   "rpm_peak": 163.8,
+   "t_to_stop": 1.7,
+   "rpm_end": 0.0,
+   "Qres_max": 713,
+   "Mflap_max": 1195
+  },
+  {
+   "case": "2.2-loss-torque-EOG/both",
+   "V": 25.0,
+   "rpm_event": 146.6,
+   "rpm_peak": 150.7,
+   "t_to_stop": 1.7,
+   "rpm_end": 0.0,
+   "Qres_max": 713,
+   "Mflap_max": 1404
+  },
+  {
+   "case": "2.2-loss-torque/both",
+   "V": 14,
+   "rpm_event": 159.0,
+   "rpm_peak": 161.9,
+   "t_to_stop": 1.6,
+   "rpm_end": 0.0,
+   "Qres_max": 713,
+   "Mflap_max": 1145
+  },
+  {
+   "case": "2.2-loss-torque/both",
+   "V": 20,
+   "rpm_event": 149.4,
+   "rpm_peak": 152.4,
+   "t_to_stop": 1.6,
+   "rpm_end": 0.0,
+   "Qres_max": 713,
+   "Mflap_max": 1208
+  },
+  {
+   "case": "2.2-loss-torque/both",
+   "V": 26,
+   "rpm_event": 145.0,
+   "rpm_peak": 148.6,
+   "t_to_stop": 1.6,
+   "rpm_end": 0.0,
+   "Qres_max": 713,
+   "Mflap_max": 1179
+  },
+  {
+   "case": "5.1-estop/both",
+   "V": 10.5,
+   "rpm_event": 152.9,
+   "rpm_peak": 152.9,
+   "t_to_stop": 1.4,
+   "rpm_end": 0.0,
+   "Qres_max": 713,
+   "Mflap_max": 1179
+  },
+  {
+   "case": "5.1-estop/both",
+   "V": 18,
+   "rpm_event": 154.6,
+   "rpm_peak": 154.6,
+   "t_to_stop": 1.5,
+   "rpm_end": 0.0,
+   "Qres_max": 713,
+   "Mflap_max": 1202
+  },
+  {
+   "case": "5.1-estop/both",
+   "V": 25,
+   "rpm_event": 147.3,
+   "rpm_peak": 147.3,
+   "t_to_stop": 1.5,
+   "rpm_end": 0.0,
+   "Qres_max": 713,
+   "Mflap_max": 1302
+  },
+  {
+   "case": "2.2-loss-torque-EOG/resistor-only",
+   "V": 12.0,
+   "rpm_event": 160.5,
+   "rpm_peak": 163.8,
+   "t_to_stop": null,
+   "rpm_end": 3.3,
+   "Qres_max": 713,
+   "Mflap_max": 1195
+  },
+  {
+   "case": "2.2-loss-torque-EOG/resistor-only",
+   "V": 25.0,
+   "rpm_event": 146.6,
+   "rpm_peak": 150.7,
+   "t_to_stop": null,
+   "rpm_end": 13.3,
+   "Qres_max": 713,
+   "Mflap_max": 1404
+  },
+  {
+   "case": "2.2-loss-torque/resistor-only",
+   "V": 14,
+   "rpm_event": 159.0,
+   "rpm_peak": 161.9,
+   "t_to_stop": 80.1,
+   "rpm_end": 3.6,
+   "Qres_max": 713,
+   "Mflap_max": 1145
+  },
+  {
+   "case": "2.2-loss-torque/resistor-only",
+   "V": 20,
+   "rpm_event": 149.4,
+   "rpm_peak": 152.4,
+   "t_to_stop": null,
+   "rpm_end": 8.0,
+   "Qres_max": 713,
+   "Mflap_max": 1208
+  },
+  {
+   "case": "2.2-loss-torque/resistor-only",
+   "V": 26,
+   "rpm_event": 145.0,
+   "rpm_peak": 148.6,
+   "t_to_stop": null,
+   "rpm_end": 9.3,
+   "Qres_max": 713,
+   "Mflap_max": 1179
+  },
+  {
+   "case": "5.1-estop/resistor-only",
+   "V": 10.5,
+   "rpm_event": 152.9,
+   "rpm_peak": 152.9,
+   "t_to_stop": 22.5,
+   "rpm_end": 3.5,
+   "Qres_max": 713,
+   "Mflap_max": 1179
+  },
+  {
+   "case": "5.1-estop/resistor-only",
+   "V": 18,
+   "rpm_event": 154.6,
+   "rpm_peak": 154.6,
+   "t_to_stop": null,
+   "rpm_end": 6.7,
+   "Qres_max": 713,
+   "Mflap_max": 1202
+  },
+  {
+   "case": "5.1-estop/resistor-only",
+   "V": 25,
+   "rpm_event": 147.3,
+   "rpm_peak": 147.3,
+   "t_to_stop": null,
+   "rpm_end": 14.7,
+   "Qres_max": 713,
+   "Mflap_max": 1302
+  },
+  {
+   "case": "2.2-loss-torque-EOG/brake-only",
+   "V": 12.0,
+   "rpm_event": 160.5,
+   "rpm_peak": 172.7,
+   "t_to_stop": 2.4,
+   "rpm_end": 0.0,
+   "Qres_max": 0,
+   "Mflap_max": 1195
+  },
+  {
+   "case": "2.2-loss-torque-EOG/brake-only",
+   "V": 25.0,
+   "rpm_event": 146.6,
+   "rpm_peak": 162.5,
+   "t_to_stop": 2.4,
+   "rpm_end": 0.0,
+   "Qres_max": 0,
+   "Mflap_max": 1404
+  },
+  {
+   "case": "2.2-loss-torque/brake-only",
+   "V": 14,
+   "rpm_event": 159.0,
+   "rpm_peak": 169.8,
+   "t_to_stop": 2.3,
+   "rpm_end": 0.0,
+   "Qres_max": 0,
+   "Mflap_max": 1145
+  },
+  {
+   "case": "2.2-loss-torque/brake-only",
+   "V": 20,
+   "rpm_event": 149.4,
+   "rpm_peak": 160.0,
+   "t_to_stop": 2.2,
+   "rpm_end": 0.0,
+   "Qres_max": 0,
+   "Mflap_max": 1208
+  },
+  {
+   "case": "2.2-loss-torque/brake-only",
+   "V": 26,
+   "rpm_event": 145.0,
+   "rpm_peak": 158.2,
+   "t_to_stop": 2.4,
+   "rpm_end": 0.0,
+   "Qres_max": 0,
+   "Mflap_max": 1179
+  },
+  {
+   "case": "5.1-estop/brake-only",
+   "V": 10.5,
+   "rpm_event": 152.9,
+   "rpm_peak": 158.0,
+   "t_to_stop": 2.0,
+   "rpm_end": 0.0,
+   "Qres_max": 0,
+   "Mflap_max": 1179
+  },
+  {
+   "case": "5.1-estop/brake-only",
+   "V": 18,
+   "rpm_event": 154.6,
+   "rpm_peak": 161.9,
+   "t_to_stop": 2.1,
+   "rpm_end": 0.0,
+   "Qres_max": 0,
+   "Mflap_max": 1202
+  },
+  {
+   "case": "5.1-estop/brake-only",
+   "V": 25,
+   "rpm_event": 147.3,
+   "rpm_peak": 156.1,
+   "t_to_stop": 2.2,
+   "rpm_end": 0.0,
+   "Qres_max": 0,
+   "Mflap_max": 1302
+  },
+  {
+   "case": "4.1-normal-stop",
+   "V": 14,
+   "rpm_event": 156.5,
+   "rpm_peak": 156.5,
+   "t_to_stop": 5.3,
+   "rpm_end": 0.0,
+   "Qres_max": 0,
+   "Mflap_max": 1194
+  },
+  {
+   "case": "4.1-normal-stop",
+   "V": 25,
+   "rpm_event": 143.1,
+   "rpm_peak": 143.1,
+   "t_to_stop": 5.1,
+   "rpm_end": 0.0,
+   "Qres_max": 0,
+   "Mflap_max": 1291
+  }
+ ],
+ "parked": [
+  {
+   "case": "6.x-parked-Vref",
+   "V": 55.0,
+   "yaw": 0,
+   "az": 0,
+   "Mflap": 5168,
+   "Mres": 5180,
+   "thrust": 11288,
+   "Mtilt": 1528,
+   "Myaw": 1581,
+   "Qaero": 1393
+  },
+  {
+   "case": "6.x-parked-Vref",
+   "V": 55.0,
+   "yaw": 8,
+   "az": 0,
+   "Mflap": 4515,
+   "Mres": 4528,
+   "thrust": 10791,
+   "Mtilt": 1734,
+   "Myaw": 1340,
+   "Qaero": 1373
+  },
+  {
+   "case": "6.x-parked-Vref",
+   "V": 55.0,
+   "yaw": 30,
+   "az": 0,
+   "Mflap": 4581,
+   "Mres": 4588,
+   "thrust": 8255,
+   "Mtilt": 1977,
+   "Myaw": 1123,
+   "Qaero": 1148
+  },
+  {
+   "case": "6.x-parked-Vref",
+   "V": 55.0,
+   "yaw": 60,
+   "az": 0,
+   "Mflap": 2517,
+   "Mres": 2527,
+   "thrust": 4020,
+   "Mtilt": 1747,
+   "Myaw": 471,
+   "Qaero": 792
+  },
+  {
+   "case": "6.x-parked-Vref",
+   "V": 55.0,
+   "yaw": 90,
+   "az": 0,
+   "Mflap": 341,
+   "Mres": 357,
+   "thrust": 277,
+   "Mtilt": 519,
+   "Myaw": 50,
+   "Qaero": 103
+  },
+  {
+   "case": "6.x-parked-Vref",
+   "V": 55.0,
+   "yaw": 135,
+   "az": 0,
+   "Mflap": 3480,
+   "Mres": 3485,
+   "thrust": 7846,
+   "Mtilt": 1263,
+   "Myaw": 813,
+   "Qaero": 941
+  },
+  {
+   "case": "6.x-parked-Vref",
+   "V": 55.0,
+   "yaw": 180,
+   "az": 0,
+   "Mflap": 6603,
+   "Mres": 6611,
+   "thrust": 12831,
+   "Mtilt": 1507,
+   "Myaw": 1496,
+   "Qaero": 1216
+  },
+  {
+   "case": "6.x-parked-Vref",
+   "V": 55.0,
+   "yaw": 0,
+   "az": 30,
+   "Mflap": 5187,
+   "Mres": 5198,
+   "thrust": 10326,
+   "Mtilt": 1492,
+   "Myaw": 1397,
+   "Qaero": 1234
+  },
+  {
+   "case": "6.x-parked-Vref",
+   "V": 55.0,
+   "yaw": 8,
+   "az": 30,
+   "Mflap": 5581,
+   "Mres": 5593,
+   "thrust": 10780,
+   "Mtilt": 1585,
+   "Myaw": 1670,
+   "Qaero": 1280
+  },
+  {
+   "case": "6.x-parked-Vref",
+   "V": 55.0,
+   "yaw": 30,
+   "az": 30,
+   "Mflap": 3850,
+   "Mres": 3869,
+   "thrust": 7710,
+   "Mtilt": 1485,
+   "Myaw": 1488,
+   "Qaero": 1135
+  },
+  {
+   "case": "6.x-parked-Vref",
+   "V": 55.0,
+   "yaw": 60,
+   "az": 30,
+   "Mflap": 2403,
+   "Mres": 2425,
+   "thrust": 4385,
+   "Mtilt": 868,
+   "Myaw": 1582,
+   "Qaero": 954
+  },
+  {
+   "case": "6.x-parked-Vref",
+   "V": 55.0,
+   "yaw": 90,
+   "az": 30,
+   "Mflap": 248,
+   "Mres": 312,
+   "thrust": 150,
+   "Mtilt": 443,
+   "Myaw": 204,
+   "Qaero": 40
+  },
+  {
+   "case": "6.x-parked-Vref",
+   "V": 55.0,
+   "yaw": 135,
+   "az": 30,
+   "Mflap": 3691,
+   "Mres": 3691,
+   "thrust": 6792,
+   "Mtilt": 1038,
+   "Myaw": 1504,
+   "Qaero": 756
+  },
+  {
+   "case": "6.x-parked-Vref",
+   "V": 55.0,
+   "yaw": 180,
+   "az": 30,
+   "Mflap": 4747,
+   "Mres": 4752,
+   "thrust": 10078,
+   "Mtilt": 1571,
+   "Myaw": 1346,
+   "Qaero": 1227
+  },
+  {
+   "case": "6.x-parked-Vref",
+   "V": 55.0,
+   "yaw": 0,
+   "az": 60,
+   "Mflap": 4688,
+   "Mres": 4717,
+   "thrust": 9646,
+   "Mtilt": 1470,
+   "Myaw": 1448,
+   "Qaero": 1213
+  },
+  {
+   "case": "6.x-parked-Vref",
+   "V": 55.0,
+   "yaw": 8,
+   "az": 60,
+   "Mflap": 6394,
+   "Mres": 6410,
+   "thrust": 11880,
+   "Mtilt": 1565,
+   "Myaw": 1462,
+   "Qaero": 1448
+  },
+  {
+   "case": "6.x-parked-Vref",
+   "V": 55.0,
+   "yaw": 30,
+   "az": 60,
+   "Mflap": 3607,
+   "Mres": 3635,
+   "thrust": 8277,
+   "Mtilt": 1193,
+   "Myaw": 1065,
+   "Qaero": 1250
+  },
+  {
+   "case": "6.x-parked-Vref",
+   "V": 55.0,
+   "yaw": 60,
+   "az": 60,
+   "Mflap": 1840,
+   "Mres": 1861,
+   "thrust": 4513,
+   "Mtilt": 1667,
+   "Myaw": 461,
+   "Qaero": 1038
+  },
+  {
+   "case": "6.x-parked-Vref",
+   "V": 55.0,
+   "yaw": 90,
+   "az": 60,
+   "Mflap": 82,
+   "Mres": 233,
+   "thrust": 329,
+   "Mtilt": 378,
+   "Myaw": 27,
+   "Qaero": 47
+  },
+  {
+   "case": "6.x-parked-Vref",
+   "V": 55.0,
+   "yaw": 135,
+   "az": 60,
+   "Mflap": 2599,
+   "Mres": 2599,
+   "thrust": 6297,
+   "Mtilt": 1590,
+   "Myaw": 716,
+   "Qaero": 787
+  },
+  {
+   "case": "6.x-parked-Vref",
+   "V": 55.0,
+   "yaw": 180,
+   "az": 60,
+   "Mflap": 4592,
+   "Mres": 4594,
+   "thrust": 10005,
+   "Mtilt": 1470,
+   "Myaw": 1348,
+   "Qaero": 1233
+  },
+  {
+   "case": "6.x-parked-Vref",
+   "V": 55.0,
+   "yaw": 0,
+   "az": 90,
+   "Mflap": 4455,
+   "Mres": 4488,
+   "thrust": 10112,
+   "Mtilt": 1501,
+   "Myaw": 1361,
+   "Qaero": 1285
+  },
+  {
+   "case": "6.x-parked-Vref",
+   "V": 55.0,
+   "yaw": 8,
+   "az": 90,
+   "Mflap": 4913,
+   "Mres": 4947,
+   "thrust": 10386,
+   "Mtilt": 1661,
+   "Myaw": 1340,
+   "Qaero": 1332
+  },
+  {
+   "case": "6.x-parked-Vref",
+   "V": 55.0,
+   "yaw": 30,
+   "az": 90,
+   "Mflap": 3798,
+   "Mres": 3817,
+   "thrust": 8258,
+   "Mtilt": 1508,
+   "Myaw": 1428,
+   "Qaero": 1171
+  },
+  {
+   "case": "6.x-parked-Vref",
+   "V": 55.0,
+   "yaw": 60,
+   "az": 90,
+   "Mflap": 1070,
+   "Mres": 1111,
+   "thrust": 4171,
+   "Mtilt": 872,
+   "Myaw": 1572,
+   "Qaero": 899
+  },
+  {
+   "case": "6.x-parked-Vref",
+   "V": 55.0,
+   "yaw": 90,
+   "az": 90,
+   "Mflap": 39,
+   "Mres": 228,
+   "thrust": 194,
+   "Mtilt": 433,
+   "Myaw": 200,
+   "Qaero": 35
+  },
+  {
+   "case": "6.x-parked-Vref",
+   "V": 55.0,
+   "yaw": 135,
+   "az": 90,
+   "Mflap": 2881,
+   "Mres": 2882,
+   "thrust": 7161,
+   "Mtilt": 1090,
+   "Myaw": 1464,
+   "Qaero": 797
+  },
+  {
+   "case": "6.x-parked-Vref",
+   "V": 55.0,
+   "yaw": 180,
+   "az": 90,
+   "Mflap": 4844,
+   "Mres": 4846,
+   "thrust": 10472,
+   "Mtilt": 1913,
+   "Myaw": 1470,
+   "Qaero": 1296
+  },
+  {
+   "case": "6.4-parked-V1",
+   "V": 44.0,
+   "yaw": 0,
+   "az": 0,
+   "Mflap": 3484,
+   "Mres": 3487,
+   "thrust": 6592,
+   "Mtilt": 934,
+   "Myaw": 937,
+   "Qaero": 848
+  },
+  {
+   "case": "6.4-parked-V1",
+   "V": 44.0,
+   "yaw": 30,
+   "az": 0,
+   "Mflap": 2765,
+   "Mres": 2773,
+   "thrust": 5141,
+   "Mtilt": 1354,
+   "Myaw": 614,
+   "Qaero": 733
+  },
+  {
+   "case": "6.4-parked-V1",
+   "V": 44.0,
+   "yaw": 0,
+   "az": 60,
+   "Mflap": 3231,
+   "Mres": 3248,
+   "thrust": 6465,
+   "Mtilt": 1009,
+   "Myaw": 817,
+   "Qaero": 803
+  },
+  {
+   "case": "6.4-parked-V1",
+   "V": 44.0,
+   "yaw": 30,
+   "az": 60,
+   "Mflap": 2833,
+   "Mres": 2854,
+   "thrust": 5536,
+   "Mtilt": 774,
+   "Myaw": 784,
+   "Qaero": 767
+  }
+ ],
+ "unintended_stops": [],
+ "n_runs": 113
+}

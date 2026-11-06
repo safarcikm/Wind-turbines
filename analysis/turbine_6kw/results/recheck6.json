@@ -1,0 +1,303 @@
+{
+ "blade": {
+  "glass": {
+   "cap_material": "E-glass UD / epoxy, infused, Vf 0.55",
+   "mass_kg": 20.63,
+   "static_moment_kgm_about_axis": 21.33,
+   "r_cog_m": 1.12,
+   "tip_deflection_m": 0.059,
+   "tower_clearance_m": 0.826,
+   "clearance_util": 0.07,
+   "f_flap_Hz": 15.15,
+   "f_edge_Hz": 38.32,
+   "max_util": {
+    "SIM_edge+": 0.25,
+    "SIM_edge-": 0.31,
+    "SIM_flap+": 0.33,
+    "SIM_flap-": 0.32,
+    "SLM_E+": 0.03,
+    "SLM_E-": 0.03,
+    "SLM_G+": 0.04,
+    "SLM_G-": 0.05,
+    "SLM_H+": 0.43,
+    "SLM_H-": 0.41,
+    "buckling_cap": 1.0,
+    "buckling_panel": 0.4,
+    "fatigue": 0.1,
+    "web_shear": 0.68
+   },
+   "governing_by_station": [
+    "SLM_H-",
+    "web_shear",
+    "web_shear",
+    "web_shear",
+    "buckling_cap",
+    "buckling_cap",
+    "buckling_cap",
+    "buckling_cap",
+    "buckling_cap",
+    "buckling_cap",
+    "buckling_cap",
+    "buckling_cap",
+    "buckling_cap",
+    "buckling_cap",
+    "buckling_cap",
+    "buckling_cap",
+    "buckling_cap",
+    "buckling_cap",
+    "buckling_cap",
+    "buckling_cap",
+    "buckling_cap",
+    "buckling_cap",
+    "buckling_cap",
+    "buckling_cap",
+    "buckling_cap",
+    "buckling_cap",
+    "buckling_cap",
+    "buckling_cap",
+    "buckling_cap",
+    "buckling_cap",
+    "buckling_cap",
+    "buckling_cap",
+    "buckling_cap",
+    "buckling_cap",
+    "buckling_cap",
+    "buckling_cap",
+    "buckling_cap",
+    "buckling_cap",
+    "web_shear",
+    "web_shear",
+    "web_shear"
+   ],
+   "f_flap_rpm_Hz": 15.65
+  },
+  "loads_used_Nm": {
+   "SLM_H_flap": 18540.0,
+   "SLM_G_edge": 2580.0,
+   "SIM_res": 8924.3,
+   "SIM_op_flap": 2605.9,
+   "DEL_flap": 775.9,
+   "DEL_edge": 733.6,
+   "rpm_max": 204.5,
+   "gamma_E": 3.0
+  }
+ },
+ "hub": {
+  "arm_checks": [
+   {
+    "d_arm_mm": 220,
+    "t_mm": 8.0,
+    "static_MPa": 68,
+    "allow_MPa": 323,
+    "fat_MPa": 5.7,
+    "fat_allow_MPa": 30.8,
+    "ok": true
+   },
+   {
+    "d_arm_mm": 220,
+    "t_mm": 10.0,
+    "static_MPa": 56,
+    "allow_MPa": 323,
+    "fat_MPa": 4.7,
+    "fat_allow_MPa": 30.8,
+    "ok": true
+   },
+   {
+    "d_arm_mm": 220,
+    "t_mm": 12.0,
+    "static_MPa": 48,
+    "allow_MPa": 323,
+    "fat_MPa": 4.0,
+    "fat_allow_MPa": 30.8,
+    "ok": true
+   },
+   {
+    "d_arm_mm": 240,
+    "t_mm": 8.0,
+    "static_MPa": 57,
+    "allow_MPa": 323,
+    "fat_MPa": 4.7,
+    "fat_allow_MPa": 30.8,
+    "ok": true
+   },
+   {
+    "d_arm_mm": 240,
+    "t_mm": 10.0,
+    "static_MPa": 46,
+    "allow_MPa": 323,
+    "fat_MPa": 3.9,
+    "fat_allow_MPa": 30.8,
+    "ok": true
+   },
+   {
+    "d_arm_mm": 240,
+    "t_mm": 12.0,
+    "static_MPa": 40,
+    "allow_MPa": 323,
+    "fat_MPa": 3.3,
+    "fat_allow_MPa": 30.8,
+    "ok": true
+   },
+   {
+    "d_arm_mm": 260,
+    "t_mm": 8.0,
+    "static_MPa": 48,
+    "allow_MPa": 323,
+    "fat_MPa": 4.0,
+    "fat_allow_MPa": 30.8,
+    "ok": true
+   },
+   {
+    "d_arm_mm": 260,
+    "t_mm": 10.0,
+    "static_MPa": 39,
+    "allow_MPa": 323,
+    "fat_MPa": 3.3,
+    "fat_allow_MPa": 30.8,
+    "ok": true
+   },
+   {
+    "d_arm_mm": 260,
+    "t_mm": 12.0,
+    "static_MPa": 33,
+    "allow_MPa": 323,
+    "fat_MPa": 2.8,
+    "fat_allow_MPa": 30.8,
+    "ok": true
+   }
+  ],
+  "chosen": {
+   "d_arm_mm": 220,
+   "t_mm": 8.0,
+   "static_MPa": 68,
+   "allow_MPa": 323,
+   "fat_MPa": 5.7,
+   "fat_allow_MPa": 30.8,
+   "ok": true
+  },
+  "mass_kg": 86.8,
+  "spinner_kg": 6.0,
+  "drum_joint": {
+   "bolts": "12 x M16 10.9 PCD 400 (Rev C interface)",
+   "Ft_kN": 9.3,
+   "F_t_Rd_kN": 113.0,
+   "slip_ok": true,
+   "T_design_kNm": 5.69
+  }
+ },
+ "tower": {
+  "tower": {
+   "mass_kg": 1824.0,
+   "D_over_t_max": 51.2,
+   "util_max": 0.974,
+   "util_SLM": 1.808,
+   "util_tilt_up": 0.639,
+   "tilt_up_base_moment_kNm": 404.9,
+   "winch_line_pull_kN_ginpole_033H": 68.2,
+   "governing": "parked V_e50",
+   "M_base_design_kNm": {
+    "operation and faults (simulation)": 181.8,
+    "parked V_e50": 617.2,
+    "parked V_e1 + ice": 498.7,
+    "earthquake 0.5 g (ground D) + operation": 544.7
+   },
+   "M_base_SLM_kNm": 1145.7,
+   "f1_rigid_Hz": 0.87,
+   "f2_rigid_Hz": 5.97,
+   "f1_soft_ice_Hz": 0.81,
+   "geometry": {
+    "H": 18.0,
+    "D_base": 0.5,
+    "D_top": 0.32,
+    "t_mm": [
+     10,
+     8
+    ]
+   },
+   "fatigue_damage": {
+    "z=0.0 m": 0.0594,
+    "z=9.0 m": 0.0225
+   },
+   "governing_base_case": "parked V_e50",
+   "base_moments_design_kNm": {
+    "operation and faults (simulation)": 181.8,
+    "parked V_e50": 617.2,
+    "parked V_e1 + ice": 498.7,
+    "earthquake 0.5 g (ground D) + operation": 544.7
+   }
+  },
+  "footings": {
+   "firm soil (dense gravel, moraine)": {
+    "B": 3.8,
+    "depth": 1.6,
+    "concrete_m3": 9.5,
+    "weight_kN": 517.2,
+    "e_char_over_B": 0.235,
+    "bearing_kPa": 166.5,
+    "q_rd_kPa": 300.0,
+    "K_theta_MNm_per_rad": 2332
+   },
+   "soft volcanic soil (loose ash, pumice sand)": {
+    "B": 4.2,
+    "depth": 1.6,
+    "concrete_m3": 11.4,
+    "weight_kN": 539.0,
+    "e_char_over_B": 0.204,
+    "bearing_kPa": 95.9,
+    "q_rd_kPa": 100.0,
+    "K_theta_MNm_per_rad": 848
+   },
+   "frost-susceptible silt (thawed)": {
+    "B": 3.9,
+    "depth": 1.6,
+    "concrete_m3": 10.0,
+    "weight_kN": 528.3,
+    "e_char_over_B": 0.225,
+    "bearing_kPa": 138.2,
+    "q_rd_kPa": 150.0,
+    "K_theta_MNm_per_rad": 905
+   }
+  },
+  "doc30_geometry_with_sim_loads": {
+   "util_max": 0.974,
+   "fatigue_damage": {
+    "z=0.0 m": 0.0594,
+    "z=9.0 m": 0.0225
+   }
+  }
+ },
+ "first_pass": {
+  "blade_mass": 20.63,
+  "loads": {
+   "SLM_H_flap": 18540.0,
+   "SLM_G_edge": 2580.0,
+   "SIM_res": 6063.6,
+   "SIM_op_flap": 3393.2,
+   "DEL_flap": 2221.7,
+   "DEL_edge": 1027.8,
+   "rpm_max": 204.5,
+   "gamma_E": 3.0
+  },
+  "hub": {
+   "d_arm_mm": 220,
+   "t_mm": 8.0,
+   "static_MPa": 68,
+   "allow_MPa": 323,
+   "fat_MPa": 16.3,
+   "fat_allow_MPa": 30.8,
+   "ok": true
+  },
+  "tower": {
+   "H": 18.0,
+   "D_base": 0.5,
+   "D_top": 0.32,
+   "t_mm": [
+    10,
+    8
+   ]
+  },
+  "tower_mass": 1824.0
+ },
+ "ops_base_12kW_scaled": 145716,
+ "ops_base_sim": 134657
+}
