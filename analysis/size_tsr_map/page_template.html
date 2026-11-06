@@ -1,0 +1,307 @@
+<title>Turbine Size Map</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: control strip on top, map + detail panel side by side (stacked on phones), reference sections below */
+:root{
+  --bg:#f3f5f6; --panel:#ffffff; --ink:#18232b; --muted:#5b6b75; --line:#d7dee2;
+  --accent:#0f6f86; --accent-ink:#ffffff; --warn:#b4541b; --ok:#2e7d4f; --hatch:#c9d1d6;
+  --h0:#e8f1f3; --h1:#0b4b5c;
+  --f-display:"Barlow Semi Condensed","Arial Narrow",Arial,sans-serif;
+  --f-body:"Barlow","Segoe UI",Roboto,Arial,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#11181d; --panel:#18222a; --ink:#e3eaee; --muted:#93a4ae; --line:#2b3943;
+  --accent:#4fb3c9; --accent-ink:#0b1a20; --warn:#e58a52; --ok:#62b884; --hatch:#33424c;
+  --h0:#1c2a32; --h1:#7fd3e6; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#11181d; --panel:#18222a; --ink:#e3eaee; --muted:#93a4ae; --line:#2b3943;
+  --accent:#4fb3c9; --accent-ink:#0b1a20; --warn:#e58a52; --ok:#62b884; --hatch:#33424c;
+  --h0:#1c2a32; --h1:#7fd3e6; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.5}
+.wrap{max-width:1240px;margin:0 auto;padding-block:24px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:24px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.15}
+h1{font-size:2rem;font-weight:700;letter-spacing:.01em}
+h2{font-size:1.35rem;font-weight:600}
+h3{font-size:1.05rem;font-weight:600}
+p{margin:0;max-width:72ch}
+.lede{color:var(--muted)}
+.eyebrow{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.mono,td,th,.num{font-variant-numeric:tabular-nums}
+header{display:grid;gap:8px}
+.controls{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:end;background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:14px 16px}
+.ctl{display:grid;gap:4px;min-width:0}
+.ctl label{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+select,input[type=number]{font:inherit;font-size:.92rem;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:6px 8px;max-width:100%}
+input[type=number]{width:6.5em}
+select:focus-visible,input:focus-visible,button:focus-visible,.cell:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.seg{display:flex;flex-wrap:wrap;gap:4px}
+.seg button{font:inherit;font-size:.85rem;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:4px;padding:5px 9px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.main{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:20px;align-items:start}
+@media (max-width:900px){.main{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:16px;min-width:0}
+.maphead{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;align-items:baseline;margin-bottom:10px}
+.scroll{overflow-x:auto}
+table.map{border-collapse:separate;border-spacing:3px;width:100%;min-width:480px}
+@media (max-width:520px){.cell{font-size:.68rem;height:38px}}
+.map th{font-family:var(--f-mono);font-size:.72rem;font-weight:500;color:var(--muted);padding:2px 4px}
+.map th.row{text-align:right;white-space:nowrap}
+.cell{height:44px;border-radius:3px;text-align:center;font-family:var(--f-mono);font-size:.78rem;cursor:pointer;position:relative;border:2px solid transparent;padding:0}
+.cell.fail::after{content:"";position:absolute;inset:0;border-radius:2px;background:repeating-linear-gradient(135deg,transparent 0 5px,var(--hatch) 5px 7px);opacity:.75;pointer-events:none}
+.cell.fail{opacity:.8}
+.cell.sel{border-color:var(--ink)}
+.cell .tag{position:absolute;top:1px;right:3px;font-size:.6rem;font-weight:600;z-index:1}
+.legend{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:10px;font-size:.8rem;color:var(--muted)}
+.ramp{width:140px;height:10px;border-radius:2px;background:linear-gradient(90deg,var(--h0),var(--h1))}
+.sw{display:inline-block;width:14px;height:14px;border-radius:2px;vertical-align:-2px;margin-right:4px}
+.sw.h{background-image:repeating-linear-gradient(135deg,transparent 0 3px,var(--hatch) 3px 5px);border:1px solid var(--line)}
+.sw.b{border:2px solid var(--ink)}
+dl.kv{display:grid;grid-template-columns:1fr auto auto;gap:3px 12px;margin:10px 0 0;font-size:.88rem}
+dl.kv dt{color:var(--muted)}
+dl.kv dd{margin:0;text-align:right;font-family:var(--f-mono);font-size:.84rem}
+dl.kv dd.d{color:var(--muted);font-size:.76rem}
+dl.kv .sec{grid-column:1/-1;font-family:var(--f-mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-top:8px;border-top:1px solid var(--line);padding-top:6px}
+.pill{display:inline-block;font-family:var(--f-mono);font-size:.7rem;padding:1px 7px;border-radius:10px;border:1px solid currentColor}
+.pill.ok{color:var(--ok)} .pill.bad{color:var(--warn)}
+.bigrow{display:flex;flex-wrap:wrap;gap:16px;margin-top:8px}
+.big{display:grid}
+.big b{font-family:var(--f-display);font-size:1.6rem;font-weight:600;line-height:1.1}
+.big span{font-size:.75rem;color:var(--muted)}
+table.cmp{border-collapse:collapse;width:100%;min-width:640px;font-size:.88rem}
+.cmp th,.cmp td{padding:6px 8px;border-bottom:1px solid var(--line);text-align:right}
+.cmp th:first-child,.cmp td:first-child{text-align:left}
+.cmp thead th{font-family:var(--f-mono);font-size:.72rem;font-weight:500;color:var(--muted);vertical-align:bottom}
+.cmp tr.rec td{font-weight:600}
+.recs{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.rec{border-left:3px solid var(--accent);padding:2px 0 2px 12px;display:grid;gap:4px}
+.rec p{font-size:.9rem}
+.notes{display:grid;gap:8px;font-size:.88rem;color:var(--muted)}
+.notes b{color:var(--ink)}
+.bars{display:grid;gap:3px;margin-top:8px}
+.bar{display:grid;grid-template-columns:7.5em 1fr 4.5em;gap:8px;align-items:center;font-size:.78rem}
+.bar i{display:block;height:9px;background:var(--accent);border-radius:2px;opacity:.85}
+.bar span:last-child{text-align:right;font-family:var(--f-mono)}
+@media (prefers-reduced-motion:no-preference){.cell{transition:background-color .15s}}
+</style>
+
+<div class="wrap">
+<header>
+  <div class="eyebrow">Wind turbine · doc 27 · decision map · 2026-11-06</div>
+  <h1>Turbine size and tip speed ratio map</h1>
+  <p class="lede">Every combination of rated power 4–20 kW and design TSR 4–8, sized by the project's own BEM rotor model and calibrated to the two designed turbines (current Ø7.5 m at 178 rpm, V5 Ø8.3 m at 110 rpm). Pick a metric, a site and a rated wind speed. Click any cell for the full numbers. Hatched cells break the tip-speed or noise limit you set.</p>
+</header>
+
+<section class="controls" aria-label="Map settings">
+  <div class="ctl" style="flex:1 1 220px"><label for="metric">Show on map</label><select id="metric"></select></div>
+  <div class="ctl"><label>Site (mean wind at 18 m hub)</label><div class="seg" id="scen"></div></div>
+  <div class="ctl"><label for="vr">Rated wind speed</label><select id="vr"></select></div>
+  <div class="ctl"><label for="tipmax">Tip speed limit, m/s</label><input id="tipmax" type="number" min="30" max="100" step="5" value="70"></div>
+  <div class="ctl"><label for="nlim">Noise limit, dB(A)</label><input id="nlim" type="number" min="30" max="60" step="1" value="45"></div>
+  <div class="ctl"><label for="ndist">at distance, m</label><input id="ndist" type="number" min="20" max="1000" step="10" value="60"></div>
+</section>
+
+<div class="main">
+  <section class="card" aria-labelledby="maptitle">
+    <div class="maphead"><h2 id="maptitle">Map</h2><span class="eyebrow" id="mapsub"></span></div>
+    <div class="scroll"><table class="map" id="map"></table></div>
+    <div class="legend">
+      <span id="lo"></span><span class="ramp" id="ramp"></span><span id="hi"></span>
+      <span><span class="sw h"></span>breaks a limit</span>
+      <span><span class="sw b"></span>selected</span>
+      <span><b>C</b> current · <b>V</b> V5 · <b>★</b> best cost of energy within limits</span>
+    </div>
+  </section>
+  <section class="card" aria-labelledby="dtitle">
+    <div class="eyebrow">Selected design</div>
+    <h2 id="dtitle"></h2>
+    <div class="bigrow" id="big"></div>
+    <dl class="kv" id="detail"></dl>
+    <div id="costbars"></div>
+  </section>
+</div>
+
+<section class="card" aria-labelledby="ntitle">
+  <h2 id="ntitle">The three 12 kW designs on the table</h2>
+  <p class="lede" style="margin-top:4px">Exact geometry of each design, not the sizing rule. Cost of energy uses the site picked above.</p>
+  <div class="scroll" style="margin-top:10px"><table class="cmp" id="named"></table></div>
+</section>
+
+<section class="card" aria-labelledby="rtitle">
+  <h2 id="rtitle">What the map says</h2>
+  <div class="recs" style="margin-top:12px" id="recs"></div>
+</section>
+
+<section class="card" aria-labelledby="atitle">
+  <h2 id="atitle">How the numbers are made</h2>
+  <div class="notes" style="margin-top:10px" id="notes"></div>
+</section>
+</div>
+
+<script>
+const D = /*DATA*/null;
+const $ = s => document.querySelector(s);
+const S = {metric:"coe", scen:"inland", vr:10.5, sel:{P_e:12,tsr:6.5}};
+const CR = D.cost.crf + D.cost.om_frac, ISK = D.cost.isk_per_eur;
+const cur = D.named.find(n=>n.key==="current");
+function spl(lw,d){const s=Math.hypot(d,D.consts.HUB_H);return lw-10*Math.log10(2*Math.PI*s*s)-0.003*s;}
+const coe = (g,sc)=> 1000*g.capex*CR/g.aep[sc];       // EUR per MWh
+const fmt = (v,d=0)=> v.toLocaleString("en-US",{minimumFractionDigits:d,maximumFractionDigits:d});
+const METRICS = [
+ {k:"coe",  n:"Cost of energy, EUR/MWh", f:g=>coe(g,S.scen), d:0, good:"low"},
+ {k:"coei", n:"Cost of energy, index (current = 100)", f:g=>100*coe(g,S.scen)/coe(cur,S.scen), d:0, good:"low"},
+ {k:"aep",  n:"Annual energy, MWh/yr", f:g=>g.aep[S.scen]/1000, d:1, good:"high"},
+ {k:"cf",   n:"Capacity factor, %", f:g=>100*g.aep[S.scen]/(g.P_e*8760), d:0, good:"high"},
+ {k:"D",    n:"Rotor diameter, m", f:g=>g.D, d:1},
+ {k:"rpm",  n:"Rated speed, rpm", f:g=>g.rpm, d:0},
+ {k:"tip",  n:"Tip speed at rated, m/s", f:g=>g.tip, d:0, good:"low"},
+ {k:"lw",   n:"Sound power LwA at 8 m/s, dB(A)", f:g=>g.Lw8, d:1, good:"low"},
+ {k:"lp",   n:"Sound at limit distance, dB(A)", f:g=>spl(g.Lw8,+$("#ndist").value), d:1, good:"low"},
+ {k:"lp100",n:"Sound at 100 m, dB(A)", f:g=>spl(g.Lw8,100), d:1, good:"low"},
+ {k:"d40",  n:"Distance to 40 dB(A), m", f:g=>g.d40, d:0, good:"low"},
+ {k:"mp",   n:"Parked blade root moment, kNm", f:g=>g.M_park, d:0, good:"low"},
+ {k:"tp",   n:"Parked rotor thrust, kN", f:g=>g.T_park, d:0, good:"low"},
+ {k:"q",    n:"Rated torque, Nm", f:g=>g.Q_rated, d:0, good:"low"},
+ {k:"head", n:"Head mass, kg", f:g=>g.m_head, d:0, good:"low"},
+ {k:"tower",n:"18 m tower mass, kg", f:g=>g.m_tower, d:0, good:"low"},
+ {k:"capex",n:"Installed cost, k EUR", f:g=>g.capex/1000, d:0, good:"low"},
+ {k:"cpk",  n:"Installed cost per kW, EUR", f:g=>g.capex/g.P_e, d:0, good:"low"},
+ {k:"cmax", n:"Blade max chord, m", f:g=>g.cmax, d:2},
+];
+const grid = vr => D.grid.filter(g=>g.rated_wind===vr);
+const passes = g => g.tip <= +$("#tipmax").value + 1e-6 && spl(g.Lw8,+$("#ndist").value) <= +$("#nlim").value + 1e-6;
+
+function mix(t){ // blend --h0 -> --h1
+  const cs=getComputedStyle(document.documentElement);
+  const p=c=>{c=c.trim();return [1,3,5].map(i=>parseInt(c.slice(i,i+2),16));};
+  const a=p(cs.getPropertyValue("--h0")), b=p(cs.getPropertyValue("--h1"));
+  const c=a.map((x,i)=>Math.round(x+(b[i]-x)*t));
+  return {bg:`rgb(${c})`, fg: t>0.55 ? cs.getPropertyValue("--panel") : cs.getPropertyValue("--ink")};
+}
+
+function setup(){
+  const m=$("#metric"); METRICS.forEach(x=>m.add(new Option(x.n,x.k))); m.value=S.metric;
+  const v=$("#vr"); D.vrs.forEach(x=>v.add(new Option(`${x.toFixed(1)} m/s${x===10.5?" (current)":""}`,x))); v.value=S.vr;
+  const sc=$("#scen");
+  D.scenarios.forEach(s=>{const b=document.createElement("button");b.type="button";b.textContent=`${s.name} · ${s.v} m/s`;b.dataset.k=s.key;
+    b.onclick=()=>{S.scen=s.key;render();};sc.appendChild(b);});
+  m.onchange=()=>{S.metric=m.value;render();};
+  v.onchange=()=>{S.vr=+v.value;render();};
+  ["#tipmax","#nlim","#ndist"].forEach(id=>$(id).oninput=render);
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change",render);
+  new MutationObserver(render).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
+}
+
+function best(list){let b=null;for(const g of list){if(!passes(g))continue;if(!b||coe(g,S.scen)<coe(b,S.scen))b=g;}return b;}
+
+function render(){
+  document.querySelectorAll("#scen button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.k===S.scen));
+  const M=METRICS.find(x=>x.k===S.metric), G=grid(S.vr), vals=G.map(M.f);
+  const lo=Math.min(...vals), hi=Math.max(...vals);
+  const scen=D.scenarios.find(s=>s.key===S.scen);
+  $("#maptitle").textContent=M.n;
+  $("#mapsub").textContent=`rated at ${S.vr} m/s · ${scen.name} ${scen.v} m/s, k ${scen.k}`;
+  $("#lo").textContent=fmt(lo,M.d)+(M.good==="low"?" better":M.good==="high"?" worse":"");
+  $("#hi").textContent=fmt(hi,M.d)+(M.good==="high"?" better":M.good==="low"?" worse":"");
+  const bst=best(G);
+  let h=`<thead><tr><th class="row">kW \\ TSR</th>${D.tsrs.map(t=>`<th>${t.toFixed(1)}</th>`).join("")}</tr></thead><tbody>`;
+  for(const kw of D.kws){
+    h+=`<tr><th class="row" scope="row">${kw} kW</th>`;
+    for(const t of D.tsrs){
+      const g=G.find(x=>x.P_e===kw&&x.tsr===t), v=M.f(g), c=mix(hi>lo?(v-lo)/(hi-lo):0.5);
+      const sel=S.sel.P_e===kw&&S.sel.tsr===t;
+      let tag="";
+      if(kw===12&&t===6.5&&S.vr===10.5)tag="C"; if(kw===12&&t===5&&S.vr===10)tag="V";
+      if(bst===g)tag+="★";
+      h+=`<td class="cell${passes(g)?"":" fail"}${sel?" sel":""}" tabindex="0" role="button" aria-label="${kw} kW, TSR ${t}: ${fmt(v,M.d)}" data-kw="${kw}" data-t="${t}" style="background:${c.bg};color:${c.fg}">${tag?`<span class="tag">${tag}</span>`:""}${fmt(v,M.d)}</td>`;
+    }
+    h+="</tr>";
+  }
+  $("#map").innerHTML=h+"</tbody>";
+  document.querySelectorAll(".cell").forEach(c=>{const go=()=>{S.sel={P_e:+c.dataset.kw,tsr:+c.dataset.t};render();};
+    c.onclick=go;c.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();go();}};});
+  detail(G.find(x=>x.P_e===S.sel.P_e&&x.tsr===S.sel.tsr));
+  named(); recs();
+}
+
+function row(label,v,d,unit,ref){
+  const delta = ref!=null && ref!==0 ? `${v>=ref?"+":""}${fmt(100*(v/ref-1),0)} %` : "";
+  return `<dt>${label}</dt><dd>${fmt(v,d)} ${unit}</dd><dd class="d">${delta}</dd>`;
+}
+function detail(g){
+  const nd=+$("#ndist").value, ok=passes(g);
+  $("#dtitle").textContent=`${g.P_e} kW · TSR ${g.tsr.toFixed(1)} · Ø${g.D.toFixed(2)} m`;
+  $("#big").innerHTML=[
+    [fmt(g.aep[S.scen]/1000,1)+" MWh","per year at this site"],
+    [fmt(coe(g,S.scen),0)+" EUR","per MWh (≈ "+fmt(coe(g,S.scen)*ISK/1000,0)+" ISK/kWh)"],
+    [fmt(spl(g.Lw8,nd),1)+" dB(A)",`at ${nd} m, 8 m/s wind`]
+  ].map(([b,s])=>`<div class="big"><b>${b}</b><span>${s}</span></div>`).join("")+
+   `<div class="big" style="align-self:center"><span class="pill ${ok?"ok":"bad"}">${ok?"within limits":"breaks a limit"}</span></div>`;
+  const c=cur, sc=S.scen;
+  let h=`<dt class="sec">Rotor · change vs current Ø7.5 m</dt>`;
+  h+=row("Diameter",g.D,2,"m",c.D)+row("Rated speed",g.rpm,0,"rpm",c.rpm)+row("Tip speed at rated",g.tip,0,"m/s",c.tip)
+   +row("Tip speed at 8 m/s",g.tip8,0,"m/s",c.tip8)+row("Rated wind",g.rated_wind,1,"m/s")+row("Blade max chord",g.cmax,2,"m",c.cmax)
+   +row("Net power at rated",g.P_net_rated,1,"kW");
+  h+=`<dt class="sec">Sound at 8 m/s (±4 dB absolute)</dt>`;
+  h+=row("Sound power LwA",g.Lw8,1,"dB(A)")+row("at 50 m",g.Lp8["50"],1,"dB(A)")+row("at 100 m",g.Lp8["100"],1,"dB(A)")
+   +row("at 200 m",g.Lp8["200"],1,"dB(A)")+row("Distance to 40 dB(A)",g.d40,0,"m",c.d40)+row("Distance to 35 dB(A)",g.d35,0,"m",c.d35);
+  h+=`<dt class="sec">Annual energy, net</dt>`;
+  for(const s of D.scenarios) h+=row(`${s.name} ${s.v} m/s`,g.aep[s.key]/1000,1,"MWh",c.aep[s.key]/1000);
+  h+=`<dt class="sec">Storm loads and mass</dt>`;
+  h+=row("Parked blade root moment",g.M_park,1,"kNm",c.M_park)+row("Parked rotor thrust",g.T_park,1,"kN",c.T_park)
+   +row("Rated torque",g.Q_rated,0,"Nm",c.Q_rated)+row("Blade mass, each",g.m_blade,1,"kg",c.m_blade)
+   +row("Generator",g.m_gen,0,"kg",c.m_gen)+row("Hub + pitch",g.m_hub,0,"kg",c.m_hub)
+   +row("Head above tower",g.m_head,0,"kg",c.m_head)+row("18 m tower",g.m_tower,0,"kg",c.m_tower)+row("Footing concrete",g.v_footing,1,"m³",c.v_footing);
+  h+=`<dt class="sec">Cost (rough, installed)</dt>`;
+  h+=row("Installed cost",g.capex/1000,1,"k EUR",c.capex/1000)+row("per kW",g.capex/g.P_e,0,"EUR",c.capex/c.P_e)
+   +row("Cost of energy",coe(g,sc),0,"EUR/MWh",coe(c,sc));
+  $("#detail").innerHTML=h;
+  const mx=Math.max(...Object.values(g.parts));
+  const names={blades:"Blades",hub_pitch:"Hub + pitch",generator:"Generator",spindle:"Spindle",nacelle:"Nacelle",yaw:"Yaw",electronics:"Electronics",control:"Control",tower:"Tower",footing:"Footing",install:"Installation"};
+  $("#costbars").innerHTML=`<div class="eyebrow" style="margin-top:12px">Where the cost goes, k EUR</div><div class="bars">`+
+    Object.entries(g.parts).map(([k,v])=>`<div class="bar"><span>${names[k]}</span><i style="width:${100*v/mx}%"></i><span>${fmt(v/1000,1)}</span></div>`).join("")+"</div>";
+}
+
+function named(){
+  const sc=S.scen, nd=+$("#ndist").value;
+  const cols=[["Rotor",n=>`Ø${n.D.toFixed(1)} m`],["Speed",n=>`${fmt(n.rpm)} rpm`],["Tip",n=>`${fmt(n.tip)} m/s`],
+    [`Sound at ${nd} m`,n=>`${fmt(spl(n.Lw8,nd),1)} dB(A)`],["To 40 dB(A)",n=>`${fmt(n.d40)} m`],
+    ...D.scenarios.map(s=>[`${s.v} m/s, MWh`,n=>fmt(n.aep[s.key]/1000,1)]),
+    ["Blade root, parked",n=>`${fmt(n.M_park,1)} kNm`],["Head",n=>`${fmt(n.m_head)} kg`],["Tower",n=>`${fmt(n.m_tower)} kg`],
+    ["Cost, k EUR",n=>fmt(n.capex/1000,0)],["EUR/MWh, this site",n=>fmt(coe(n,sc))]];
+  $("#named").innerHTML=`<thead><tr><th>Design</th>${cols.map(c=>`<th>${c[0]}</th>`).join("")}</tr></thead><tbody>`+
+    D.named.map(n=>`<tr class="${n.key==="M8"?"rec":""}"><td>${n.label}</td>${cols.map(c=>`<td>${c[1](n)}</td>`).join("")}</tr>`).join("")+"</tbody>";
+}
+
+function recs(){
+  const scen=D.scenarios.find(s=>s.key===S.scen);
+  const all=D.grid, b12=best(all.filter(g=>g.P_e===12)), ball=best(all);
+  const m8=D.named.find(n=>n.key==="M8"), v5=D.named.find(n=>n.key==="V5");
+  const pct=(a,b)=>`${a>=b?"+":""}${fmt(100*(a/b-1),0)} %`;
+  const items=[
+   ["TSR changes noise and loads, not energy",
+    "At a fixed rated power and rated wind, every TSR from 4 to 8 gives the same rotor diameter within 2 % and the same yearly energy within 1 %. Energy comes from swept area. TSR decides the trade between tip speed (noise, leading-edge erosion) and blade width (storm loads, mass, cost)."],
+   ["Diameter is the energy lever",
+    "Use the rated wind speed menu. Rating a 12 kW rotor at 10 m/s instead of 10.5 m/s makes it Ø8.0 m instead of Ø7.4 m: about +10–12 % energy at sheltered and inland sites for about +6 % cost. At 9.5 m/s (Ø8.6 m) it is +20–25 % energy for +13 % cost. The gain is smallest at highland sites, where storms also hit hardest."],
+   [`Best 12 kW within your limits: ${b12?`TSR ${b12.tsr}, rated at ${b12.rated_wind} m/s, Ø${b12.D.toFixed(1)} m`:"none"}`,
+    b12?`At ${scen.name.toLowerCase()} it costs ${fmt(coe(b12,S.scen))} EUR/MWh against ${fmt(coe(cur,S.scen))} for the current design, which breaks the ${$("#nlim").value} dB(A) at ${$("#ndist").value} m limit (${fmt(spl(cur.Lw8,+$("#ndist").value),1)} dB(A)).`:"No 12 kW cell meets both limits. Loosen the tip speed or noise limit."],
+   ["Recommendation: study the Ø8.0 m middle option next",
+    `Ø8.0 m, TSR 5.5, 135 rpm: ${pct(m8.aep[S.scen],cur.aep[S.scen])} energy and ${fmt(cur.Lw8-m8.Lw8,1)} dB quieter than the current rotor for ${pct(m8.capex,cur.capex)} cost, and it just meets the 45 dB(A) at 60 m target (R2.7). V5 gives ${pct(v5.aep[S.scen],cur.aep[S.scen])} energy for ${pct(v5.capex,cur.capex)} cost.`],
+   [`Larger machines are cheaper per kWh`,
+    ball?`With your limits the cheapest energy on the whole map is ${ball.P_e} kW, TSR ${ball.tsr}, Ø${ball.D.toFixed(1)} m (${fmt(coe(ball,S.scen))} EUR/MWh). Fixed costs (control, electronics, installation, yaw) are spread over more energy. 16–20 kW only makes sense if Icelandic grid connection and customer demand allow it.`:"No cell meets both limits."],
+  ];
+  $("#recs").innerHTML=items.map(([h,p])=>`<div class="rec"><h3>${h}</h3><p>${p}</p></div>`).join("");
+  const cal=D.calibration.designs;
+  $("#notes").innerHTML=[
+   `<p><b>Rotor and energy.</b> Doc 03 BEM model and blade rule (Schmitz chord, Cl 1.0, weathered polars), run once per design TSR and scaled to size. Each cell is sized so that it reaches rated power at the chosen rated wind with tip speed = TSR × rated wind. Loss chain from doc 12 and doc 26, scaled with rating and speed. Storm ramp 25–30 m/s, 97 % availability, air density 1.225 kg/m³ (cold Icelandic air adds 2–3 %). Check: the model reproduces doc 26 yearly energy within ${fmt(Math.abs(cal.current.aep_err_pct.r6),1)} % (current) and ${fmt(Math.abs(cal.V5.aep_err_pct.r6),1)} % (V5).</p>`,
+   `<p><b>Sites.</b> Weibull winds at 18 m hub height: sheltered 5.0 m/s k 1.8, inland 6.0 m/s k 1.9, coastal 7.0 m/s k 2.0, highland 8.5 m/s k 2.0. These are typical Icelandic values, not measured site data. Highland icing losses are not included.</p>`,
+   `<p><b>Sound.</b> Hau's empirical rule LwA = 50·log(tip speed) + 10·log(D) − 4 at 8 m/s wind, hemispherical spreading from the 18 m hub plus 3 dB/km air absorption. Absolute values ±4 dB; differences between cells are much more reliable. Tonal generator noise is not included. Project target R2.7: 45 dB(A) at 60 m.</p>`,
+   `<p><b>Loads and mass.</b> Parked blade root moment and rotor thrust from the blade planform at the 77 m/s design gust, scaled to match SLM H of both designs (26.0 and 58.6 kNm). Masses use power laws through the two designs (blade, hub, generator by torque, tower by base moment). Fixed parts scale with √(kW/12). Outside 8–16 kW the mass and cost figures are extrapolations.</p>`,
+   `<p><b>Cost.</b> Rough in-house installed cost: blades 70 EUR/kg, generator 40, hub and pitch 30, nacelle 25, tower 6 EUR/kg, footing 450 EUR/m³, electronics 6,000 + 600 EUR/kW, control 6,000, installation 4,000 + 1 EUR/kg. No development, tooling, certification or margin. Cost of energy = cost × (8.7 % capital recovery at 6 % over 20 years + 2 % O&M) ÷ yearly energy, 1 EUR = ${ISK} ISK. Use it to compare cells, not as a price.</p>`
+  ].join("");
+}
+setup(); render();
+</script>
