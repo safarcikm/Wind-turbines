@@ -1,0 +1,135 @@
+[
+ {
+  "n": 1,
+  "title": "Bedplate on the stand; yaw slewing ring, gearmotors and their brackets",
+  "parts": [
+   "NS6-300",
+   "NS6-911-I",
+   "NS6-911-O",
+   "NS6-912-L",
+   "NS6-912-R",
+   "NP1-420-L",
+   "NP1-420-R"
+  ]
+ },
+ {
+  "n": 2,
+  "title": "Spindle with front spacer and rear seal sleeve bolted to the bedplate front plate",
+  "parts": [
+   "NP1-100",
+   "NP1-101",
+   "NP1-102"
+  ]
+ },
+ {
+  "n": 3,
+  "title": "Stator: carrier, wound tooth segments, clamp ring; bearing cones on the spindle",
+  "parts": [
+   "NP1-200C",
+   "NP1-201C",
+   "NP1-203C",
+   "NP1-202",
+   "NS6-913-F",
+   "NS6-913-R"
+  ]
+ },
+ {
+  "n": 4,
+  "title": "Rotor drum with magnets lowered over the stator on the guide tool; disc, seal covers, rear cover",
+  "parts": [
+   "NP1-210C",
+   "NP1-220E",
+   "NP1-230",
+   "NP1-211-F",
+   "NP1-211-R",
+   "NS6-610"
+  ]
+ },
+ {
+  "n": 5,
+  "title": "Brake caliper on its bracket, lock pin holder with overspeed sensors",
+  "parts": [
+   "NP1-310",
+   "NS6-915",
+   "NP1-320",
+   "NP1-321",
+   "NS6-914"
+  ]
+ },
+ {
+  "n": 6,
+  "title": "Yaw pad units, lock, encoder and cable hanger; cover frame, lower cover tray and junction box",
+  "parts": [
+   "NY-410-L",
+   "NY-410-R",
+   "NY-430",
+   "NY-440",
+   "NY-460",
+   "NS6-710",
+   "NS6-700-1",
+   "NS6-730"
+  ]
+ },
+ {
+  "n": 7,
+  "title": "Tower-top adapter on the yaw outer ring (nacelle now complete for transport)",
+  "parts": [
+   "NY-400"
+  ]
+ },
+ {
+  "n": 8,
+  "title": "Fixed hub on the drum flange (12 \u00d7 M16 10.9)",
+  "parts": [
+   "NS6-200"
+  ]
+ },
+ {
+  "n": 9,
+  "title": "Blades with pitch washer plates, set to \u22122.0\u00b0 with the pitch gauge",
+  "parts": [
+   "NS6-100-1",
+   "NS6-100-2",
+   "NS6-100-3",
+   "NS6-130",
+   "NS6-105"
+  ]
+ },
+ {
+  "n": 10,
+  "title": "Spinner and its brackets",
+  "parts": [
+   "NS6-210",
+   "NS6-211"
+  ]
+ },
+ {
+  "n": 11,
+  "title": "Upper cover lid and met mast",
+  "parts": [
+   "NS6-700-2",
+   "NS6-720"
+  ]
+ },
+ {
+  "n": 12,
+  "title": "On site: footing with anchor cage, hinge brackets, tower lying on the hinge; head bolted to the tower top",
+  "parts": [
+   "NS6-500",
+   "NS6-510",
+   "NS6-410",
+   "NS6-400"
+  ]
+ },
+ {
+  "n": 13,
+  "title": "Tilt-up with the gin pole and winch, base nuts torqued; cabinet, resistor box, cabling, hand-hole cover",
+  "parts": [
+   "NS6-420",
+   "NS6-620",
+   "NS6-600",
+   "NS6-800",
+   "NS6-401"
+  ]
+ }
+]

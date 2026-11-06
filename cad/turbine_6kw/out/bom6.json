@@ -1,0 +1,822 @@
+[
+ {
+  "pos": "",
+  "pid": "",
+  "name": "A ROTOR",
+  "qty": "",
+  "make_buy": "",
+  "material": "",
+  "mass": "",
+  "drawing": ""
+ },
+ {
+  "pos": "1",
+  "pid": "NS6-100",
+  "name": "Blade, glass/epoxy, glass UD caps (B1\u2013B3)",
+  "qty": "3",
+  "make_buy": "make",
+  "material": "E-glass/epoxy, PVC core",
+  "mass": "20.6",
+  "drawing": "NS6-100"
+ },
+ {
+  "pos": "2",
+  "pid": "NS6-105",
+  "name": "Root insert M12 (10 per blade, bonded)",
+  "qty": "30",
+  "make_buy": "make",
+  "material": "C45E+QT zinc-flake coated",
+  "mass": "0.3",
+  "drawing": "NS6-105"
+ },
+ {
+  "pos": "3",
+  "pid": "NS6-130",
+  "name": "Pitch washer plates 28 \u00d7 4 hardened (30)",
+  "qty": "1",
+  "make_buy": "make",
+  "material": "C45 hardened 45 HRC, zinc-flake",
+  "mass": "0.5",
+  "drawing": "NS6-130"
+ },
+ {
+  "pos": "4",
+  "pid": "NS6-200",
+  "name": "Fixed hub weldment",
+  "qty": "1",
+  "make_buy": "make",
+  "material": "S355NL, welded, stress relieved, machined",
+  "mass": "79.2",
+  "drawing": "NS6-200"
+ },
+ {
+  "pos": "5",
+  "pid": "NS6-210",
+  "name": "Spinner (GRP, 4 mm)",
+  "qty": "1",
+  "make_buy": "make",
+  "material": "glass/polyester, gelcoat RAL 9010",
+  "mass": "8.7",
+  "drawing": "NS6-210"
+ },
+ {
+  "pos": "6",
+  "pid": "NS6-211",
+  "name": "Spinner brackets (3)",
+  "qty": "1",
+  "make_buy": "make",
+  "material": "S235 galv.",
+  "mass": "2.0",
+  "drawing": "NS6-210"
+ },
+ {
+  "pos": "",
+  "pid": "",
+  "name": "B DRIVETRAIN AND GENERATOR G6",
+  "qty": "",
+  "make_buy": "",
+  "material": "",
+  "mass": "",
+  "drawing": ""
+ },
+ {
+  "pos": "7",
+  "pid": "NP1-100",
+  "name": "Spindle",
+  "qty": "1",
+  "make_buy": "make",
+  "material": "42CrMo4+QT forged",
+  "mass": "56.5",
+  "drawing": "NP1-100"
+ },
+ {
+  "pos": "8",
+  "pid": "NP1-101",
+  "name": "Front spacer / seal counterface \u00d8180 (Rev B)",
+  "qty": "1",
+  "make_buy": "make",
+  "material": "42CrMo4+QT, induction hardened",
+  "mass": "1.4",
+  "drawing": "NP1-101"
+ },
+ {
+  "pos": "9",
+  "pid": "NP1-102",
+  "name": "Rear seal sleeve \u00d8195 on the \u00d8155 shoulder (Rev B)",
+  "qty": "1",
+  "make_buy": "make",
+  "material": "42CrMo4+QT, induction hardened",
+  "mass": "1.3",
+  "drawing": "NP1-102"
+ },
+ {
+  "pos": "10",
+  "pid": "NP1-200C",
+  "name": "Stator carrier with 45 dovetail grooves",
+  "qty": "1",
+  "make_buy": "make",
+  "material": "",
+  "mass": "39.9",
+  "drawing": "NP1-200C"
+ },
+ {
+  "pos": "11",
+  "pid": "NP1-201C",
+  "name": "Stator: 45 tooth-segment lamination stacks",
+  "qty": "1",
+  "make_buy": "make",
+  "material": "",
+  "mass": "50.5",
+  "drawing": "NP1-201C"
+ },
+ {
+  "pos": "12",
+  "pid": "NP1-202",
+  "name": "Stator front clamp ring",
+  "qty": "1",
+  "make_buy": "make",
+  "material": "1.4404 (non-magnetic)",
+  "mass": "2.2",
+  "drawing": "NP1-202"
+ },
+ {
+  "pos": "13",
+  "pid": "NP1-203C",
+  "name": "Coils on segments, 45 \u00d7 28 turns (end windings shown)",
+  "qty": "1",
+  "make_buy": "make",
+  "material": "Cu enamelled \u00d81.55 class 200, NKN 0.30",
+  "mass": "20.0",
+  "drawing": "NP1-203C"
+ },
+ {
+  "pos": "14",
+  "pid": "NP1-210C",
+  "name": "Rotor drum weldment (G6: no fins, no ribs)",
+  "qty": "1",
+  "make_buy": "make",
+  "material": "S355J2+N",
+  "mass": "91.2",
+  "drawing": "NP1-210C"
+ },
+ {
+  "pos": "15",
+  "pid": "NP1-211-F",
+  "name": "Front bearing seal cover",
+  "qty": "1",
+  "make_buy": "make",
+  "material": "S355J2",
+  "mass": "1.5",
+  "drawing": "NP1-211"
+ },
+ {
+  "pos": "16",
+  "pid": "NP1-211-R",
+  "name": "Rear bearing seal cover, bore \u00d8198 (Rev B)",
+  "qty": "1",
+  "make_buy": "make",
+  "material": "S355J2",
+  "mass": "1.4",
+  "drawing": "NP1-211"
+ },
+ {
+  "pos": "17",
+  "pid": "NP1-220E",
+  "name": "Magnets 200 \u00d7 N45SH 30\u00d715\u00d712 + comb + sleeve",
+  "qty": "1",
+  "make_buy": "make",
+  "material": "NdFeB N45SH",
+  "mass": "10.7",
+  "drawing": "NP1-220E/221C/222C/223C"
+ },
+ {
+  "pos": "18",
+  "pid": "NP1-230",
+  "name": "Brake disc \u00d8880/\u00d8652 with 12 lock holes (Rev B)",
+  "qty": "1",
+  "make_buy": "make",
+  "material": "C45E+N 16 mm",
+  "mass": "33.6",
+  "drawing": "NP1-230"
+ },
+ {
+  "pos": "19",
+  "pid": "NP1-310",
+  "name": "Rotor brake caliper bracket (left, Rev B)",
+  "qty": "1",
+  "make_buy": "make",
+  "material": "S355J2+N 25 plate",
+  "mass": "18.1",
+  "drawing": "NP1-310"
+ },
+ {
+  "pos": "20",
+  "pid": "NP1-320",
+  "name": "Rotor lock pin \u00d820 (engaged, top)",
+  "qty": "1",
+  "make_buy": "make",
+  "material": "42CrMo4+QT",
+  "mass": "0.5",
+  "drawing": "NP1-320"
+ },
+ {
+  "pos": "21",
+  "pid": "NP1-321",
+  "name": "Lock pin holder with 2 overspeed sensor seats",
+  "qty": "1",
+  "make_buy": "make",
+  "material": "S355J2",
+  "mass": "24.5",
+  "drawing": "NP1-321"
+ },
+ {
+  "pos": "22",
+  "pid": "NS6-610",
+  "name": "G6 plain rear cover (no fan blades)",
+  "qty": "1",
+  "make_buy": "make",
+  "material": "EN AW-5083-H111",
+  "mass": "7.2",
+  "drawing": "NS6-610"
+ },
+ {
+  "pos": "23",
+  "pid": "NS6-913",
+  "name": "Tapered roller bearing 32028 X (front + rear)",
+  "qty": "2",
+  "make_buy": "buy",
+  "material": "bought 32028 X",
+  "mass": "4.0",
+  "drawing": "NS6-910"
+ },
+ {
+  "pos": "24",
+  "pid": "NS6-914",
+  "name": "Overspeed sensors M18 inductive (2, bought)",
+  "qty": "1",
+  "make_buy": "buy",
+  "material": "bought M18 PNP",
+  "mass": "0.4",
+  "drawing": "NS6-910"
+ },
+ {
+  "pos": "25",
+  "pid": "NS6-915",
+  "name": "Spring-applied brake caliper, 1.5 kNm pack (bought)",
+  "qty": "1",
+  "make_buy": "buy",
+  "material": "bought, spring-applied",
+  "mass": "9.0",
+  "drawing": "NS6-910"
+ },
+ {
+  "pos": "",
+  "pid": "",
+  "name": "C NACELLE",
+  "qty": "",
+  "make_buy": "",
+  "material": "",
+  "mass": "",
+  "drawing": ""
+ },
+ {
+  "pos": "26",
+  "pid": "NS6-300",
+  "name": "Bedplate weldment 6 kW (light)",
+  "qty": "1",
+  "make_buy": "make",
+  "material": "S355J2+N plates, stress relieved, machined",
+  "mass": "122.1",
+  "drawing": "NS6-300"
+ },
+ {
+  "pos": "27",
+  "pid": "NS6-700-1",
+  "name": "Nacelle cover, lower tray (GRP 5 mm)",
+  "qty": "1",
+  "make_buy": "make",
+  "material": "glass/polyester, gelcoat RAL 9010",
+  "mass": "15.7",
+  "drawing": "NS6-700"
+ },
+ {
+  "pos": "28",
+  "pid": "NS6-700-2",
+  "name": "Nacelle cover, upper lid (GRP 5 mm)",
+  "qty": "1",
+  "make_buy": "make",
+  "material": "glass/polyester, gelcoat RAL 9010",
+  "mass": "17.5",
+  "drawing": "NS6-700"
+ },
+ {
+  "pos": "29",
+  "pid": "NS6-710",
+  "name": "Cover support arms + rear rail",
+  "qty": "1",
+  "make_buy": "make",
+  "material": "S235 galv.",
+  "mass": "8.3",
+  "drawing": "NS6-710"
+ },
+ {
+  "pos": "30",
+  "pid": "NS6-720",
+  "name": "Met mast: anemometer, vane, air terminal",
+  "qty": "1",
+  "make_buy": "make",
+  "material": "1.4404 tube 42.4 \u00d7 2 + bought sensors",
+  "mass": "4.5",
+  "drawing": "NS6-720"
+ },
+ {
+  "pos": "",
+  "pid": "",
+  "name": "D YAW SYSTEM",
+  "qty": "",
+  "make_buy": "",
+  "material": "",
+  "mass": "",
+  "drawing": ""
+ },
+ {
+  "pos": "31",
+  "pid": "NP1-420",
+  "name": "Yaw drive bracket",
+  "qty": "2",
+  "make_buy": "make",
+  "material": "S355J2+N",
+  "mass": "7.7",
+  "drawing": "NP1-420"
+ },
+ {
+  "pos": "32",
+  "pid": "NS6-911",
+  "name": "Yaw slewing ring Dpw 360, z150 m4",
+  "qty": "1",
+  "make_buy": "buy",
+  "material": "bought: 42CrMo4, induction hardened teeth",
+  "mass": "55.0",
+  "drawing": "NS6-911"
+ },
+ {
+  "pos": "33",
+  "pid": "NS6-912",
+  "name": "Yaw gearmotor 0.18 kW 1:1680, motor brake 2 Nm",
+  "qty": "2",
+  "make_buy": "buy",
+  "material": "bought",
+  "mass": "19.0",
+  "drawing": "NS6-912"
+ },
+ {
+  "pos": "34",
+  "pid": "NY-400",
+  "name": "Tower-top adapter with friction track",
+  "qty": "1",
+  "make_buy": "make",
+  "material": "S355J2+N weldment",
+  "mass": "106.7",
+  "drawing": "NY-400"
+ },
+ {
+  "pos": "35",
+  "pid": "NY-410",
+  "name": "Friction pad unit",
+  "qty": "2",
+  "make_buy": "make",
+  "material": "S355 / DIN 2093 springs / organic pads",
+  "mass": "14.0",
+  "drawing": "NY-410"
+ },
+ {
+  "pos": "36",
+  "pid": "NY-430",
+  "name": "Yaw lock (screw block)",
+  "qty": "1",
+  "make_buy": "make",
+  "material": "42CrMo4 / S355",
+  "mass": "6.5",
+  "drawing": "NY-430"
+ },
+ {
+  "pos": "37",
+  "pid": "NY-440",
+  "name": "Yaw encoder + cam limit switch unit",
+  "qty": "1",
+  "make_buy": "make",
+  "material": "S355 + absolute encoder + cam switch",
+  "mass": "6.0",
+  "drawing": "NY-440"
+ },
+ {
+  "pos": "38",
+  "pid": "NY-460",
+  "name": "Cable hanger tube + loop cleat",
+  "qty": "1",
+  "make_buy": "make",
+  "material": "S355 tube 168.3 \u00d7 4.5",
+  "mass": "10.0",
+  "drawing": "NY-460"
+ },
+ {
+  "pos": "",
+  "pid": "",
+  "name": "E ELECTRICAL",
+  "qty": "",
+  "make_buy": "",
+  "material": "",
+  "mass": "",
+  "drawing": ""
+ },
+ {
+  "pos": "39",
+  "pid": "NS6-600",
+  "name": "Braking resistor box 3 \u00d7 4 \u03a9 (vented)",
+  "qty": "1",
+  "make_buy": "make",
+  "material": "1.4301 box + steel-grid resistors",
+  "mass": "18.0",
+  "drawing": "NS6-600"
+ },
+ {
+  "pos": "40",
+  "pid": "NS6-620",
+  "name": "Tower base cabinet IP55 800 \u00d7 600 \u00d7 300 on stand",
+  "qty": "1",
+  "make_buy": "make",
+  "material": "stand S235 galv.; bought enclosure",
+  "mass": "95.0",
+  "drawing": "NS6-620"
+ },
+ {
+  "pos": "41",
+  "pid": "NS6-730",
+  "name": "Nacelle junction box IP66 (400 \u00d7 340 \u00d7 150)",
+  "qty": "1",
+  "make_buy": "make",
+  "material": "bought: 1.4301 enclosure",
+  "mass": "9.0",
+  "drawing": "NS6-800"
+ },
+ {
+  "pos": "42",
+  "pid": "NS6-800",
+  "name": "Drop cable + base duct (cabling route)",
+  "qty": "1",
+  "make_buy": "make",
+  "material": "H07RN-F 4G10 + 2 \u00d7 LiYCY signal; PE duct \u00d8110",
+  "mass": "12.0",
+  "drawing": "NS6-800"
+ },
+ {
+  "pos": "",
+  "pid": "",
+  "name": "F TOWER",
+  "qty": "",
+  "make_buy": "",
+  "material": "",
+  "mass": "",
+  "drawing": ""
+ },
+ {
+  "pos": "43",
+  "pid": "NS6-400",
+  "name": "Tower 8 m, \u00d8460 \u2192 \u00d8320, t 10/8, one piece",
+  "qty": "1",
+  "make_buy": "make",
+  "material": "S355J2+N, hot-dip galvanised",
+  "mass": "697.5",
+  "drawing": "NS6-400"
+ },
+ {
+  "pos": "44",
+  "pid": "NS6-401",
+  "name": "Hand-hole cover 200 \u00d7 350 \u00d7 6 with gasket",
+  "qty": "1",
+  "make_buy": "make",
+  "material": "S355 galv.",
+  "mass": "3.3",
+  "drawing": "NS6-400"
+ },
+ {
+  "pos": "45",
+  "pid": "NS6-410",
+  "name": "Base hinge brackets + hinge pin \u00d850",
+  "qty": "1",
+  "make_buy": "make",
+  "material": "S355J2+N galv.; pin 42CrMo4+QT",
+  "mass": "37.4",
+  "drawing": "NS6-410"
+ },
+ {
+  "pos": "",
+  "pid": "",
+  "name": "G FOUNDATION",
+  "qty": "",
+  "make_buy": "",
+  "material": "",
+  "mass": "",
+  "drawing": ""
+ },
+ {
+  "pos": "46",
+  "pid": "NS6-500",
+  "name": "Spread footing (firm ground) with pedestal",
+  "qty": "1",
+  "make_buy": "make",
+  "material": "C30/37 XF4 air-entrained, B500C",
+  "mass": "13200.0",
+  "drawing": "NS6-500"
+ },
+ {
+  "pos": "47",
+  "pid": "NS6-510",
+  "name": "Anchor cage 12 \u00d7 M24 + 4 hinge anchors",
+  "qty": "1",
+  "make_buy": "make",
+  "material": "M24 8.8 HDG threaded rod, S355 template rings",
+  "mass": "143.5",
+  "drawing": "NS6-510"
+ },
+ {
+  "pos": "",
+  "pid": "",
+  "name": "H TOOLS AND MOULDS",
+  "qty": "",
+  "make_buy": "",
+  "material": "",
+  "mass": "",
+  "drawing": ""
+ },
+ {
+  "pos": "48",
+  "pid": "NS6-110-1",
+  "name": "Blade mould, lower (pressure side) half on frame",
+  "qty": "1",
+  "make_buy": "make",
+  "material": "GRP tooling laminate 12 mm, vinylester tooling gelcoat",
+  "mass": "75.4",
+  "drawing": "NS6-110"
+ },
+ {
+  "pos": "49",
+  "pid": "NS6-110-2",
+  "name": "Blade mould, upper (suction side) half",
+  "qty": "1",
+  "make_buy": "make",
+  "material": "GRP tooling laminate 12 mm",
+  "mass": "75.4",
+  "drawing": "NS6-110"
+ },
+ {
+  "pos": "50",
+  "pid": "NS6-110-3",
+  "name": "Mould frame (RHS 80 \u00d7 80 \u00d7 4)",
+  "qty": "1",
+  "make_buy": "make",
+  "material": "S235 RHS 80\u00d780\u00d74",
+  "mass": "155.4",
+  "drawing": "NS6-110"
+ },
+ {
+  "pos": "51",
+  "pid": "NS6-115",
+  "name": "Root insert fixture (tool)",
+  "qty": "1",
+  "make_buy": "make",
+  "material": "S355, machined",
+  "mass": "9.2",
+  "drawing": "NS6-115"
+ },
+ {
+  "pos": "52",
+  "pid": "NS6-135",
+  "name": "Pitch setting gauge (tool)",
+  "qty": "1",
+  "make_buy": "make",
+  "material": "Al 6082 + digital inclinometer",
+  "mass": "1.6",
+  "drawing": "NS6-130"
+ },
+ {
+  "pos": "53",
+  "pid": "NS6-420",
+  "name": "Gin pole 3.0 m (erection tool)",
+  "qty": "1",
+  "make_buy": "make",
+  "material": "S355 tube 168.3 \u00d7 6.3",
+  "mass": "94.0",
+  "drawing": "NS6-420"
+ },
+ {
+  "pos": "",
+  "pid": "",
+  "name": "J FASTENERS, CABLES, SITE MATERIALS",
+  "qty": "",
+  "make_buy": "",
+  "material": "",
+  "mass": "",
+  "drawing": ""
+ },
+ {
+  "pos": "54",
+  "pid": "NS6-900-01",
+  "name": "Stud M12 \u00d7 75 10.9 zinc-flake + nut + washer (blade roots)",
+  "qty": "30",
+  "make_buy": "buy",
+  "material": "10.9 zinc-flake",
+  "mass": "0.12",
+  "drawing": "NS6-900"
+ },
+ {
+  "pos": "55",
+  "pid": "NS6-900-02",
+  "name": "Bolt M16 \u00d7 70 10.9 (hub to drum)",
+  "qty": "12",
+  "make_buy": "buy",
+  "material": "10.9 zinc-flake",
+  "mass": "0.17",
+  "drawing": "NS6-900"
+ },
+ {
+  "pos": "56",
+  "pid": "NS6-900-03",
+  "name": "Bolt M20 \u00d7 90 10.9 (spindle to bedplate)",
+  "qty": "12",
+  "make_buy": "buy",
+  "material": "10.9 zinc-flake",
+  "mass": "0.32",
+  "drawing": "NS6-900"
+ },
+ {
+  "pos": "57",
+  "pid": "NS6-900-04",
+  "name": "HV set M16 \u00d7 110 10.9 (yaw inner ring)",
+  "qty": "16",
+  "make_buy": "buy",
+  "material": "EN 14399-4",
+  "mass": "0.26",
+  "drawing": "NS6-900"
+ },
+ {
+  "pos": "58",
+  "pid": "NS6-900-05",
+  "name": "Bolt M16 \u00d7 70 10.9 (yaw outer ring, pads, caliper)",
+  "qty": "28",
+  "make_buy": "buy",
+  "material": "10.9 zinc-flake",
+  "mass": "0.17",
+  "drawing": "NS6-900"
+ },
+ {
+  "pos": "59",
+  "pid": "NS6-900-06",
+  "name": "HV set M20 \u00d7 90 10.9 (adapter to tower)",
+  "qty": "16",
+  "make_buy": "buy",
+  "material": "EN 14399-4",
+  "mass": "0.40",
+  "drawing": "NS6-900"
+ },
+ {
+  "pos": "60",
+  "pid": "NS6-900-07",
+  "name": "Nut M24 8.8 HDG + plate washer (base, hinge)",
+  "qty": "44",
+  "make_buy": "buy",
+  "material": "8.8 HDG",
+  "mass": "0.15",
+  "drawing": "NS6-900"
+ },
+ {
+  "pos": "61",
+  "pid": "NS6-900-08",
+  "name": "Small fasteners kit M8\u2013M12 A4 (cover, spinner, mast, cabinet)",
+  "qty": "1",
+  "make_buy": "buy",
+  "material": "A4-70",
+  "mass": "2.50",
+  "drawing": "NS6-900"
+ },
+ {
+  "pos": "62",
+  "pid": "NS6-800-W1",
+  "name": "Cable H07RN-F 4G10 (generator \u2192 box)",
+  "qty": "3",
+  "make_buy": "buy",
+  "material": "m",
+  "mass": "0.60",
+  "drawing": "NS6-800"
+ },
+ {
+  "pos": "63",
+  "pid": "NS6-800-W2",
+  "name": "Cable H07RN-F 4G10 (box \u2192 loop \u2192 hand hole)",
+  "qty": "12",
+  "make_buy": "buy",
+  "material": "m",
+  "mass": "0.60",
+  "drawing": "NS6-800"
+ },
+ {
+  "pos": "64",
+  "pid": "NS6-800-W3",
+  "name": "Cable NYY-J 4 \u00d7 10 (hand hole \u2192 cabinet)",
+  "qty": "4",
+  "make_buy": "buy",
+  "material": "m",
+  "mass": "0.50",
+  "drawing": "NS6-800"
+ },
+ {
+  "pos": "65",
+  "pid": "NS6-800-W4",
+  "name": "Cable \u00d6LFLEX 4G1.5 shielded (brake)",
+  "qty": "16",
+  "make_buy": "buy",
+  "material": "m",
+  "mass": "0.10",
+  "drawing": "NS6-800"
+ },
+ {
+  "pos": "66",
+  "pid": "NS6-800-W5",
+  "name": "Cable LiYCY 12 \u00d7 0.5 (sensors)",
+  "qty": "16",
+  "make_buy": "buy",
+  "material": "m",
+  "mass": "0.12",
+  "drawing": "NS6-800"
+ },
+ {
+  "pos": "67",
+  "pid": "NS6-800-W6",
+  "name": "Cable \u00d6LFLEX 7G1.5 (yaw motors)",
+  "qty": "16",
+  "make_buy": "buy",
+  "material": "m",
+  "mass": "0.15",
+  "drawing": "NS6-800"
+ },
+ {
+  "pos": "68",
+  "pid": "NS6-800-W7",
+  "name": "Earthing conductor Cu 50 mm\u00b2 + ring earth + 2 rods 3 m",
+  "qty": "1",
+  "make_buy": "buy",
+  "material": "Cu",
+  "mass": "18.00",
+  "drawing": "NS6-800"
+ },
+ {
+  "pos": "69",
+  "pid": "NS6-500-M1",
+  "name": "Concrete C30/37 XF4 air-entrained (firm ground)",
+  "qty": "5.5 m\u00b3",
+  "make_buy": "buy",
+  "material": "ready-mix",
+  "mass": "",
+  "drawing": "NS6-500"
+ },
+ {
+  "pos": "70",
+  "pid": "NS6-500-M2",
+  "name": "Rebar B500C (mesh \u00d816/150 top + bottom, pedestal cage)",
+  "qty": "1",
+  "make_buy": "buy",
+  "material": "\u2248 420 kg",
+  "mass": "420.00",
+  "drawing": "NS6-500"
+ },
+ {
+  "pos": "71",
+  "pid": "NS6-500-M3",
+  "name": "Non-shrink grout \u2265 40 MPa, 30 mm under the base flange",
+  "qty": "60 l",
+  "make_buy": "buy",
+  "material": "",
+  "mass": "",
+  "drawing": "NS6-500"
+ },
+ {
+  "pos": "72",
+  "pid": "NS6-600-K1",
+  "name": "Contactor K1 3-pole NC (mirror contacts) + safety relay PL d",
+  "qty": "1",
+  "make_buy": "buy",
+  "material": "",
+  "mass": "2.00",
+  "drawing": "NS6-600"
+ },
+ {
+  "pos": "73",
+  "pid": "NS6-620-PE",
+  "name": "Converter, dump chopper, AC module, 48 V module, controller (doc 12)",
+  "qty": "1",
+  "make_buy": "make",
+  "material": "in-house electronics",
+  "mass": "45.00",
+  "drawing": "NS6-620"
+ }
+]

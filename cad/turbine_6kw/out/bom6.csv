@@ -1,0 +1,83 @@
+pos,pid,name,qty,make_buy,material,mass,drawing
+,,A ROTOR,,,,,
+1,NS6-100,"Blade, glass/epoxy, glass UD caps (B1–B3)",3,make,"E-glass/epoxy, PVC core",20.6,NS6-100
+2,NS6-105,"Root insert M12 (10 per blade, bonded)",30,make,C45E+QT zinc-flake coated,0.3,NS6-105
+3,NS6-130,Pitch washer plates 28 × 4 hardened (30),1,make,"C45 hardened 45 HRC, zinc-flake",0.5,NS6-130
+4,NS6-200,Fixed hub weldment,1,make,"S355NL, welded, stress relieved, machined",79.2,NS6-200
+5,NS6-210,"Spinner (GRP, 4 mm)",1,make,"glass/polyester, gelcoat RAL 9010",8.7,NS6-210
+6,NS6-211,Spinner brackets (3),1,make,S235 galv.,2.0,NS6-210
+,,B DRIVETRAIN AND GENERATOR G6,,,,,
+7,NP1-100,Spindle,1,make,42CrMo4+QT forged,56.5,NP1-100
+8,NP1-101,Front spacer / seal counterface Ø180 (Rev B),1,make,"42CrMo4+QT, induction hardened",1.4,NP1-101
+9,NP1-102,Rear seal sleeve Ø195 on the Ø155 shoulder (Rev B),1,make,"42CrMo4+QT, induction hardened",1.3,NP1-102
+10,NP1-200C,Stator carrier with 45 dovetail grooves,1,make,,39.9,NP1-200C
+11,NP1-201C,Stator: 45 tooth-segment lamination stacks,1,make,,50.5,NP1-201C
+12,NP1-202,Stator front clamp ring,1,make,1.4404 (non-magnetic),2.2,NP1-202
+13,NP1-203C,"Coils on segments, 45 × 28 turns (end windings shown)",1,make,"Cu enamelled Ø1.55 class 200, NKN 0.30",20.0,NP1-203C
+14,NP1-210C,"Rotor drum weldment (G6: no fins, no ribs)",1,make,S355J2+N,91.2,NP1-210C
+15,NP1-211-F,Front bearing seal cover,1,make,S355J2,1.5,NP1-211
+16,NP1-211-R,"Rear bearing seal cover, bore Ø198 (Rev B)",1,make,S355J2,1.4,NP1-211
+17,NP1-220E,Magnets 200 × N45SH 30×15×12 + comb + sleeve,1,make,NdFeB N45SH,10.7,NP1-220E/221C/222C/223C
+18,NP1-230,Brake disc Ø880/Ø652 with 12 lock holes (Rev B),1,make,C45E+N 16 mm,33.6,NP1-230
+19,NP1-310,"Rotor brake caliper bracket (left, Rev B)",1,make,S355J2+N 25 plate,18.1,NP1-310
+20,NP1-320,"Rotor lock pin Ø20 (engaged, top)",1,make,42CrMo4+QT,0.5,NP1-320
+21,NP1-321,Lock pin holder with 2 overspeed sensor seats,1,make,S355J2,24.5,NP1-321
+22,NS6-610,G6 plain rear cover (no fan blades),1,make,EN AW-5083-H111,7.2,NS6-610
+23,NS6-913,Tapered roller bearing 32028 X (front + rear),2,buy,bought 32028 X,4.0,NS6-910
+24,NS6-914,"Overspeed sensors M18 inductive (2, bought)",1,buy,bought M18 PNP,0.4,NS6-910
+25,NS6-915,"Spring-applied brake caliper, 1.5 kNm pack (bought)",1,buy,"bought, spring-applied",9.0,NS6-910
+,,C NACELLE,,,,,
+26,NS6-300,Bedplate weldment 6 kW (light),1,make,"S355J2+N plates, stress relieved, machined",122.1,NS6-300
+27,NS6-700-1,"Nacelle cover, lower tray (GRP 5 mm)",1,make,"glass/polyester, gelcoat RAL 9010",15.7,NS6-700
+28,NS6-700-2,"Nacelle cover, upper lid (GRP 5 mm)",1,make,"glass/polyester, gelcoat RAL 9010",17.5,NS6-700
+29,NS6-710,Cover support arms + rear rail,1,make,S235 galv.,8.3,NS6-710
+30,NS6-720,"Met mast: anemometer, vane, air terminal",1,make,1.4404 tube 42.4 × 2 + bought sensors,4.5,NS6-720
+,,D YAW SYSTEM,,,,,
+31,NP1-420,Yaw drive bracket,2,make,S355J2+N,7.7,NP1-420
+32,NS6-911,"Yaw slewing ring Dpw 360, z150 m4",1,buy,"bought: 42CrMo4, induction hardened teeth",55.0,NS6-911
+33,NS6-912,"Yaw gearmotor 0.18 kW 1:1680, motor brake 2 Nm",2,buy,bought,19.0,NS6-912
+34,NY-400,Tower-top adapter with friction track,1,make,S355J2+N weldment,106.7,NY-400
+35,NY-410,Friction pad unit,2,make,S355 / DIN 2093 springs / organic pads,14.0,NY-410
+36,NY-430,Yaw lock (screw block),1,make,42CrMo4 / S355,6.5,NY-430
+37,NY-440,Yaw encoder + cam limit switch unit,1,make,S355 + absolute encoder + cam switch,6.0,NY-440
+38,NY-460,Cable hanger tube + loop cleat,1,make,S355 tube 168.3 × 4.5,10.0,NY-460
+,,E ELECTRICAL,,,,,
+39,NS6-600,Braking resistor box 3 × 4 Ω (vented),1,make,1.4301 box + steel-grid resistors,18.0,NS6-600
+40,NS6-620,Tower base cabinet IP55 800 × 600 × 300 on stand,1,make,stand S235 galv.; bought enclosure,95.0,NS6-620
+41,NS6-730,Nacelle junction box IP66 (400 × 340 × 150),1,make,bought: 1.4301 enclosure,9.0,NS6-800
+42,NS6-800,Drop cable + base duct (cabling route),1,make,H07RN-F 4G10 + 2 × LiYCY signal; PE duct Ø110,12.0,NS6-800
+,,F TOWER,,,,,
+43,NS6-400,"Tower 8 m, Ø460 → Ø320, t 10/8, one piece",1,make,"S355J2+N, hot-dip galvanised",697.5,NS6-400
+44,NS6-401,Hand-hole cover 200 × 350 × 6 with gasket,1,make,S355 galv.,3.3,NS6-400
+45,NS6-410,Base hinge brackets + hinge pin Ø50,1,make,S355J2+N galv.; pin 42CrMo4+QT,37.4,NS6-410
+,,G FOUNDATION,,,,,
+46,NS6-500,Spread footing (firm ground) with pedestal,1,make,"C30/37 XF4 air-entrained, B500C",13200.0,NS6-500
+47,NS6-510,Anchor cage 12 × M24 + 4 hinge anchors,1,make,"M24 8.8 HDG threaded rod, S355 template rings",143.5,NS6-510
+,,H TOOLS AND MOULDS,,,,,
+48,NS6-110-1,"Blade mould, lower (pressure side) half on frame",1,make,"GRP tooling laminate 12 mm, vinylester tooling gelcoat",75.4,NS6-110
+49,NS6-110-2,"Blade mould, upper (suction side) half",1,make,GRP tooling laminate 12 mm,75.4,NS6-110
+50,NS6-110-3,Mould frame (RHS 80 × 80 × 4),1,make,S235 RHS 80×80×4,155.4,NS6-110
+51,NS6-115,Root insert fixture (tool),1,make,"S355, machined",9.2,NS6-115
+52,NS6-135,Pitch setting gauge (tool),1,make,Al 6082 + digital inclinometer,1.6,NS6-130
+53,NS6-420,Gin pole 3.0 m (erection tool),1,make,S355 tube 168.3 × 6.3,94.0,NS6-420
+,,"J FASTENERS, CABLES, SITE MATERIALS",,,,,
+54,NS6-900-01,Stud M12 × 75 10.9 zinc-flake + nut + washer (blade roots),30,buy,10.9 zinc-flake,0.12,NS6-900
+55,NS6-900-02,Bolt M16 × 70 10.9 (hub to drum),12,buy,10.9 zinc-flake,0.17,NS6-900
+56,NS6-900-03,Bolt M20 × 90 10.9 (spindle to bedplate),12,buy,10.9 zinc-flake,0.32,NS6-900
+57,NS6-900-04,HV set M16 × 110 10.9 (yaw inner ring),16,buy,EN 14399-4,0.26,NS6-900
+58,NS6-900-05,"Bolt M16 × 70 10.9 (yaw outer ring, pads, caliper)",28,buy,10.9 zinc-flake,0.17,NS6-900
+59,NS6-900-06,HV set M20 × 90 10.9 (adapter to tower),16,buy,EN 14399-4,0.40,NS6-900
+60,NS6-900-07,"Nut M24 8.8 HDG + plate washer (base, hinge)",44,buy,8.8 HDG,0.15,NS6-900
+61,NS6-900-08,"Small fasteners kit M8–M12 A4 (cover, spinner, mast, cabinet)",1,buy,A4-70,2.50,NS6-900
+62,NS6-800-W1,Cable H07RN-F 4G10 (generator → box),3,buy,m,0.60,NS6-800
+63,NS6-800-W2,Cable H07RN-F 4G10 (box → loop → hand hole),12,buy,m,0.60,NS6-800
+64,NS6-800-W3,Cable NYY-J 4 × 10 (hand hole → cabinet),4,buy,m,0.50,NS6-800
+65,NS6-800-W4,Cable ÖLFLEX 4G1.5 shielded (brake),16,buy,m,0.10,NS6-800
+66,NS6-800-W5,Cable LiYCY 12 × 0.5 (sensors),16,buy,m,0.12,NS6-800
+67,NS6-800-W6,Cable ÖLFLEX 7G1.5 (yaw motors),16,buy,m,0.15,NS6-800
+68,NS6-800-W7,Earthing conductor Cu 50 mm² + ring earth + 2 rods 3 m,1,buy,Cu,18.00,NS6-800
+69,NS6-500-M1,Concrete C30/37 XF4 air-entrained (firm ground),5.5 m³,buy,ready-mix,,NS6-500
+70,NS6-500-M2,"Rebar B500C (mesh Ø16/150 top + bottom, pedestal cage)",1,buy,≈ 420 kg,420.00,NS6-500
+71,NS6-500-M3,"Non-shrink grout ≥ 40 MPa, 30 mm under the base flange",60 l,buy,,,NS6-500
+72,NS6-600-K1,Contactor K1 3-pole NC (mirror contacts) + safety relay PL d,1,buy,,2.00,NS6-600
+73,NS6-620-PE,"Converter, dump chopper, AC module, 48 V module, controller (doc 12)",1,make,in-house electronics,45.00,NS6-620

@@ -15,6 +15,9 @@ import sys
 from pathlib import Path
 
 import numpy as np
+import matplotlib
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
 
 HERE = Path(__file__).parent
 ROOT = HERE.parent.parent
@@ -39,7 +42,7 @@ HEAD_MASS = None                          # filled in main() from the doc 32 mas
 
 
 def S(number, title, material, mass, scale):
-    return Sheet(number, title, material, mass, scale, rev="A", date=DATE, project=PROJECT)
+    return Sheet(number, title, material, mass, scale, rev="B", date=DATE, project=PROJECT)
 
 
 def P(s, u):
@@ -156,15 +159,15 @@ def ga_nacelle():
     v.poly(tp(G.STACK_POLY)); v.poly(tp(G.STACK_POLY, True))
     v.poly(tp(G.CARRIER)); v.poly(tp(G.CARRIER, True))
     # fixed hub: drum flange, centre shell, arm stubs, root flanges (spindle frame)
-    hub = [(175, 150), (200, 150), (200, 240), (175, 240)]
-    shell = [(-65, 178), (175, 178), (175, 190), (-65, 190)]
+    hub = [(170, 180), (200, 180), (200, 240), (170, 240)]
+    shell = [(-125, 178), (170, 178), (170, 190), (-125, 190)]
     v.poly(tp(hub), hatch=True); v.poly(tp(hub, True), hatch=True)
     v.poly(tp(shell), hatch=True); v.poly(tp(shell, True), hatch=True)
-    arm = [(-110, 190), (110, 190), (110, 280), (-110, 280)]
-    v.poly(tp(arm)); v.poly(tp([(-140, 280), (140, 280), (140, 305), (-140, 305)]), hatch=True)
+    arm = [(-110, 190), (110, 190), (110, 255), (-110, 255)]
+    v.poly(tp(arm)); v.poly(tp([(-140, 255), (140, 255), (140, 280), (-140, 280)]), hatch=True)
     v.poly(tp([(-70, -190), (70, -190), (70, -230), (-70, -230)]), layer="PHANTOM")
     # blade root (upper blade) and spinner
-    v.poly(tp([(-110, 305), (110, 305), (95, 900), (-60, 900)]), layer="OUTLINE")
+    v.poly(tp([(-110, 280), (110, 280), (95, 900), (-60, 900)]), layer="OUTLINE")
     v.poly(tp([(-330, 0), (-250, 160), (-120, 300), (60, 360), (180, 360)]), closed=False, layer="PHANTOM")
     v.poly(tp([(-330, 0), (-250, -160), (-120, -300), (60, -360), (180, -360)]), closed=False, layer="PHANTOM")
     # bedplate NS6-300 (world)
@@ -196,7 +199,7 @@ def ga_nacelle():
               (P(380, 260), (-330, 1100), "stator 45 slots, 74 mm stack"),
               (P(443, 420), (300, 1050), "brake disc NP1-230, 1 caliper 1.5 kNm"),
               (P(0, 600), (-1300, 1000), "blade root Ø220, 10 × M12 inserts"),
-              (P(0, 250), (-1350, 780), "fixed hub NS6-200, ±2° shims"),
+              (P(0, 250), (-1350, 780), "fixed hub NS6-200, pitch slots ±2.5°"),
               (P(150, 60), (-1350, 300), "spindle NP1-100 (fixed), tapered roller pair"),
               ((BPI["x_rear"] - 30, 120), (350, 650), "bedplate NS6-300"),
               ((0, -40), (380, -160), "yaw ring Dpw 360, z150 m4"),
@@ -207,7 +210,7 @@ def ga_nacelle():
     title(v, -2300, 1480, "SECTION ON THE ROTOR AXIS (yaw 0°, wind from the left)", 3.0)
     s.notes = ["Drivetrain geometry from cad/nacelle_p1/geometry.py (Rev B nacelle, Rev C generator, doc 23); fins, ribs and cover blades not fitted on G6 (doc 29).",
                "Rotor turns with the drum on two tapered roller bearings on the stationary spindle; the hub bolts to the drum front face (12 × M16 PCD 400).",
-               "Section shows the hub arm of the upper blade; the other two arms are at ±120°. Spinner (phantom) is GRP, NS6-210.",
+               "Section shows the hub arm of the upper blade; the other two arms are at ±120°. Spinner (phantom) is GRP, NS6-210. GRP nacelle cover NS6-700 not shown (see NS6-700).",
                "Braking resistor box NS6-600 is mounted on the tower base cabinet wall, not in the nacelle (heat). Phase leads run in the hanger tube."]
     return s
 
@@ -252,9 +255,9 @@ def blade():
                      f"{np.interp(x, r, st['t_cap_mm']):.2f}"])
     s.table = rows
     s.table_pos = (320, 165); s.table_widths = [16, 16, 16, 14, 16]
-    s.notes = ["Aerofoil family and twist from analysis/rotor/bem.py (TSR 5.5, cl 1.0, R 3.0 m, root r 0.28 m); twist given at the pitch axis, positive nose up towards feather; blade set at −2° with the hub shims (NS6-200).",
+    s.notes = ["Aerofoil family and twist from analysis/rotor/bem.py (TSR 5.5, cl 1.0, R 3.0 m, root r 0.28 m); twist given at the pitch axis, positive nose up towards feather; blade set at −2° in the arc slots of the hub root flange (NS6-130).",
                "Structure doc 30 §2 / doc 10 model: two glass UD caps (table), ±45° glass skins, PVC foam core, single shear web 1.5 mm glass; root wall builds up 12 mm over the first 0.7 m. Cap buckling at minimum thickness governs (use 1.00); strength 0.43 (SLM H), fatigue 0.10 with simulated loads (doc 31).",
-               "Root: 10 bonded steel inserts M12 (IKEA-type sleeve), PCD 185, pull-out ≥ 60 kN each (test). Bolt force 43 kN at SLM H.",
+               "Root: 10 bonded steel inserts M12 NS6-105, PCD 185, pull-out ≥ 60 kN each (test). Bolt force 43 kN at SLM H. Sections and laminate: NS6-101; mould NS6-110.",
                "Mass 20.6 kg ± 0.3 kg; static moment matched within 0.5 % per set of three (balance class doc 09). Erosion tape on the outer 1 m of the leading edge.",
                "First flap 15.2 Hz, first edge 38.3 Hz at standstill. Tip deflection 0.06 m, tower clearance 0.83 m."]
     s.notes_top = (14, 140)
@@ -514,21 +517,89 @@ def rear_cover():
     return s
 
 
-ALL = [ga_turbine, parts_list, ga_nacelle, blade, hub, bedplate, tower, foundation, resistor, rear_cover]
+ALL = None      # set in main() (rev B order, with sheets6b)
+
+ISO_EXTRA = {"NS6-010": [("A03-nacelle-open", 14, 62, 100, 85)],
+             "NS6-100": [("X-blade", 300, 60, 105, 55)],
+             "NS6-300": [("parts/NS6-300", 14, 208, 48, 62)],
+             "NS6-600": [("parts/NS6-600", 330, 60, 75, 55)],
+             "NS6-610": [("parts/NS6-610", 300, 60, 100, 80)]}
+
+REUSED = [("NP1-100", "SPINDLE (STATIONARY MAIN SHAFT)", "12 kW NP1 rev B"), ("NP1-101", "FRONT SPACER + REAR SEAL SLEEVE NP1-102", "12 kW NP1 rev B"),
+          ("NP1-211", "MAIN BEARING SEAL COVERS (FRONT / REAR)", "12 kW NP1 rev B"), ("NP1-230", "BRAKE DISC AND ROTOR LOCK HOLES", "12 kW NP1 rev B"),
+          ("NP1-320", "ROTOR LOCK PIN AND HOLDER", "12 kW NP1 rev B"), ("NP1-T01", "DRUM ASSEMBLY GUIDE (MAGNET SAFETY TOOL)", "12 kW NP1 rev B"),
+          ("NP1-G00", "GENERATOR REV C · ASSEMBLY SECTION (G6: no fins, ribs, fan blades)", "Rev C (doc 23)"),
+          ("NP1-200C", "STATOR CARRIER WITH 45 DOVETAIL GROOVES", "Rev C"), ("NP1-201C", "STATOR TOOTH SEGMENT LAMINATION", "Rev C"),
+          ("NP1-202", "STATOR FRONT CLAMP RING", "Rev C"), ("NP1-203C", "COIL ON SEGMENT (WOUND SEGMENT)", "Rev C"),
+          ("NP1-210C", "ROTOR DRUM WELDMENT (G6: omit fins and ribs)", "Rev C"), ("NP1-220E", "MAGNET BLOCK 30 × 15 × 12 (PURCHASE)", "Rev C"),
+          ("NP1-221C", "STEPPED POLE COMB BAR", "Rev C"), ("NP1-222C", "MAGNET END RINGS", "Rev C"), ("NP1-223C", "ROTOR MAGNET PACK", "Rev C"),
+          ("NY-000", "YAW SYSTEM · GENERAL ARRANGEMENT", "doc 25"), ("NY-400", "TOWER-TOP ADAPTER WITH FRICTION TRACK", "doc 25"),
+          ("NY-410", "FRICTION PAD UNIT", "doc 25"), ("NY-430", "YAW LOCK (SERVICE)", "doc 25"), ("NY-440", "YAW ENCODER AND CAM LIMIT SWITCH UNIT", "doc 25"),
+          ("NY-460", "CABLE HANGER AND TWIST LOOP", "doc 25")]
+
+
+def all_sheets():
+    import sheets6b as B
+    sys.path.insert(0, str(HERE))
+    bom = json.loads((OUT / "bom6.json").read_text())
+    own = [B.ga_turbine, None, "BOM", ga_nacelle, B.rotor_ga, blade, B.blade_sections, B.root_insert, B.mould, B.root_fixture_sheet,
+           B.pitch_sheet, B.hub, B.spinner_sheet, bedplate, B.brackets, B.tower, B.hinge_sheet, B.ginpole_sheet, B.foundation,
+           B.anchor_sheet, resistor, rear_cover, B.cabinet_sheet, B.cover_sheet, B.cover_frame_sheet, B.cabling_sheet,
+           B.fastener_sheet, B.bought_sheet]
+    sheets = []
+    for fn in own:
+        if fn is None:
+            sheets.append(None)
+        elif fn == "BOM":
+            sheets += B.bom_sheets(bom)
+        else:
+            sheets.append(fn())
+    rows = []
+    for k, sh in enumerate(sheets):
+        if sh is None:
+            rows.append(["NS6-001", "DRAWING INDEX", "S6 rev B", ""])
+        else:
+            rows.append([sh.number, sh.title[:80], "S6 rev B", ""])
+    rows += [[a, b[:80], c, ""] for a, b, c in REUSED]
+    idx = B.index_sheet(rows)
+    sheets[sheets.index(None)] = idx
+    return sheets
+
+
+def add_iso(fig, sh):
+    W, H = sh.size
+    items = list(getattr(sh, "iso", []))
+    for name, x, y, w, h in ISO_EXTRA.get(sh.number, []):
+        items.append((OUT / "iso" / f"{name}.png", x, y, w, h))
+    for path, x, y, w, h in items:
+        path = Path(path)
+        if not path.exists():
+            print("missing iso", path)
+            continue
+        img = plt.imread(path)
+        ih, iw = img.shape[:2]
+        k = min(w / iw, (h - 4) / ih)
+        ww, hh = iw * k, ih * k
+        ax = fig.add_axes([(x + (w - ww) / 2) / W, (y + (h - 4 - hh) / 2) / H, ww / W, hh / H])
+        ax.imshow(img, interpolation="lanczos")
+        ax.axis("off")
+        fig.text((x + 1) / W, (y + h - 2.5) / H, "AXONOMETRIC VIEW (not to scale)", fontsize=4.2, color="0.35")
 
 
 def main():
     global HEAD_MASS
-    import matplotlib.pyplot as plt
     from matplotlib.backends.backend_pdf import PdfPages
-    HEAD_MASS = json.loads((RES / "head6.json").read_text())["head_mass_kg"]
+    HEAD_MASS = json.loads((OUT / "model6-parts.json").read_text())["head_kg"]
     for d in ("pdf", "dxf", "svg", "png"):
         (OUT / d).mkdir(parents=True, exist_ok=True)
     index = []
+    for d in ("pdf", "dxf", "svg", "png"):
+        for f in (OUT / d).glob("NS6-*"):
+            f.unlink()
     with PdfPages(OUT / "NS6-drawing-set.pdf") as book:
-        for fn in ALL:
-            sh = fn()
+        for sh in all_sheets():
             fig = sh.render()
+            add_iso(fig, sh)
             fig.savefig(OUT / "pdf" / f"{sh.number}.pdf")
             svg = OUT / "svg" / f"{sh.number}.svg"
             fig.savefig(svg)
