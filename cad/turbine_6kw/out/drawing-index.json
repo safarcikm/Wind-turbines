@@ -1,0 +1,62 @@
+[
+ {
+  "number": "NS6-000",
+  "title": "GENERAL ARRANGEMENT \u00b7 TURBINE",
+  "material": "see parts list",
+  "mass": "\u2248 912 kg head + 1824 kg tower"
+ },
+ {
+  "number": "NS6-001",
+  "title": "PARTS LIST AND REUSED 12 kW DRAWINGS",
+  "material": "\u2013",
+  "mass": "\u2013"
+ },
+ {
+  "number": "NS6-010",
+  "title": "GENERAL ARRANGEMENT \u00b7 NACELLE SECTION",
+  "material": "see NS6-001",
+  "mass": "\u2248 912 kg above the tower flange"
+ },
+ {
+  "number": "NS6-100",
+  "title": "BLADE \u00b7 PLANFORM, TWIST AND ROOT",
+  "material": "E-glass/epoxy infused; glass UD caps; PVC core shells",
+  "mass": "20.6 kg"
+ },
+ {
+  "number": "NS6-200",
+  "title": "FIXED HUB WELDMENT",
+  "material": "S355NL (EN 10025-3), welded, stress relieved, machined",
+  "mass": "87 kg (+ 6 kg spinner)"
+ },
+ {
+  "number": "NS6-300",
+  "title": "BEDPLATE WELDMENT 6 kW (LIGHT)",
+  "material": "S355J2+N plates, stress relieved, machined",
+  "mass": "127 kg"
+ },
+ {
+  "number": "NS6-400",
+  "title": "TOWER 18 m \u00b7 TILT-UP MONOPOLE",
+  "material": "S355J2+N, rolled and seam welded; hot-dip galvanised",
+  "mass": "1824 kg"
+ },
+ {
+  "number": "NS6-500",
+  "title": "FOUNDATION \u00b7 SPREAD FOOTING AND ROCK PLINTH",
+  "material": "C30/37 XF4 air-entrained; B500C rebar",
+  "mass": "9.5\u201311.4 m\u00b3 (soil), 2.0 m\u00b3 (rock)"
+ },
+ {
+  "number": "NS6-600",
+  "title": "BRAKING RESISTOR BOX AND SAFETY CHAIN",
+  "material": "Box 1.4301, IP54; resistors steel-grid",
+  "mass": "\u2248 18 kg"
+ },
+ {
+  "number": "NS6-610",
+  "title": "G6 PLAIN REAR COVER (NO FAN BLADES)",
+  "material": "EN AW-5083-H111, 10 mm plate",
+  "mass": "\u2248 7 kg"
+ }
+]

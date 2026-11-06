@@ -25,3 +25,12 @@ Model limits: steady BEM with 2D Viterna polars. Deep stall at low tip speed rat
 | `plots6.py` | figures S01–S04 | `results/S0*.png` |
 
 Run `python3 dlc6.py` (~28 min on 4 cores), then `recheck6.py` and `plots6.py`.
+
+## Doc 32: lighter bedplate and brake hold
+
+| Script | What it does | Output |
+|---|---|---|
+| `bedplate6.py` | plate-by-plate mass and SLM checks of the 12 kW NP1-300 as drawn and the lighter NS6-300; head mass | `results/bedplate6.json`, `results/head6.json` |
+| `brake_hold6.py` | parked 50-year storm, yaw lost, 300 s with the brake allowed to slip and K1 closed; brake torque 1.5 kNm and divided by 1.35 / 1.6 | `results/brake_hold6.json` |
+
+Drawings: `cad/turbine_6kw/drawings6.py`. 3D website: `viewer6/`.

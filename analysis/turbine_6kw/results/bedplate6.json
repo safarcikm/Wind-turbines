@@ -1,0 +1,186 @@
+{
+ "NP1-300 (12 kW, as drawn)": {
+  "inputs": {
+   "t_front": 40.0,
+   "t_bottom": 40.0,
+   "t_side": 20.0,
+   "u_top": 250.0,
+   "front_w": 500.0,
+   "width": 520.0,
+   "x_bot_front": -330.0,
+   "x_rear": 330.0,
+   "z_rear_top": 330.0,
+   "rear": [
+    480.0,
+    290.0,
+    20.0
+   ]
+  },
+  "masses_kg": {
+   "front plate": 104.4,
+   "front pad": 7.9,
+   "bottom plate (yaw flange)": 94.6,
+   "side plates": 94.3,
+   "rear plate": 21.9,
+   "welds, bosses, lifting eyes (+3 %)": 9.7
+  },
+  "mass_kg": 332.8,
+  "checks": {
+   "M_flange_kNm": 5.13,
+   "M_root_kNm": 23.3,
+   "T_kNm": 5.69,
+   "root_section": {
+    "W_cm3": 2472,
+    "sigma_MPa": 9.4,
+    "tau_MPa": 1.1,
+    "vm_MPa": 9.6,
+    "util": 0.03
+   },
+   "front_plate": {
+    "bolt_force_kN": 7.97,
+    "sigma_MPa": 11.1,
+    "util": 0.03
+   },
+   "bottom_plate": {
+    "sigma_MPa": 46.7,
+    "util": 0.14
+   },
+   "yaw_bolts": {
+    "F_bolt_kN": 20.1,
+    "F_t_Rd_kN": 90.0,
+    "util": 0.22
+   },
+   "fatigue_root": {
+    "dsigma_MPa": 0.68,
+    "allow_MPa": 21.3,
+    "util": 0.03
+   },
+   "allow_static_MPa": 323
+  },
+  "side_poly": [
+   [
+    -210.2,
+    773.7
+   ],
+   [
+    330.0,
+    330.0
+   ],
+   [
+    330.0,
+    40.0
+   ],
+   [
+    -275.0,
+    40.0
+   ]
+  ],
+  "axis_above_bottom_top": 490.0
+ },
+ "NS6-300 (6 kW)": {
+  "inputs": {
+   "t_front": 20.0,
+   "t_bottom": 25.0,
+   "t_side": 10.0,
+   "front_window": 42000.0,
+   "u_top": 230.0,
+   "front_w": 500.0,
+   "width": 520.0,
+   "x_bot_front": -330.0,
+   "x_rear": 150.0,
+   "z_rear_top": 200.0,
+   "rear": [
+    496.0,
+    100.0,
+    10.0
+   ],
+   "bottom_cut": 22500.0,
+   "holes": [
+    [
+     -150.0,
+     360.0,
+     75.0
+    ],
+    [
+     20.0,
+     260.0,
+     55.0
+    ]
+   ],
+   "gussets": [
+    16200.0,
+    12.0,
+    2
+   ]
+  },
+  "masses_kg": {
+   "front plate": 45.2,
+   "front pad": 7.9,
+   "bottom plate (yaw flange)": 36.3,
+   "side plates": 26.6,
+   "rear plate": 3.9,
+   "gussets": 3.1,
+   "welds, bosses, lifting eyes (+3 %)": 3.7
+  },
+  "mass_kg": 126.7,
+  "checks": {
+   "M_flange_kNm": 5.13,
+   "M_root_kNm": 23.86,
+   "T_kNm": 5.69,
+   "root_section": {
+    "W_cm3": 1168,
+    "sigma_MPa": 20.4,
+    "tau_MPa": 2.3,
+    "vm_MPa": 20.8,
+    "util": 0.06
+   },
+   "front_plate": {
+    "bolt_force_kN": 7.97,
+    "sigma_MPa": 50.7,
+    "util": 0.16
+   },
+   "bottom_plate": {
+    "sigma_MPa": 144.2,
+    "util": 0.45
+   },
+   "yaw_bolts": {
+    "F_bolt_kN": 20.1,
+    "F_t_Rd_kN": 90.0,
+    "util": 0.22
+   },
+   "fatigue_root": {
+    "dsigma_MPa": 1.45,
+    "allow_MPa": 21.3,
+    "util": 0.07
+   },
+   "allow_static_MPa": 323
+  },
+  "side_poly": [
+   [
+    -231.9,
+    755.5
+   ],
+   [
+    150.0,
+    200.0
+   ],
+   [
+    150.0,
+    25.0
+   ],
+   [
+    -296.1,
+    25.0
+   ]
+  ],
+  "axis_above_bottom_top": 505.1
+ },
+ "saving_kg": 206.1,
+ "head": {
+  "doc30_head_kg": 935,
+  "doc30_bedplate_kg": 150.0,
+  "NS6_300_kg": 126.7,
+  "head_mass_kg": 912,
+  "head_with_shared_NP1_300_as_drawn_kg": 1118
+ }
+}

@@ -1,6 +1,8 @@
 # 6 kW Turbine S6: Aeroelastic Simulation with the Stall Controller
 
 Status: **simulation results for review** · 2026-11-06 (Martin: "Let's do the simulation")
+
+> **Update 2026-11-06 ([doc 32](32-6kw-bedplate-drawings-viewer.md)):** Martin decided to keep the 1.5 kNm brake spring. Doc 32 §3 shows that with the yaw lost the rotor at worst creeps slowly against the brake and the braking resistor; the 2.5 kNm change below is withdrawn.
 Owner: Category 1 (Systems engineering), Category 6 (Control and safety)
 Builds on: [28 – Concept](28-6kw-turbine-concept.md), [29 – Generator G6](29-6kw-generator-g6.md), [30 – First-pass design](30-6kw-turbine-design-s6.md), [08 – Load verification](08-load-verification.md) (simulator), [11 – Control](11-control-safety.md)
 Analysis: [`analysis/turbine_6kw/sim6.py`](../analysis/turbine_6kw/sim6.py), [`dlc6.py`](../analysis/turbine_6kw/dlc6.py) → `results/dlc6/`, [`recheck6.py`](../analysis/turbine_6kw/recheck6.py) → `results/recheck6.json`, [`plots6.py`](../analysis/turbine_6kw/plots6.py) → figures S01–S04
