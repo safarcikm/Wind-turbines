@@ -1,0 +1,506 @@
+{
+ "grid": [
+  {
+   "D": 6.63,
+   "rpm": 130,
+   "tip": 45.0,
+   "rated_wind": 9.0,
+   "Lp60": 42.3,
+   "d40": 79,
+   "aep": {
+    "sheltered": 13.9,
+    "inland": 19.4,
+    "coastal": 24.7,
+    "highland": 30.8
+   },
+   "M_park": 29.8,
+   "T_park": 53.9,
+   "Q": 501,
+   "m_blade": 23.1,
+   "m_head": 933,
+   "m_tower": 1840,
+   "capex": 70237,
+   "lcoe": {
+    "sheltered": 543,
+    "inland": 388,
+    "coastal": 305,
+    "highland": 244
+   },
+   "vr": 9.0,
+   "tsr": 5.0
+  },
+  {
+   "D": 6.62,
+   "rpm": 143,
+   "tip": 49.5,
+   "rated_wind": 9.0,
+   "Lp60": 44.2,
+   "d40": 98,
+   "aep": {
+    "sheltered": 13.9,
+    "inland": 19.4,
+    "coastal": 24.7,
+    "highland": 30.9
+   },
+   "M_park": 24.7,
+   "T_park": 44.8,
+   "Q": 454,
+   "m_blade": 19.6,
+   "m_head": 882,
+   "m_tower": 1678,
+   "capex": 66727,
+   "lcoe": {
+    "sheltered": 516,
+    "inland": 368,
+    "coastal": 290,
+    "highland": 232
+   },
+   "vr": 9.0,
+   "tsr": 5.5
+  },
+  {
+   "D": 6.61,
+   "rpm": 156,
+   "tip": 54.0,
+   "rated_wind": 9.0,
+   "Lp60": 45.9,
+   "d40": 120,
+   "aep": {
+    "sheltered": 13.9,
+    "inland": 19.4,
+    "coastal": 24.7,
+    "highland": 30.9
+   },
+   "M_park": 20.8,
+   "T_park": 37.8,
+   "Q": 416,
+   "m_blade": 16.9,
+   "m_head": 842,
+   "m_tower": 1553,
+   "capex": 63961,
+   "lcoe": {
+    "sheltered": 494,
+    "inland": 353,
+    "coastal": 277,
+    "highland": 222
+   },
+   "vr": 9.0,
+   "tsr": 6.0
+  },
+  {
+   "D": 6.61,
+   "rpm": 169,
+   "tip": 58.5,
+   "rated_wind": 9.0,
+   "Lp60": 46.7,
+   "d40": 131,
+   "aep": {
+    "sheltered": 13.9,
+    "inland": 19.4,
+    "coastal": 24.7,
+    "highland": 30.9
+   },
+   "M_park": 17.8,
+   "T_park": 32.4,
+   "Q": 384,
+   "m_blade": 14.8,
+   "m_head": 809,
+   "m_tower": 1454,
+   "capex": 61725,
+   "lcoe": {
+    "sheltered": 477,
+    "inland": 340,
+    "coastal": 268,
+    "highland": 214
+   },
+   "vr": 9.0,
+   "tsr": 6.5
+  },
+  {
+   "D": 6.12,
+   "rpm": 148,
+   "tip": 47.5,
+   "rated_wind": 9.5,
+   "Lp60": 41.9,
+   "d40": 76,
+   "aep": {
+    "sheltered": 12.4,
+    "inland": 17.7,
+    "coastal": 22.9,
+    "highland": 29.3
+   },
+   "M_park": 23.4,
+   "T_park": 45.8,
+   "Q": 438,
+   "m_blade": 18.7,
+   "m_head": 868,
+   "m_tower": 1678,
+   "capex": 66134,
+   "lcoe": {
+    "sheltered": 573,
+    "inland": 400,
+    "coastal": 310,
+    "highland": 242
+   },
+   "vr": 9.5,
+   "tsr": 5.0
+  },
+  {
+   "D": 6.1,
+   "rpm": 164,
+   "tip": 52.2,
+   "rated_wind": 9.5,
+   "Lp60": 43.8,
+   "d40": 94,
+   "aep": {
+    "sheltered": 12.4,
+    "inland": 17.7,
+    "coastal": 22.9,
+    "highland": 29.3
+   },
+   "M_park": 19.4,
+   "T_park": 38.1,
+   "Q": 397,
+   "m_blade": 15.9,
+   "m_head": 825,
+   "m_tower": 1541,
+   "capex": 63156,
+   "lcoe": {
+    "sheltered": 547,
+    "inland": 382,
+    "coastal": 295,
+    "highland": 231
+   },
+   "vr": 9.5,
+   "tsr": 5.5
+  },
+  {
+   "D": 6.09,
+   "rpm": 179,
+   "tip": 57.0,
+   "rated_wind": 9.5,
+   "Lp60": 45.5,
+   "d40": 115,
+   "aep": {
+    "sheltered": 12.4,
+    "inland": 17.7,
+    "coastal": 22.9,
+    "highland": 29.3
+   },
+   "M_park": 16.3,
+   "T_park": 32.2,
+   "Q": 363,
+   "m_blade": 13.7,
+   "m_head": 791,
+   "m_tower": 1434,
+   "capex": 60802,
+   "lcoe": {
+    "sheltered": 527,
+    "inland": 368,
+    "coastal": 284,
+    "highland": 222
+   },
+   "vr": 9.5,
+   "tsr": 6.0
+  },
+  {
+   "D": 6.09,
+   "rpm": 194,
+   "tip": 61.8,
+   "rated_wind": 9.5,
+   "Lp60": 46.4,
+   "d40": 126,
+   "aep": {
+    "sheltered": 12.4,
+    "inland": 17.7,
+    "coastal": 22.9,
+    "highland": 29.3
+   },
+   "M_park": 14.0,
+   "T_park": 27.6,
+   "Q": 335,
+   "m_blade": 12.0,
+   "m_head": 762,
+   "m_tower": 1349,
+   "capex": 58894,
+   "lcoe": {
+    "sheltered": 511,
+    "inland": 356,
+    "coastal": 275,
+    "highland": 215
+   },
+   "vr": 9.5,
+   "tsr": 6.5
+  },
+  {
+   "D": 5.66,
+   "rpm": 169,
+   "tip": 50.0,
+   "rated_wind": 10.0,
+   "Lp60": 41.6,
+   "d40": 73,
+   "aep": {
+    "sheltered": 11.0,
+    "inland": 16.1,
+    "coastal": 21.2,
+    "highland": 27.7
+   },
+   "M_park": 18.6,
+   "T_park": 39.3,
+   "Q": 385,
+   "m_blade": 15.3,
+   "m_head": 815,
+   "m_tower": 1547,
+   "capex": 62817,
+   "lcoe": {
+    "sheltered": 611,
+    "inland": 418,
+    "coastal": 318,
+    "highland": 243
+   },
+   "vr": 10.0,
+   "tsr": 5.0
+  },
+  {
+   "D": 5.65,
+   "rpm": 186,
+   "tip": 55.0,
+   "rated_wind": 10.0,
+   "Lp60": 43.5,
+   "d40": 91,
+   "aep": {
+    "sheltered": 11.0,
+    "inland": 16.1,
+    "coastal": 21.2,
+    "highland": 27.7
+   },
+   "M_park": 15.4,
+   "T_park": 32.6,
+   "Q": 349,
+   "m_blade": 13.0,
+   "m_head": 778,
+   "m_tower": 1428,
+   "capex": 60259,
+   "lcoe": {
+    "sheltered": 587,
+    "inland": 401,
+    "coastal": 305,
+    "highland": 233
+   },
+   "vr": 10.0,
+   "tsr": 5.5
+  },
+  {
+   "D": 5.64,
+   "rpm": 203,
+   "tip": 60.0,
+   "rated_wind": 10.0,
+   "Lp60": 45.2,
+   "d40": 111,
+   "aep": {
+    "sheltered": 11.0,
+    "inland": 16.1,
+    "coastal": 21.2,
+    "highland": 27.7
+   },
+   "M_park": 13.0,
+   "T_park": 27.6,
+   "Q": 320,
+   "m_blade": 11.3,
+   "m_head": 749,
+   "m_tower": 1337,
+   "capex": 58231,
+   "lcoe": {
+    "sheltered": 567,
+    "inland": 388,
+    "coastal": 294,
+    "highland": 225
+   },
+   "vr": 10.0,
+   "tsr": 6.0
+  },
+  {
+   "D": 5.64,
+   "rpm": 220,
+   "tip": 65.0,
+   "rated_wind": 10.0,
+   "Lp60": 46.0,
+   "d40": 121,
+   "aep": {
+    "sheltered": 11.0,
+    "inland": 16.1,
+    "coastal": 21.2,
+    "highland": 27.8
+   },
+   "M_park": 11.1,
+   "T_park": 23.6,
+   "Q": 295,
+   "m_blade": 9.9,
+   "m_head": 725,
+   "m_tower": 1264,
+   "capex": 56584,
+   "lcoe": {
+    "sheltered": 551,
+    "inland": 377,
+    "coastal": 286,
+    "highland": 219
+   },
+   "vr": 10.0,
+   "tsr": 6.5
+  },
+  {
+   "D": 5.26,
+   "rpm": 190,
+   "tip": 52.5,
+   "rated_wind": 10.5,
+   "Lp60": 41.3,
+   "d40": 70,
+   "aep": {
+    "sheltered": 9.8,
+    "inland": 14.6,
+    "coastal": 19.6,
+    "highland": 26.1
+   },
+   "M_park": 14.9,
+   "T_park": 33.9,
+   "Q": 341,
+   "m_blade": 12.7,
+   "m_head": 772,
+   "m_tower": 1439,
+   "capex": 60094,
+   "lcoe": {
+    "sheltered": 658,
+    "inland": 441,
+    "coastal": 329,
+    "highland": 246
+   },
+   "vr": 10.5,
+   "tsr": 5.0
+  },
+  {
+   "D": 5.25,
+   "rpm": 210,
+   "tip": 57.8,
+   "rated_wind": 10.5,
+   "Lp60": 43.2,
+   "d40": 87,
+   "aep": {
+    "sheltered": 9.8,
+    "inland": 14.6,
+    "coastal": 19.6,
+    "highland": 26.2
+   },
+   "M_park": 12.3,
+   "T_park": 28.2,
+   "Q": 309,
+   "m_blade": 10.8,
+   "m_head": 740,
+   "m_tower": 1336,
+   "capex": 57873,
+   "lcoe": {
+    "sheltered": 634,
+    "inland": 425,
+    "coastal": 317,
+    "highland": 237
+   },
+   "vr": 10.5,
+   "tsr": 5.5
+  },
+  {
+   "D": 5.24,
+   "rpm": 229,
+   "tip": 63.0,
+   "rated_wind": 10.5,
+   "Lp60": 44.9,
+   "d40": 107,
+   "aep": {
+    "sheltered": 9.8,
+    "inland": 14.6,
+    "coastal": 19.6,
+    "highland": 26.2
+   },
+   "M_park": 10.4,
+   "T_park": 23.8,
+   "Q": 283,
+   "m_blade": 9.3,
+   "m_head": 714,
+   "m_tower": 1257,
+   "capex": 56108,
+   "lcoe": {
+    "sheltered": 615,
+    "inland": 412,
+    "coastal": 307,
+    "highland": 230
+   },
+   "vr": 10.5,
+   "tsr": 6.0
+  },
+  {
+   "D": 5.24,
+   "rpm": 249,
+   "tip": 68.2,
+   "rated_wind": 10.5,
+   "Lp60": 45.7,
+   "d40": 117,
+   "aep": {
+    "sheltered": 9.8,
+    "inland": 14.6,
+    "coastal": 19.6,
+    "highland": 26.2
+   },
+   "M_park": 8.9,
+   "T_park": 20.4,
+   "Q": 261,
+   "m_blade": 8.2,
+   "m_head": 693,
+   "m_tower": 1193,
+   "capex": 54670,
+   "lcoe": {
+    "sheltered": 600,
+    "inland": 402,
+    "coastal": 300,
+    "highland": 224
+   },
+   "vr": 10.5,
+   "tsr": 6.5
+  }
+ ],
+ "chosen": {
+  "D": 6.0,
+  "rpm": 164,
+  "tip": 51.4,
+  "rated_wind": 9.66,
+  "Lp60": 43.7,
+  "d40": 94,
+  "aep": {
+   "sheltered": 12.0,
+   "inland": 17.3,
+   "coastal": 22.5,
+   "highland": 28.9
+  },
+  "M_park": 18.4,
+  "T_park": 36.8,
+  "Q": 397,
+  "m_blade": 15.2,
+  "m_head": 817,
+  "m_tower": 1517,
+  "capex": 62629,
+  "lcoe": {
+   "sheltered": 557,
+   "inland": 387,
+   "coastal": 298,
+   "highland": 232
+  }
+ },
+ "design": {
+  "P_e": 6,
+  "R": 3.0,
+  "D": 6.0,
+  "tsr": 5.5,
+  "rpm": 163.56819699814992,
+  "tip": 51.38646460503158,
+  "rated_wind": 9.660319514492729,
+  "J_rotor": 108.73805836427377,
+  "m_blade": 15.235316814725202
+ }
+}
