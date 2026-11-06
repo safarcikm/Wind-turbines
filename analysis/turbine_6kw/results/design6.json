@@ -1,0 +1,985 @@
+{
+ "slm": {
+  "inputs": {
+   "A_proj_B_m2": 0.756,
+   "m_B": 20.63,
+   "R_cog": 1.12,
+   "m_r": 270.39,
+   "Q_design_Nm": 397,
+   "lambda_design": 5.32,
+   "n_design_rpm": 163.56819699814992,
+   "n_max_rpm": 204.4602462476874,
+   "V_ave": 10.0,
+   "V_e50": 77.0
+  },
+  "A_fatigue_ranges_kN_kNm": {
+   "dF_zB": 13.56,
+   "dM_xB": 0.59,
+   "dM_yB": 0.7,
+   "dF_x_shaft": 1.06,
+   "dM_x_shaft": 0.48,
+   "dM_shaft": 1.16,
+   "cycles_20y": 1719428886.844552
+  },
+  "ultimate_design_values_gamma_3_kN_kNm": {
+   "B_yaw": {
+    "M_yB": 1.38,
+    "M_shaft": 3.03
+   },
+   "D_max_thrust": {
+    "F_x_shaft": 16.24
+   },
+   "E_max_speed": {
+    "F_zB": 31.78,
+    "M_shaft": 1.62
+   },
+   "F_short_circuit": {
+    "M_x_shaft": 2.38,
+    "M_xB": 1.47
+   },
+   "G_shutdown": {
+    "M_x_shaft": 5.69,
+    "M_xB": 2.58
+   },
+   "H_parked": {
+    "M_yB": 18.54,
+    "F_x_shaft": 37.08
+   }
+  },
+  "characteristic_values_kN_kNm": {
+   "B_yaw": {
+    "M_yB": 0.46,
+    "M_shaft": 1.01
+   },
+   "D_max_thrust": {
+    "F_x_shaft": 5.41
+   },
+   "E_max_speed": {
+    "F_zB": 10.59,
+    "M_shaft": 0.54
+   },
+   "F_short_circuit": {
+    "M_x_shaft": 0.79,
+    "M_xB": 0.49
+   },
+   "G_shutdown": {
+    "M_x_shaft": 1.9,
+    "M_xB": 0.86
+   },
+   "H_parked": {
+    "M_yB": 6.18,
+    "F_x_shaft": 12.36
+   }
+  }
+ },
+ "blade": {
+  "glass": {
+   "cap_material": "E-glass UD / epoxy, infused, Vf 0.55",
+   "mass_kg": 20.63,
+   "static_moment_kgm_about_axis": 21.33,
+   "r_cog_m": 1.12,
+   "tip_deflection_m": 0.077,
+   "tower_clearance_m": 0.826,
+   "clearance_util": 0.09,
+   "f_flap_Hz": 15.15,
+   "f_edge_Hz": 38.32,
+   "max_util": {
+    "SIM_edge+": 0.17,
+    "SIM_edge-": 0.21,
+    "SIM_flap+": 0.23,
+    "SIM_flap-": 0.22,
+    "SLM_E+": 0.03,
+    "SLM_E-": 0.03,
+    "SLM_G+": 0.04,
+    "SLM_G-": 0.05,
+    "SLM_H+": 0.43,
+    "SLM_H-": 0.41,
+    "buckling_cap": 1.0,
+    "buckling_panel": 0.4,
+    "fatigue": 0.26,
+    "web_shear": 0.68
+   },
+   "f_flap_164rpm_Hz": 15.65,
+   "f_edge_164rpm_Hz": 38.49
+  },
+  "carbon": {
+   "cap_material": "standard modulus carbon UD / epoxy",
+   "mass_kg": 19.87,
+   "static_moment_kgm_about_axis": 20.44,
+   "r_cog_m": 1.11,
+   "tip_deflection_m": 0.042,
+   "tower_clearance_m": 0.826,
+   "clearance_util": 0.05,
+   "f_flap_Hz": 20.82,
+   "f_edge_Hz": 41.25,
+   "max_util": {
+    "SIM_edge+": 0.16,
+    "SIM_edge-": 0.2,
+    "SIM_flap+": 0.17,
+    "SIM_flap-": 0.17,
+    "SLM_E+": 0.02,
+    "SLM_E-": 0.03,
+    "SLM_G+": 0.04,
+    "SLM_G-": 0.04,
+    "SLM_H+": 0.32,
+    "SLM_H-": 0.31,
+    "buckling_cap": 0.98,
+    "buckling_panel": 0.2,
+    "fatigue": 0.14,
+    "web_shear": 0.68
+   },
+   "f_flap_164rpm_Hz": 21.19,
+   "f_edge_164rpm_Hz": 41.4
+  },
+  "root_joint": {
+   "root \u00d80.20 m, M12": {
+    "inserts": 12,
+    "bolt_circle_m": 0.165,
+    "F_bolt_kN": 39.9,
+    "F_t_Rd_kN": 60.7
+   },
+   "root \u00d80.20 m, M16": {
+    "inserts": 8,
+    "bolt_circle_m": 0.165,
+    "F_bolt_kN": 59.8,
+    "F_t_Rd_kN": 113.0
+   },
+   "root \u00d80.22 m, M12": {
+    "inserts": 10,
+    "bolt_circle_m": 0.185,
+    "F_bolt_kN": 43.0,
+    "F_t_Rd_kN": 60.7
+   },
+   "root \u00d80.22 m, M16": {
+    "inserts": 6,
+    "bolt_circle_m": 0.185,
+    "F_bolt_kN": 71.7,
+    "F_t_Rd_kN": 113.0
+   },
+   "root \u00d80.24 m, M12": {
+    "inserts": 10,
+    "bolt_circle_m": 0.205,
+    "F_bolt_kN": 39.1,
+    "F_t_Rd_kN": 60.7
+   },
+   "root \u00d80.24 m, M16": {
+    "inserts": 6,
+    "bolt_circle_m": 0.205,
+    "F_bolt_kN": 65.2,
+    "F_t_Rd_kN": 113.0
+   }
+  },
+  "loads_used_Nm": {
+   "SLM_H_flap": 18540.0,
+   "SLM_G_edge": 2580.0,
+   "SIM_res": 6063.6,
+   "SIM_op_flap": 3393.2,
+   "DEL_flap": 2221.7,
+   "DEL_edge": 1027.8,
+   "rpm_max": 204.5,
+   "gamma_E": 3.0
+  }
+ },
+ "blade_stations": {
+  "r": [
+   0.28,
+   0.348,
+   0.416,
+   0.484,
+   0.552,
+   0.62,
+   0.688,
+   0.756,
+   0.824,
+   0.892,
+   0.96,
+   1.028,
+   1.096,
+   1.164,
+   1.232,
+   1.3,
+   1.368,
+   1.436,
+   1.504,
+   1.572,
+   1.64,
+   1.708,
+   1.776,
+   1.844,
+   1.912,
+   1.98,
+   2.048,
+   2.116,
+   2.184,
+   2.252,
+   2.32,
+   2.388,
+   2.456,
+   2.524,
+   2.592,
+   2.66,
+   2.728,
+   2.796,
+   2.864,
+   2.932,
+   3.0
+  ],
+  "chord": [
+   0.207,
+   0.22,
+   0.264,
+   0.319,
+   0.362,
+   0.373,
+   0.369,
+   0.364,
+   0.358,
+   0.352,
+   0.347,
+   0.341,
+   0.335,
+   0.33,
+   0.324,
+   0.318,
+   0.313,
+   0.307,
+   0.301,
+   0.296,
+   0.29,
+   0.284,
+   0.279,
+   0.273,
+   0.268,
+   0.262,
+   0.256,
+   0.251,
+   0.245,
+   0.239,
+   0.234,
+   0.228,
+   0.222,
+   0.217,
+   0.211,
+   0.205,
+   0.2,
+   0.194,
+   0.188,
+   0.183,
+   0.177
+  ],
+  "t_over_c": [
+   1.0,
+   0.832,
+   0.669,
+   0.52,
+   0.371,
+   0.297,
+   0.291,
+   0.285,
+   0.28,
+   0.274,
+   0.268,
+   0.262,
+   0.257,
+   0.251,
+   0.246,
+   0.242,
+   0.237,
+   0.233,
+   0.228,
+   0.224,
+   0.219,
+   0.215,
+   0.21,
+   0.208,
+   0.205,
+   0.202,
+   0.2,
+   0.197,
+   0.194,
+   0.192,
+   0.189,
+   0.186,
+   0.184,
+   0.181,
+   0.18,
+   0.18,
+   0.18,
+   0.18,
+   0.18,
+   0.18,
+   0.18
+  ],
+  "t_cap_mm": [
+   4.25,
+   4.25,
+   4.25,
+   4.25,
+   4.25,
+   4.25,
+   4.25,
+   4.25,
+   4.25,
+   4.25,
+   4.25,
+   4.0,
+   4.0,
+   3.75,
+   3.75,
+   3.5,
+   3.5,
+   3.25,
+   3.0,
+   3.0,
+   2.75,
+   2.75,
+   2.5,
+   2.25,
+   2.25,
+   2.0,
+   1.75,
+   1.5,
+   1.5,
+   1.25,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0
+  ],
+  "t_web_mm": [
+   1.5,
+   1.5,
+   1.5,
+   1.5,
+   1.5,
+   1.5,
+   1.5,
+   1.5,
+   1.5,
+   1.5,
+   1.5,
+   1.5,
+   1.5,
+   1.5,
+   1.5,
+   1.5,
+   1.5,
+   1.5,
+   1.5,
+   1.5,
+   1.5,
+   1.5,
+   1.5,
+   1.5,
+   1.5,
+   1.5,
+   1.5,
+   1.5,
+   1.5,
+   1.5,
+   1.5,
+   1.5,
+   1.5,
+   1.5,
+   1.5,
+   1.5,
+   1.5,
+   1.5,
+   1.5,
+   1.5,
+   1.5
+  ],
+  "t_root_extra_mm": [
+   12.0,
+   10.8,
+   9.6,
+   8.3,
+   7.1,
+   5.9,
+   4.7,
+   3.5,
+   2.3,
+   1.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "mass_per_m": [
+   19.408,
+   19.585,
+   19.837,
+   20.28,
+   19.39,
+   17.365,
+   15.097,
+   12.811,
+   10.599,
+   8.46,
+   6.671,
+   6.419,
+   6.279,
+   6.035,
+   5.905,
+   5.676,
+   5.551,
+   5.329,
+   5.111,
+   4.993,
+   4.783,
+   4.668,
+   4.465,
+   4.274,
+   4.174,
+   3.99,
+   3.811,
+   3.635,
+   3.543,
+   3.374,
+   3.209,
+   3.121,
+   3.034,
+   2.948,
+   2.867,
+   2.79,
+   2.713,
+   2.636,
+   2.559,
+   2.482,
+   2.408
+  ],
+  "EI_flap_kNm2": [
+   1079.07,
+   937.15,
+   913.4,
+   851.28,
+   548.3,
+   342.8,
+   287.44,
+   233.9,
+   187.03,
+   146.2,
+   114.16,
+   99.92,
+   90.82,
+   79.06,
+   72.26,
+   63.25,
+   57.71,
+   50.24,
+   43.57,
+   39.54,
+   34.08,
+   30.81,
+   26.38,
+   22.84,
+   20.9,
+   18.0,
+   15.43,
+   13.14,
+   11.94,
+   10.08,
+   8.45,
+   7.62,
+   6.87,
+   6.17,
+   5.63,
+   5.19,
+   4.77,
+   4.38,
+   4.0,
+   3.65,
+   3.33
+  ],
+  "EI_edge_kNm2": [
+   1145.04,
+   1149.81,
+   1555.18,
+   2126.42,
+   2343.99,
+   2106.13,
+   1764.82,
+   1419.37,
+   1101.46,
+   808.78,
+   572.42,
+   538.71,
+   510.72,
+   479.62,
+   454.18,
+   425.85,
+   402.55,
+   376.5,
+   351.57,
+   331.3,
+   308.48,
+   290.04,
+   269.21,
+   249.59,
+   234.03,
+   216.21,
+   199.25,
+   183.12,
+   170.7,
+   156.15,
+   142.35,
+   132.01,
+   122.2,
+   112.9,
+   104.2,
+   96.04,
+   88.31,
+   81.02,
+   74.13,
+   67.65,
+   61.74
+  ]
+ },
+ "hub": {
+  "arm_checks": [
+   {
+    "d_arm_mm": 220,
+    "t_mm": 8.0,
+    "static_MPa": 68,
+    "allow_MPa": 323,
+    "fat_MPa": 16.3,
+    "fat_allow_MPa": 30.8,
+    "ok": true
+   },
+   {
+    "d_arm_mm": 220,
+    "t_mm": 10.0,
+    "static_MPa": 56,
+    "allow_MPa": 323,
+    "fat_MPa": 13.4,
+    "fat_allow_MPa": 30.8,
+    "ok": true
+   },
+   {
+    "d_arm_mm": 220,
+    "t_mm": 12.0,
+    "static_MPa": 48,
+    "allow_MPa": 323,
+    "fat_MPa": 11.5,
+    "fat_allow_MPa": 30.8,
+    "ok": true
+   },
+   {
+    "d_arm_mm": 240,
+    "t_mm": 8.0,
+    "static_MPa": 57,
+    "allow_MPa": 323,
+    "fat_MPa": 13.6,
+    "fat_allow_MPa": 30.8,
+    "ok": true
+   },
+   {
+    "d_arm_mm": 240,
+    "t_mm": 10.0,
+    "static_MPa": 46,
+    "allow_MPa": 323,
+    "fat_MPa": 11.1,
+    "fat_allow_MPa": 30.8,
+    "ok": true
+   },
+   {
+    "d_arm_mm": 240,
+    "t_mm": 12.0,
+    "static_MPa": 40,
+    "allow_MPa": 323,
+    "fat_MPa": 9.5,
+    "fat_allow_MPa": 30.8,
+    "ok": true
+   },
+   {
+    "d_arm_mm": 260,
+    "t_mm": 8.0,
+    "static_MPa": 48,
+    "allow_MPa": 323,
+    "fat_MPa": 11.5,
+    "fat_allow_MPa": 30.8,
+    "ok": true
+   },
+   {
+    "d_arm_mm": 260,
+    "t_mm": 10.0,
+    "static_MPa": 39,
+    "allow_MPa": 323,
+    "fat_MPa": 9.4,
+    "fat_allow_MPa": 30.8,
+    "ok": true
+   },
+   {
+    "d_arm_mm": 260,
+    "t_mm": 12.0,
+    "static_MPa": 33,
+    "allow_MPa": 323,
+    "fat_MPa": 8.0,
+    "fat_allow_MPa": 30.8,
+    "ok": true
+   }
+  ],
+  "chosen": {
+   "d_arm_mm": 220,
+   "t_mm": 8.0,
+   "static_MPa": 68,
+   "allow_MPa": 323,
+   "fat_MPa": 16.3,
+   "fat_allow_MPa": 30.8,
+   "ok": true
+  },
+  "mass_kg": 86.8,
+  "spinner_kg": 6.0,
+  "drum_joint": {
+   "bolts": "12 x M16 10.9 PCD 400 (Rev C interface)",
+   "Ft_kN": 9.3,
+   "F_t_Rd_kN": 113.0,
+   "slip_ok": true,
+   "T_design_kNm": 5.69
+  }
+ },
+ "drivetrain": {
+  "ultimate": {
+   "B_yaw M_yB": {
+    "kW6": 1.38,
+    "kW12": 3.1,
+    "ratio": 0.45
+   },
+   "B_yaw M_shaft": {
+    "kW6": 3.03,
+    "kW12": 5.35,
+    "ratio": 0.57
+   },
+   "D_max_thrust F_x_shaft": {
+    "kW6": 16.24,
+    "kW12": 25.37,
+    "ratio": 0.64
+   },
+   "E_max_speed F_zB": {
+    "kW6": 31.78,
+    "kW12": 63.74,
+    "ratio": 0.5
+   },
+   "E_max_speed M_shaft": {
+    "kW6": 1.62,
+    "kW12": 1.63,
+    "ratio": 0.99
+   },
+   "F_short_circuit M_x_shaft": {
+    "kW6": 2.38,
+    "kW12": 4.38,
+    "ratio": 0.54
+   },
+   "F_short_circuit M_xB": {
+    "kW6": 1.47,
+    "kW12": 2.37,
+    "ratio": 0.62
+   },
+   "G_shutdown M_x_shaft": {
+    "kW6": 5.69,
+    "kW12": 28.38,
+    "ratio": 0.2
+   },
+   "G_shutdown M_xB": {
+    "kW6": 2.58,
+    "kW12": 10.37,
+    "ratio": 0.25
+   },
+   "H_parked M_yB": {
+    "kW6": 18.54,
+    "kW12": 26.02,
+    "ratio": 0.71
+   },
+   "H_parked F_x_shaft": {
+    "kW6": 37.08,
+    "kW12": 41.64,
+    "ratio": 0.89
+   }
+  },
+  "fatigue_ranges": {
+   "dF_zB": {
+    "kW6": 13.56,
+    "kW12": 21.54,
+    "ratio": 0.63
+   },
+   "dM_xB": {
+    "kW6": 0.59,
+    "kW12": 0.85,
+    "ratio": 0.69
+   },
+   "dM_yB": {
+    "kW6": 0.7,
+    "kW12": 1.62,
+    "ratio": 0.43
+   },
+   "dF_x_shaft": {
+    "kW6": 1.06,
+    "kW12": 1.94,
+    "ratio": 0.55
+   },
+   "dM_x_shaft": {
+    "kW6": 0.48,
+    "kW12": 0.8,
+    "ratio": 0.6
+   },
+   "dM_shaft": {
+    "kW6": 1.16,
+    "kW12": 1.69,
+    "ratio": 0.69
+   }
+  },
+  "max_shaft_ratio": 0.99,
+  "verdict": "Doc 07/14 spindle (42CrMo4 140/90) and tapered roller pair reused: every shaft load below the 12 kW values"
+ },
+ "yaw": {
+  "items": [
+   [
+    "Blades 3 x 20.6 kg",
+    61.89,
+    -770,
+    570
+   ],
+   [
+    "Fixed hub + spinner",
+    92.8,
+    -720,
+    570
+   ],
+   [
+    "Generator rotor G6 (no fins)",
+    148.5,
+    -451,
+    544
+   ],
+   [
+    "Generator stator G6",
+    115.0,
+    -370,
+    537
+   ],
+   [
+    "Spindle (doc 14, reused)",
+    57.0,
+    -420,
+    535
+   ],
+   [
+    "Bedplate P1 weldment (reused)",
+    150.0,
+    -40,
+    170
+   ],
+   [
+    "Nacelle cover and electrics",
+    20.0,
+    0,
+    300
+   ],
+   [
+    "Slip ring (signals only), sensors, cabling, 1 caliper",
+    15.0,
+    -150,
+    400
+   ]
+  ],
+  "m_above_bearing_kg": 801,
+  "m_above_tower_flange_kg": 935,
+  "x_cg_mm": -327,
+  "ring": {
+   "choice": "doc 25 ring Dpw 360 reused",
+   "M_tilt_6kW_kNm": 28.0,
+   "M_tilt_12kW_kNm": 34.577364958,
+   "s0": 1.78
+  },
+  "yaw_out": {
+   "aero_yaw_moment_kNm_by_wind_and_angle": {
+    "20": {
+     "0": -0.0,
+     "15": -0.01,
+     "30": -0.04,
+     "45": 0.08,
+     "60": 0.12,
+     "75": 0.13,
+     "90": -0.02
+    },
+    "25": {
+     "0": 0.0,
+     "15": -0.02,
+     "30": -0.07,
+     "45": 0.13,
+     "60": 0.19,
+     "75": 0.21,
+     "90": -0.03
+    },
+    "30": {
+     "0": 0.0,
+     "15": -0.03,
+     "30": -0.1,
+     "45": 0.19,
+     "60": 0.27,
+     "75": 0.3,
+     "90": -0.05
+    }
+   },
+   "aero_max_kNm": 0.3,
+   "pads_breakaway_cold_kNm": 4.761,
+   "need_kNm": 5.45,
+   "drives_rated_capacity_kNm": 12.4,
+   "time_90deg_s": 180,
+   "energy_Wh": 5.9
+  },
+  "parked_Ve50": {
+   "yawed_90_thrust_kN": 0.2,
+   "yawed_90_yaw_moment_kNm": -0.3,
+   "facing_thrust_kN": 13.2,
+   "facing_yaw_moment_kNm": 0.0,
+   "yaw_hold_doc25_kNm": 8.0
+  }
+ },
+ "tower": {
+  "tower": {
+   "mass_kg": 1824.0,
+   "D_over_t_max": 51.2,
+   "util_max": 0.974,
+   "util_SLM": 1.808,
+   "util_tilt_up": 0.639,
+   "tilt_up_base_moment_kNm": 404.9,
+   "winch_line_pull_kN_ginpole_033H": 68.2,
+   "governing": "parked V_e50",
+   "M_base_design_kNm": {
+    "operation and faults (simulation)": 196.8,
+    "parked V_e50": 617.2,
+    "parked V_e1 + ice": 498.7,
+    "earthquake 0.5 g (ground D) + operation": 555.8
+   },
+   "M_base_SLM_kNm": 1145.7,
+   "f1_rigid_Hz": 0.87,
+   "f2_rigid_Hz": 5.97,
+   "f1_soft_ice_Hz": 0.81,
+   "geometry": {
+    "H": 18.0,
+    "D_base": 0.5,
+    "D_top": 0.32,
+    "t_mm": [
+     10,
+     8
+    ]
+   },
+   "exclusion_zone_rpm": [
+    47.5,
+    57.4
+   ],
+   "fatigue_damage": {
+    "z=0.0 m": 0.4671,
+    "z=9.0 m": 0.341
+   },
+   "base_flange": {
+    "M_design_kNm": 617.2,
+    "bolts": 24,
+    "size": "M24 10.9",
+    "circle_m": 0.6,
+    "F_bolt_kN": 222.9,
+    "F_t_Rd_kN": 254.2
+   }
+  },
+  "foundations": {
+   "firm soil (dense gravel, moraine)": {
+    "B": 3.8,
+    "depth": 1.6,
+    "concrete_m3": 9.5,
+    "weight_kN": 517.2,
+    "e_char_over_B": 0.235,
+    "bearing_kPa": 166.5,
+    "q_rd_kPa": 300.0,
+    "K_theta_MNm_per_rad": 2332
+   },
+   "soft volcanic soil (loose ash, pumice sand)": {
+    "B": 4.2,
+    "depth": 1.6,
+    "concrete_m3": 11.4,
+    "weight_kN": 539.0,
+    "e_char_over_B": 0.204,
+    "bearing_kPa": 95.9,
+    "q_rd_kPa": 100.0,
+    "K_theta_MNm_per_rad": 848
+   },
+   "frost-susceptible silt (thawed)": {
+    "B": 3.9,
+    "depth": 1.6,
+    "concrete_m3": 10.0,
+    "weight_kN": 528.3,
+    "e_char_over_B": 0.225,
+    "bearing_kPa": 138.2,
+    "q_rd_kPa": 150.0,
+    "K_theta_MNm_per_rad": 905
+   },
+   "rock (anchored plinth)": {
+    "plinth_m": "1.6 x 1.6 x 0.8",
+    "anchors": 8,
+    "circle_m": 1.2,
+    "T_design_kN": 248.6,
+    "bar_mm": 28,
+    "bond_length_m": 3.0,
+    "concrete_m3": 2.0
+   }
+  },
+  "window_Hz": [
+   0.75,
+   1.86
+  ],
+  "scaling": {
+   "k_ultimate": 0.89,
+   "k_fatigue": 0.96
+  },
+  "twelve_kW_doc09": {
+   "mass_kg": 1940,
+   "D_base": null
+  }
+ },
+ "electronics": {
+  "generator_current_rated_A": 12.91,
+  "generator_current_10s_A": 19.4,
+  "front_end": "doc 12 SiC active rectifier, 1,200 V, same hardware as 12 kW (rated 25 A), firmware limits 13 A / 20 A 10 s",
+  "dc_bus_V": 750,
+  "dump_chopper_kW": 12,
+  "ac_module_kW": 6.5,
+  "single_phase_possible": true,
+  "battery_module": "doc 12 isolated 48 V module, same",
+  "braking_resistor": "3 x 4 ohm star via K1 (doc 29)",
+  "aux_battery_for_yaw_out_Wh": 200
+ }
+}
