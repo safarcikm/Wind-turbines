@@ -312,3 +312,39 @@ What is new: blade moulds and root joint, generator stack length (+2 rows), larg
 8. **Tower:** update the side-side resonance and tilt-up checks in `tower.py` for the M8 rotor, then the 24 m tower.
 9. **Certification loads:** the simulator has no edgewise blade DOF or dynamic stall; the parked-yawed cases that govern need an OpenFAST/QBlade check (doc 08 open point, still valid).
 10. **3D viewer and fit-check model:** update to M8 once the drawings above exist.
+
+---
+
+## 12. Option: 8 m tower (`tower8_m8.py`, doc 34 method)
+
+Martin, 2026-11-06: "Can we have an 8m tower?" Same method and geometry as the 6 kW 8 m tower of doc 34: hub height 8.0 m, 0.20 m pedestal, tube 6.87 m, the M8 head (1,280 kg), the M8 SLM and simulated loads, class S extreme winds kept at hub height, fatigue scaled for the shorter lever and for 23 % more turbulence near the ground.
+
+**Frequency strategy.** A soft-stiff tower (0.64–1.59 Hz, like the 18 m one) is impossible at 8 m: any tube strong enough is far stiffer. The tower is therefore **stiff**: f1 above 1.15 × 1P at 131 rpm (2.51 Hz) and below 3P at rated / 1.1 (5.95 Hz). The 3P excitation crosses f1 during start-up, so the controller passes through an exclusion zone under torque, as in doc 34.
+
+| | 18 m (§7) | **8 m** |
+|---|---|---|
+| Tube | Ø550 → Ø400, 12 / 8 mm, 18 m | **Ø420 → Ø400, 10 / 8 mm, 6.87 m** |
+| Mass | 2,356 kg | **689 kg** |
+| f1 rigid / soft soil with ice | 0.97 / 0.91 Hz | **3.02 / 2.86 Hz** |
+| Exclusion zone | 53–64 rpm (1P crossing) | **52–66 rpm (3P crossing)** |
+| Governing case | parked V_e50 | earthquake 0.5 g + operation (utilisation 0.70) |
+| Fatigue damage at the base | 0.54 | **0.85** (turbulence near the ground) |
+| Base flange | 28 × M24 on 0.65 m | **16 × M24 on 0.52 m** |
+| Footing, soft volcanic soil | 4.6 m, 13.5 m³ | **3.4 m, 7.8 m³** |
+| Footing, firm soil | 4.1 m, 10.9 m³ | **3.0 m, 6.2 m³** |
+| Lowest blade tip above ground | 14.0 m | **4.0 m** |
+
+**What it costs in energy** (net, weathered blades, doc 27 site climates defined at 18 m, log-law shear to 8 m):
+
+| Site | 18 m hub | **8 m hub** | Change | Turbulence |
+|---|---|---|---|---|
+| Sheltered valley / farm (z0 0.25) | 23.0 MWh | **13.4 MWh** | **−42 %** | +23 % |
+| Open inland lowland (z0 0.05) | 33.4 MWh | **24.4 MWh** | −27 % | +16 % |
+| Coast / exposed lowland (z0 0.01) | 43.8 MWh | **35.9 MWh** | −18 % | +12 % |
+| Highland / headland (z0 0.03) | 57.0 MWh | **47.8 MWh** | −16 % | +15 % |
+
+![Energy at 8 m](../analysis/variant_m8/results/F05-tower8.png)
+
+**Assessment.** Structurally the 8 m tower is easy: 1.7 t less steel, about 40 % less concrete, a short tilt-up without a crane, and service from a low platform. But the turbine loses 16–27 % of its energy at typical sites, which is two to three times what the larger Ø8.0 m rotor gained, and 42 % at sheltered sites. The 4 m tip clearance also needs a fenced keep-out zone and is close to Icelandic snow-drift heights. Fatigue at the base (0.85) is the highest of all tower checks and must be confirmed with a dedicated simulation at 8 m (turbulence and shear across a rotor that spans 4–12 m).
+
+**Recommendation:** keep 18 m as the standard 12 kW tower and offer 8 m as an option for open coast and highland sites, or where planning rules limit height. It is also a good choice for the first prototype, where easy access matters more than energy.

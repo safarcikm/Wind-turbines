@@ -1,0 +1,158 @@
+{
+ "hub_height_m": 8.0,
+ "L_tube_m": 6.87,
+ "head_kg": 1280.0,
+ "lowest_tip_m": 4.0,
+ "fatigue_turbulence_factor": 1.234,
+ "towers": {
+  "soft-stiff": {
+   "strategy": "soft-stiff",
+   "window_Hz": [
+    0.64,
+    1.59
+   ],
+   "feasible": false
+  },
+  "stiff": {
+   "strategy": "stiff",
+   "window_Hz": [
+    2.51,
+    5.95
+   ],
+   "feasible": true,
+   "tower": {
+    "mass_kg": 689.0,
+    "D_over_t_max": 51.2,
+    "util_max": 0.699,
+    "util_SLM": 1.176,
+    "util_tilt_up": 0.32,
+    "tilt_up_base_moment_kNm": 143.3,
+    "winch_line_pull_kN_ginpole_033H": 63.2,
+    "governing": "earthquake 0.5 g (ground D) + operation",
+    "M_base_design_kNm": {
+     "operation and faults (simulation)": 119.8,
+     "parked V_e50": 241.3,
+     "parked V_e1 + ice": 185.8,
+     "earthquake 0.5 g (ground D) + operation": 312.6
+    },
+    "M_base_SLM_kNm": 525.8,
+    "f1_rigid_Hz": 3.02,
+    "f2_rigid_Hz": 23.31,
+    "f1_soft_ice_Hz": 2.86,
+    "geometry": {
+     "L_tube": 6.87,
+     "D_base": 0.42,
+     "D_top": 0.4,
+     "t_mm": [
+      10,
+      8
+     ]
+    },
+    "exclusion_zone_rpm": [
+     52.0,
+     66.4
+    ],
+    "fatigue_damage": {
+     "z=0.0 m": 0.8519,
+     "z=3.4 m": 0.1115
+    },
+    "base_flange": {
+     "M_design_kNm": 312.6,
+     "bolts": 16,
+     "size": "M24 10.9",
+     "circle_m": 0.52,
+     "F_bolt_kN": 195.4,
+     "F_t_Rd_kN": 254.2
+    }
+   },
+   "foundations": {
+    "firm soil (dense gravel, moraine)": {
+     "B": 3.0,
+     "depth": 1.6,
+     "concrete_m3": 6.2,
+     "weight_kN": 327.7,
+     "e_char_over_B": 0.206,
+     "bearing_kPa": 241.5,
+     "q_rd_kPa": 300.0,
+     "K_theta_MNm_per_rad": 1147
+    },
+    "soft volcanic soil (loose ash, pumice sand)": {
+     "B": 3.4,
+     "depth": 1.6,
+     "concrete_m3": 7.8,
+     "weight_kN": 358.6,
+     "e_char_over_B": 0.166,
+     "bearing_kPa": 98.4,
+     "q_rd_kPa": 100.0,
+     "K_theta_MNm_per_rad": 450
+    },
+    "frost-susceptible silt (thawed)": {
+     "B": 3.2,
+     "depth": 1.6,
+     "concrete_m3": 7.0,
+     "weight_kN": 359.5,
+     "e_char_over_B": 0.176,
+     "bearing_kPa": 128.0,
+     "q_rd_kPa": 150.0,
+     "K_theta_MNm_per_rad": 500
+    },
+    "rock (anchored plinth)": {
+     "plinth_m": "1.6 x 1.6 x 0.8",
+     "anchors": 8,
+     "circle_m": 1.2,
+     "T_design_kN": 122.6,
+     "bar_mm": 20,
+     "bond_length_m": 3.0,
+     "concrete_m3": 2.0
+    }
+   }
+  }
+ },
+ "energy": {
+  "sheltered": {
+   "name": "Sheltered valley / farm",
+   "z0": 0.25,
+   "v18": 5.0,
+   "v8": 4.05,
+   "aep18_kWh": 23020,
+   "aep8_kWh": 13387,
+   "loss_pct": 41.8,
+   "turb_increase_pct": 23.4
+  },
+  "inland": {
+   "name": "Open inland lowland",
+   "z0": 0.05,
+   "v18": 6.0,
+   "v8": 5.17,
+   "aep18_kWh": 33396,
+   "aep8_kWh": 24408,
+   "loss_pct": 26.9,
+   "turb_increase_pct": 16.0
+  },
+  "coastal": {
+   "name": "Coast / exposed lowland",
+   "z0": 0.01,
+   "v18": 7.0,
+   "v8": 6.24,
+   "aep18_kWh": 43762,
+   "aep8_kWh": 35878,
+   "loss_pct": 18.0,
+   "turb_increase_pct": 12.1
+  },
+  "highland": {
+   "name": "Highland / headland",
+   "z0": 0.03,
+   "v18": 8.5,
+   "v8": 7.42,
+   "aep18_kWh": 56954,
+   "aep8_kWh": 47822,
+   "loss_pct": 16.0,
+   "turb_increase_pct": 14.5
+  }
+ },
+ "tower18": {
+  "mass_kg": 2356.0,
+  "f1_Hz": 0.97,
+  "footing_soft": 13.5
+ }
+}

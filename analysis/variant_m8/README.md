@@ -17,6 +17,7 @@ python3 bedplate_m8.py     # NP1-300 as drawn vs lighter NP8-300 (doc 32 model)
 python3 hub_yaw_m8.py      # pitch bearing, collective, hub, brake, yaw
 python3 tower_m8.py        # tower + footings (M8, and current with its real 1,286 kg head)
 python3 figures_m8.py      # F01-F04
+python3 tower8_m8.py       # option: 8 m hub-height tower and energy at 8 m (doc 35 §12), F05
 ```
 
 Results in `results/` (JSON + figures). Time series are not kept. The tower frequency and head mass
