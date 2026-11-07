@@ -1,0 +1,142 @@
+[
+ {
+  "n": 1,
+  "title": "Bedplate NP8-300 on the stand; yaw slewing ring Dpw 410, gearmotors and their brackets",
+  "parts": [
+   "NP8-300",
+   "NM8-911-I",
+   "NM8-911-O",
+   "NM8-912-L",
+   "NM8-912-R",
+   "NP1-420-L",
+   "NP1-420-R"
+  ]
+ },
+ {
+  "n": 2,
+  "title": "Spindle Rev D with front spacer and rear seal sleeve bolted to the bedplate front plate",
+  "parts": [
+   "NP1-100D",
+   "NP1-101",
+   "NP1-102"
+  ]
+ },
+ {
+  "n": 3,
+  "title": "Stator Rev D: carrier, wound tooth segments (104 mm), clamp ring; bearing cones on the spindle",
+  "parts": [
+   "NP1-200D",
+   "NP1-201D",
+   "NP1-203D",
+   "NP1-202",
+   "NM8-913-F",
+   "NM8-913-R"
+  ]
+ },
+ {
+  "n": 4,
+  "title": "Rotor drum Rev D with 7 magnet rows lowered over the stator on the guide tool; disc, seal covers, rear cover",
+  "parts": [
+   "NP1-210D",
+   "NP1-220F",
+   "NP1-230",
+   "NP1-211-F",
+   "NP1-211-R",
+   "NP1-212C"
+  ]
+ },
+ {
+  "n": 5,
+  "title": "Three brake calipers on their brackets, lock pin holder with overspeed sensors",
+  "parts": [
+   "NP1-310",
+   "NM8-915",
+   "NM8-311",
+   "NM8-915-T",
+   "NP1-320",
+   "NP1-321",
+   "NM8-914"
+  ]
+ },
+ {
+  "n": 6,
+  "title": "Yaw pad units, lock, encoder and cable hanger; cover frame, lower cover tray and junction box",
+  "parts": [
+   "NY-410-L",
+   "NY-410-R",
+   "NY-430",
+   "NY-440",
+   "NY-460",
+   "NM8-710",
+   "NM8-700-1",
+   "NM8-730"
+  ]
+ },
+ {
+  "n": 7,
+  "title": "Tower-top adapter on the yaw outer ring (nacelle now complete for transport)",
+  "parts": [
+   "NY-400"
+  ]
+ },
+ {
+  "n": 8,
+  "title": "Pitch hub pre-assembled on the bench (weldment, pitch bearings, cranks, links, yoke, cylinder, supercaps, nose frame), then on the drum flange (12 \u00d7 M16 10.9)",
+  "parts": [
+   "NM8-200",
+   "NM8-250",
+   "NM8-260",
+   "NM8-261",
+   "NM8-262",
+   "NM8-270",
+   "NM8-280",
+   "NM8-290"
+  ]
+ },
+ {
+  "n": 9,
+  "title": "Blades on the pitch bearings (12 \u00d7 M16 each), pitch zero set with the cylinder at its \u22122.0\u00b0 end stop",
+  "parts": [
+   "NM8-100-1",
+   "NM8-100-2",
+   "NM8-100-3",
+   "NM8-105"
+  ]
+ },
+ {
+  "n": 10,
+  "title": "Spinner with blade boots",
+  "parts": [
+   "NM8-210"
+  ]
+ },
+ {
+  "n": 11,
+  "title": "Upper cover lid and met mast",
+  "parts": [
+   "NM8-700-2",
+   "NM8-720"
+  ]
+ },
+ {
+  "n": 12,
+  "title": "On site: footing with anchor cage, hinge brackets, tower lying on the hinge; head bolted to the tower top",
+  "parts": [
+   "NM8-500",
+   "NM8-510",
+   "NM8-410",
+   "NM8-400"
+  ]
+ },
+ {
+  "n": 13,
+  "title": "Tilt-up with the gin pole and winch, base nuts torqued; cabinet, resistor box, cabling, hand-hole cover",
+  "parts": [
+   "NM8-420",
+   "NM8-620",
+   "NM8-600",
+   "NM8-800",
+   "NM8-401"
+  ]
+ }
+]

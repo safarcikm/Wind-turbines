@@ -1,0 +1,278 @@
+{
+  "gamma_f": 1.35,
+  "ultimate_envelope": {
+    "thrust": {
+      "characteristic": 6558.7,
+      "design": 8854.3,
+      "governing": "DLC 1.3 at 24 m/s, yaw 0, azimuth 0"
+    },
+    "Mflap0": {
+      "characteristic": 9852.2,
+      "design": 13300.5,
+      "governing": "DLC 7.1-parked-stuck-fine at 44.0 m/s, yaw 0, azimuth 0"
+    },
+    "Medge0": {
+      "characteristic": 11353.7,
+      "design": 15327.5,
+      "governing": "DLC 6.x-parked-Vref at 55.0 m/s, yaw 90, azimuth 0"
+    },
+    "Mres0": {
+      "characteristic": 11417.9,
+      "design": 15414.2,
+      "governing": "DLC 6.x-parked-Vref at 55.0 m/s, yaw 90, azimuth 0"
+    },
+    "Mtilt": {
+      "characteristic": 11858.4,
+      "design": 16008.8,
+      "governing": "DLC 7.1-parked-stuck-fine at 44.0 m/s, yaw 0, azimuth 0"
+    },
+    "Myaw": {
+      "characteristic": 9193.0,
+      "design": 12410.6,
+      "governing": "DLC 7.1-parked-stuck-fine at 44.0 m/s, yaw 30, azimuth 60"
+    },
+    "Mbase": {
+      "characteristic": 51417.5,
+      "design": 69413.6,
+      "governing": "DLC 1.3 at 24 m/s, yaw 0, azimuth 0"
+    },
+    "Qaero": {
+      "characteristic": 10591.0,
+      "design": 14297.8,
+      "governing": "DLC 6.x-parked-Vref at 55.0 m/s, yaw 30, azimuth 60"
+    },
+    "Qgen": {
+      "characteristic": 14334.2,
+      "design": 19351.2,
+      "governing": "DLC 1.1 at 12 m/s, yaw 0, azimuth 0"
+    },
+    "rpm": {
+      "characteristic": 219.6,
+      "design": 219.6,
+      "governing": "DLC 1.3 at 24 m/s, yaw 0, azimuth 0"
+    },
+    "Fimb": {
+      "characteristic": 8180.5,
+      "design": 11043.6,
+      "governing": "DLC 1.5-ice at 12 m/s, yaw 0, azimuth 0"
+    }
+  },
+  "per_dlc_max": {
+    "1.1": {
+      "thrust": 4698.5,
+      "Mflap0": 4762.1,
+      "Medge0": 2829.7,
+      "Mres0": 5059.8,
+      "Mtilt": 7795.9,
+      "Myaw": 6254.5,
+      "Mbase": 36885.7,
+      "Qaero": 5885.7,
+      "Qgen": 14334.2,
+      "rpm": 178.2,
+      "Fimb": 0
+    },
+    "1.3": {
+      "thrust": 6558.7,
+      "Mflap0": 6083.2,
+      "Medge0": 2798.3,
+      "Mres0": 6384.4,
+      "Mtilt": 5954.1,
+      "Myaw": 6543.5,
+      "Mbase": 51417.5,
+      "Qaero": 8262.1,
+      "Qgen": 14334.2,
+      "rpm": 219.6,
+      "Fimb": 0
+    },
+    "1.4-EOG": {
+      "thrust": 3399.1,
+      "Mflap0": 2896.3,
+      "Medge0": 1058.2,
+      "Mres0": 2915.3,
+      "Mtilt": 1762.3,
+      "Myaw": 651.1,
+      "Mbase": 28202.4,
+      "Qaero": 2009.9,
+      "Qgen": 1214.7,
+      "rpm": 141.4,
+      "Fimb": 0
+    },
+    "1.5-ice": {
+      "thrust": 3251.9,
+      "Mflap0": 3101.4,
+      "Medge0": 1695.1,
+      "Mres0": 3134.6,
+      "Mtilt": 3610.7,
+      "Myaw": 3396.0,
+      "Mbase": 26505.8,
+      "Qaero": 2379.4,
+      "Qgen": 1239.2,
+      "rpm": 145.2,
+      "Fimb": 8180.5
+    },
+    "2.1-runaway": {
+      "thrust": 3129.4,
+      "Mflap0": 4178.6,
+      "Medge0": 1873.1,
+      "Mres0": 4296.4,
+      "Mtilt": 5325.9,
+      "Myaw": 5881.7,
+      "Mbase": 28964.4,
+      "Qaero": 3518.3,
+      "Qgen": 14334.2,
+      "rpm": 154.3,
+      "Fimb": 0
+    },
+    "2.2-loss-torque-EOG": {
+      "thrust": 2375.0,
+      "Mflap0": 2247.2,
+      "Medge0": 1514.5,
+      "Mres0": 2298.0,
+      "Mtilt": 1762.3,
+      "Myaw": 651.1,
+      "Mbase": 21024.8,
+      "Qaero": 3744.1,
+      "Qgen": 13095.0,
+      "rpm": 139.8,
+      "Fimb": 0
+    },
+    "2.2-loss-torque": {
+      "thrust": 3122.4,
+      "Mflap0": 3207.6,
+      "Medge0": 1827.0,
+      "Mres0": 3333.2,
+      "Mtilt": 4617.0,
+      "Myaw": 3695.5,
+      "Mbase": 25655.5,
+      "Qaero": 3177.2,
+      "Qgen": 13095.0,
+      "rpm": 140.5,
+      "Fimb": 0
+    },
+    "2.3-stuck-blade-stop": {
+      "thrust": 3053.4,
+      "Mflap0": 3720.1,
+      "Medge0": 2011.0,
+      "Mres0": 3770.7,
+      "Mtilt": 5211.6,
+      "Myaw": 4399.9,
+      "Mbase": 25258.7,
+      "Qaero": 3274.2,
+      "Qgen": 14334.2,
+      "rpm": 142.4,
+      "Fimb": 0
+    },
+    "5.1-estop": {
+      "thrust": 3059.9,
+      "Mflap0": 3279.0,
+      "Medge0": 2278.9,
+      "Mres0": 3993.2,
+      "Mtilt": 5633.5,
+      "Myaw": 4696.9,
+      "Mbase": 24610.0,
+      "Qaero": 3647.5,
+      "Qgen": 14334.2,
+      "rpm": 150.0,
+      "Fimb": 0
+    },
+    "6.x-parked-Vref": {
+      "thrust": 1171.9,
+      "Mflap0": 2966.3,
+      "Medge0": 11353.7,
+      "Mres0": 11417.9,
+      "Mtilt": 4174.3,
+      "Myaw": 1396.8,
+      "Mbase": 14033.7,
+      "Qaero": 10591.0,
+      "Qgen": 0,
+      "rpm": 0,
+      "Fimb": 0
+    },
+    "7.1-parked-stuck-fine": {
+      "thrust": 4969.4,
+      "Mflap0": 9852.2,
+      "Medge0": 5325.1,
+      "Mres0": 9866.4,
+      "Mtilt": 11858.4,
+      "Myaw": 9193.0,
+      "Mbase": 48849.1,
+      "Qaero": 5203.8,
+      "Qgen": 0,
+      "rpm": 0,
+      "Fimb": 0
+    }
+  },
+  "fatigue_DEL": {
+    "Mflap0": {
+      "m": 10,
+      "DEL_1e7": 5248.4
+    },
+    "Medge0": {
+      "m": 10,
+      "DEL_1e7": 2528.2
+    },
+    "thrust": {
+      "m": 4,
+      "DEL_1e7": 5243.1
+    },
+    "Mtilt": {
+      "m": 4,
+      "DEL_1e7": 9396.7
+    },
+    "Myaw": {
+      "m": 4,
+      "DEL_1e7": 9425.1
+    },
+    "Mbase": {
+      "m": 4,
+      "DEL_1e7": 35545.2
+    },
+    "Qaero": {
+      "m": 4,
+      "DEL_1e7": 3875.2
+    }
+  },
+  "mean_power_W_by_wind": {
+    "4": 1125.0,
+    "6": 3557.0,
+    "8": 7570.0,
+    "10": 11207.0,
+    "12": 12699.0,
+    "14": 13414.0,
+    "16": 12230.0,
+    "18": 8902.0,
+    "20": 8634.0,
+    "22": 8634.0,
+    "24": 10656.0,
+    "26": 9420.0,
+    "28": 7415.0,
+    "30": 6004.0
+  },
+  "unintended_trips_in_DLC_1_1_1_3": [
+    "1.1 12 seed 0",
+    "1.1 16 seed 2",
+    "1.1 18 seed 0",
+    "1.1 18 seed 2",
+    "1.1 20 seed 0",
+    "1.1 20 seed 1",
+    "1.1 20 seed 2",
+    "1.1 22 seed 0",
+    "1.1 22 seed 1",
+    "1.1 22 seed 2",
+    "1.1 24 seed 0",
+    "1.1 24 seed 2",
+    "1.1 26 seed 0",
+    "1.1 26 seed 2",
+    "1.1 28 seed 0",
+    "1.1 28 seed 2",
+    "1.3 10.5 seed 100",
+    "1.3 10.5 seed 101",
+    "1.3 14 seed 100",
+    "1.3 14 seed 101",
+    "1.3 18 seed 100",
+    "1.3 18 seed 101",
+    "1.3 24 seed 100",
+    "1.3 24 seed 101"
+  ],
+  "n_runs": 103
+}

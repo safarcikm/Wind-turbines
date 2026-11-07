@@ -1,0 +1,89 @@
+pos,pid,name,qty,make_buy,material,mass,drawing
+,,A ROTOR,,,,,
+1,NM8-100,"Blade Ø8.0 m, glass/epoxy, carbon UD caps (B1–B3)",3,make,"E-glass/epoxy, carbon UD caps, PVC core",34.1,NM8-100
+2,NM8-105,"Root insert M16 (12 per blade, bonded)",36,make,C45E+QT zinc-flake coated,0.8,NM8-105
+3,NM8-200,"Hub weldment: shell Ø530 × 10, 3 necks Ø360, drum flange",1,make,"S355NL, welded, stress relieved, machined",179.8,NM8-200
+4,NM8-210,Spinner (GRP 4 mm) with blade boots,1,make,"glass/polyester, gelcoat RAL 9010",27.6,NM8-210
+5,NM8-250,"Pitch bearings Dpw 300 four-point (3, bought)",1,buy,bought: 42CrMo4 rings,76.2,NM8-250
+6,NM8-260,Pitch cranks r140 with pins (3),1,make,42CrMo4+QT / S355 tube,30.0,NM8-260
+7,NM8-261,Pitch links 220 mm with spherical eyes (3),1,make,S355 / bought rod ends,4.5,NM8-261
+8,NM8-262,Yoke + 3 guide rods,1,make,S355 plate / C45 chromed rods,8.0,NM8-262
+9,NM8-270,"Electric pitch cylinder ~28.5 kN rated, 204 mm stroke + motor (bought)",1,buy,bought,14.0,NM8-250
+10,NM8-280,Supercap module + pitch drive/controller (bought),1,buy,bought,6.5,NM8-250
+11,NM8-290,Nose frame (actuator + electronics carrier),1,make,S355 rings + tube struts,6.0,NM8-290
+,,B DRIVETRAIN AND GENERATOR REV D,,,,,
+12,NM8-311,Third caliper bracket (135°),1,make,"S355J2+N 25 plate, welded",7.0,NM8-311
+13,NM8-913,Tapered roller bearing 32028 X (front + rear),2,buy,bought 32028 X,4.0,NM8-910
+14,NM8-914,"Overspeed sensors M18 inductive (2, bought)",1,buy,bought M18 PNP,0.4,NM8-910
+15,NM8-915,Spring-applied brake caliper 4.4 kNm (3 on the disc),3,buy,"bought, spring-applied",9.0,NM8-910
+16,NP1-100D,Spindle Rev D (30 mm longer between the rear seat and the flange),1,make,42CrMo4+QT forged,59.2,NP1-100D
+17,NP1-101,Front spacer / seal counterface Ø180 (Rev B),1,make,"42CrMo4+QT, induction hardened",1.4,NP1-101
+18,NP1-102,Rear seal sleeve Ø195 on the Ø155 shoulder (Rev B),1,make,"42CrMo4+QT, induction hardened",1.3,NP1-102
+19,NP1-200D,"Stator carrier Rev D, 45 dovetail grooves, rim 104 mm",1,make,S355J2+N,45.4,NP1-200D
+20,NP1-201D,"Stator Rev D: 45 tooth-segment stacks, 104 mm (7 magnet rows)",1,make,"M270-35A 0.35 mm, self-bonding",71.0,NP1-201D
+21,NP1-202,Stator front clamp ring,1,make,1.4404 (non-magnetic),2.2,NP1-202
+22,NP1-203D,"Coils on segments, 45 × 28 turns, 104 mm stack",1,make,"Cu enamelled Ø1.55 class 200, NKN 0.30",20.0,NP1-203D
+23,NP1-210D,"Rotor drum weldment Rev D (shell +30; Rev C fins and ribs, see NP1-210C)",1,make,S355J2+N,95.5,NP1-210D
+24,NP1-211-F,Front bearing seal cover,1,make,S355J2,1.5,NP1-211
+25,NP1-211-R,"Rear bearing seal cover, bore Ø198 (Rev B)",1,make,S355J2,1.4,NP1-211
+26,NP1-212C,Drum rear cover with 24 fan blades (Rev C; blades not modelled),1,make,EN AW-5083-H111,7.2,NP1-212C
+27,NP1-220F,Magnets 280 × N45SH 30×15×12 in 7 rows + comb + sleeve,1,make,NdFeB N45SH,15.0,NP1-220F
+28,NP1-230,Brake disc Ø880/Ø652 with 12 lock holes (Rev B),1,make,C45E+N 16 mm,33.6,NP1-230
+29,NP1-310,"Rotor brake caliper bracket (left, Rev B)",1,make,S355J2+N 25 plate,18.1,NP1-310
+30,NP1-320,"Rotor lock pin Ø20 (engaged, top)",1,make,42CrMo4+QT,0.5,NP1-320
+31,NP1-321,Lock pin holder with 2 overspeed sensor seats,1,make,S355J2,24.5,NP1-321
+,,C NACELLE,,,,,
+32,NM8-700-1,"Nacelle cover, lower tray (GRP 5 mm)",1,make,"glass/polyester, gelcoat RAL 9010",15.7,NM8-700
+33,NM8-700-2,"Nacelle cover, upper lid (GRP 5 mm)",1,make,"glass/polyester, gelcoat RAL 9010",17.7,NM8-700
+34,NM8-710,Cover support arms + rear rail,1,make,S235 galv.,8.3,NM8-710
+35,NM8-720,"Met mast: anemometer, vane, air terminal",1,make,1.4404 tube 42.4 × 2 + bought sensors,4.5,NM8-720
+36,NP8-300,Bedplate weldment 12 kW NP8 (plates 20 / 30 / 10),1,make,"S355J2+N plates, stress relieved, machined",124.3,NP8-300
+,,D YAW SYSTEM,,,,,
+37,NM8-911,"Yaw slewing ring Dpw 410, z165 m4",1,buy,"bought: 42CrMo4, induction hardened teeth",66.0,NM8-911
+38,NM8-912,"Yaw gearmotor 0.25 kW, output ≥ 2.3 kNm static, motor brake",2,buy,bought,19.0,NM8-912
+39,NP1-420,Yaw drive bracket,2,make,S355J2+N,7.7,NP1-420
+40,NY-400,Tower-top adapter with friction track,1,make,S355J2+N weldment,118.3,NY-400
+41,NY-410,Friction pad unit,2,make,S355 / DIN 2093 springs / organic pads,14.0,NY-410
+42,NY-430,Yaw lock (screw block),1,make,42CrMo4 / S355,6.5,NY-430
+43,NY-440,Yaw encoder + cam limit switch unit,1,make,S355 + absolute encoder + cam switch,6.0,NY-440
+44,NY-460,Cable hanger tube + loop cleat,1,make,S355 tube 168.3 × 4.5,10.0,NY-460
+,,E ELECTRICAL,,,,,
+45,NM8-600,Braking / dump resistor box (vented),1,make,1.4301 box + steel-grid resistors,18.0,NM8-600
+46,NM8-620,Tower base cabinet IP55 800 × 600 × 300 on stand,1,make,stand S235 galv.; bought enclosure,95.0,NM8-620
+47,NM8-730,Nacelle junction box IP66 (400 × 340 × 150),1,make,bought: 1.4301 enclosure,9.0,NM8-800
+48,NM8-800,Drop cable + base duct (cabling route),1,make,H07RN-F 4G10 + 2 × LiYCY signal; PE duct Ø110,12.0,NM8-800
+,,F TOWER,,,,,
+49,NM8-400,"Tower 8 m, Ø420 → Ø400, t 10/8, one piece",1,make,"S355J2+N, hot-dip galvanised",717.9,NM8-400
+50,NM8-401,Hand-hole cover 200 × 350 × 6 with gasket,1,make,S355 galv.,3.3,NM8-400
+51,NM8-410,Base hinge brackets + hinge pin Ø50,1,make,S355J2+N galv.; pin 42CrMo4+QT,37.4,NM8-410
+,,G FOUNDATION,,,,,
+52,NM8-500,Spread footing (firm ground) with pedestal,1,make,"C30/37 XF4 air-entrained, B500C",14880.0,NM8-500
+53,NM8-510,Anchor cage 16 × M24 + 4 hinge anchors,1,make,"M24 8.8 HDG threaded rod, S355 template rings",163.7,NM8-510
+,,H TOOLS AND MOULDS,,,,,
+54,NM8-110-1,"Blade mould, lower (pressure side) half on frame",1,make,"GRP tooling laminate 12 mm, vinylester tooling gelcoat",118.1,NM8-110
+55,NM8-110-2,"Blade mould, upper (suction side) half",1,make,GRP tooling laminate 12 mm,118.1,NM8-110
+56,NM8-110-3,Mould frame (RHS 80 × 80 × 4),1,make,S235 RHS 80×80×4,178.6,NM8-110
+57,NM8-420,Gin pole 3.0 m (erection tool),1,make,S355 tube 168.3 × 6.3,94.0,NM8-420
+,,"J FASTENERS, CABLES, SITE MATERIALS",,,,,
+58,NM8-900-01,Bolt M16 × 90 10.9 zinc-flake + washer (blade roots into the pitch bearing inner rings),36,buy,10.9 zinc-flake,0.20,NM8-900
+59,NM8-900-02,Bolt M16 × 70 10.9 (hub to drum),12,buy,10.9 zinc-flake,0.17,NM8-900
+60,NM8-900-03,"Bolt M16 × 80 10.9 (pitch bearing outer rings to hub necks, 20 each)",60,buy,10.9 zinc-flake,0.18,NM8-900
+61,NM8-900-04,Bolt M20 × 90 10.9 (spindle to bedplate),12,buy,10.9 zinc-flake,0.32,NM8-900
+62,NM8-900-05,"HV set M16 × 110 10.9 (yaw inner ring, PCD 350)",16,buy,EN 14399-4,0.26,NM8-900
+63,NM8-900-06,"Bolt M16 × 70 10.9 (yaw outer ring PCD 490, pads, calipers, brackets)",40,buy,10.9 zinc-flake,0.17,NM8-900
+64,NM8-900-07,HV set M20 × 90 10.9 (adapter to tower),16,buy,EN 14399-4,0.40,NM8-900
+65,NM8-900-08,"Nut M24 8.8 HDG + plate washer (base 16 × 3, hinge 8)",56,buy,8.8 HDG,0.15,NM8-900
+66,NM8-900-09,"Small fasteners kit M6–M12 A4 (cover, spinner, mast, nose frame, cabinet)",1,buy,A4-70,3.00,NM8-900
+67,NM8-800-W1,Cable H07RN-F 4G10 (generator → box),3,buy,m,0.60,NM8-800
+68,NM8-800-W2,Cable H07RN-F 4G10 (box → loop → hand hole),12,buy,m,0.60,NM8-800
+69,NM8-800-W3,Cable NYY-J 4 × 10 (hand hole → cabinet),4,buy,m,0.50,NM8-800
+70,NM8-800-W4,Cable ÖLFLEX 4G1.5 shielded (3 brake calipers),20,buy,m,0.10,NM8-800
+71,NM8-800-W5,Cable LiYCY 12 × 0.5 (sensors),16,buy,m,0.12,NM8-800
+72,NM8-800-W6,Cable ÖLFLEX 7G1.5 (yaw motors),16,buy,m,0.15,NM8-800
+73,NM8-800-W7,"Slip ring 6 power + 6 signal (pitch supply and bus, in the nose)",1,buy,,1.50,NM8-800
+74,NM8-800-W8,Earthing conductor Cu 50 mm² + ring earth + 2 rods 3 m,1,buy,Cu,18.00,NM8-800
+75,NM8-500-M1,Concrete C30/37 XF4 air-entrained (firm ground),6.2 m³,buy,ready-mix,,NM8-500
+76,NM8-500-M2,"Rebar B500C (mesh top + bottom, pedestal cage)",1,buy,≈ 460 kg,460.00,NM8-500
+77,NM8-500-M3,"Non-shrink grout ≥ 40 MPa, 30 mm under the base flange",70 l,buy,,,NM8-500
+78,NM8-600-K1,Contactor K1 3-pole NC (mirror contacts) + safety relay PL d,1,buy,,2.00,NM8-600
+79,NM8-620-PE,"Converter 12 kW, dump chopper, AC module, 48 V module, controller (doc 12)",1,make,in-house electronics,60.00,NM8-620

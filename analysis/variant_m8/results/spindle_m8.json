@@ -1,0 +1,161 @@
+{
+ "loads_used": {
+  "M_HUB": 18.22,
+  "F_STATIC": [
+   64.6,
+   69.3
+  ],
+  "F_AX_PARKED": 65.56,
+  "T_RATED": 1.09,
+  "T_BRAKE": 13.1,
+  "T_SLM_G": 42.26,
+  "TILT_YAW": 52.4
+ },
+ "load_note": "kN / kNm; M_HUB, F_STATIC scaled from doc 14 by the M8/current envelope ratio",
+ "k_tilt": 1.86,
+ "k_thrust": 1.57,
+ "k_fatigue": 1.64,
+ "bearings": {
+  "designation": "32028 X",
+  "d_D_T_mm": [
+   140.0,
+   210.0,
+   45.0
+  ],
+  "C_kN": 280.0,
+  "C0_kN": 430.0,
+  "ratings_note": "typical catalogue values, confirm with supplier",
+  "s0_front": 6.7,
+  "s0_rear": 6.2,
+  "s0_axial_parked": 3.8,
+  "equivalent_load_kN": [
+   14.778,
+   4.53192
+  ],
+  "L10_million_rev": [
+   18133,
+   932365
+  ],
+  "L10_target_million_rev": 2814,
+  "life_factor": [
+   6.4,
+   331.3
+  ],
+  "fits": {
+   "cups": "Ø210 P7 (rotating outer-ring load): interference 0.006 to 0.079",
+   "front_cone": "Ø140 f6 (stationary inner ring, point load, slides for preload): clearance 0.018 to 0.068",
+   "rear_cone": "Ø140 j6 against shoulder Ø155"
+  },
+  "preload": "axial preload 2 to 4 kN, set as −0.02 to −0.05 mm end play with the KMT 27 nut; verified by bearing rolling torque before seals are fitted"
+ },
+ "spindle": {
+  "sections": {
+   "rear seat Ø140 (x 360)": {
+    "M_kNm": 26.7,
+    "sigma_nom_MPa": 119.6,
+    "Kt": 1.0,
+    "sigma_peak_MPa": 119.6
+   },
+   "cone shoulder Ø155/140 R2.5 (x 382.5)": {
+    "M_kNm": 27.3,
+    "sigma_nom_MPa": 122.0,
+    "Kt": 1.9,
+    "sigma_peak_MPa": 231.8
+   },
+   "flange fillet Ø150 R10 (x 460)": {
+    "M_kNm": 29.1,
+    "sigma_nom_MPa": 100.8,
+    "Kt": 1.45,
+    "sigma_peak_MPa": 146.2
+   },
+   "thread relief M135 (x 80)": {
+    "M_kNm": 0.9,
+    "sigma_nom_MPa": 5.3,
+    "Kt": 2.5,
+    "sigma_peak_MPa": 13.2
+   }
+  },
+  "yield_MPa": 650.0,
+  "static_reserve_min": 2.5,
+  "fatigue": {
+   "endurance_allow_MPa": 197,
+   "worst_amplitude_MPa": 115.9,
+   "reserve": 1.7
+  },
+  "mass_kg": 56.8
+ },
+ "bolted_joints": [
+  {
+   "joint": "spindle flange to bedplate",
+   "bolts": "12x M20 10.9",
+   "pcd_mm": 350,
+   "tightening_Nm": 540,
+   "min_preload_kN": 128.8,
+   "slip_capacity_kN": 309.1,
+   "slip_demand_kN": 48.5,
+   "slip_factor": 6.4,
+   "max_external_axial_per_bolt_kN": 55.4,
+   "separation_factor": 2.3
+  },
+  {
+   "joint": "stator carrier to spindle flange (thermal paste, mu 0.1)",
+   "bolts": "12x M12 10.9",
+   "pcd_mm": 240,
+   "tightening_Nm": 110,
+   "min_preload_kN": 44.1,
+   "slip_capacity_kN": 52.9,
+   "slip_demand_kN": 37.5,
+   "slip_factor": 1.4,
+   "max_external_axial_per_bolt_kN": 0.0,
+   "separation_factor": 44100.0
+  },
+  {
+   "joint": "hub to drum web (doc 13)",
+   "bolts": "12x M16 10.9",
+   "pcd_mm": 400,
+   "tightening_Nm": 280,
+   "min_preload_kN": 110.0,
+   "slip_capacity_kN": 396.0,
+   "slip_demand_kN": 231.3,
+   "slip_factor": 1.7,
+   "max_external_axial_per_bolt_kN": 20.6,
+   "separation_factor": 5.3
+  },
+  {
+   "joint": "brake disc to drum flange ring",
+   "bolts": "24x M12 10.9",
+   "pcd_mm": 662,
+   "tightening_Nm": 110,
+   "min_preload_kN": 44.1,
+   "slip_capacity_kN": 211.7,
+   "slip_demand_kN": 127.7,
+   "slip_factor": 1.7,
+   "max_external_axial_per_bolt_kN": 0.0,
+   "separation_factor": 44100.0
+  },
+  {
+   "joint": "rear cover to drum (non-structural)",
+   "bolts": "24x M10 10.9",
+   "pcd_mm": 644,
+   "tightening_Nm": 65,
+   "min_preload_kN": 30.1,
+   "slip_capacity_kN": 144.5,
+   "slip_demand_kN": 0.5,
+   "slip_factor": 289.0,
+   "max_external_axial_per_bolt_kN": 0.0,
+   "separation_factor": 30100.0
+  }
+ ],
+ "brake": {
+  "disc_od_id_mm": [
+   880.0,
+   652.0
+  ],
+  "effective_radius_m": 0.37,
+  "clamp_per_caliper_kN_at_mu_0_4": 14.8,
+  "energy_from_250rpm_kJ": 74,
+  "disc_bulk_temperature_rise_K": 7.1,
+  "lock_pin_shear_MPa": 80.6,
+  "lock_pin_bearing_MPa": 39.6
+ }
+}

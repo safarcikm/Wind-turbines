@@ -16,6 +16,9 @@ import sim
 sim.Blade = C.Blade8
 import hub as H  # noqa: E402
 import collective as CO  # noqa: E402
+# M8 linkage (cad/hub_m8 clash check, doc 37): pin plane 150 mm and yoke eye 140 mm from the rotor axis, so the
+# r 140 crank pin passes outside the drum bearing housing without a phase shift
+CO.S_P, CO.R_Y = 150.0, 140.0
 import yaw as Y  # noqa: E402
 from bem import solve  # noqa: E402
 import dlc_m8 as D  # noqa: E402
@@ -103,7 +106,7 @@ def collective(brg, pm):
                                          E_stroke_kJ=round(E_stroke / 1e3, 2), strokes_EOL_one_module=round(0.8 * E_mod / E_stroke, 1),
                                          F_storm_on_screw_kN=round(F_storm / 1e3, 1),
                                          motor_brake_needed_Nm=round(F_storm * 5e-3 * 0.8 / (2 * math.pi * 2) * 1.2, 1))
-    CO.R_C = 110.0; CO.BETA = CO.yoke_eye_angle()
+    CO.R_C = 140.0; CO.BETA = CO.yoke_eye_angle()
     return dict(T_trip_per_blade_Nm=round(T_trip), resisting_aero_ctm_Nm=round(resist), options=out,
                 doc24=dict(F_trip_design_kN=20.9, F_rated_kN=25.5, motor_T_peak_Nm=11.3, strokes_EOL=5.1))
 
@@ -218,8 +221,8 @@ def main():
     brg = pitch_bearing()
     col = collective(brg, pm)
     hub = welded_hub(brg)
-    # keep the doc 24 cylinder (25.5 kN) if a crank radius allows it, otherwise the largest crank
-    opt_key = next((k for k, v in col["options"].items() if v["F_rated_kN"] <= 25.5), "crank_r140")
+    # crank r 140 with the pin plane moved out (cad/hub_m8 clash check); ~28.5 kN cylinder
+    opt_key = "crank_r140"   # chosen: clash-free in cad/hub_m8 (doc 37)
     opt = col["options"][opt_key]
     col["chosen"] = opt_key
     parts = {"pitch bearings x 3 (ungeared)": 3 * brg["mass_kg"], "cranks x 3": 3 * 10.0, "links x 3": 3 * 1.5,

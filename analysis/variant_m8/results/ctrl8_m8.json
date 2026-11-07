@@ -1,0 +1,618 @@
+{
+ "cases": [
+  [
+   "1.3",
+   24,
+   100
+  ],
+  [
+   "1.3",
+   24,
+   101
+  ],
+  [
+   "1.3",
+   18,
+   101
+  ],
+  [
+   "1.1",
+   26,
+   0
+  ],
+  [
+   "1.1",
+   22,
+   0
+  ],
+  [
+   "1.1",
+   20,
+   1
+  ],
+  [
+   "1.1",
+   16,
+   2
+  ],
+  [
+   "1.1",
+   12,
+   0
+  ]
+ ],
+ "summary": {
+  "wn_4": {
+   "P_mean_sum_kW": 56.8,
+   "trips": 8,
+   "rpm_max": 219.6,
+   "thrust_max": 6546,
+   "Mtilt_max": 7791
+  },
+  "wn_6": {
+   "P_mean_sum_kW": 21.0,
+   "trips": 8,
+   "rpm_max": 163.0,
+   "thrust_max": 4063,
+   "Mtilt_max": 5296
+  },
+  "wn_8": {
+   "P_mean_sum_kW": 21.4,
+   "trips": 8,
+   "rpm_max": 160.9,
+   "thrust_max": 4142,
+   "Mtilt_max": 6356
+  },
+  "wn6_trip165": {
+   "P_mean_sum_kW": 42.9,
+   "trips": 5,
+   "rpm_max": 174.2,
+   "thrust_max": 4497,
+   "Mtilt_max": 5296
+  },
+  "wn6_trip165_rate20": {
+   "P_mean_sum_kW": 75.2,
+   "trips": 5,
+   "rpm_max": 170.2,
+   "thrust_max": 4360,
+   "Mtilt_max": 6425
+  },
+  "wn6_trip170_rate20": {
+   "P_mean_sum_kW": 78.5,
+   "trips": 5,
+   "rpm_max": 185.6,
+   "thrust_max": 4709,
+   "Mtilt_max": 6700
+  }
+ },
+ "runs": [
+  {
+   "wn": 4.0,
+   "dlc": "1.1",
+   "V": 12,
+   "seed": 0,
+   "rpm_max": 156.1,
+   "trip": true,
+   "thrust_max": 3694,
+   "Mtilt_max": 3549,
+   "P_mean": 12162
+  },
+  {
+   "wn": 4.0,
+   "dlc": "1.1",
+   "V": 16,
+   "seed": 2,
+   "rpm_max": 158.9,
+   "trip": true,
+   "thrust_max": 3942,
+   "Mtilt_max": 4339,
+   "P_mean": 9642
+  },
+  {
+   "wn": 4.0,
+   "dlc": "1.1",
+   "V": 20,
+   "seed": 1,
+   "rpm_max": 157.5,
+   "trip": true,
+   "thrust_max": 4130,
+   "Mtilt_max": 4792,
+   "P_mean": 7360
+  },
+  {
+   "wn": 4.0,
+   "dlc": "1.1",
+   "V": 22,
+   "seed": 0,
+   "rpm_max": 164.9,
+   "trip": true,
+   "thrust_max": 3761,
+   "Mtilt_max": 4999,
+   "P_mean": 10406
+  },
+  {
+   "wn": 4.0,
+   "dlc": "1.1",
+   "V": 26,
+   "seed": 0,
+   "rpm_max": 178.2,
+   "trip": true,
+   "thrust_max": 4688,
+   "Mtilt_max": 7791,
+   "P_mean": 8917
+  },
+  {
+   "wn": 4.0,
+   "dlc": "1.3",
+   "V": 18,
+   "seed": 101,
+   "rpm_max": 165.4,
+   "trip": true,
+   "thrust_max": 4312,
+   "Mtilt_max": 5435,
+   "P_mean": 1635
+  },
+  {
+   "wn": 4.0,
+   "dlc": "1.3",
+   "V": 24,
+   "seed": 100,
+   "rpm_max": 219.6,
+   "trip": true,
+   "thrust_max": 6546,
+   "Mtilt_max": 5953,
+   "P_mean": 5650
+  },
+  {
+   "wn": 4.0,
+   "dlc": "1.3",
+   "V": 24,
+   "seed": 101,
+   "rpm_max": 167.2,
+   "trip": true,
+   "thrust_max": 4517,
+   "Mtilt_max": 4963,
+   "P_mean": 1009
+  },
+  {
+   "wn": 6.0,
+   "dlc": "1.1",
+   "V": 12,
+   "seed": 0,
+   "rpm_max": 155.9,
+   "trip": true,
+   "thrust_max": 3548,
+   "Mtilt_max": 3414,
+   "P_mean": 12071
+  },
+  {
+   "wn": 6.0,
+   "dlc": "1.1",
+   "V": 16,
+   "seed": 2,
+   "rpm_max": 156.0,
+   "trip": true,
+   "thrust_max": 3362,
+   "Mtilt_max": 3860,
+   "P_mean": 720
+  },
+  {
+   "wn": 6.0,
+   "dlc": "1.1",
+   "V": 20,
+   "seed": 1,
+   "rpm_max": 155.0,
+   "trip": true,
+   "thrust_max": 3592,
+   "Mtilt_max": 4795,
+   "P_mean": 5776
+  },
+  {
+   "wn": 6.0,
+   "dlc": "1.1",
+   "V": 22,
+   "seed": 0,
+   "rpm_max": 156.6,
+   "trip": true,
+   "thrust_max": 3844,
+   "Mtilt_max": 3260,
+   "P_mean": 108
+  },
+  {
+   "wn": 6.0,
+   "dlc": "1.1",
+   "V": 26,
+   "seed": 0,
+   "rpm_max": 158.4,
+   "trip": true,
+   "thrust_max": 3394,
+   "Mtilt_max": 3199,
+   "P_mean": 94
+  },
+  {
+   "wn": 6.0,
+   "dlc": "1.3",
+   "V": 18,
+   "seed": 101,
+   "rpm_max": 156.9,
+   "trip": true,
+   "thrust_max": 4063,
+   "Mtilt_max": 5085,
+   "P_mean": 1367
+  },
+  {
+   "wn": 6.0,
+   "dlc": "1.3",
+   "V": 24,
+   "seed": 100,
+   "rpm_max": 163.0,
+   "trip": true,
+   "thrust_max": 3603,
+   "Mtilt_max": 5296,
+   "P_mean": 346
+  },
+  {
+   "wn": 6.0,
+   "dlc": "1.3",
+   "V": 24,
+   "seed": 101,
+   "rpm_max": 158.0,
+   "trip": true,
+   "thrust_max": 3285,
+   "Mtilt_max": 5258,
+   "P_mean": 525
+  },
+  {
+   "wn": 8.0,
+   "dlc": "1.1",
+   "V": 12,
+   "seed": 0,
+   "rpm_max": 155.9,
+   "trip": true,
+   "thrust_max": 3431,
+   "Mtilt_max": 3391,
+   "P_mean": 11710
+  },
+  {
+   "wn": 8.0,
+   "dlc": "1.1",
+   "V": 16,
+   "seed": 2,
+   "rpm_max": 155.8,
+   "trip": true,
+   "thrust_max": 3562,
+   "Mtilt_max": 4223,
+   "P_mean": 4589
+  },
+  {
+   "wn": 8.0,
+   "dlc": "1.1",
+   "V": 20,
+   "seed": 1,
+   "rpm_max": 158.6,
+   "trip": true,
+   "thrust_max": 4142,
+   "Mtilt_max": 5494,
+   "P_mean": 3194
+  },
+  {
+   "wn": 8.0,
+   "dlc": "1.1",
+   "V": 22,
+   "seed": 0,
+   "rpm_max": 155.8,
+   "trip": true,
+   "thrust_max": 3702,
+   "Mtilt_max": 2946,
+   "P_mean": 108
+  },
+  {
+   "wn": 8.0,
+   "dlc": "1.1",
+   "V": 26,
+   "seed": 0,
+   "rpm_max": 155.6,
+   "trip": true,
+   "thrust_max": 3402,
+   "Mtilt_max": 4435,
+   "P_mean": 208
+  },
+  {
+   "wn": 8.0,
+   "dlc": "1.3",
+   "V": 18,
+   "seed": 101,
+   "rpm_max": 159.6,
+   "trip": true,
+   "thrust_max": 4117,
+   "Mtilt_max": 4880,
+   "P_mean": 904
+  },
+  {
+   "wn": 8.0,
+   "dlc": "1.3",
+   "V": 24,
+   "seed": 100,
+   "rpm_max": 160.9,
+   "trip": true,
+   "thrust_max": 3238,
+   "Mtilt_max": 4369,
+   "P_mean": 336
+  },
+  {
+   "wn": 8.0,
+   "dlc": "1.3",
+   "V": 24,
+   "seed": 101,
+   "rpm_max": 154.7,
+   "trip": true,
+   "thrust_max": 3577,
+   "Mtilt_max": 6356,
+   "P_mean": 400
+  },
+  {
+   "wn": "wn6_trip165",
+   "dlc": "1.1",
+   "V": 12,
+   "seed": 0,
+   "rpm_max": 157.1,
+   "trip": false,
+   "thrust_max": 3655,
+   "Mtilt_max": 3414,
+   "P_mean": 12742
+  },
+  {
+   "wn": "wn6_trip165",
+   "dlc": "1.1",
+   "V": 16,
+   "seed": 2,
+   "rpm_max": 160.6,
+   "trip": false,
+   "thrust_max": 3937,
+   "Mtilt_max": 4847,
+   "P_mean": 13435
+  },
+  {
+   "wn": "wn6_trip165",
+   "dlc": "1.1",
+   "V": 20,
+   "seed": 1,
+   "rpm_max": 159.6,
+   "trip": false,
+   "thrust_max": 3978,
+   "Mtilt_max": 5240,
+   "P_mean": 13518
+  },
+  {
+   "wn": "wn6_trip165",
+   "dlc": "1.1",
+   "V": 22,
+   "seed": 0,
+   "rpm_max": 168.2,
+   "trip": true,
+   "thrust_max": 4497,
+   "Mtilt_max": 3294,
+   "P_mean": 267
+  },
+  {
+   "wn": "wn6_trip165",
+   "dlc": "1.1",
+   "V": 26,
+   "seed": 0,
+   "rpm_max": 164.9,
+   "trip": true,
+   "thrust_max": 3394,
+   "Mtilt_max": 3906,
+   "P_mean": 157
+  },
+  {
+   "wn": "wn6_trip165",
+   "dlc": "1.3",
+   "V": 18,
+   "seed": 101,
+   "rpm_max": 174.2,
+   "trip": true,
+   "thrust_max": 4421,
+   "Mtilt_max": 5085,
+   "P_mean": 1567
+  },
+  {
+   "wn": "wn6_trip165",
+   "dlc": "1.3",
+   "V": 24,
+   "seed": 100,
+   "rpm_max": 168.3,
+   "trip": true,
+   "thrust_max": 3603,
+   "Mtilt_max": 5296,
+   "P_mean": 347
+  },
+  {
+   "wn": "wn6_trip165",
+   "dlc": "1.3",
+   "V": 24,
+   "seed": 101,
+   "rpm_max": 167.2,
+   "trip": true,
+   "thrust_max": 3896,
+   "Mtilt_max": 5258,
+   "P_mean": 890
+  },
+  {
+   "wn": "wn6_trip165_rate20",
+   "dlc": "1.1",
+   "V": 12,
+   "seed": 0,
+   "rpm_max": 153.2,
+   "trip": false,
+   "thrust_max": 3894,
+   "Mtilt_max": 3589,
+   "P_mean": 12840
+  },
+  {
+   "wn": "wn6_trip165_rate20",
+   "dlc": "1.1",
+   "V": 16,
+   "seed": 2,
+   "rpm_max": 156.9,
+   "trip": false,
+   "thrust_max": 3731,
+   "Mtilt_max": 4630,
+   "P_mean": 13502
+  },
+  {
+   "wn": "wn6_trip165_rate20",
+   "dlc": "1.1",
+   "V": 20,
+   "seed": 1,
+   "rpm_max": 152.7,
+   "trip": false,
+   "thrust_max": 3373,
+   "Mtilt_max": 4959,
+   "P_mean": 13583
+  },
+  {
+   "wn": "wn6_trip165_rate20",
+   "dlc": "1.1",
+   "V": 22,
+   "seed": 0,
+   "rpm_max": 169.5,
+   "trip": true,
+   "thrust_max": 4173,
+   "Mtilt_max": 5009,
+   "P_mean": 11552
+  },
+  {
+   "wn": "wn6_trip165_rate20",
+   "dlc": "1.1",
+   "V": 26,
+   "seed": 0,
+   "rpm_max": 170.0,
+   "trip": true,
+   "thrust_max": 3968,
+   "Mtilt_max": 5394,
+   "P_mean": 8892
+  },
+  {
+   "wn": "wn6_trip165_rate20",
+   "dlc": "1.3",
+   "V": 18,
+   "seed": 101,
+   "rpm_max": 170.2,
+   "trip": true,
+   "thrust_max": 4360,
+   "Mtilt_max": 6425,
+   "P_mean": 12060
+  },
+  {
+   "wn": "wn6_trip165_rate20",
+   "dlc": "1.3",
+   "V": 24,
+   "seed": 100,
+   "rpm_max": 165.5,
+   "trip": true,
+   "thrust_max": 4301,
+   "Mtilt_max": 5152,
+   "P_mean": 1844
+  },
+  {
+   "wn": "wn6_trip165_rate20",
+   "dlc": "1.3",
+   "V": 24,
+   "seed": 101,
+   "rpm_max": 166.8,
+   "trip": true,
+   "thrust_max": 4025,
+   "Mtilt_max": 5025,
+   "P_mean": 965
+  },
+  {
+   "wn": "wn6_trip170_rate20",
+   "dlc": "1.1",
+   "V": 12,
+   "seed": 0,
+   "rpm_max": 153.2,
+   "trip": false,
+   "thrust_max": 3894,
+   "Mtilt_max": 3589,
+   "P_mean": 12840
+  },
+  {
+   "wn": "wn6_trip170_rate20",
+   "dlc": "1.1",
+   "V": 16,
+   "seed": 2,
+   "rpm_max": 156.9,
+   "trip": false,
+   "thrust_max": 3731,
+   "Mtilt_max": 4630,
+   "P_mean": 13502
+  },
+  {
+   "wn": "wn6_trip170_rate20",
+   "dlc": "1.1",
+   "V": 20,
+   "seed": 1,
+   "rpm_max": 152.7,
+   "trip": false,
+   "thrust_max": 3373,
+   "Mtilt_max": 4959,
+   "P_mean": 13583
+  },
+  {
+   "wn": "wn6_trip170_rate20",
+   "dlc": "1.1",
+   "V": 22,
+   "seed": 0,
+   "rpm_max": 171.0,
+   "trip": true,
+   "thrust_max": 4173,
+   "Mtilt_max": 5009,
+   "P_mean": 11555
+  },
+  {
+   "wn": "wn6_trip170_rate20",
+   "dlc": "1.1",
+   "V": 26,
+   "seed": 0,
+   "rpm_max": 173.0,
+   "trip": true,
+   "thrust_max": 3968,
+   "Mtilt_max": 5394,
+   "P_mean": 8893
+  },
+  {
+   "wn": "wn6_trip170_rate20",
+   "dlc": "1.3",
+   "V": 18,
+   "seed": 101,
+   "rpm_max": 172.0,
+   "trip": true,
+   "thrust_max": 4360,
+   "Mtilt_max": 6425,
+   "P_mean": 12063
+  },
+  {
+   "wn": "wn6_trip170_rate20",
+   "dlc": "1.3",
+   "V": 24,
+   "seed": 100,
+   "rpm_max": 175.0,
+   "trip": true,
+   "thrust_max": 4301,
+   "Mtilt_max": 5597,
+   "P_mean": 4741
+  },
+  {
+   "wn": "wn6_trip170_rate20",
+   "dlc": "1.3",
+   "V": 24,
+   "seed": 101,
+   "rpm_max": 185.6,
+   "trip": true,
+   "thrust_max": 4709,
+   "Mtilt_max": 6700,
+   "P_mean": 1281
+  }
+ ]
+}

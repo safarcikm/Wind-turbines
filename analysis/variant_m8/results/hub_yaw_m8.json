@@ -66,34 +66,34 @@
   "resisting_aero_ctm_Nm": 109,
   "options": {
    "crank_r110": {
-    "stroke_mm": 160.3,
-    "F_trip_design_kN": 29.5,
-    "F_rated_kN": 35.5,
-    "motor_T_peak_Nm": 15.7,
+    "stroke_mm": 159.8,
+    "F_trip_design_kN": 31.0,
+    "F_rated_kN": 37.5,
+    "motor_T_peak_Nm": 16.6,
     "E_stroke_kJ": 4.14,
     "strokes_EOL_one_module": 3.6,
-    "F_storm_on_screw_kN": 46.6,
-    "motor_brake_needed_Nm": 17.8
+    "F_storm_on_screw_kN": 48.9,
+    "motor_brake_needed_Nm": 18.7
    },
    "crank_r125": {
-    "stroke_mm": 182.5,
-    "F_trip_design_kN": 25.3,
-    "F_rated_kN": 30.5,
-    "motor_T_peak_Nm": 13.5,
+    "stroke_mm": 181.8,
+    "F_trip_design_kN": 26.9,
+    "F_rated_kN": 32.5,
+    "motor_T_peak_Nm": 14.4,
     "E_stroke_kJ": 4.14,
     "strokes_EOL_one_module": 3.6,
-    "F_storm_on_screw_kN": 40.0,
-    "motor_brake_needed_Nm": 15.3
+    "F_storm_on_screw_kN": 42.4,
+    "motor_brake_needed_Nm": 16.2
    },
    "crank_r140": {
-    "stroke_mm": 204.9,
-    "F_trip_design_kN": 21.9,
-    "F_rated_kN": 26.5,
-    "motor_T_peak_Nm": 11.7,
+    "stroke_mm": 204.0,
+    "F_trip_design_kN": 23.5,
+    "F_rated_kN": 28.5,
+    "motor_T_peak_Nm": 12.6,
     "E_stroke_kJ": 4.14,
     "strokes_EOL_one_module": 3.6,
-    "F_storm_on_screw_kN": 34.6,
-    "motor_brake_needed_Nm": 13.2
+    "F_storm_on_screw_kN": 37.1,
+    "motor_brake_needed_Nm": 14.2
    }
   },
   "doc24": {

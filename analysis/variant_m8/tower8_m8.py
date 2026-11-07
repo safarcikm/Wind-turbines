@@ -35,6 +35,10 @@ Z_PED = 0.20
 TOP_TO_RC = 0.36 + 0.57
 L_TUBE = HUB_H - Z_PED - TOP_TO_RC          # 6.87 m
 HEAD = float(HY["yaw"]["m_above_tower_flange_kg"])
+_CAD = C.ROOT.parent / "cad" / "turbine_m8" / "out" / "model8-parts.json"
+HEAD_CAD = json.loads(_CAD.read_text())["head_kg"] if _CAD.exists() else None
+if HEAD_CAD:                      # doc 37: the CAD model of every part (cover, frame, adapter, lock holder...) is heavier
+    HEAD = max(HEAD, float(HEAD_CAD))
 AREA = 1.337
 SITES = [dict(key="sheltered", name="Sheltered valley / farm", v=5.0, k=1.8, z0=0.25),
          dict(key="inland", name="Open inland lowland", v=6.0, k=1.9, z0=0.05),
@@ -66,7 +70,7 @@ def ops_8m(turb):
     return ops
 
 
-def size(strategy, ops):
+def size(strategy, ops, t_base_min=6):
     if strategy == "soft-stiff":
         lo, hi = 1.1 * C.RPM_MIN / 60, 3 * C.RPM_MIN / 60 / 1.1
     else:
@@ -77,6 +81,8 @@ def size(strategy, ops):
         best = None
         for Db in np.arange(0.40, 1.21, 0.02):
             for tb in (6, 8, 10, 12, 14, 16, 20):
+                if tb < t_base_min:
+                    continue
                 for tt in (6, 8, 10, 12, 14, 16):
                     if tt > tb:
                         continue
@@ -155,12 +161,94 @@ def figure(en):
     fig.tight_layout(); fig.savefig(C.OUT / "F05-tower8.png", dpi=150); plt.close(fig)
 
 
+def ops_sim8():
+    """Operating loads simulated at 8 m (dlc8_m8.py): used directly, no scaling."""
+    o = json.loads((C.OUT / "dlc8_m8" / "ops_loads_m8_8m.json").read_text())
+    o["F_top_equiv_char"] = o["M_base_char"] / HUB_H
+    o["M_top_char"] = 0.0
+    return o
+
+
+def resonance_stiff(tw, K_theta, U_imb=0.20, zeta=0.005, dT3=0.05, vave=10.0):
+    """Stiff tower: fatigue from (a) 1P side-side below resonance (rotor imbalance, 0.2 kg m, R6.6) and
+    (b) the 3P thrust harmonic crossing mode 1 during start-up/low wind, with the 3P exclusion zone passed
+    under torque (5 % of the time between its edges, as tower.py assumes for the 1P zone)."""
+    f, sh, M, zn = T.fe_modes(tw, K_theta, n_modes=2)
+    f1 = f[0]
+    m1 = (sh[:, 0] / sh[-2, 0]) @ M @ (sh[:, 0] / sh[-2, 0])
+    k1 = m1 * (2 * math.pi * f1) ** 2
+    _, _, _, _, Wb = tw.geom(np.array([0.0]))
+    tsr, rpm_max = 6.0, C.RPM
+    c_ray = vave / math.gamma(1.5)
+    life = 20 * 8760 * 3600 * 0.97
+    zone = (20 * f1 / 1.1, 20 * f1 * 1.1)
+    dsc = T.DETAIL / T.GAMMA_MF; dsd = 0.737 * dsc
+
+    def dmg(s_, n):
+        N = 2e6 * (dsc / s_) ** 3 if s_ >= dsd else 5e6 * (dsd / s_) ** 5
+        return n / N
+    D1 = D3 = 0.0
+    for V in np.arange(3.0, 25.01, 0.5):
+        p = math.exp(-((V - 0.25) / c_ray) ** 2) - math.exp(-((V + 0.25) / c_ray) ** 2)
+        rpm0 = min(tsr * V / C.R * 60 / (2 * math.pi), rpm_max)
+        thrust = 2.2e3 * min(1.0, (V / C.V_RATED) ** 2)
+        for rpm in np.linspace(rpm0 * 0.85, rpm0 * 1.15, 13):
+            w8 = math.exp(-0.5 * ((rpm - rpm0) / (0.1 * rpm0)) ** 2) / 4.39
+            if zone[0] < rpm < zone[1]:
+                continue
+            t = p * life * w8
+            om = rpm * 2 * math.pi / 60
+            r1 = (rpm / 60) / f1
+            x1 = U_imb * om ** 2 / k1 / math.sqrt((1 - r1 ** 2) ** 2 + (2 * zeta * r1) ** 2)
+            D1 += dmg(max(2 * k1 * x1 * tw.H / Wb[0], 1.0), t * rpm / 60)
+            r3 = (3 * rpm / 60) / f1
+            x3 = dT3 * thrust / k1 / math.sqrt((1 - r3 ** 2) ** 2 + (2 * 0.02 * r3) ** 2)
+            D3 += dmg(max(2 * k1 * x3 * tw.H / Wb[0], 1.0), t * 3 * rpm / 60)
+    V_lo, V_hi = (z * 2 * math.pi / 60 * C.R / tsr for z in zone)
+    p_zone = math.exp(-(V_lo / c_ray) ** 2) - math.exp(-(V_hi / c_ray) ** 2)
+    th_zone = 2.2e3 * (0.5 * (V_lo + V_hi) / C.V_RATED) ** 2
+    x_res = dT3 * th_zone / k1 / (2 * 0.02) * 0.5
+    D3 += dmg(2 * k1 * x_res * tw.H / Wb[0], 0.05 * p_zone * life * 3 * zone[0] / 60)
+    return dict(f1=round(float(f1), 2), r_1P_rated=round(C.RPM / 60 / f1, 2), zone_3P_rpm=[round(z, 1) for z in zone],
+                zone_wind_m_s=[round(V_lo, 1), round(V_hi, 1)], damage_1P_side_side=round(D1, 4), damage_3P=round(D3, 4))
+
+
+def tilt_up_m8(tw, L_gp_frac=0.33, dyn=1.3, V_wind=15.0):
+    """tower.py tilt_up_ginpole with the M8 blade area (3 x 1.337 m2 instead of 3 x 0.85)."""
+    z = np.linspace(0, tw.H, 400)
+    _, _, A, _, Wz = tw.geom(z)
+    w = A * T.STEEL_RHO * (1 + tw.extra_mass_frac) * T.G * dyn
+    P = HEAD * T.G * dyn + 0.5 * 1.225 * V_wind ** 2 * 1.2 * 3 * AREA
+    mom = np.array([np.trapezoid(w[z >= ze] * (z[z >= ze] - ze), z[z >= ze]) + P * (tw.H - ze) for ze in z])
+    return dict(base_moment_kNm=round(float(mom[0]) / 1e3, 1), util=round(float(np.max(mom / Wz) / (T.FY / T.GAMMA_M1)), 3),
+                winch_line_pull_kN=round(float(mom[0] / (L_gp_frac * tw.H)) / 1e3, 1))
+
+
+def final_stiff():
+    """Final 8 m tower: re-sized with the loads simulated at 8 m, then the stiff-tower resonance and tilt-up checks."""
+    ops = ops_sim8()
+    res = size("stiff", ops, t_base_min=10)
+    # doc 37: the lightest tube with the simulated loads is 8/8 mm (611 kg) but its f1 with soft soil and ice (2.54 Hz) sits
+    # on the 1.15 x 1P limit (2.51 Hz); the base can is kept at 10 mm for frequency margin and fatigue (the 8 m load run used it).
+    res["lightest_8mm_kg"] = size("stiff", ops)["tower"]["mass_kg"]
+    g = res["tower"]["geometry"]
+    tw = T.Tower(H=L_TUBE, D_base=g["D_base"], D_top=g["D_top"], t=tuple(x / 1000 for x in g["t_mm"]))
+    K = min(f["K_theta_MNm_per_rad"] for f in res["foundations"].values() if "K_theta_MNm_per_rad" in f) * 1e6
+    res["resonance"] = resonance_stiff(tw, K)
+    res["tilt_up_M8_area"] = tilt_up_m8(tw)
+    res["ops_source"] = ops["source"]
+    res["ops_M_base_char_kNm"] = round(ops["M_base_char"] / 1e3, 1)
+    return res
+
+
 def main():
     en = energy()
     turb = 1 + max(v["turb_increase_pct"] for v in en.values()) / 100
     ops = ops_8m(turb)
     towers = {st: size(st, ops) for st in ("soft-stiff", "stiff")}
-    out = dict(hub_height_m=HUB_H, L_tube_m=round(L_TUBE, 3), head_kg=HEAD, lowest_tip_m=round(HUB_H - C.R, 2),
+    if (C.OUT / "dlc8_m8" / "ops_loads_m8_8m.json").exists():
+        towers["stiff_final_sim8"] = final_stiff()
+    out = dict(hub_height_m=HUB_H, L_tube_m=round(L_TUBE, 3), z_pedestal_m=Z_PED, head_kg=HEAD, lowest_tip_m=round(HUB_H - C.R, 2),
                fatigue_turbulence_factor=round(turb, 3), towers=towers, energy=en,
                tower18=dict(mass_kg=T18["tower"]["mass_kg"], f1_Hz=T18["tower"]["f1_rigid_Hz"],
                             footing_soft=T18["foundations"]["soft volcanic soil (loose ash, pumice sand)"]["concrete_m3"]))

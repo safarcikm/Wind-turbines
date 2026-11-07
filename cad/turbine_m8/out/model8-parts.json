@@ -1,0 +1,1337 @@
+{
+ "parts": [
+  {
+   "pid": "NP8-300",
+   "name": "Bedplate weldment 12 kW NP8 (plates 20 / 30 / 10)",
+   "group": "nacelle",
+   "drawing": "NP8-300",
+   "material": "S355J2+N plates, stress relieved, machined",
+   "make_buy": "make",
+   "qty": 1,
+   "mass_kg": 124.28,
+   "show": true,
+   "step": 1,
+   "bbox": [
+    -330,
+    150,
+    -260,
+    260,
+    0,
+    757
+   ]
+  },
+  {
+   "pid": "NM8-700-1",
+   "name": "Nacelle cover, lower tray (GRP 5 mm)",
+   "group": "nacelle",
+   "drawing": "NM8-700",
+   "material": "glass/polyester, gelcoat RAL 9010",
+   "make_buy": "make",
+   "qty": 1,
+   "mass_kg": 15.66,
+   "show": true,
+   "step": 6,
+   "bbox": [
+    -400,
+    520,
+    -600,
+    600,
+    -200,
+    330
+   ]
+  },
+  {
+   "pid": "NM8-700-2",
+   "name": "Nacelle cover, upper lid (GRP 5 mm)",
+   "group": "nacelle",
+   "drawing": "NM8-700",
+   "material": "glass/polyester, gelcoat RAL 9010",
+   "make_buy": "make",
+   "qty": 1,
+   "mass_kg": 17.72,
+   "show": true,
+   "step": 11,
+   "bbox": [
+    -400,
+    520,
+    -600,
+    600,
+    330,
+    1040
+   ]
+  },
+  {
+   "pid": "NM8-710",
+   "name": "Cover support arms + rear rail",
+   "group": "nacelle",
+   "drawing": "NM8-710",
+   "material": "S235 galv.",
+   "make_buy": "make",
+   "qty": 1,
+   "mass_kg": 8.28,
+   "show": true,
+   "step": 6,
+   "bbox": [
+    -200,
+    470,
+    -436,
+    436,
+    -196,
+    220
+   ]
+  },
+  {
+   "pid": "NM8-720",
+   "name": "Met mast: anemometer, vane, air terminal",
+   "group": "nacelle",
+   "drawing": "NM8-720",
+   "material": "1.4404 tube 42.4 \u00d7 2 + bought sensors",
+   "make_buy": "make",
+   "qty": 1,
+   "mass_kg": 4.5,
+   "show": true,
+   "step": 11,
+   "bbox": [
+    330,
+    640,
+    -103,
+    103,
+    200,
+    1940
+   ]
+  },
+  {
+   "pid": "NM8-730",
+   "name": "Nacelle junction box IP66 (400 \u00d7 340 \u00d7 150)",
+   "group": "electrical",
+   "drawing": "NM8-800",
+   "material": "bought: 1.4301 enclosure",
+   "make_buy": "make",
+   "qty": 1,
+   "mass_kg": 9.0,
+   "show": true,
+   "step": 6,
+   "bbox": [
+    170,
+    440,
+    -170,
+    170,
+    230,
+    380
+   ]
+  },
+  {
+   "pid": "NY-400",
+   "name": "Tower-top adapter with friction track",
+   "group": "yaw",
+   "drawing": "NY-400",
+   "material": "S355J2+N weldment",
+   "make_buy": "make",
+   "qty": 1,
+   "mass_kg": 118.33,
+   "show": true,
+   "step": 7,
+   "bbox": [
+    -420,
+    420,
+    -420,
+    420,
+    -360,
+    -70
+   ]
+  },
+  {
+   "pid": "NM8-911-I",
+   "name": "Yaw slewing ring Dpw 410 z165 m4 (inner ring)",
+   "group": "yaw",
+   "drawing": "NM8-911",
+   "material": "bought: 42CrMo4, induction hardened teeth",
+   "make_buy": "buy",
+   "qty": 1,
+   "mass_kg": 33.0,
+   "show": true,
+   "step": 1,
+   "bbox": [
+    -200,
+    200,
+    -200,
+    200,
+    -60,
+    0
+   ]
+  },
+  {
+   "pid": "NM8-911-O",
+   "name": "Yaw slewing ring Dpw 410 z165 m4 (outer gear ring)",
+   "group": "yaw",
+   "drawing": "NM8-911",
+   "material": "bought",
+   "make_buy": "buy",
+   "qty": 1,
+   "mass_kg": 33.0,
+   "show": true,
+   "step": 1,
+   "bbox": [
+    -334,
+    334,
+    -334,
+    334,
+    -70,
+    -10
+   ]
+  },
+  {
+   "pid": "NM8-912-L",
+   "name": "Yaw gearmotor 0.25 kW, output \u2265 2.3 kNm static, brake (left)",
+   "group": "yaw",
+   "drawing": "NM8-912",
+   "material": "bought",
+   "make_buy": "buy",
+   "qty": 1,
+   "mass_kg": 19.0,
+   "show": true,
+   "step": 1,
+   "bbox": [
+    -55,
+    55,
+    303,
+    413,
+    -65,
+    335
+   ]
+  },
+  {
+   "pid": "NP1-420-L",
+   "name": "Yaw drive bracket (left)",
+   "group": "yaw",
+   "drawing": "NP1-420",
+   "material": "S355J2+N",
+   "make_buy": "make",
+   "qty": 1,
+   "mass_kg": 7.69,
+   "show": true,
+   "step": 1,
+   "bbox": [
+    -90,
+    90,
+    260,
+    400,
+    0,
+    170
+   ]
+  },
+  {
+   "pid": "NM8-912-R",
+   "name": "Yaw gearmotor 0.25 kW, output \u2265 2.3 kNm static, brake (right)",
+   "group": "yaw",
+   "drawing": "NM8-912",
+   "material": "bought",
+   "make_buy": "buy",
+   "qty": 1,
+   "mass_kg": 19.0,
+   "show": true,
+   "step": 1,
+   "bbox": [
+    -55,
+    55,
+    -413,
+    -303,
+    -65,
+    335
+   ]
+  },
+  {
+   "pid": "NP1-420-R",
+   "name": "Yaw drive bracket (right)",
+   "group": "yaw",
+   "drawing": "NP1-420",
+   "material": "S355J2+N",
+   "make_buy": "make",
+   "qty": 1,
+   "mass_kg": 7.69,
+   "show": true,
+   "step": 1,
+   "bbox": [
+    -90,
+    90,
+    -400,
+    -260,
+    0,
+    170
+   ]
+  },
+  {
+   "pid": "NY-410-L",
+   "name": "Friction pad unit (left)",
+   "group": "yaw",
+   "drawing": "NY-410",
+   "material": "S355 / DIN 2093 springs / organic pads",
+   "make_buy": "make",
+   "qty": 1,
+   "mass_kg": 14.0,
+   "show": true,
+   "step": 1,
+   "bbox": [
+    -418,
+    -215,
+    143,
+    354,
+    -177,
+    0
+   ]
+  },
+  {
+   "pid": "NY-410-R",
+   "name": "Friction pad unit (right)",
+   "group": "yaw",
+   "drawing": "NY-410",
+   "material": "S355 / DIN 2093 springs / organic pads",
+   "make_buy": "make",
+   "qty": 1,
+   "mass_kg": 14.0,
+   "show": true,
+   "step": 1,
+   "bbox": [
+    -418,
+    -215,
+    -354,
+    -143,
+    -177,
+    0
+   ]
+  },
+  {
+   "pid": "NY-430",
+   "name": "Yaw lock (screw block)",
+   "group": "yaw",
+   "drawing": "NY-430",
+   "material": "42CrMo4 / S355",
+   "make_buy": "make",
+   "qty": 1,
+   "mass_kg": 6.46,
+   "show": true,
+   "step": 1,
+   "bbox": [
+    232,
+    443,
+    168,
+    354,
+    -68,
+    0
+   ]
+  },
+  {
+   "pid": "NY-440",
+   "name": "Yaw encoder + cam limit switch unit",
+   "group": "yaw",
+   "drawing": "NY-440",
+   "material": "S355 + absolute encoder + cam switch",
+   "make_buy": "make",
+   "qty": 1,
+   "mass_kg": 6.0,
+   "show": true,
+   "step": 1,
+   "bbox": [
+    90,
+    193,
+    -402,
+    -260,
+    -45,
+    230
+   ]
+  },
+  {
+   "pid": "NY-460",
+   "name": "Cable hanger tube + loop cleat",
+   "group": "yaw",
+   "drawing": "NY-460",
+   "material": "S355 tube 168.3 \u00d7 4.5",
+   "make_buy": "make",
+   "qty": 1,
+   "mass_kg": 9.97,
+   "show": true,
+   "step": 1,
+   "bbox": [
+    -130,
+    130,
+    -130,
+    130,
+    -305,
+    52
+   ]
+  },
+  {
+   "pid": "NP1-100D",
+   "name": "Spindle Rev D (30 mm longer between the rear seat and the flange)",
+   "group": "drivetrain",
+   "drawing": "NP1-100D",
+   "material": "42CrMo4+QT forged",
+   "make_buy": "make",
+   "qty": 1,
+   "mass_kg": 59.23,
+   "show": true,
+   "step": 2,
+   "bbox": [
+    -745,
+    -264,
+    -200,
+    200,
+    330,
+    731
+   ]
+  },
+  {
+   "pid": "NP1-101",
+   "name": "Front spacer / seal counterface \u00d8180 (Rev B)",
+   "group": "drivetrain",
+   "drawing": "NP1-101",
+   "material": "42CrMo4+QT, induction hardened",
+   "make_buy": "make",
+   "qty": 1,
+   "mass_kg": 1.37,
+   "show": true,
+   "step": 2,
+   "bbox": [
+    -708,
+    -675,
+    -90,
+    90,
+    474,
+    655
+   ]
+  },
+  {
+   "pid": "NP1-102",
+   "name": "Rear seal sleeve \u00d8195 on the \u00d8155 shoulder (Rev B)",
+   "group": "drivetrain",
+   "drawing": "NP1-102",
+   "material": "42CrMo4+QT, induction hardened",
+   "make_buy": "make",
+   "qty": 1,
+   "mass_kg": 1.33,
+   "show": true,
+   "step": 2,
+   "bbox": [
+    -407,
+    -375,
+    -98,
+    98,
+    441,
+    636
+   ]
+  },
+  {
+   "pid": "NM8-913-F",
+   "name": "Tapered roller bearing 32028 X, front (bought)",
+   "group": "drivetrain",
+   "drawing": "NM8-910",
+   "material": "bought 32028 X",
+   "make_buy": "buy",
+   "qty": 1,
+   "mass_kg": 4.0,
+   "show": true,
+   "step": 3,
+   "bbox": [
+    -691,
+    -629,
+    -105,
+    105,
+    456,
+    668
+   ]
+  },
+  {
+   "pid": "NM8-913-R",
+   "name": "Tapered roller bearing 32028 X, rear (bought)",
+   "group": "drivetrain",
+   "drawing": "NM8-910",
+   "material": "bought 32028 X",
+   "make_buy": "buy",
+   "qty": 1,
+   "mass_kg": 4.0,
+   "show": true,
+   "step": 3,
+   "bbox": [
+    -453,
+    -391,
+    -105,
+    105,
+    436,
+    648
+   ]
+  },
+  {
+   "pid": "NP1-200D",
+   "name": "Stator carrier Rev D, 45 dovetail grooves, rim 104 mm",
+   "group": "drivetrain",
+   "drawing": "NP1-200D",
+   "material": "S355J2+N",
+   "make_buy": "make",
+   "qty": 1,
+   "mass_kg": 45.35,
+   "show": true,
+   "step": 3,
+   "bbox": [
+    -457,
+    -292,
+    -228,
+    228,
+    305,
+    761
+   ]
+  },
+  {
+   "pid": "NP1-201D",
+   "name": "Stator Rev D: 45 tooth-segment stacks, 104 mm (7 magnet rows)",
+   "group": "drivetrain",
+   "drawing": "NP1-201D",
+   "material": "M270-35A 0.35 mm, self-bonding",
+   "make_buy": "make",
+   "qty": 1,
+   "mass_kg": 71.01,
+   "show": true,
+   "step": 3,
+   "bbox": [
+    -464,
+    -309,
+    -299,
+    299,
+    236,
+    841
+   ]
+  },
+  {
+   "pid": "NP1-202",
+   "name": "Stator front clamp ring",
+   "group": "drivetrain",
+   "drawing": "NP1-202",
+   "material": "1.4404 (non-magnetic)",
+   "make_buy": "make",
+   "qty": 1,
+   "mass_kg": 2.17,
+   "show": true,
+   "step": 3,
+   "bbox": [
+    -466,
+    -418,
+    -229,
+    229,
+    315,
+    772
+   ]
+  },
+  {
+   "pid": "NP1-203D",
+   "name": "Coils on segments, 45 \u00d7 28 turns, 104 mm stack",
+   "group": "drivetrain",
+   "drawing": "NP1-203D",
+   "material": "Cu enamelled \u00d81.55 class 200, NKN 0.30",
+   "make_buy": "make",
+   "qty": 1,
+   "mass_kg": 20.0,
+   "show": true,
+   "step": 3,
+   "bbox": [
+    -485,
+    -288,
+    -292,
+    292,
+    243,
+    834
+   ]
+  },
+  {
+   "pid": "NP1-210D",
+   "name": "Rotor drum weldment Rev D (shell +30; Rev C fins and ribs, see NP1-210C)",
+   "group": "drivetrain",
+   "drawing": "NP1-210D",
+   "material": "S355J2+N",
+   "make_buy": "make",
+   "qty": 1,
+   "mass_kg": 95.45,
+   "show": true,
+   "step": 4,
+   "bbox": [
+    -699,
+    -256,
+    -355,
+    355,
+    176,
+    884
+   ]
+  },
+  {
+   "pid": "NP1-211-F",
+   "name": "Front bearing seal cover",
+   "group": "drivetrain",
+   "drawing": "NP1-211",
+   "material": "S355J2",
+   "make_buy": "make",
+   "qty": 1,
+   "mass_kg": 1.49,
+   "show": true,
+   "step": 4,
+   "bbox": [
+    -709,
+    -678,
+    -120,
+    120,
+    445,
+    685
+   ]
+  },
+  {
+   "pid": "NP1-211-R",
+   "name": "Rear bearing seal cover, bore \u00d8198 (Rev B)",
+   "group": "drivetrain",
+   "drawing": "NP1-211",
+   "material": "S355J2",
+   "make_buy": "make",
+   "qty": 1,
+   "mass_kg": 1.36,
+   "show": true,
+   "step": 4,
+   "bbox": [
+    -407,
+    -374,
+    -120,
+    120,
+    418,
+    659
+   ]
+  },
+  {
+   "pid": "NP1-212C",
+   "name": "Drum rear cover with 24 fan blades (Rev C; blades not modelled)",
+   "group": "drivetrain",
+   "drawing": "NP1-212C",
+   "material": "EN AW-5083-H111",
+   "make_buy": "make",
+   "qty": 1,
+   "mass_kg": 7.23,
+   "show": true,
+   "step": 4,
+   "bbox": [
+    -322,
+    -247,
+    -345,
+    345,
+    185,
+    873
+   ]
+  },
+  {
+   "pid": "NP1-220F",
+   "name": "Magnets 280 \u00d7 N45SH 30\u00d715\u00d712 in 7 rows + comb + sleeve",
+   "group": "drivetrain",
+   "drawing": "NP1-220F",
+   "material": "NdFeB N45SH",
+   "make_buy": "make",
+   "qty": 1,
+   "mass_kg": 14.99,
+   "show": true,
+   "step": 4,
+   "bbox": [
+    -466,
+    -307,
+    -314,
+    314,
+    221,
+    855
+   ]
+  },
+  {
+   "pid": "NP1-230",
+   "name": "Brake disc \u00d8880/\u00d8652 with 12 lock holes (Rev B)",
+   "group": "drivetrain",
+   "drawing": "NP1-230",
+   "material": "C45E+N 16 mm",
+   "make_buy": "make",
+   "qty": 1,
+   "mass_kg": 33.6,
+   "show": true,
+   "step": 4,
+   "bbox": [
+    -355,
+    -262,
+    -440,
+    440,
+    92,
+    970
+   ]
+  },
+  {
+   "pid": "NP1-320",
+   "name": "Rotor lock pin \u00d820 (engaged, top)",
+   "group": "drivetrain",
+   "drawing": "NP1-320",
+   "material": "42CrMo4+QT",
+   "make_buy": "make",
+   "qty": 1,
+   "mass_kg": 0.47,
+   "show": true,
+   "step": 5,
+   "bbox": [
+    -290,
+    -119,
+    -15,
+    15,
+    871,
+    911
+   ]
+  },
+  {
+   "pid": "NP1-321",
+   "name": "Lock pin holder with 2 overspeed sensor seats",
+   "group": "drivetrain",
+   "drawing": "NP1-321",
+   "material": "S355J2",
+   "make_buy": "make",
+   "qty": 1,
+   "mass_kg": 24.48,
+   "show": true,
+   "step": 5,
+   "bbox": [
+    -250,
+    -156,
+    -130,
+    130,
+    770,
+    937
+   ]
+  },
+  {
+   "pid": "NM8-914",
+   "name": "Overspeed sensors M18 inductive (2, bought)",
+   "group": "drivetrain",
+   "drawing": "NM8-910",
+   "material": "bought M18 PNP",
+   "make_buy": "buy",
+   "qty": 1,
+   "mass_kg": 0.4,
+   "show": true,
+   "step": 5,
+   "bbox": [
+    -267,
+    -196,
+    -105,
+    105,
+    871,
+    895
+   ]
+  },
+  {
+   "pid": "NM8-915",
+   "name": "Spring-applied brake caliper 4.4 kNm (3 per disc, bought)",
+   "group": "drivetrain",
+   "drawing": "NM8-910",
+   "material": "bought, spring-applied",
+   "make_buy": "buy",
+   "qty": 1,
+   "mass_kg": 18.0,
+   "show": true,
+   "step": 5,
+   "bbox": [
+    -386,
+    -231,
+    370,
+    500,
+    436,
+    627
+   ]
+  },
+  {
+   "pid": "NP1-310",
+   "name": "Rotor brake caliper bracket (left, Rev B)",
+   "group": "drivetrain",
+   "drawing": "NP1-310",
+   "material": "S355J2+N 25 plate",
+   "make_buy": "make",
+   "qty": 1,
+   "mass_kg": 18.06,
+   "show": true,
+   "step": 5,
+   "bbox": [
+    -247,
+    -65,
+    260,
+    500,
+    421,
+    615
+   ]
+  },
+  {
+   "pid": "NM8-915-T",
+   "name": "Spring-applied brake caliper 4.4 kNm, third (bought)",
+   "group": "drivetrain",
+   "drawing": "NM8-910",
+   "material": "bought",
+   "make_buy": "buy",
+   "qty": 1,
+   "mass_kg": 9.0,
+   "show": true,
+   "step": 5,
+   "bbox": [
+    -361,
+    -203,
+    -417,
+    -198,
+    723,
+    953
+   ]
+  },
+  {
+   "pid": "NM8-311",
+   "name": "Third caliper bracket (135\u00b0)",
+   "group": "drivetrain",
+   "drawing": "NM8-311",
+   "material": "S355J2+N 25 plate, welded",
+   "make_buy": "make",
+   "qty": 1,
+   "mass_kg": 6.99,
+   "show": true,
+   "step": 5,
+   "bbox": [
+    -240,
+    -178,
+    -417,
+    -140,
+    664,
+    941
+   ]
+  },
+  {
+   "pid": "NM8-200",
+   "name": "Hub weldment: shell \u00d8530 \u00d7 10, 3 necks \u00d8360, drum flange",
+   "group": "rotor",
+   "drawing": "NM8-200",
+   "material": "S355NL, welded, stress relieved, machined",
+   "make_buy": "make",
+   "qty": 1,
+   "mass_kg": 179.8,
+   "show": true,
+   "step": 8,
+   "bbox": [
+    -1090,
+    -532,
+    -441,
+    441,
+    194,
+    975
+   ]
+  },
+  {
+   "pid": "NM8-250",
+   "name": "Pitch bearings Dpw 300 four-point (3, bought)",
+   "group": "rotor",
+   "drawing": "NM8-250",
+   "material": "bought: 42CrMo4 rings",
+   "make_buy": "buy",
+   "qty": 1,
+   "mass_kg": 76.2,
+   "show": true,
+   "step": 8,
+   "bbox": [
+    -1004,
+    -537,
+    -484,
+    484,
+    176,
+    1029
+   ]
+  },
+  {
+   "pid": "NM8-260",
+   "name": "Pitch cranks r140 with pins (3)",
+   "group": "rotor",
+   "drawing": "NM8-260",
+   "material": "42CrMo4+QT / S355 tube",
+   "make_buy": "make",
+   "qty": 1,
+   "mass_kg": 30.0,
+   "show": true,
+   "step": 8,
+   "bbox": [
+    -942,
+    -602,
+    -408,
+    408,
+    254,
+    971
+   ]
+  },
+  {
+   "pid": "NM8-261",
+   "name": "Pitch links 220 mm with spherical eyes (3)",
+   "group": "rotor",
+   "drawing": "NM8-261",
+   "material": "S355 / bought rod ends",
+   "make_buy": "make",
+   "qty": 1,
+   "mass_kg": 4.5,
+   "show": true,
+   "step": 8,
+   "bbox": [
+    -933,
+    -652,
+    -125,
+    203,
+    379,
+    735
+   ]
+  },
+  {
+   "pid": "NM8-262",
+   "name": "Yoke + 3 guide rods",
+   "group": "rotor",
+   "drawing": "NM8-262",
+   "material": "S355 plate / C45 chromed rods",
+   "make_buy": "make",
+   "qty": 1,
+   "mass_kg": 8.0,
+   "show": true,
+   "step": 8,
+   "bbox": [
+    -1564,
+    -867,
+    -121,
+    162,
+    423,
+    712
+   ]
+  },
+  {
+   "pid": "NM8-270",
+   "name": "Electric pitch cylinder ~28.5 kN rated, 204 mm stroke + motor (bought)",
+   "group": "rotor",
+   "drawing": "NM8-250",
+   "material": "bought",
+   "make_buy": "buy",
+   "qty": 1,
+   "mass_kg": 14.0,
+   "show": true,
+   "step": 8,
+   "bbox": [
+    -1548,
+    -924,
+    -52,
+    52,
+    554,
+    789
+   ]
+  },
+  {
+   "pid": "NM8-280",
+   "name": "Supercap module + pitch drive/controller (bought)",
+   "group": "rotor",
+   "drawing": "NM8-250",
+   "material": "bought",
+   "make_buy": "buy",
+   "qty": 1,
+   "mass_kg": 6.5,
+   "show": true,
+   "step": 8,
+   "bbox": [
+    -1527,
+    -1183,
+    -50,
+    50,
+    505,
+    587
+   ]
+  },
+  {
+   "pid": "NM8-290",
+   "name": "Nose frame (actuator + electronics carrier)",
+   "group": "rotor",
+   "drawing": "NM8-290",
+   "material": "S355 rings + tube struts",
+   "make_buy": "make",
+   "qty": 1,
+   "mass_kg": 6.0,
+   "show": true,
+   "step": 8,
+   "bbox": [
+    -1649,
+    -1045,
+    -245,
+    245,
+    354,
+    843
+   ]
+  },
+  {
+   "pid": "NM8-210",
+   "name": "Spinner (GRP 4 mm) with blade boots",
+   "group": "rotor",
+   "drawing": "NM8-210",
+   "material": "glass/polyester, gelcoat RAL 9010",
+   "make_buy": "make",
+   "qty": 1,
+   "mass_kg": 27.61,
+   "show": true,
+   "step": 10,
+   "bbox": [
+    -1826,
+    -560,
+    -520,
+    520,
+    39,
+    1110
+   ]
+  },
+  {
+   "pid": "NM8-100-1",
+   "name": "Blade 1 \u00d88.0 m (glass/epoxy, carbon UD caps)",
+   "group": "rotor",
+   "drawing": "NM8-100",
+   "material": "E-glass/epoxy, carbon UD caps, PVC core",
+   "make_buy": "make",
+   "qty": 1,
+   "mass_kg": 34.07,
+   "show": true,
+   "step": 9,
+   "bbox": [
+    -890,
+    -417,
+    -334,
+    153,
+    1001,
+    4560
+   ]
+  },
+  {
+   "pid": "NM8-100-2",
+   "name": "Blade 2 \u00d88.0 m (glass/epoxy, carbon UD caps)",
+   "group": "rotor",
+   "drawing": "NM8-100",
+   "material": "E-glass/epoxy, carbon UD caps, PVC core",
+   "make_buy": "make",
+   "qty": 1,
+   "mass_kg": 34.07,
+   "show": true,
+   "step": 9,
+   "bbox": [
+    -984,
+    -656,
+    -3500,
+    -313,
+    -1563,
+    474
+   ]
+  },
+  {
+   "pid": "NM8-100-3",
+   "name": "Blade 3 \u00d88.0 m (glass/epoxy, carbon UD caps)",
+   "group": "rotor",
+   "drawing": "NM8-100",
+   "material": "E-glass/epoxy, carbon UD caps, PVC core",
+   "make_buy": "make",
+   "qty": 1,
+   "mass_kg": 34.07,
+   "show": true,
+   "step": 9,
+   "bbox": [
+    -983,
+    -657,
+    313,
+    3547,
+    -1481,
+    491
+   ]
+  },
+  {
+   "pid": "NM8-105",
+   "name": "Root insert M16 (12 per blade, bonded)",
+   "group": "rotor",
+   "drawing": "NM8-105",
+   "material": "C45E+QT zinc-flake coated",
+   "make_buy": "make",
+   "qty": 36,
+   "mass_kg": null,
+   "show": true,
+   "step": 0,
+   "bbox": [
+    -875,
+    -595,
+    -134,
+    134,
+    1001,
+    1171
+   ]
+  },
+  {
+   "pid": "NM8-400",
+   "name": "Tower 8 m, \u00d8420 \u2192 \u00d8400, t 10/8, one piece",
+   "group": "tower",
+   "drawing": "NM8-400",
+   "material": "S355J2+N, hot-dip galvanised",
+   "make_buy": "make",
+   "qty": 1,
+   "mass_kg": 717.85,
+   "show": true,
+   "step": 0,
+   "bbox": [
+    -430,
+    350,
+    -310,
+    310,
+    -7250,
+    -360
+   ]
+  },
+  {
+   "pid": "NM8-401",
+   "name": "Hand-hole cover 200 \u00d7 350 \u00d7 6 with gasket",
+   "group": "tower",
+   "drawing": "NM8-400",
+   "material": "S355 galv.",
+   "make_buy": "make",
+   "qty": 1,
+   "mass_kg": 3.3,
+   "show": true,
+   "step": 12,
+   "bbox": [
+    -100,
+    100,
+    224,
+    230,
+    -6705,
+    -6355
+   ]
+  },
+  {
+   "pid": "NM8-410",
+   "name": "Base hinge brackets + hinge pin \u00d850",
+   "group": "tower",
+   "drawing": "NM8-410",
+   "material": "S355J2+N galv.; pin 42CrMo4+QT",
+   "make_buy": "make",
+   "qty": 1,
+   "mass_kg": 37.44,
+   "show": true,
+   "step": 0,
+   "bbox": [
+    -510,
+    -280,
+    -230,
+    230,
+    -7290,
+    -7130
+   ]
+  },
+  {
+   "pid": "NM8-420",
+   "name": "Gin pole 3.0 m (erection tool)",
+   "group": "tooling",
+   "drawing": "NM8-420",
+   "material": "S355 tube 168.3 \u00d7 6.3",
+   "make_buy": "make",
+   "qty": 1,
+   "mass_kg": 93.97,
+   "show": false,
+   "step": 0,
+   "bbox": [
+    270,
+    3390,
+    -120,
+    120,
+    -7000,
+    -6760
+   ]
+  },
+  {
+   "pid": "NM8-500",
+   "name": "Spread footing (firm ground) with pedestal",
+   "group": "foundation",
+   "drawing": "NM8-500",
+   "material": "C30/37 XF4 air-entrained, B500C",
+   "make_buy": "make",
+   "qty": 1,
+   "mass_kg": 14880.0,
+   "show": true,
+   "step": 0,
+   "bbox": [
+    -1500,
+    1500,
+    -1500,
+    1500,
+    -9030,
+    -7260
+   ]
+  },
+  {
+   "pid": "NM8-510",
+   "name": "Anchor cage 16 \u00d7 M24 + 4 hinge anchors",
+   "group": "foundation",
+   "drawing": "NM8-510",
+   "material": "M24 8.8 HDG threaded rod, S355 template rings",
+   "make_buy": "make",
+   "qty": 1,
+   "mass_kg": 163.69,
+   "show": true,
+   "step": 0,
+   "bbox": [
+    -482,
+    310,
+    -310,
+    310,
+    -8880,
+    -7135
+   ]
+  },
+  {
+   "pid": "NM8-620",
+   "name": "Tower base cabinet IP55 800 \u00d7 600 \u00d7 300 on stand",
+   "group": "electrical",
+   "drawing": "NM8-620",
+   "material": "stand S235 galv.; bought enclosure",
+   "make_buy": "make",
+   "qty": 1,
+   "mass_kg": 95.0,
+   "show": true,
+   "step": 12,
+   "bbox": [
+    -400,
+    1020,
+    1150,
+    1495,
+    -7430,
+    -5930
+   ]
+  },
+  {
+   "pid": "NM8-600",
+   "name": "Braking / dump resistor box (vented)",
+   "group": "electrical",
+   "drawing": "NM8-600",
+   "material": "1.4301 box + steel-grid resistors",
+   "make_buy": "make",
+   "qty": 1,
+   "mass_kg": 18.0,
+   "show": true,
+   "step": 12,
+   "bbox": [
+    420,
+    1020,
+    1190,
+    1440,
+    -6730,
+    -6330
+   ]
+  },
+  {
+   "pid": "NM8-800",
+   "name": "Drop cable + base duct (cabling route)",
+   "group": "electrical",
+   "drawing": "NM8-800",
+   "material": "H07RN-F 4G10 + 2 \u00d7 LiYCY signal; PE duct \u00d8110",
+   "make_buy": "make",
+   "qty": 1,
+   "mass_kg": 12.0,
+   "show": true,
+   "step": 12,
+   "bbox": [
+    -55,
+    55,
+    -14,
+    1150,
+    -7935,
+    -740
+   ]
+  },
+  {
+   "pid": "NM8-110-1",
+   "name": "Blade mould, lower (pressure side) half on frame",
+   "group": "tooling",
+   "drawing": "NM8-110",
+   "material": "GRP tooling laminate 12 mm, vinylester tooling gelcoat",
+   "make_buy": "make",
+   "qty": 1,
+   "mass_kg": 118.14,
+   "show": false,
+   "step": 0,
+   "bbox": [
+    382,
+    4080,
+    -454,
+    273,
+    -140,
+    0
+   ]
+  },
+  {
+   "pid": "NM8-110-2",
+   "name": "Blade mould, upper (suction side) half",
+   "group": "tooling",
+   "drawing": "NM8-110",
+   "material": "GRP tooling laminate 12 mm",
+   "make_buy": "make",
+   "qty": 1,
+   "mass_kg": 118.14,
+   "show": false,
+   "step": 0,
+   "bbox": [
+    382,
+    4080,
+    -454,
+    273,
+    900,
+    1061
+   ]
+  },
+  {
+   "pid": "NM8-110-3",
+   "name": "Mould frame (RHS 80 \u00d7 80 \u00d7 4)",
+   "group": "tooling",
+   "drawing": "NM8-110",
+   "material": "S235 RHS 80\u00d780\u00d74",
+   "make_buy": "make",
+   "qty": 1,
+   "mass_kg": 178.62,
+   "show": false,
+   "step": 0,
+   "bbox": [
+    382,
+    4080,
+    -394,
+    213,
+    -940,
+    -140
+   ]
+  }
+ ],
+ "group_mass_kg": {
+  "nacelle": 170.4,
+  "electrical": 134.0,
+  "yaw": 288.1,
+  "drivetrain": 440.0,
+  "rotor": 454.8,
+  "tower": 758.6,
+  "foundation": 15043.7
+ },
+ "head_kg": 1362.4,
+ "tower": "stiff",
+ "stretch": {
+  "NP1-100": "stretched",
+  "NP1-101": "moved",
+  "NP1-102": "moved",
+  "NS6-913-F": "moved",
+  "NS6-913-R": "moved",
+  "NP1-200C": "stretched",
+  "NP1-201C": "stretched",
+  "NP1-202": "moved",
+  "NP1-203C": "stretched",
+  "NP1-210C": "stretched",
+  "NP1-211-F": "moved",
+  "NP1-211-R": "moved",
+  "NS6-610": "kept",
+  "NP1-220E": "stretched",
+  "NP1-230": "kept",
+  "NP1-320": "kept",
+  "NP1-321": "kept",
+  "NS6-914": "kept",
+  "NS6-915": "kept",
+  "NP1-310": "kept"
+ }
+}
