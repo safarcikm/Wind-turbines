@@ -1,0 +1,257 @@
+{
+ "rates_from": "analysis/cost_m8/cost_m8.py",
+ "volume": 50,
+ "mould": {
+  "labour": 8546,
+  "material": 1411,
+  "bought": 1110,
+  "inserts": 1875.0,
+  "tooling_per_turbine": 812,
+  "tooling_total": 40606,
+  "total": 13753,
+  "hours_per_blade": 39.5,
+  "hours_per_set": 118.5,
+  "steps": [
+   [
+    "Mould prep, release, gelcoat (2 halves)",
+    2.5
+   ],
+   [
+    "Cut and kit plies, PVC core, web kit",
+    3.0
+   ],
+   [
+    "Lay up 2 shells dry: glass, core, carbon caps",
+    6.0
+   ],
+   [
+    "Bag and infuse 2 shells",
+    4.0
+   ],
+   [
+    "Shear web: lay up, infuse, trim",
+    4.0
+   ],
+   [
+    "Root build-up round inserts in jig",
+    4.0
+   ],
+   [
+    "Dry-fit, bond web, close mould, cure",
+    4.0
+   ],
+   [
+    "Demould, trim flash and TE",
+    2.0
+   ],
+   [
+    "Post-cure handling",
+    0.5
+   ],
+   [
+    "Bond-line inspection, pinhole repair",
+    2.0
+   ],
+   [
+    "Finish seams, topcoat",
+    3.0
+   ],
+   [
+    "LEP, tip receptor, drill and face root",
+    3.0
+   ]
+  ],
+  "material_lines": {
+   "glass fabrics 14.5 kg x 1.15": 80.03999999999998,
+   "carbon UD fabric 4.2 kg x 1.10": 129.36,
+   "epoxy + paste 11.0 kg x 1.35": 163.35000000000002,
+   "PVC core kitted 3.0 kg x 1.30": 97.50000000000001
+  },
+  "bought_lines": {
+   "vacuum consumables (3 infusions)": 160,
+   "LEP + topcoat": 120,
+   "lightning receptor + conductor": 90
+  },
+  "tooling": {
+   "plug milled outside": 14000,
+   "mould halves: 2 x 118 kg tooling laminate + 230 h": 19110.96,
+   "mould frame 179 kg RHS + 40 h": 3494.69,
+   "root insert jig, drilling + balancing fixtures": 4000
+  },
+  "mass_kg": 34.07,
+  "lead_time": "12-16 weeks (plug, 2 moulds, first-article blade)"
+ },
+ "foam": {
+  "labour": 6340,
+  "material": 1734,
+  "bought": 1095,
+  "inserts": 1875.0,
+  "tooling_per_turbine": 170,
+  "tooling_total": 8500,
+  "total": 11215,
+  "hours_per_blade": 27.0,
+  "hours_per_set": 81.0,
+  "steps": [
+   [
+    "Cut H80 sheets near-net and bond the stacked blank",
+    1.0,
+    0.5
+   ],
+   [
+    "CNC the core, two sides: outline, cap pockets, web slits, conductor groove, balance pocket",
+    0.0,
+    3.5
+   ],
+   [
+    "Split into LE / spar / TE blocks, seal cut surfaces",
+    1.0,
+    0.0
+   ],
+   [
+    "Down conductor, biax wrap round spar block (= webs)",
+    1.5,
+    0.0
+   ],
+   [
+    "Carbon planks: cut, chamfer 1:50, sand, place in pockets",
+    1.5,
+    0.0
+   ],
+   [
+    "Root tube on mandrel with the 12 inserts (excl. insert line), face on lathe",
+    3.0,
+    1.0
+   ],
+   [
+    "Assemble blocks, root tube and tip block on the core",
+    1.0,
+    0.0
+   ],
+   [
+    "Outer triax skin + TE UD + root plies dry, peel ply, flow mesh, bag, leak test",
+    3.5,
+    0.0
+   ],
+   [
+    "One-shot infusion, cure, post-cure 65 C handling",
+    1.0,
+    0.0
+   ],
+   [
+    "Debag, trim TE and tip, tap test / thermography",
+    1.0,
+    0.0
+   ],
+   [
+    "Fill, fair and sand the bag-side surface, prime",
+    4.0,
+    0.0
+   ],
+   [
+    "Topcoat, LEP, tip receptor",
+    2.0,
+    0.0
+   ]
+  ],
+  "material_lines": {
+   "PVC H80 sheet 10.1 kg (blank, buy-to-fly 1.6)": 253.44000000000005,
+   "glass fabrics 12.6 kg x 1.15": 69.80290909090907,
+   "pultruded carbon planks 3.8 kg x 1.08 at 32 EUR/kg": 130.2912,
+   "epoxy 11.3 kg (laminate, cut-cell uptake, adhesive, 30 % loss)": 124.54
+  },
+  "bought_lines": {
+   "vacuum consumables (1 infusion + root tube)": 120,
+   "fairing filler + primer": 35,
+   "LEP + topcoat": 120,
+   "lightning receptor + conductor": 90
+  },
+  "tooling": {
+   "root tube mandrel + insert fixture plate (turned in-house)": 3000,
+   "core flip/registration board, assembly cradles": 1500,
+   "root insert jig, drilling + balancing fixtures (as mould route)": 4000
+  },
+  "mass_kg": 35.05,
+  "lead_time": "3-4 weeks (CAM files, mandrel, first core)"
+ },
+ "foam_with_router_capex": {
+  "labour": 6340,
+  "material": 1734,
+  "bought": 1095,
+  "inserts": 1875.0,
+  "tooling_per_turbine": 1170,
+  "tooling_total": 58500,
+  "total": 12215,
+  "hours_per_blade": 27.0,
+  "hours_per_set": 81.0
+ },
+ "saving_per_turbine": 2538,
+ "saving_pct_of_blade_line": 18.5,
+ "saving_pct_of_turbine_exw_118k": 2.1,
+ "breakeven_extra_hours_per_blade": 11.8,
+ "mature_unit50": {
+  "mould": {
+   "labour": 5738,
+   "material": 1411,
+   "bought": 1110,
+   "inserts": 1875.0,
+   "tooling_per_turbine": 812,
+   "tooling_total": 40606,
+   "total": 10945,
+   "hours_per_blade": 26.5,
+   "hours_per_set": 79.5
+  },
+  "foam": {
+   "labour": 4826,
+   "material": 1734,
+   "bought": 1095,
+   "inserts": 1875.0,
+   "tooling_per_turbine": 170,
+   "tooling_total": 8500,
+   "total": 9700,
+   "hours_per_blade": 20.0,
+   "hours_per_set": 60.0
+  }
+ },
+ "volume_sensitivity": {
+  "1": {
+   "mould": 53547,
+   "foam": 19545,
+   "foam_router": 69545
+  },
+  "2": {
+   "mould": 33244,
+   "foam": 15295,
+   "foam_router": 40295
+  },
+  "5": {
+   "mould": 21062,
+   "foam": 12745,
+   "foam_router": 22745
+  },
+  "10": {
+   "mould": 17002,
+   "foam": 11895,
+   "foam_router": 16895
+  },
+  "25": {
+   "mould": 14565,
+   "foam": 11385,
+   "foam_router": 13385
+  },
+  "50": {
+   "mould": 13753,
+   "foam": 11215,
+   "foam_router": 12215
+  },
+  "100": {
+   "mould": 13347,
+   "foam": 11130,
+   "foam_router": 11630
+  },
+  "200": {
+   "mould": 13144,
+   "foam": 11087,
+   "foam_router": 11337
+  }
+ }
+}
