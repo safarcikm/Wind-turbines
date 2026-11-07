@@ -1,0 +1,194 @@
+[
+ {
+  "D": 8.0,
+  "tsr": 7.5,
+  "tip": 75.0,
+  "rpm": 179,
+  "rated_wind": 10.0,
+  "Lp60": 50.5,
+  "d45": 115,
+  "M_park": 24.0,
+  "Q": 725,
+  "head": 1087,
+  "tower": 1853,
+  "capex": 78146,
+  "aep": {
+   "sheltered": 22792,
+   "inland": 33088,
+   "coastal": 43385,
+   "highland": 56514
+  },
+  "eur_MWh": {
+   "sheltered": 368,
+   "inland": 253,
+   "coastal": 193,
+   "highland": 148
+  },
+  "cf": {
+   "sheltered": 21.7,
+   "inland": 31.5,
+   "coastal": 41.3,
+   "highland": 53.8
+  }
+ },
+ {
+  "D": 5.0,
+  "tsr": 7.5,
+  "tip": 75.0,
+  "rpm": 286,
+  "rated_wind": 17.7,
+  "Lp60": 48.5,
+  "d45": 91,
+  "M_park": 5.9,
+  "Q": 453,
+  "head": 866,
+  "tower": 1371,
+  "capex": 64909,
+  "aep": {
+   "sheltered": 8924,
+   "inland": 14318,
+   "coastal": 20573,
+   "highland": 31196
+  },
+  "eur_MWh": {
+   "sheltered": 780,
+   "inland": 486,
+   "coastal": 338,
+   "highland": 223
+  },
+  "cf": {
+   "sheltered": 8.5,
+   "inland": 13.6,
+   "coastal": 19.6,
+   "highland": 29.7
+  }
+ },
+ {
+  "D": 5.0,
+  "tsr": 8.0,
+  "tip": 90.0,
+  "rpm": 344,
+  "rated_wind": 15.2,
+  "Lp60": 49.9,
+  "d45": 106,
+  "M_park": 5.2,
+  "Q": 378,
+  "head": 839,
+  "tower": 1325,
+  "capex": 63403,
+  "aep": {
+   "sheltered": 9322,
+   "inland": 15191,
+   "coastal": 22103,
+   "highland": 33860
+  },
+  "eur_MWh": {
+   "sheltered": 729,
+   "inland": 447,
+   "coastal": 308,
+   "highland": 201
+  },
+  "cf": {
+   "sheltered": 8.9,
+   "inland": 14.5,
+   "coastal": 21.0,
+   "highland": 32.2
+  }
+ },
+ {
+  "D": 5.0,
+  "tsr": 9.0,
+  "tip": 100.0,
+  "rpm": 382,
+  "rated_wind": 15.4,
+  "Lp60": 52.3,
+  "d45": 141,
+  "M_park": 4.1,
+  "Q": 340,
+  "head": 816,
+  "tower": 1270,
+  "capex": 61994,
+  "aep": {
+   "sheltered": 9161,
+   "inland": 14952,
+   "coastal": 21785,
+   "highland": 33452
+  },
+  "eur_MWh": {
+   "sheltered": 725,
+   "inland": 444,
+   "coastal": 305,
+   "highland": 199
+  },
+  "cf": {
+   "sheltered": 8.7,
+   "inland": 14.2,
+   "coastal": 20.7,
+   "highland": 31.8
+  }
+ },
+ {
+  "D": 5.0,
+  "tsr": 10.0,
+  "tip": 110.0,
+  "rpm": 420,
+  "rated_wind": 15.6,
+  "Lp60": 54.6,
+  "d45": 180,
+  "M_park": 3.3,
+  "Q": 309,
+  "head": 798,
+  "tower": 1229,
+  "capex": 60875,
+  "aep": {
+   "sheltered": 8985,
+   "inland": 14693,
+   "coastal": 21441,
+   "highland": 33016
+  },
+  "eur_MWh": {
+   "sheltered": 726,
+   "inland": 444,
+   "coastal": 304,
+   "highland": 198
+  },
+  "cf": {
+   "sheltered": 8.5,
+   "inland": 14.0,
+   "coastal": 20.4,
+   "highland": 31.4
+  }
+ },
+ {
+  "D": 6.0,
+  "tsr": 8.0,
+  "tip": 85.0,
+  "rpm": 271,
+  "rated_wind": 12.7,
+  "Lp60": 50.7,
+  "d45": 116,
+  "M_park": 8.9,
+  "Q": 480,
+  "head": 905,
+  "tower": 1455,
+  "capex": 67202,
+  "aep": {
+   "sheltered": 13686,
+   "inland": 21411,
+   "coastal": 29989,
+   "highland": 43016
+  },
+  "eur_MWh": {
+   "sheltered": 526,
+   "inland": 336,
+   "coastal": 240,
+   "highland": 167
+  },
+  "cf": {
+   "sheltered": 13.0,
+   "inland": 20.4,
+   "coastal": 28.5,
+   "highland": 40.9
+  }
+ }
+]
