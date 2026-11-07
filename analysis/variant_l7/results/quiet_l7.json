@@ -1,0 +1,386 @@
+{
+ "TSR5.5": {
+  "tip55": {
+   "rpm": 131,
+   "Lp60": 45.0,
+   "d45": 60,
+   "rated_wind": 10.0,
+   "aep_loss_pct": {
+    "sheltered": 0.0,
+    "inland": 0.0,
+    "coastal": 0.0,
+    "highland": 0.0
+   }
+  },
+  "tip50": {
+   "rpm": 119,
+   "Lp60": 45.0,
+   "d45": 60,
+   "rated_wind": 10.3,
+   "aep_loss_pct": {
+    "sheltered": 0.9,
+    "inland": 0.9,
+    "coastal": 0.9,
+    "highland": 0.8
+   }
+  },
+  "tip48": {
+   "rpm": 115,
+   "Lp60": 45.0,
+   "d45": 60,
+   "rated_wind": 10.6,
+   "aep_loss_pct": {
+    "sheltered": 1.7,
+    "inland": 1.8,
+    "coastal": 1.8,
+    "highland": 1.6
+   }
+  }
+ },
+ "TSR6.5": {
+  "tip65": {
+   "rpm": 155,
+   "Lp60": 47.5,
+   "d45": 81,
+   "rated_wind": 10.0,
+   "aep_loss_pct": {
+    "sheltered": 0.0,
+    "inland": 0.0,
+    "coastal": 0.0,
+    "highland": 0.0
+   }
+  },
+  "tip62": {
+   "rpm": 148,
+   "Lp60": 47.5,
+   "d45": 81,
+   "rated_wind": 10.1,
+   "aep_loss_pct": {
+    "sheltered": 0.2,
+    "inland": 0.2,
+    "coastal": 0.2,
+    "highland": 0.2
+   }
+  },
+  "tip55": {
+   "rpm": 131,
+   "Lp60": 47.5,
+   "d45": 81,
+   "rated_wind": 10.8,
+   "aep_loss_pct": {
+    "sheltered": 2.4,
+    "inland": 2.6,
+    "coastal": 2.5,
+    "highland": 2.2
+   }
+  },
+  "tip50": {
+   "rpm": 119,
+   "Lp60": 45.9,
+   "d45": 67,
+   "rated_wind": 12.1,
+   "aep_loss_pct": {
+    "sheltered": 7.0,
+    "inland": 7.4,
+    "coastal": 7.4,
+    "highland": 6.5
+   }
+  },
+  "tip48": {
+   "rpm": 115,
+   "Lp60": 45.0,
+   "d45": 60,
+   "rated_wind": 12.8,
+   "aep_loss_pct": {
+    "sheltered": 9.6,
+    "inland": 10.4,
+    "coastal": 10.4,
+    "highland": 9.2
+   }
+  }
+ },
+ "TSR7.0": {
+  "tip70": {
+   "rpm": 167,
+   "Lp60": 49.1,
+   "d45": 97,
+   "rated_wind": 10.0,
+   "aep_loss_pct": {
+    "sheltered": 0.0,
+    "inland": 0.0,
+    "coastal": 0.0,
+    "highland": 0.0
+   }
+  },
+  "tip62": {
+   "rpm": 148,
+   "Lp60": 49.1,
+   "d45": 97,
+   "rated_wind": 10.4,
+   "aep_loss_pct": {
+    "sheltered": 1.1,
+    "inland": 1.2,
+    "coastal": 1.2,
+    "highland": 1.0
+   }
+  },
+  "tip55": {
+   "rpm": 131,
+   "Lp60": 47.9,
+   "d45": 85,
+   "rated_wind": 11.8,
+   "aep_loss_pct": {
+    "sheltered": 5.6,
+    "inland": 6.0,
+    "coastal": 5.9,
+    "highland": 5.2
+   }
+  },
+  "tip50": {
+   "rpm": 119,
+   "Lp60": 45.9,
+   "d45": 67,
+   "rated_wind": 13.4,
+   "aep_loss_pct": {
+    "sheltered": 12.0,
+    "inland": 12.9,
+    "coastal": 13.0,
+    "highland": 11.7
+   }
+  },
+  "tip48": {
+   "rpm": 115,
+   "Lp60": 45.0,
+   "d45": 60,
+   "rated_wind": 17.5,
+   "aep_loss_pct": {
+    "sheltered": 15.4,
+    "inland": 16.7,
+    "coastal": 17.0,
+    "highland": 15.6
+   }
+  }
+ },
+ "TSR7.5": {
+  "tip75": {
+   "rpm": 179,
+   "Lp60": 50.5,
+   "d45": 115,
+   "rated_wind": 10.0,
+   "aep_loss_pct": {
+    "sheltered": 0.0,
+    "inland": 0.0,
+    "coastal": 0.0,
+    "highland": 0.0
+   }
+  },
+  "tip70": {
+   "rpm": 167,
+   "Lp60": 50.5,
+   "d45": 115,
+   "rated_wind": 10.1,
+   "aep_loss_pct": {
+    "sheltered": 0.4,
+    "inland": 0.4,
+    "coastal": 0.4,
+    "highland": 0.3
+   }
+  },
+  "tip62": {
+   "rpm": 148,
+   "Lp60": 50.5,
+   "d45": 115,
+   "rated_wind": 11.1,
+   "aep_loss_pct": {
+    "sheltered": 3.1,
+    "inland": 3.3,
+    "coastal": 3.2,
+    "highland": 2.8
+   }
+  },
+  "tip55": {
+   "rpm": 131,
+   "Lp60": 47.9,
+   "d45": 85,
+   "rated_wind": 12.9,
+   "aep_loss_pct": {
+    "sheltered": 10.0,
+    "inland": 10.7,
+    "coastal": 10.7,
+    "highland": 9.5
+   }
+  },
+  "tip50": {
+   "rpm": 119,
+   "Lp60": 45.9,
+   "d45": 67,
+   "rated_wind": 20.6,
+   "aep_loss_pct": {
+    "sheltered": 17.7,
+    "inland": 19.4,
+    "coastal": 20.0,
+    "highland": 18.8
+   }
+  },
+  "tip48": {
+   "rpm": 115,
+   "Lp60": 45.0,
+   "d45": 60,
+   "rated_wind": 24.6,
+   "aep_loss_pct": {
+    "sheltered": 21.5,
+    "inland": 23.8,
+    "coastal": 24.9,
+    "highland": 24.5
+   }
+  }
+ },
+ "TSR8.0": {
+  "tip80": {
+   "rpm": 191,
+   "Lp60": 51.9,
+   "d45": 134,
+   "rated_wind": 10.0,
+   "aep_loss_pct": {
+    "sheltered": 0.0,
+    "inland": 0.0,
+    "coastal": 0.0,
+    "highland": 0.0
+   }
+  },
+  "tip70": {
+   "rpm": 167,
+   "Lp60": 51.9,
+   "d45": 134,
+   "rated_wind": 10.5,
+   "aep_loss_pct": {
+    "sheltered": 1.3,
+    "inland": 1.4,
+    "coastal": 1.3,
+    "highland": 1.2
+   }
+  },
+  "tip62": {
+   "rpm": 148,
+   "Lp60": 50.5,
+   "d45": 115,
+   "rated_wind": 12.0,
+   "aep_loss_pct": {
+    "sheltered": 6.2,
+    "inland": 6.6,
+    "coastal": 6.5,
+    "highland": 5.7
+   }
+  },
+  "tip55": {
+   "rpm": 131,
+   "Lp60": 47.9,
+   "d45": 85,
+   "rated_wind": 14.4,
+   "aep_loss_pct": {
+    "sheltered": 14.9,
+    "inland": 16.1,
+    "coastal": 16.3,
+    "highland": 14.8
+   }
+  },
+  "tip50": {
+   "rpm": 119,
+   "Lp60": 45.9,
+   "d45": 67,
+   "rated_wind": NaN,
+   "aep_loss_pct": {
+    "sheltered": 23.5,
+    "inland": 26.0,
+    "coastal": 27.3,
+    "highland": 27.1
+   }
+  },
+  "tip48": {
+   "rpm": 115,
+   "Lp60": 45.0,
+   "d45": 60,
+   "rated_wind": NaN,
+   "aep_loss_pct": {
+    "sheltered": 27.3,
+    "inland": 30.3,
+    "coastal": 32.0,
+    "highland": 32.6
+   }
+  }
+ },
+ "TSR9.0": {
+  "tip90": {
+   "rpm": 215,
+   "Lp60": 54.4,
+   "d45": 176,
+   "rated_wind": 10.0,
+   "aep_loss_pct": {
+    "sheltered": 0.0,
+    "inland": 0.0,
+    "coastal": 0.0,
+    "highland": 0.0
+   }
+  },
+  "tip70": {
+   "rpm": 167,
+   "Lp60": 53.2,
+   "d45": 155,
+   "rated_wind": 11.9,
+   "aep_loss_pct": {
+    "sheltered": 5.8,
+    "inland": 6.2,
+    "coastal": 6.1,
+    "highland": 5.3
+   }
+  },
+  "tip62": {
+   "rpm": 148,
+   "Lp60": 50.5,
+   "d45": 115,
+   "rated_wind": 14.2,
+   "aep_loss_pct": {
+    "sheltered": 14.5,
+    "inland": 15.7,
+    "coastal": 15.9,
+    "highland": 14.4
+   }
+  },
+  "tip55": {
+   "rpm": 131,
+   "Lp60": 47.9,
+   "d45": 85,
+   "rated_wind": NaN,
+   "aep_loss_pct": {
+    "sheltered": 25.2,
+    "inland": 27.8,
+    "coastal": 29.1,
+    "highland": 29.0
+   }
+  },
+  "tip50": {
+   "rpm": 119,
+   "Lp60": 45.9,
+   "d45": 67,
+   "rated_wind": NaN,
+   "aep_loss_pct": {
+    "sheltered": 34.3,
+    "inland": 37.7,
+    "coastal": 39.8,
+    "highland": 41.0
+   }
+  },
+  "tip48": {
+   "rpm": 115,
+   "Lp60": 45.0,
+   "d45": 60,
+   "rated_wind": NaN,
+   "aep_loss_pct": {
+    "sheltered": 38.1,
+    "inland": 41.8,
+    "coastal": 44.2,
+    "highland": 45.8
+   }
+  }
+ }
+}

@@ -1,0 +1,4 @@
+NP1-300 (12 kW, as drawn) 332.8 kg, util 0.28 {'root_section': 0.04, 'front_plate': 0.05, 'bottom_plate': 0.18, 'yaw_bolts': 0.28, 'fatigue_root': 0.06}
+NS6-300 (6 kW) under M8 loads 126.7 kg, util 0.57 {'root_section': 0.08, 'front_plate': 0.25, 'bottom_plate': 0.57, 'yaw_bolts': 0.28, 'fatigue_root': 0.13}
+NP8-300 (proposed) 126.7 kg, util 0.57 {'root_section': 0.08, 'front_plate': 0.25, 'bottom_plate': 0.57, 'yaw_bolts': 0.28, 'fatigue_root': 0.13}
+chosen 126.7 saving 206.1

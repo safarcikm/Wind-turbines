@@ -1,0 +1,132 @@
+{
+ "geometry": {
+  "drum_d_mm": 646,
+  "stack_mm": 74.0,
+  "magnet_rows": 5,
+  "rows_length_mm": 75.8,
+  "blocks": 200,
+  "spares": 10,
+  "skew_step_deg": 0.2,
+  "magnet_kg": 8.2,
+  "turns": 28,
+  "poles": 40,
+  "slots": 45
+ },
+ "electrical": {
+  "torque_rated_Nm": 778,
+  "current_vs_RevC": 1.065,
+  "torque_RevC_Nm": 730,
+  "freq_Hz": 55.7,
+  "freq_RevC_Hz": 59.3,
+  "line_emf_100C_V": 349.0,
+  "line_emf_RevC_100C_V": 372.0,
+  "peak_line_V_m30C_at_design_overspeed": 799,
+  "current": "6.5 % higher than Rev C at rated (same generator, 778 Nm instead of 730 Nm)",
+  "demag_transient_SC_100C_pct": 30.1,
+  "note": "I_sc = psi/Ld, both scale with stack: unchanged"
+ },
+ "losses_W": {
+  "P_cu_RevC": 518,
+  "P_cu": 587,
+  "k_cu": 1.135,
+  "k_R": 1.0,
+  "P_fe_RevC": 218.0,
+  "P_fe": 199,
+  "P_rotor": 35,
+  "P_stray": 70.0,
+  "l_end_mm": 54.3
+ },
+ "efficiency_rated": {
+  "L7": 0.9301,
+  "RevC": 0.9334
+ },
+ "drum_stability_margin": {
+  "L_shell_239mm": 302,
+  "ump_kN_per_mm": 1.29
+ },
+ "mass_kg": {
+  "rotor": {
+   "RevC": 161.0,
+   "L7": 162.0
+  },
+  "stator": {
+   "RevC": 115.0,
+   "L7": 114.8
+  },
+  "total": {
+   "RevC": 276.0,
+   "L7": 276.8
+  }
+ },
+ "cooling": {
+  "configs": {
+   "B_cover_blades_RevC": {
+    "hot_rated": {
+     "hot": 118.1,
+     "mag": 70.3,
+     "air": 85.4
+    },
+    "hot_rated_weak_wake": {
+     "hot": 123.9,
+     "mag": 76.2,
+     "air": 91.1
+    },
+    "hot_110pct": {
+     "hot": 133.7,
+     "mag": 74.8,
+     "air": 93.3
+    },
+    "iceland_10C_rated": {
+     "hot": 87.5,
+     "mag": 42.8,
+     "air": 57.0
+    }
+   },
+   "G_blades_inner_fins_outer_ribs": {
+    "hot_rated": {
+     "hot": 101.5,
+     "mag": 57.4,
+     "air": 67.9
+    },
+    "hot_rated_weak_wake": {
+     "hot": 105.5,
+     "mag": 61.6,
+     "air": 72.1
+    },
+    "hot_110pct": {
+     "hot": 113.8,
+     "mag": 60.2,
+     "air": 73.0
+    },
+    "iceland_10C_rated": {
+     "hot": 73.4,
+     "mag": 32.2,
+     "air": 42.1
+    }
+   },
+   "H_G_with_25mm_ribs": {
+    "hot_rated": {
+     "hot": 96.1,
+     "mag": 51.9,
+     "air": 62.5
+    },
+    "hot_rated_weak_wake": {
+     "hot": 99.4,
+     "mag": 55.3,
+     "air": 65.9
+    },
+    "hot_110pct": {
+     "hot": 107.6,
+     "mag": 54.1,
+     "air": 66.9
+    },
+    "iceland_10C_rated": {
+     "hot": 69.1,
+     "mag": 27.7,
+     "air": 37.7
+    }
+   }
+  },
+  "limit_hotspot_C": 130
+ }
+}

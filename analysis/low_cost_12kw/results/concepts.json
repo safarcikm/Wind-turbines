@@ -1,0 +1,90 @@
+{
+ "M8": {
+  "head_kg": 1392,
+  "tower18_kg": 2356,
+  "footing18_m3": 13.5,
+  "parts": {
+   "blades": 7155,
+   "hub_pitch": 10578,
+   "generator": 10362,
+   "spindle_brake": 6323,
+   "nacelle": 4261,
+   "yaw": 8644,
+   "electronics": 13200,
+   "control": 7500,
+   "tower": 14136,
+   "footing": 6075,
+   "install": 7748
+  },
+  "total": 95983,
+  "masses": {
+   "blades": 102.2,
+   "hub_pitch": 352.6,
+   "generator": 259.1,
+   "spindle_brake": 180.9,
+   "nacelle": 170.4,
+   "yaw": 288.1,
+   "electrical": 134.0,
+   "tower18": 2356.0,
+   "footing18_m3": 13.5,
+   "area": 1.3
+  },
+  "eur_per_MWh": {
+   "sheltered": 451,
+   "inland": 311,
+   "coastal": 238,
+   "highland": 183
+  }
+ },
+ "LC8": {
+  "head_kg": 1030,
+  "tower18_kg": 1711,
+  "footing18_m3": 11.1,
+  "parts": {
+   "blades": 3923,
+   "hub_pitch": 3351,
+   "generator": 9464,
+   "spindle_brake": 3833,
+   "nacelle": 4202,
+   "yaw": 7968,
+   "electronics": 13200,
+   "control": 6000,
+   "tower": 10269,
+   "footing": 4991,
+   "install": 6742
+  },
+  "total": 73943,
+  "masses": {
+   "blades": 56.0,
+   "hub_pitch": 111.7,
+   "generator": 236.6,
+   "spindle_brake": 153.3,
+   "nacelle": 168.1,
+   "yaw": 265.6,
+   "electrical": 134.0,
+   "area": 0.7
+  },
+  "eur_per_MWh": {
+   "sheltered": 359,
+   "inland": 246,
+   "coastal": 187,
+   "highland": 143
+  }
+ },
+ "aep_kWh": {
+  "M8": {
+   "sheltered": 22795,
+   "inland": 33044,
+   "coastal": 43279,
+   "highland": 56298
+  },
+  "LC8": {
+   "sheltered": 22069,
+   "inland": 32168,
+   "coastal": 42322,
+   "highland": 55372
+  }
+ },
+ "saving_pct": 23.0,
+ "isk_per_eur": 145
+}

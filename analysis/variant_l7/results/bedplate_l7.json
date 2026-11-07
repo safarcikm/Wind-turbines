@@ -1,0 +1,230 @@
+{
+ "NP1-300 (12 kW, as drawn)": {
+  "inputs": {
+   "t_front": 40.0,
+   "t_bottom": 40.0,
+   "t_side": 20.0,
+   "u_top": 250.0,
+   "front_w": 500.0,
+   "width": 520.0,
+   "x_bot_front": -330.0,
+   "x_rear": 330.0,
+   "z_rear_top": 330.0,
+   "rear": [
+    480.0,
+    290.0,
+    20.0
+   ]
+  },
+  "masses_kg": {
+   "front plate": 104.4,
+   "front pad": 7.9,
+   "bottom plate (yaw flange)": 94.6,
+   "side plates": 94.3,
+   "rear plate": 21.9,
+   "welds, bosses, lifting eyes (+3 %)": 9.7
+  },
+  "mass_kg": 332.8,
+  "checks": {
+   "M_flange_kNm": 9.49,
+   "M_root_kNm": 29.73,
+   "T_kNm": 28.52,
+   "root_section": {
+    "W_cm3": 2472,
+    "sigma_MPa": 12.0,
+    "tau_MPa": 1.3,
+    "vm_MPa": 12.2,
+    "util": 0.04
+   },
+   "front_plate": {
+    "bolt_force_kN": 12.48,
+    "sigma_MPa": 17.4,
+    "util": 0.05
+   },
+   "bottom_plate": {
+    "sigma_MPa": 59.5,
+    "util": 0.18
+   },
+   "yaw_bolts": {
+    "F_bolt_kN": 25.6,
+    "F_t_Rd_kN": 90.0,
+    "util": 0.28
+   },
+   "fatigue_root": {
+    "dsigma_MPa": 1.34,
+    "allow_MPa": 21.3,
+    "util": 0.06
+   },
+   "allow_static_MPa": 323
+  },
+  "util_max": 0.28
+ },
+ "NS6-300 (6 kW) under M8 loads": {
+  "inputs": {
+   "t_front": 20.0,
+   "t_bottom": 25.0,
+   "t_side": 10.0,
+   "front_window": 42000.0,
+   "u_top": 230.0,
+   "front_w": 500.0,
+   "width": 520.0,
+   "x_bot_front": -330.0,
+   "x_rear": 150.0,
+   "z_rear_top": 200.0,
+   "rear": [
+    496.0,
+    100.0,
+    10.0
+   ],
+   "bottom_cut": 22500.0,
+   "holes": [
+    [
+     -150.0,
+     360.0,
+     75.0
+    ],
+    [
+     20.0,
+     260.0,
+     55.0
+    ]
+   ],
+   "gussets": [
+    16200.0,
+    12.0,
+    2
+   ]
+  },
+  "masses_kg": {
+   "front plate": 45.2,
+   "front pad": 7.9,
+   "bottom plate (yaw flange)": 36.3,
+   "side plates": 26.6,
+   "rear plate": 3.9,
+   "gussets": 3.1,
+   "welds, bosses, lifting eyes (+3 %)": 3.7
+  },
+  "mass_kg": 126.7,
+  "checks": {
+   "M_flange_kNm": 9.49,
+   "M_root_kNm": 30.35,
+   "T_kNm": 28.52,
+   "root_section": {
+    "W_cm3": 1168,
+    "sigma_MPa": 26.0,
+    "tau_MPa": 2.6,
+    "vm_MPa": 26.4,
+    "util": 0.08
+   },
+   "front_plate": {
+    "bolt_force_kN": 12.48,
+    "sigma_MPa": 79.4,
+    "util": 0.25
+   },
+   "bottom_plate": {
+    "sigma_MPa": 183.5,
+    "util": 0.57
+   },
+   "yaw_bolts": {
+    "F_bolt_kN": 25.6,
+    "F_t_Rd_kN": 90.0,
+    "util": 0.28
+   },
+   "fatigue_root": {
+    "dsigma_MPa": 2.86,
+    "allow_MPa": 21.3,
+    "util": 0.13
+   },
+   "allow_static_MPa": 323
+  },
+  "util_max": 0.57
+ },
+ "NP8-300 (proposed)": {
+  "inputs": {
+   "t_front": 20.0,
+   "t_bottom": 25.0,
+   "t_side": 10.0,
+   "front_window": 42000.0,
+   "u_top": 230.0,
+   "front_w": 500.0,
+   "width": 520.0,
+   "x_bot_front": -330.0,
+   "x_rear": 150.0,
+   "z_rear_top": 200.0,
+   "rear": [
+    496.0,
+    100.0,
+    10.0
+   ],
+   "bottom_cut": 22500.0,
+   "holes": [
+    [
+     -150.0,
+     360.0,
+     75.0
+    ],
+    [
+     20.0,
+     260.0,
+     55.0
+    ]
+   ],
+   "gussets": [
+    16200.0,
+    12.0,
+    2
+   ]
+  },
+  "masses_kg": {
+   "front plate": 45.2,
+   "front pad": 7.9,
+   "bottom plate (yaw flange)": 36.3,
+   "side plates": 26.6,
+   "rear plate": 3.9,
+   "gussets": 3.1,
+   "welds, bosses, lifting eyes (+3 %)": 3.7
+  },
+  "mass_kg": 126.7,
+  "checks": {
+   "M_flange_kNm": 9.49,
+   "M_root_kNm": 30.35,
+   "T_kNm": 28.52,
+   "root_section": {
+    "W_cm3": 1168,
+    "sigma_MPa": 26.0,
+    "tau_MPa": 2.6,
+    "vm_MPa": 26.4,
+    "util": 0.08
+   },
+   "front_plate": {
+    "bolt_force_kN": 12.48,
+    "sigma_MPa": 79.4,
+    "util": 0.25
+   },
+   "bottom_plate": {
+    "sigma_MPa": 183.5,
+    "util": 0.57
+   },
+   "yaw_bolts": {
+    "F_bolt_kN": 25.6,
+    "F_t_Rd_kN": 90.0,
+    "util": 0.28
+   },
+   "fatigue_root": {
+    "dsigma_MPa": 2.86,
+    "allow_MPa": 21.3,
+    "util": 0.13
+   },
+   "allow_static_MPa": 323
+  },
+  "util_max": 0.57
+ },
+ "chosen_mass_kg": 126.7,
+ "saving_vs_NP1_kg": 206.1,
+ "inputs": {
+  "m_ahead_kg": 614,
+  "x_ahead_m": 0.36,
+  "x_yaw_mm": 750.0,
+  "util_limit": 0.7
+ }
+}

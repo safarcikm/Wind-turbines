@@ -1,0 +1,241 @@
+{
+ "glass": {
+  "cap_material": "E-glass UD / epoxy, infused, Vf 0.55",
+  "mass_kg": 22.43,
+  "static_moment_kgm_about_axis": 31.66,
+  "r_cog_m": 1.51,
+  "tip_deflection_m": 0.349,
+  "tower_clearance_m": 0.899,
+  "clearance_util": 0.39,
+  "f_flap_Hz": 7.54,
+  "f_edge_Hz": 17.71,
+  "max_util": {
+   "SIM_edge+": 0.37,
+   "SIM_edge-": 0.46,
+   "SIM_flap+": 0.39,
+   "SIM_flap-": 0.38,
+   "SLM_E+": 0.06,
+   "SLM_E-": 0.07,
+   "SLM_G+": 0.25,
+   "SLM_G-": 0.32,
+   "SLM_H+": 0.79,
+   "SLM_H-": 0.76,
+   "buckling_cap": 0.99,
+   "buckling_panel": 0.59,
+   "fatigue": 0.54,
+   "web_shear": 0.87
+  },
+  "f_flap_rated_Hz": 8.51,
+  "f_edge_rated_Hz": 18.08
+ },
+ "carbon": {
+  "cap_material": "standard modulus carbon UD / epoxy",
+  "mass_kg": 21.35,
+  "static_moment_kgm_about_axis": 29.95,
+  "r_cog_m": 1.51,
+  "tip_deflection_m": 0.179,
+  "tower_clearance_m": 0.899,
+  "clearance_util": 0.2,
+  "f_flap_Hz": 10.75,
+  "f_edge_Hz": 19.32,
+  "max_util": {
+   "SIM_edge+": 0.33,
+   "SIM_edge-": 0.42,
+   "SIM_flap+": 0.28,
+   "SIM_flap-": 0.28,
+   "SLM_E+": 0.04,
+   "SLM_E-": 0.06,
+   "SLM_G+": 0.23,
+   "SLM_G-": 0.29,
+   "SLM_H+": 0.56,
+   "SLM_H-": 0.56,
+   "buckling_cap": 1.0,
+   "buckling_panel": 0.27,
+   "fatigue": 0.28,
+   "web_shear": 0.87
+  },
+  "f_flap_rated_Hz": 11.46,
+  "f_edge_rated_Hz": 19.66
+ },
+ "carbon_cored_caps": {
+  "cap_material": "standard modulus carbon UD / epoxy",
+  "mass_kg": 21.25,
+  "static_moment_kgm_about_axis": 30.56,
+  "r_cog_m": 1.55,
+  "tip_deflection_m": 0.284,
+  "tower_clearance_m": 0.899,
+  "clearance_util": 0.32,
+  "f_flap_Hz": 8.01,
+  "f_edge_Hz": 17.53,
+  "max_util": {
+   "SIM_edge+": 0.36,
+   "SIM_edge-": 0.45,
+   "SIM_flap+": 0.5,
+   "SIM_flap-": 0.49,
+   "SLM_E+": 0.06,
+   "SLM_E-": 0.1,
+   "SLM_G+": 0.26,
+   "SLM_G-": 0.32,
+   "SLM_H+": 1.0,
+   "SLM_H-": 0.99,
+   "buckling_cap": 0.41,
+   "buckling_panel": 0.48,
+   "fatigue": 0.5,
+   "web_shear": 0.87
+  },
+  "f_flap_rated_Hz": 8.92,
+  "f_edge_rated_Hz": 17.9
+ },
+ "root_joint": {
+  "root \u00d8 0.24 m, M16": {
+   "inserts": 8,
+   "bolt_circle_m": 0.205,
+   "F_bolt_kN": 73.9,
+   "F_t_Rd_kN": 113.0,
+   "pitch_mm": 81
+  },
+  "root \u00d8 0.24 m, M20": {
+   "inserts": 8,
+   "bolt_circle_m": 0.205,
+   "F_bolt_kN": 73.9,
+   "F_t_Rd_kN": 176.4,
+   "pitch_mm": 81
+  },
+  "root \u00d8 0.26 m, M16": {
+   "inserts": 8,
+   "bolt_circle_m": 0.225,
+   "F_bolt_kN": 68.0,
+   "F_t_Rd_kN": 113.0,
+   "pitch_mm": 88
+  },
+  "root \u00d8 0.26 m, M20": {
+   "inserts": 8,
+   "bolt_circle_m": 0.225,
+   "F_bolt_kN": 68.0,
+   "F_t_Rd_kN": 176.4,
+   "pitch_mm": 88
+  },
+  "root \u00d8 0.28 m, M16": {
+   "inserts": 8,
+   "bolt_circle_m": 0.245,
+   "F_bolt_kN": 63.0,
+   "F_t_Rd_kN": 113.0,
+   "pitch_mm": 96
+  },
+  "root \u00d8 0.28 m, M20": {
+   "inserts": 8,
+   "bolt_circle_m": 0.245,
+   "F_bolt_kN": 63.0,
+   "F_t_Rd_kN": 176.4,
+   "pitch_mm": 96
+  },
+  "root \u00d8 0.30 m, M16": {
+   "inserts": 8,
+   "bolt_circle_m": 0.265,
+   "F_bolt_kN": 58.7,
+   "F_t_Rd_kN": 113.0,
+   "pitch_mm": 104
+  },
+  "root \u00d8 0.30 m, M20": {
+   "inserts": 8,
+   "bolt_circle_m": 0.265,
+   "F_bolt_kN": 58.7,
+   "F_t_Rd_kN": 176.4,
+   "pitch_mm": 104
+  }
+ },
+ "root_joint_inputs": {
+  "M_design_kNm": 27.53,
+  "N_design_kN": 54.2
+ },
+ "loads_used": {
+  "SLM_H_flap": 27530.0,
+  "SLM_G_edge": 10500.0,
+  "SIM_res": 8439.8,
+  "SIM_op_flap": 5786.8,
+  "DEL_flap": 3788.8,
+  "DEL_edge": 1927.5,
+  "rpm_max": 234.6,
+  "gamma_E": 3.0
+ },
+ "sim_source": "doc 11 final scaled",
+ "mass_iteration": [
+  [
+   21.0,
+   21.35
+  ]
+ ]
+}
+{
+ "inputs": {
+  "A_proj_B_m2": 0.842,
+  "m_B": 21.0,
+  "R_cog": 1.6,
+  "m_r": 405.0,
+  "Q_design_Nm": 778,
+  "lambda_design": 7.0,
+  "n_design_rpm": 167.0,
+  "n_max_rpm": 234.6,
+  "V_ave": 10.0,
+  "V_e50": 77.0
+ },
+ "A_fatigue_ranges_kN_kNm": {
+  "dF_zB": 20.55,
+  "dM_xB": 0.92,
+  "dM_yB": 1.81,
+  "dF_x_shaft": 2.04,
+  "dM_x_shaft": 0.94,
+  "dM_shaft": 2.31,
+  "cycles_20y": 1755504000.0
+ },
+ "ultimate_design_values_gamma_3_kN_kNm": {
+  "B_yaw": {
+   "M_yB": 3.42,
+   "M_shaft": 6.56
+  },
+  "D_max_thrust": {
+   "F_x_shaft": 28.86
+  },
+  "E_max_speed": {
+   "F_zB": 60.84,
+   "M_shaft": 3.19
+  },
+  "F_short_circuit": {
+   "M_x_shaft": 4.67,
+   "M_xB": 2.54
+  },
+  "G_shutdown": {
+   "M_x_shaft": 28.52,
+   "M_xB": 10.5
+  },
+  "H_parked": {
+   "M_yB": 27.53,
+   "F_x_shaft": 41.3
+  }
+ },
+ "characteristic_values_kN_kNm": {
+  "B_yaw": {
+   "M_yB": 1.14,
+   "M_shaft": 2.19
+  },
+  "D_max_thrust": {
+   "F_x_shaft": 9.62
+  },
+  "E_max_speed": {
+   "F_zB": 20.28,
+   "M_shaft": 1.06
+  },
+  "F_short_circuit": {
+   "M_x_shaft": 1.56,
+   "M_xB": 0.85
+  },
+  "G_shutdown": {
+   "M_x_shaft": 9.51,
+   "M_xB": 3.5
+  },
+  "H_parked": {
+   "M_yB": 9.18,
+   "F_x_shaft": 13.77
+  }
+ }
+}
