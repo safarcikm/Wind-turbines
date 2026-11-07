@@ -1,0 +1,440 @@
+[
+ {
+  "key": "REF",
+  "note": "M8 baseline: N45SH 30x15x12, 1 across x 7 along",
+  "grade": "N45SH",
+  "block": "30 x 15 x 12",
+  "across": 1,
+  "rows": 7,
+  "pieces": 280,
+  "spares": 14,
+  "piece_g": 41.0,
+  "magnet_kg": 11.49,
+  "rows_mm": 106.2,
+  "seat_land_mm": 120.2,
+  "seat_land_vs_M8_mm": 0.0,
+  "seat_d_mm": 628.02,
+  "drum_yoke_mm": 8.99,
+  "span": 0.633,
+  "skew_step_deg": 0.143,
+  "turns": 28,
+  "emf_100C_V": 384.7,
+  "emf_28t_100C_V": 384.7,
+  "peak_line_V": 881,
+  "losses_W": {
+   "copper": 596,
+   "core": 202,
+   "rotor": 30,
+   "stray": 70.0,
+   "total": 898.0
+  },
+  "efficiency_rated": 0.944,
+  "cogging_skewed_Nm": 0.0,
+  "cogging_unskewed_Nm": 7.52,
+  "ripple_skewed_pct": 2.36,
+  "thd_pct": 2.55,
+  "magnet_eddy_W": 2.9,
+  "demag_transient_sc_pct": {
+   "c100": 30.0,
+   "c110": 21.9,
+   "c120": 11.4
+  },
+  "demag_steady_sc_100C_pct": 45.2,
+  "demag_rated_100C_pct": 56.3,
+  "T20_C": 112,
+  "drum_stability": 238,
+  "ump_kN_per_mm": 1.82,
+  "mass_vs_M8_kg": {
+   "magnets": 0.0,
+   "drum": 0.0,
+   "total": 0.0
+  },
+  "cooling_G": {
+   "hot_rated": {
+    "hot": 103.9,
+    "mag": 57.3,
+    "air": 68.7
+   },
+   "hot_rated_weak_wake": {
+    "hot": 108.8,
+    "mag": 62.4,
+    "air": 73.7
+   },
+   "hot_110pct": {
+    "hot": 116.5,
+    "mag": 59.9,
+    "air": 73.7
+   },
+   "iceland_10C_rated": {
+    "hot": 75.6,
+    "mag": 32.0,
+    "air": 42.7
+   }
+  }
+ },
+ {
+  "key": "A40",
+  "note": "N42SH 40x20x7.5, 2 across (20 wide) x 3 along (40 long)",
+  "grade": "N42SH",
+  "block": "20 x 40 x 7.5",
+  "across": 2,
+  "rows": 3,
+  "pieces": 240,
+  "spares": 12,
+  "piece_g": 45.6,
+  "magnet_kg": 10.94,
+  "rows_mm": 120.4,
+  "seat_land_mm": 134.4,
+  "seat_land_vs_M8_mm": 14.2,
+  "seat_d_mm": 618.62,
+  "drum_yoke_mm": 13.69,
+  "span": 0.844,
+  "skew_step_deg": 0.333,
+  "turns": 27,
+  "emf_100C_V": 386.4,
+  "emf_28t_100C_V": 400.7,
+  "peak_line_V": 885,
+  "losses_W": {
+   "copper": 573,
+   "core": 219,
+   "rotor": 36,
+   "stray": 70.0,
+   "total": 898.0
+  },
+  "efficiency_rated": 0.944,
+  "cogging_skewed_Nm": 0.02,
+  "cogging_unskewed_Nm": 10.93,
+  "ripple_skewed_pct": 1.79,
+  "thd_pct": 13.45,
+  "magnet_eddy_W": 9.3,
+  "demag_transient_sc_pct": {
+   "c100": 20.0,
+   "c110": 10.8,
+   "c120": -1.1
+  },
+  "demag_steady_sc_100C_pct": 39.9,
+  "demag_rated_100C_pct": 53.6,
+  "T20_C": 100,
+  "drum_stability": 383,
+  "ump_kN_per_mm": 2.67,
+  "mass_vs_M8_kg": {
+   "magnets": -0.55,
+   "drum": 9.7,
+   "total": 9.2
+  },
+  "cooling_G": {
+   "hot_rated": {
+    "hot": 103.1,
+    "mag": 57.3,
+    "air": 68.5
+   },
+   "hot_rated_weak_wake": {
+    "hot": 108.0,
+    "mag": 62.3,
+    "air": 73.5
+   },
+   "hot_110pct": {
+    "hot": 115.2,
+    "mag": 59.7,
+    "air": 73.2
+   },
+   "iceland_10C_rated": {
+    "hot": 75.1,
+    "mag": 32.0,
+    "air": 42.6
+   }
+  }
+ },
+ {
+  "key": "W31_12",
+  "note": "N42SH 31 wide x 12 thick, 1 across",
+  "grade": "N42SH",
+  "block": "31 x 21 x 12",
+  "across": 1,
+  "rows": 5,
+  "pieces": 200,
+  "spares": 10,
+  "piece_g": 59.4,
+  "magnet_kg": 11.87,
+  "rows_mm": 105.8,
+  "seat_land_mm": 119.8,
+  "seat_land_vs_M8_mm": -0.4,
+  "seat_d_mm": 628.07,
+  "drum_yoke_mm": 8.97,
+  "span": 0.654,
+  "skew_step_deg": 0.2,
+  "turns": 28,
+  "emf_100C_V": 383.9,
+  "emf_28t_100C_V": 383.9,
+  "peak_line_V": 879,
+  "losses_W": {
+   "copper": 601,
+   "core": 201,
+   "rotor": 32,
+   "stray": 70.0,
+   "total": 904.0
+  },
+  "efficiency_rated": 0.9436,
+  "cogging_skewed_Nm": 0.01,
+  "cogging_unskewed_Nm": 6.09,
+  "ripple_skewed_pct": 2.05,
+  "thd_pct": 3.28,
+  "magnet_eddy_W": 4.9,
+  "demag_transient_sc_pct": {
+   "c100": 30.6,
+   "c110": 22.5,
+   "c120": 12.1
+  },
+  "demag_steady_sc_100C_pct": 45.8,
+  "demag_rated_100C_pct": 57.1,
+  "T20_C": 112,
+  "drum_stability": 237,
+  "ump_kN_per_mm": 1.82,
+  "mass_vs_M8_kg": {
+   "magnets": 0.38,
+   "drum": -0.0,
+   "total": 0.3
+  },
+  "cooling_G": {
+   "hot_rated": {
+    "hot": 104.4,
+    "mag": 57.5,
+    "air": 69.0
+   },
+   "hot_rated_weak_wake": {
+    "hot": 109.4,
+    "mag": 62.7,
+    "air": 74.0
+   },
+   "hot_110pct": {
+    "hot": 117.2,
+    "mag": 60.1,
+    "air": 74.0
+   },
+   "iceland_10C_rated": {
+    "hot": 76.0,
+    "mag": 32.2,
+    "air": 42.9
+   }
+  }
+ },
+ {
+  "key": "W33_11",
+  "note": "N42SH 33 wide x 11 thick, 1 across (doc 21 best block)",
+  "grade": "N42SH",
+  "block": "33 x 21 x 11",
+  "across": 1,
+  "rows": 5,
+  "pieces": 200,
+  "spares": 10,
+  "piece_g": 57.9,
+  "magnet_kg": 11.59,
+  "rows_mm": 105.8,
+  "seat_land_mm": 119.8,
+  "seat_land_vs_M8_mm": -0.4,
+  "seat_d_mm": 626.17,
+  "drum_yoke_mm": 9.91,
+  "span": 0.696,
+  "skew_step_deg": 0.2,
+  "turns": 28,
+  "emf_100C_V": 390.9,
+  "emf_28t_100C_V": 390.9,
+  "peak_line_V": 895,
+  "losses_W": {
+   "copper": 583,
+   "core": 209,
+   "rotor": 32,
+   "stray": 70.0,
+   "total": 894.0
+  },
+  "efficiency_rated": 0.9443,
+  "cogging_skewed_Nm": 0.0,
+  "cogging_unskewed_Nm": 1.18,
+  "ripple_skewed_pct": 1.38,
+  "thd_pct": 5.56,
+  "magnet_eddy_W": 5.2,
+  "demag_transient_sc_pct": {
+   "c100": 26.1,
+   "c110": 17.6,
+   "c120": 6.6
+  },
+  "demag_steady_sc_100C_pct": 40.2,
+  "demag_rated_100C_pct": 53.6,
+  "T20_C": 107,
+  "drum_stability": 268,
+  "ump_kN_per_mm": 1.96,
+  "mass_vs_M8_kg": {
+   "magnets": 0.1,
+   "drum": 1.7,
+   "total": 1.8
+  },
+  "cooling_G": {
+   "hot_rated": {
+    "hot": 103.2,
+    "mag": 57.2,
+    "air": 68.4
+   },
+   "hot_rated_weak_wake": {
+    "hot": 108.1,
+    "mag": 62.2,
+    "air": 73.4
+   },
+   "hot_110pct": {
+    "hot": 115.5,
+    "mag": 59.6,
+    "air": 73.2
+   },
+   "iceland_10C_rated": {
+    "hot": 75.1,
+    "mag": 31.9,
+    "air": 42.4
+   }
+  }
+ },
+ {
+  "key": "D17_10",
+  "note": "N42SH 2 x 17 wide x 10 thick across",
+  "grade": "N42SH",
+  "block": "17 x 35 x 10",
+  "across": 2,
+  "rows": 3,
+  "pieces": 240,
+  "spares": 12,
+  "piece_g": 45.2,
+  "magnet_kg": 10.85,
+  "rows_mm": 105.4,
+  "seat_land_mm": 119.4,
+  "seat_land_vs_M8_mm": -0.8,
+  "seat_d_mm": 623.53,
+  "drum_yoke_mm": 11.23,
+  "span": 0.718,
+  "skew_step_deg": 0.333,
+  "turns": 27,
+  "emf_100C_V": 384.4,
+  "emf_28t_100C_V": 398.7,
+  "peak_line_V": 880,
+  "losses_W": {
+   "copper": 564,
+   "core": 217,
+   "rotor": 33,
+   "stray": 70.0,
+   "total": 884.0
+  },
+  "efficiency_rated": 0.945,
+  "cogging_skewed_Nm": 0.01,
+  "cogging_unskewed_Nm": 7.61,
+  "ripple_skewed_pct": 0.88,
+  "thd_pct": 7.7,
+  "magnet_eddy_W": 5.7,
+  "demag_transient_sc_pct": {
+   "c100": 28.1,
+   "c110": 19.8,
+   "c120": 9.0
+  },
+  "demag_steady_sc_100C_pct": 45.9,
+  "demag_rated_100C_pct": 59.7,
+  "T20_C": 110,
+  "drum_stability": 323,
+  "ump_kN_per_mm": 2.12,
+  "mass_vs_M8_kg": {
+   "magnets": -0.64,
+   "drum": 4.1,
+   "total": 3.5
+  },
+  "cooling_G": {
+   "hot_rated": {
+    "hot": 101.9,
+    "mag": 56.8,
+    "air": 67.9
+   },
+   "hot_rated_weak_wake": {
+    "hot": 106.8,
+    "mag": 61.8,
+    "air": 72.8
+   },
+   "hot_110pct": {
+    "hot": 113.7,
+    "mag": 59.1,
+    "air": 72.4
+   },
+   "iceland_10C_rated": {
+    "hot": 74.0,
+    "mag": 31.6,
+    "air": 42.0
+   }
+  }
+ },
+ {
+  "key": "D20_10",
+  "note": "N42SH 2 x 20 wide x 10 thick across (40x20x10)",
+  "grade": "N42SH",
+  "block": "20 x 35 x 10",
+  "across": 2,
+  "rows": 3,
+  "pieces": 240,
+  "spares": 12,
+  "piece_g": 53.2,
+  "magnet_kg": 12.77,
+  "rows_mm": 105.4,
+  "seat_land_mm": 119.4,
+  "seat_land_vs_M8_mm": -0.8,
+  "seat_d_mm": 623.62,
+  "drum_yoke_mm": 11.19,
+  "span": 0.844,
+  "skew_step_deg": 0.333,
+  "turns": 25,
+  "emf_100C_V": 378.1,
+  "emf_28t_100C_V": 423.5,
+  "peak_line_V": 866,
+  "losses_W": {
+   "copper": 510,
+   "core": 245,
+   "rotor": 34,
+   "stray": 70.0,
+   "total": 859.0
+  },
+  "efficiency_rated": 0.9469,
+  "cogging_skewed_Nm": 0.05,
+  "cogging_unskewed_Nm": 10.86,
+  "ripple_skewed_pct": 1.69,
+  "thd_pct": 13.2,
+  "magnet_eddy_W": 7.0,
+  "demag_transient_sc_pct": {
+   "c100": 24.7,
+   "c110": 16.1,
+   "c120": 4.8
+  },
+  "demag_steady_sc_100C_pct": 42.2,
+  "demag_rated_100C_pct": 58.1,
+  "T20_C": 105,
+  "drum_stability": 320,
+  "ump_kN_per_mm": 2.12,
+  "mass_vs_M8_kg": {
+   "magnets": 1.28,
+   "drum": 4.1,
+   "total": 5.3
+  },
+  "cooling_G": {
+   "hot_rated": {
+    "hot": 98.9,
+    "mag": 55.9,
+    "air": 66.5
+   },
+   "hot_rated_weak_wake": {
+    "hot": 103.5,
+    "mag": 60.7,
+    "air": 71.2
+   },
+   "hot_110pct": {
+    "hot": 109.2,
+    "mag": 57.9,
+    "air": 70.4
+   },
+   "iceland_10C_rated": {
+    "hot": 71.5,
+    "mag": 30.9,
+    "air": 40.9
+   }
+  }
+ }
+]
