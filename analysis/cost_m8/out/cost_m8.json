@@ -1,0 +1,326 @@
+{
+ "exw": 121878.36995,
+ "site": 17142.2,
+ "contingency": 0.08,
+ "exw_with_cont": 131628.639546,
+ "subs": {
+  "1 Blades": {
+   "mat": 1484,
+   "lab": 10257,
+   "srv": 90,
+   "bought": 1110,
+   "total": 12941,
+   "hours": 136
+  },
+  "2 Hub and pitch": {
+   "mat": 720,
+   "lab": 8186,
+   "srv": 829,
+   "bought": 10936,
+   "total": 20671,
+   "hours": 96
+  },
+  "3 Generator": {
+   "mat": 3144,
+   "lab": 13442,
+   "srv": 440,
+   "bought": 1180,
+   "total": 18206,
+   "hours": 161
+  },
+  "4 Spindle and brake": {
+   "mat": 832,
+   "lab": 5972,
+   "srv": 618,
+   "bought": 8731,
+   "total": 16153,
+   "hours": 64
+  },
+  "5 Nacelle and bedplate": {
+   "mat": 539,
+   "lab": 4560,
+   "srv": 419,
+   "bought": 1430,
+   "total": 6948,
+   "hours": 56
+  },
+  "6 Yaw": {
+   "mat": 411,
+   "lab": 5894,
+   "srv": 472,
+   "bought": 5702,
+   "total": 12479,
+   "hours": 66
+  },
+  "7 Electrical and power electronics": {
+   "mat": 106,
+   "lab": 6728,
+   "srv": 24,
+   "bought": 13510,
+   "total": 20367,
+   "hours": 86
+  },
+  "8 Tower": {
+   "mat": 1267,
+   "lab": 3735,
+   "srv": 1153,
+   "bought": 108,
+   "total": 6264,
+   "hours": 44
+  },
+  "9 Final assembly and test": {
+   "mat": 0,
+   "lab": 3792,
+   "srv": 0,
+   "bought": 410,
+   "total": 4202,
+   "hours": 50
+  },
+  "10 Tooling (written off)": {
+   "mat": 61,
+   "lab": 414,
+   "srv": 2,
+   "bought": 3170,
+   "total": 3647,
+   "hours": 6
+  },
+  "11 Foundation (site)": {
+   "mat": 2745,
+   "lab": 3360,
+   "srv": 38,
+   "bought": 4189,
+   "total": 10332,
+   "hours": 40
+  },
+  "12 Installation (site)": {
+   "mat": 0,
+   "lab": 3910,
+   "srv": 0,
+   "bought": 2900,
+   "total": 6810,
+   "hours": 46
+  }
+ },
+ "lc8": {
+  "exw": 95705.93393754342,
+  "site": 17142.2,
+  "subs": {
+   "1 Blades": 10264,
+   "2 Hub and pitch": 3541,
+   "3 Generator": 16740,
+   "4 Spindle and brake": 11820,
+   "5 Nacelle and bedplate": 6941,
+   "6 Yaw": 12191,
+   "7 Electrical and power electronics": 20367,
+   "8 Tower": 6264,
+   "9 Final assembly and test": 4202,
+   "10 Tooling (written off)": 3377,
+   "11 Foundation (site)": 10332,
+   "12 Installation (site)": 6810
+  }
+ },
+ "volume_sensitivity": {
+  "10": 136465.89995,
+  "25": 125525.25245,
+  "50": 121878.36995000001,
+  "100": 120054.9287,
+  "200": 119143.208075
+ },
+ "magnet_sensitivity": {
+  "100": 121300.02995,
+  "150": 121878.36995,
+  "200": 122456.70994999999,
+  "250": 123035.04994999999
+ },
+ "hours_by_trade": {
+  "fab": 173.54,
+  "mach": 155.6,
+  "comp": 159.0,
+  "elec": 154.0,
+  "assy": 124.0
+ },
+ "by_kind": {
+  "mat": 8563.81395,
+  "lab": 62981.2,
+  "srv": 4046.656,
+  "bought": 46286.7
+ },
+ "top": [
+  [
+   "1",
+   "NM8-100",
+   "Blades (3), all lines NM8-100: labour, glass, carbon, epoxy, core, consumables",
+   "1 Blades",
+   11066
+  ],
+  [
+   "15",
+   "NM8-915",
+   "Spring-applied caliper 4.8 kNm, hydraulic release",
+   "4 Spindle and brake",
+   5700
+  ],
+  [
+   "49",
+   "NM8-400",
+   "Tower 8 m Ø400 t10/8, flanges, door, galvanised",
+   "8 Tower",
+   5071
+  ],
+  [
+   "3",
+   "NM8-200",
+   "Hub weldment S355NL Ø530 × 10, 3 necks, drum flange",
+   "2 Hub and pitch",
+   4264
+  ],
+  [
+   "27",
+   "NP1-220F",
+   "Magnets 280 × N45SH 30×15×12 (11.3 kg) + comb, end rings, sleeve",
+   "3 Generator",
+   4185
+  ],
+  [
+   "9",
+   "NM8-270",
+   "Electric pitch cylinder 28.5 kN, 204 mm, servo motor",
+   "2 Hub and pitch",
+   3875
+  ],
+  [
+   "79d",
+   "NM8-620-PE",
+   "AC module 12 kW grid-tie/heating: SiC, LCL filter, EN 50549 relay, 2 contactors",
+   "7 Electrical and power electronics",
+   3576
+  ],
+  [
+   "79e",
+   "NM8-620-PE",
+   "48 V battery module 12 kW (4 × 3 kW DAB)",
+   "7 Electrical and power electronics",
+   3562
+  ],
+  [
+   "23",
+   "NP1-210D",
+   "Rotor drum weldment Rev D, 36 fins, 48 ribs",
+   "3 Generator",
+   3409
+  ],
+  [
+   "46+",
+   "—",
+   "Cabinet internals: heater, fans, SPD T1+2, breakers, RCD B, meter, 24 V UPS — not in BOM",
+   "7 Electrical and power electronics",
+   3348
+  ],
+  [
+   "36",
+   "NP8-300",
+   "Bedplate weldment NP8 (plates 20/30/10)",
+   "5 Nacelle and bedplate",
+   3003
+  ],
+  [
+   "5",
+   "NM8-250",
+   "Pitch bearings Dpw 300 four-point (3)",
+   "2 Hub and pitch",
+   2962
+  ],
+  [
+   "10",
+   "NM8-280",
+   "Supercap module + pitch drive/controller",
+   "2 Hub and pitch",
+   2912
+  ],
+  [
+   "38",
+   "NM8-912",
+   "Yaw gearmotor 0.25 kW, ≥ 2.3 kNm, motor brake",
+   "6 Yaw",
+   2900
+  ],
+  [
+   "40",
+   "NY-400",
+   "Tower-top adapter with friction track",
+   "6 Yaw",
+   2828
+  ],
+  [
+   "15+",
+   "—",
+   "Brake release hydraulic unit (pump, accumulator, NC dump valve, hoses) — not in BOM",
+   "4 Spindle and brake",
+   2609
+  ],
+  [
+   "16",
+   "NP1-100D",
+   "Spindle Rev D, 42CrMo4+QT forged",
+   "4 Spindle and brake",
+   2521
+  ],
+  [
+   "22",
+   "NP1-203D",
+   "Coils: 45 × 28 turns, 4 × Ø1.55 in hand",
+   "3 Generator",
+   2418
+  ],
+  [
+   "79a",
+   "NM8-620-PE",
+   "Converter: active rectifier SiC 1200 V, film DC link, sensors, heatsink, PCBs",
+   "7 Electrical and power electronics",
+   2330
+  ],
+  [
+   "19",
+   "NP1-200D",
+   "Stator carrier Rev D, 45 dovetail grooves",
+   "3 Generator",
+   2306
+  ],
+  [
+   "22+",
+   "—",
+   "Stator assembly, connection, VPI, potting, final stator tests",
+   "3 Generator",
+   2166
+  ],
+  [
+   "+",
+   "—",
+   "Nacelle final assembly: generator on bedplate, yaw, cover, mast, wiring",
+   "9 Final assembly and test",
+   1974
+  ],
+  [
+   "2",
+   "NM8-105",
+   "Root insert M16, bonded (12 per blade)",
+   "1 Blades",
+   1875
+  ],
+  [
+   "20",
+   "NP1-201D",
+   "Stator laminations: 45 segment stacks, 13,365 sheets",
+   "3 Generator",
+   1782
+  ],
+  [
+   "37",
+   "NM8-911",
+   "Yaw slewing ring Dpw 410, z165 m4",
+   "6 Yaw",
+   1650
+  ]
+ ],
+ "n_lines": 110
+}
