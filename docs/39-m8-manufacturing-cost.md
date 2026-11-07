@@ -11,6 +11,8 @@ Martin, 2026-11-07: "Ok now lets do detailed cost of manufacturing. Break down e
 
 Project files copy: `turbine-12kw-m8/cost/`.
 
+> **Update 2026-11-07 (doc 40, Martin's decision): 2 brake calipers + a simple DC release pack.** The workbook and the B01 chart now carry it: spindle and brake €12,570 (was €16,153), **ex-works €118,295** (was €121,878), LC8 €94,456. The tables below show the first issue with 3 calipers.
+
 ## Bottom line
 
 **One M8 turbine costs about €122,000 to make (17.7 M ISK) at the factory gate, €132,000 with 8 % contingency, and about €149,000 installed on firm ground (21.6 M ISK).** That is a series build of 50 turbines, made in Iceland as far as practical.

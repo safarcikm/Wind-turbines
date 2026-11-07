@@ -96,13 +96,13 @@ add("11", "NM8-290", "Nose frame (actuator + electronics carrier)", S_HP, 1, "S3
 add("+", "—", "Hub and pitch assembly, pitch function test", S_HP, 1, h=(0, 0, 0, 3, 14), buy=120, note="grease, seals, Loctite")
 
 # B DRIVETRAIN AND GENERATOR
-add("12", "NM8-311", "Third caliper bracket 135°", S_DT, 1, "S355", 7.0, 1.5, (2.5, 2), "C5")
+# NM8-311 third caliper bracket removed: doc 40 decision (Martin 2026-11-07), 2 calipers
 add("13", "NM8-913", "Tapered roller bearing 32028 X", S_DT, 2, mb="buy", buy=260)
 add("14", "NM8-914", "Overspeed sensors M18 (2)", S_DT, 1, mb="buy", buy=140)
-add("15", "NM8-915", "Spring-applied caliper 4.8 kNm, hydraulic release", S_DT, 3, mb="buy", buy=1900,
+add("15", "NM8-915", "Spring-applied caliper 4.8 kNm, hydraulic release (2, doc 40)", S_DT, 2, mb="buy", buy=1900,
     note="16 kN clamp, −40 °C pads; largest bought-in item per kNm")
-add("15+", "—", "Brake release hydraulic unit (pump, accumulator, NC dump valve, hoses) — not in BOM", S_DT, 1, mb="buy", buy=2150,
-    h=(0, 0, 0, 3, 3), note="doc 14: calipers are hydraulically released; the unit was not on bom8")
+add("15+", "—", "Brake release DC mini power pack (pump, NC dump valve, hoses, no accumulator) — not in BOM", S_DT, 1, mb="buy", buy=900,
+    h=(0, 0, 0, 3, 3), note="doc 14: calipers are hydraulically released; doc 40: simple pack without accumulator")
 add("16", "NP1-100D", "Spindle Rev D, 42CrMo4+QT forged", S_DT, 1, "FORGE", 59.2, 1.6, (0, 16), serv=320, note="UT €200, MPI €120; turn, grind seats, drill flange")
 add("17", "NP1-101", "Front spacer / seal counterface", S_DT, 1, "CRMO", 1.4, 2.5, (0, 1.5), serv=90, note="induction harden + grind")
 add("18", "NP1-102", "Rear seal sleeve", S_DT, 1, "CRMO", 1.3, 2.5, (0, 1.5), serv=90)

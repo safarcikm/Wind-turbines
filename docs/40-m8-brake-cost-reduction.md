@@ -1,6 +1,6 @@
 # 40 · M8 rotor brake: why it costs €10k and how to halve it
 
-Date 2026-11-07 · basis: doc 39 cost model, doc 37 loads (8 m tower) · status: STUDY, decision for Martin
+Date 2026-11-07 · basis: doc 39 cost model, doc 37 loads (8 m tower) · status: DECIDED 2026-11-07, layout B (2 calipers + simple release pack)
 
 Martin, 2026-11-07: "Ok we need to look into the brake system, this is way too expensive."
 
@@ -81,6 +81,11 @@ Notes:
 - A **spring-applied caliper with electromagnetic release** (no hydraulics at all) is worth a supplier quote. I have no reliable price for one at 16 kN clamp force.
 
 ## 5 · Decision
+
+**Martin, 2026-11-07: "Ok lets go with the two calipers for now."** → D-B1 / layout B adopted; doc 39 cost model updated (ex-works €118.3k). A dropped storm pin was discussed and kept as a possible add-on (≈ +€0.9k, Ø30 tapered pin, auto actuator, interlocks) if zero storm rotation is ever required.
+
+Options that were offered:
+
 
 - **D-B1:** Change the storm-parking rule to "hold the characteristic storm torque; slip allowed under the factored load (free idling ≤ 34 rpm)", and go to 2 × 4.8 kNm with a simple release pack (layout B). **Recommended.**
 - D-B2: Keep the current rule and 3 calipers, and only simplify the release pack. Saves ≈ €1.2k.

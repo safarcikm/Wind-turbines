@@ -1,8 +1,8 @@
 {
- "exw": 121878.36995,
+ "exw": 118295.44495,
  "site": 17142.2,
  "contingency": 0.08,
- "exw_with_cont": 131628.639546,
+ "exw_with_cont": 127759.08054600001,
  "subs": {
   "1 Blades": {
    "mat": 1484,
@@ -29,12 +29,12 @@
    "hours": 161
   },
   "4 Spindle and brake": {
-   "mat": 832,
-   "lab": 5972,
-   "srv": 618,
-   "bought": 8731,
-   "total": 16153,
-   "hours": 64
+   "mat": 817,
+   "lab": 5562,
+   "srv": 610,
+   "bought": 5581,
+   "total": 12570,
+   "hours": 60
   },
   "5 Nacelle and bedplate": {
    "mat": 539,
@@ -102,13 +102,13 @@
   }
  },
  "lc8": {
-  "exw": 95705.93393754342,
+  "exw": 94455.93393754342,
   "site": 17142.2,
   "subs": {
    "1 Blades": 10264,
    "2 Hub and pitch": 3541,
    "3 Generator": 16740,
-   "4 Spindle and brake": 11820,
+   "4 Spindle and brake": 10570,
    "5 Nacelle and bedplate": 6941,
    "6 Yaw": 12191,
    "7 Electrical and power electronics": 20367,
@@ -120,30 +120,30 @@
   }
  },
  "volume_sensitivity": {
-  "10": 136465.89995,
-  "25": 125525.25245,
-  "50": 121878.36995000001,
-  "100": 120054.9287,
-  "200": 119143.208075
+  "10": 132882.97495,
+  "25": 121942.32745,
+  "50": 118295.44495,
+  "100": 116472.0037,
+  "200": 115560.283075
  },
  "magnet_sensitivity": {
-  "100": 121300.02995,
-  "150": 121878.36995,
-  "200": 122456.70994999999,
-  "250": 123035.04994999999
+  "100": 117717.10495000001,
+  "150": 118295.44495,
+  "200": 118873.78495,
+  "250": 119452.12495
  },
  "hours_by_trade": {
-  "fab": 173.54,
-  "mach": 155.6,
+  "fab": 171.04,
+  "mach": 153.6,
   "comp": 159.0,
   "elec": 154.0,
   "assy": 124.0
  },
  "by_kind": {
-  "mat": 8563.81395,
-  "lab": 62981.2,
-  "srv": 4046.656,
-  "bought": 46286.7
+  "mat": 8548.58895,
+  "lab": 62571.2,
+  "srv": 4038.956,
+  "bought": 43136.7
  },
  "top": [
   [
@@ -152,13 +152,6 @@
    "Blades (3), all lines NM8-100: labour, glass, carbon, epoxy, core, consumables",
    "1 Blades",
    11066
-  ],
-  [
-   "15",
-   "NM8-915",
-   "Spring-applied caliper 4.8 kNm, hydraulic release",
-   "4 Spindle and brake",
-   5700
   ],
   [
    "49",
@@ -187,6 +180,13 @@
    "Electric pitch cylinder 28.5 kN, 204 mm, servo motor",
    "2 Hub and pitch",
    3875
+  ],
+  [
+   "15",
+   "NM8-915",
+   "Spring-applied caliper 4.8 kNm, hydraulic release (2, doc 40)",
+   "4 Spindle and brake",
+   3800
   ],
   [
    "79d",
@@ -252,13 +252,6 @@
    2828
   ],
   [
-   "15+",
-   "—",
-   "Brake release hydraulic unit (pump, accumulator, NC dump valve, hoses) — not in BOM",
-   "4 Spindle and brake",
-   2609
-  ],
-  [
    "16",
    "NP1-100D",
    "Spindle Rev D, 42CrMo4+QT forged",
@@ -320,7 +313,14 @@
    "Yaw slewing ring Dpw 410, z165 m4",
    "6 Yaw",
    1650
+  ],
+  [
+   "35",
+   "NM8-720",
+   "Met mast + heated anemometer, vane, air terminal",
+   "5 Nacelle and bedplate",
+   1609
   ]
  ],
- "n_lines": 110
+ "n_lines": 109
 }
