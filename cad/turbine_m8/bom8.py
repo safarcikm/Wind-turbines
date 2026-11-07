@@ -23,7 +23,7 @@ N_BASE = T8["towers"][_TK]["tower"]["base_flange"]["bolts"]
 COMBINE = [(r"^(NM8-100)-\d$", "Blade Ø8.0 m, glass/epoxy, carbon UD caps (B1–B3)"), (r"^(NY-410)-[LR]$", "Friction pad unit"),
            (r"^(NM8-912)-[LR]$", "Yaw gearmotor 0.25 kW, output ≥ 2.3 kNm static, motor brake"), (r"^(NP1-420)-[LR]$", "Yaw drive bracket"),
            (r"^(NM8-913)-[FR]$", "Tapered roller bearing 32028 X (front + rear)"), (r"^(NM8-911)-[IO]$", "Yaw slewing ring Dpw 410, z165 m4"),
-           (r"^(NM8-915)(-T)?$", "Spring-applied brake caliper 4.4 kNm (3 on the disc)")]
+           (r"^(NM8-915)(-T)?$", "Spring-applied brake caliper 4.8 kNm (3 on the disc)")]
 KIT = [("NM8-900-01", "Bolt M16 × 90 10.9 zinc-flake + washer (blade roots into the pitch bearing inner rings)", 36, "buy", "10.9 zinc-flake", 0.20),
        ("NM8-900-02", "Bolt M16 × 70 10.9 (hub to drum)", 12, "buy", "10.9 zinc-flake", 0.17),
        ("NM8-900-03", "Bolt M16 × 80 10.9 (pitch bearing outer rings to hub necks, 20 each)", 60, "buy", "10.9 zinc-flake", 0.18),

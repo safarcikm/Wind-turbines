@@ -7,14 +7,14 @@
   ],
   "F_AX_PARKED": 65.56,
   "T_RATED": 1.09,
-  "T_BRAKE": 13.1,
+  "T_BRAKE": 14.4,
   "T_SLM_G": 42.26,
   "TILT_YAW": 52.4
  },
  "load_note": "kN / kNm; M_HUB, F_STATIC scaled from doc 14 by the M8/current envelope ratio",
  "k_tilt": 1.86,
  "k_thrust": 1.57,
- "k_fatigue": 1.64,
+ "k_fatigue": 1.72,
  "bearings": {
   "designation": "32028 X",
   "d_D_T_mm": [
@@ -29,17 +29,17 @@
   "s0_rear": 6.2,
   "s0_axial_parked": 3.8,
   "equivalent_load_kN": [
-   14.778,
-   4.53192
+   15.444,
+   4.73616
   ],
   "L10_million_rev": [
-   18133,
-   932365
+   15655,
+   804956
   ],
   "L10_target_million_rev": 2814,
   "life_factor": [
-   6.4,
-   331.3
+   5.6,
+   286.0
   ],
   "fits": {
    "cups": "Ø210 P7 (rotating outer-ring load): interference 0.006 to 0.079",
@@ -152,10 +152,10 @@
    652.0
   ],
   "effective_radius_m": 0.37,
-  "clamp_per_caliper_kN_at_mu_0_4": 14.8,
+  "clamp_per_caliper_kN_at_mu_0_4": 16.2,
   "energy_from_250rpm_kJ": 74,
   "disc_bulk_temperature_rise_K": 7.1,
-  "lock_pin_shear_MPa": 80.6,
-  "lock_pin_bearing_MPa": 39.6
+  "lock_pin_shear_MPa": 88.6,
+  "lock_pin_bearing_MPa": 43.5
  }
 }

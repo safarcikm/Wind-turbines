@@ -15,7 +15,8 @@ import slm as S
 import blade as BLD
 from bem import solve
 
-USE_DLC = len(sys.argv) > 1 and sys.argv[1] == "dlc"
+USE_DLC = len(sys.argv) > 1 and sys.argv[1] in ("dlc", "dlc8")
+USE_DLC8 = len(sys.argv) > 1 and sys.argv[1] == "dlc8"   # doc 37: larger of the 18 m and 8 m runs -> blade_m8_8m.json
 D_TOWER_TOP = 0.40   # m, tower top diameter (tower_m8.py)
 # Rotor brake: 3 calipers of the doc 07 type instead of 2 (13.1 kNm). Sized against the parked V_ref
 # aero torque from dlc_m8 (hub_yaw_m8.py checks the ratio). Feeds SLM G (shutdown torque on shaft and blade edge).
@@ -73,10 +74,11 @@ def patch_blade(loads):
 
 def sim_loads():
     if USE_DLC:
-        d = json.loads((C.OUT / "dlc_m8" / "dlc_summary.json").read_text())
-        env, fat = d["ultimate_envelope"], d["fatigue_DEL"]
-        return dict(SIM_res=env["Mres0"]["design"], SIM_op_flap=d["per_dlc_max"]["1.3"]["Mflap0"] * 1.35,
-                    DEL_flap=fat["Mflap0"]["DEL_1e7"], DEL_edge=fat["Medge0"]["DEL_1e7"], source="dlc_m8")
+        ds = [json.loads((C.OUT / n / "dlc_summary.json").read_text()) for n in (("dlc_m8", "dlc8_m8") if USE_DLC8 else ("dlc_m8",))]
+        return dict(SIM_res=max(d["ultimate_envelope"]["Mres0"]["design"] for d in ds),
+                    SIM_op_flap=max(d["per_dlc_max"]["1.3"]["Mflap0"] for d in ds) * 1.35,
+                    DEL_flap=max(d["fatigue_DEL"]["Mflap0"]["DEL_1e7"] for d in ds),
+                    DEL_edge=max(d["fatigue_DEL"]["Medge0"]["DEL_1e7"] for d in ds), source="dlc_m8 + dlc8_m8" if USE_DLC8 else "dlc_m8")
     # first pass: doc 11 final run scaled by the steady flap moment (1760/1570) and the
     # parked planform area for the parked-governed resultant (1.337/0.849)
     k_op, k_area = 1760 / 1570, 1.337 / 0.849
@@ -131,7 +133,7 @@ def main():
     res["loads_used"] = {k: round(v, 1) for k, v in loads.items()}
     res["sim_source"] = sl["source"]
     res["mass_iteration"] = hist
-    (C.OUT / "blade_m8.json").write_text(json.dumps(res, indent=1))
+    (C.OUT / ("blade_m8_8m.json" if USE_DLC8 else "blade_m8.json")).write_text(json.dumps(res, indent=1))
     print(json.dumps({k: ({kk: vv for kk, vv in v.items() if kk not in ("stations", "governing_by_station")} if isinstance(v, dict) else v)
                       for k, v in res.items()}, indent=1))
     print(json.dumps(slm, indent=1))

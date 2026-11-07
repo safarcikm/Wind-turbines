@@ -1,0 +1,128 @@
+[
+ {
+  "number": "NM8-000",
+  "title": "GENERAL ARRANGEMENT \u00b7 12 kW M8 ON 8 m TOWER",
+  "material": "see BOM NM8-002/003",
+  "mass": "\u2248 1362 kg head + 671 kg tower"
+ },
+ {
+  "number": "NM8-001",
+  "title": "DRAWING INDEX (NM8 SET REV A + REUSED DRAWINGS)",
+  "material": "\u2013",
+  "mass": "\u2013"
+ },
+ {
+  "number": "NM8-002",
+  "title": "BILL OF MATERIALS (1/2)",
+  "material": "see lines",
+  "mass": "see lines"
+ },
+ {
+  "number": "NM8-003",
+  "title": "BILL OF MATERIALS (2/2)",
+  "material": "see lines",
+  "mass": "see lines"
+ },
+ {
+  "number": "NM8-010",
+  "title": "GENERAL ARRANGEMENT \u00b7 NACELLE AND DRIVETRAIN",
+  "material": "see BOM",
+  "mass": "\u2248 1362 kg above the tower flange"
+ },
+ {
+  "number": "NM8-020",
+  "title": "ROTOR ASSEMBLY \u00b7 HUB, PITCH SYSTEM, BLADES, SPINNER",
+  "material": "see BOM",
+  "mass": "\u2248 455 kg"
+ },
+ {
+  "number": "NM8-100",
+  "title": "BLADE \u00d88.0 m \u00b7 PLANFORM, TWIST AND ROOT",
+  "material": "E-glass/epoxy infused; carbon UD caps; PVC core shells",
+  "mass": "34.1 kg"
+ },
+ {
+  "number": "NM8-105",
+  "title": "BLADE ROOT INSERT M16 (BONDED)",
+  "material": "C45E+QT, zinc-flake coated (Geomet 500)",
+  "mass": "0.78 kg"
+ },
+ {
+  "number": "NM8-110",
+  "title": "BLADE MOULD SET (PLUG, TWO HALVES, FRAME)",
+  "material": "GRP tooling laminate on S235 RHS frame",
+  "mass": "\u2248 2 \u00d7 118 kg + frame 179 kg"
+ },
+ {
+  "number": "NM8-200",
+  "title": "HUB WELDMENT (COLLECTIVE PITCH)",
+  "material": "S355NL, welded, stress relieved, machined",
+  "mass": "180 kg (budget)"
+ },
+ {
+  "number": "NM8-210",
+  "title": "SPINNER (GRP) WITH BLADE BOOTS",
+  "material": "glass/polyester 4 mm, gelcoat RAL 9010",
+  "mass": "27.6 kg"
+ },
+ {
+  "number": "NM8-215",
+  "title": "GENERATOR REV D \u00b7 CHANGE SHEET (STACK 74 \u2192 104 mm)",
+  "material": "as Rev C sheets",
+  "mass": "322 kg generator"
+ },
+ {
+  "number": "NM8-250",
+  "title": "COLLECTIVE PITCH \u00b7 BEARINGS, CRANKS, LINKS, YOKE, CYLINDER",
+  "material": "see BOM",
+  "mass": "\u2248 140 kg pitch parts (budget)"
+ },
+ {
+  "number": "NP8-300",
+  "title": "BEDPLATE WELDMENT 12 kW NP8 (LIGHT)",
+  "material": "S355J2+N plates, stress relieved, machined",
+  "mass": "136 kg (plate model), 124 kg CAD"
+ },
+ {
+  "number": "NM8-311",
+  "title": "ROTOR BRAKE \u00b7 THREE CALIPERS AND THIRD CALIPER BRACKET",
+  "material": "bracket S355J2+N 25 plate, welded",
+  "mass": "bracket 7.0 kg"
+ },
+ {
+  "number": "NM8-911",
+  "title": "YAW SYSTEM LAYOUT \u00b7 SLEWING RING Dpw 410",
+  "material": "ring bought; NY parts per doc 25",
+  "mass": "ring \u2248 66 kg"
+ },
+ {
+  "number": "NM8-400",
+  "title": "TOWER 8 m \u00b7 ONE-PIECE TILT-UP MONOPOLE",
+  "material": "S355J2+N, rolled and seam welded; hot-dip galvanised",
+  "mass": "671 kg (sizing), 700 kg CAD"
+ },
+ {
+  "number": "NM8-410",
+  "title": "BASE HINGE, GIN POLE INTERFACE AND ERECTION",
+  "material": "S355J2+N 30 mm plate, galv.; pin 42CrMo4+QT \u00d850 h9",
+  "mass": "37 kg"
+ },
+ {
+  "number": "NM8-500",
+  "title": "FOUNDATION \u00b7 SPREAD FOOTING (8 m TOWER, M8)",
+  "material": "C30/37 XF4 air-entrained; B500C rebar",
+  "mass": "6.2\u20137.8 m\u00b3"
+ },
+ {
+  "number": "NM8-900",
+  "title": "FASTENER AND TORQUE SCHEDULE",
+  "material": "ISO 4014/4017, EN 14399-4 (HV), 10.9 zinc-flake unless stated",
+  "mass": "\u2013"
+ },
+ {
+  "number": "NM8-910",
+  "title": "BOUGHT PARTS SPECIFICATION (ENVELOPES AND INTERFACES)",
+  "material": "see lines",
+  "mass": "see lines"
+ }
+]

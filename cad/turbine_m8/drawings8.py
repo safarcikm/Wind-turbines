@@ -114,19 +114,19 @@ def ga_turbine():
     w.circle((0, H), 520)
     w.line((-4500, 0), (4500, 0))
     w.dim((-R_ROT, H + R_ROT + 300), (R_ROT, H + R_ROT + 300), 3, kind="h", text="Ø8 000 rotor")
-    title(w, -2500, 12600, "VIEW FROM UPWIND", 3.0)
+    title(w, 4400, 12600, "VIEW FROM UPWIND", 3.0)
     en = T8["energy"]
     s.table = [["Item", "Value"], ["Rated power", "12 kW electric at 10.0 m/s (hub)"],
                ["Rotor", "Ø8.0 m, 3 blades, TSR 5.5, collective pitch"],
-               ["Speed", f"{C.RPM_MIN}–{C.RPM:.0f} rpm, trip {C.RPM_TRIP:.0f} rpm"],
+               ["Speed", f"{C.RPM_MIN}–{C.RPM:.0f} rpm, trip 165 rpm (8 m controller)"],
                ["Hub height", f"8.0 m; lowest tip {(H - R_ROT) / 1000:.1f} m"],
                ["Tower", f"{TW['mass_kg']:.0f} kg, f1 {TW['f1_rigid_Hz']} Hz ({TW['f1_soft_ice_Hz']} soft+ice)"],
                ["Exclusion zone", f"{TW['exclusion_zone_rpm'][0]:.0f}–{TW['exclusion_zone_rpm'][1]:.0f} rpm (3P × f1)"],
                ["Head mass", f"{HEAD:.0f} kg above the tower flange (CAD)"],
                ["Energy vs 18 m", f"−{en['highland']['loss_pct']:.0f} % highland … −{en['inland']['loss_pct']:.0f} % inland"],
-               ["Stopping", "pitch to feather (supercap) + 3 spring calipers 13.1 kNm"],
+               ["Stopping", "pitch to feather (supercap) + 3 spring calipers 14.4 kNm"],
                ["Storm", "feathered, idling or braked, yaw active"]]
-    s.table_pos = (254, 285); s.table_widths = [24, 66]
+    s.table_pos = (160, 105); s.table_widths = [24, 74]
     iso_assy(s, "A01-turbine", 345, 58, 62, 226)
     s.notes = ["Docs 35 and 37. Shared 12 kW parts keep their drawings (index NM8-001). Generator Rev D change sheet NM8-215.",
                "Keep people and vehicles out of the rotor disc: fenced zone of radius 5 m round the tower base; lowest tip 4.0 m. Ice-fall zone 1.5 × (H + D) = 24 m when icing is possible.",
@@ -478,14 +478,14 @@ def brake_sheet():
     title(v, -560, 600, "VIEW FROM THE REAR (downwind), angles from +y towards +z", 3.0)
     iso(s, "NM8-311", 260, 150, 70, 70)
     iso(s, "NM8-915-T", 335, 150, 70, 70)
-    s.table = [["Brake (spindle_m8 / hub_yaw_m8)", "Value"], ["Required holding torque", f"{HY['rotor_brake']['brake_M8_kNm']} kNm (1.41 × doc 07)"],
-               ["Calipers", "3 × spring-applied, 4.4 kNm each"], ["Clamp force per caliper", f"{bk.get('clamp_per_caliper_kN', 14.8)} kN at μ 0.40, r_eff 0.41"],
-               ["Parked aero torque (sim, char.)", f"{HY['rotor_brake']['parked_aero_torque_sim_char_kNm']} kNm"],
+    s.table = [["Brake (spindle_m8 / hub_yaw_m8)", "Value"], ["Required holding torque", f"{SP['loads_used']['T_BRAKE']} kNm (parked aero torque at 8 m, design; 18 m: 13.1)"],
+               ["Calipers", "3 × spring-applied, 4.8 kNm each"], ["Clamp force per caliper", f"{bk['clamp_per_caliper_kN_at_mu_0_4']} kN at μ 0.40, r_eff {bk['effective_radius_m']} m"],
+               ["Parked aero torque (sim, char.)", "9.32 kNm at 18 m, 10.59 kNm at 8 m"],
                ["Disc", "NP1-230 Rev B, 16 mm, unchanged"]]
-    s.table_pos = (260, 72); s.table_widths = [60, 86]
+    s.table_pos = (260, 112); s.table_widths = [60, 86]
     s.notes = ["The third caliper sits at 135° (upper right seen from the rear) because the rotor lock pin holder occupies 90°. It uses the same caliper and mounting plate as NP1-310 (4 × M16 axial).",
                "Bracket: 25 mm mounting plate + 25 mm web + 25 mm foot, bolted 4 × M16 10.9 through the bedplate front plate outside the spindle flange bolts (r ≥ 205). Weld a5, MT 100 %.",
-               "Alternative (decision D2 of doc 35): two calipers with a stronger spring pack (6.6 kNm each) in the existing positions; the third bracket then goes."]
+               "Alternative (decision D2 of doc 35): two calipers with a stronger spring pack (7.2 kNm each) in the existing positions; the third bracket then goes."]
     s.notes_top = (14, 72); s.notes_wrap = 110
     return s
 
@@ -686,7 +686,7 @@ def bought_sheet():
                ["Pitch cylinder + motor (NM8-270)", "≥ 28.5 kN rated, 37 kN static, 204 mm stroke, motor brake ≥ 14.2 Nm", "trunnion in the nose frame", "1"],
                ["Supercap module (NM8-280)", "≥ 4.1 kJ per stroke × 3.6 at EOL, −30 °C heater", "nose frame tray", "1"],
                ["Main bearings (NM8-913)", "32028 X tapered roller, C 280 kN, C0 430 kN", "Ø140 j6 / f6, Ø210 P7", "2"],
-               ["Brake calipers (NM8-915)", "spring-applied, 4.4 kNm each on the Ø880 × 16 disc, ≥ 14.8 kN clamp", "4 × M16 axial", "3"],
+               ["Brake calipers (NM8-915)", "spring-applied, 4.8 kNm each on the Ø880 × 16 disc, ≥ 16.2 kN clamp", "4 × M16 axial", "3"],
                ["Yaw slewing ring (NM8-911)", "Dpw 410, external gear z165 m4, face 60, s0 ≥ 1.25", "PCD 350 / 490, 16 × M16 each", "1"],
                ["Yaw gearmotor (NM8-912)", "≥ 2.3 kNm static output, pinion z14 m4, motor brake", "NP1-420 bracket", "2"],
                ["Magnets (NP1-220F)", "N45SH 30 × 15 × 12, NiCuNi, 280 + spares", "comb + sleeve", "280"],

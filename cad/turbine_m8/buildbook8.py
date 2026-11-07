@@ -71,7 +71,7 @@ def cover(c):
             ["Rotor", "Ø8.0 m, 3 glass/epoxy blades with carbon caps, TSR 5.5, 131 rpm, collective pitch"],
             ["Regulation", "variable speed + one electric pitch cylinder (supercap backed); feather in storms"],
             ["Generator", f"Rev D direct-drive PM: Rev C + 2 magnet rows, stack {GEN['geometry']['stack_mm']:.0f} mm, 28 turns"],
-            ["Brake", "3 spring-applied calipers, 13.1 kNm, rotor lock pin"],
+            ["Brake", "3 spring-applied calipers, 14.4 kNm, rotor lock pin"],
             ["Hub height", f"8.0 m; lowest blade tip {8.0 - 4.0:.1f} m above ground"],
             ["Tower", f"one-piece tilt-up monopole Ø{TW['geometry']['D_base'] * 1000:.0f} → Ø{TW['geometry']['D_top'] * 1000:.0f}, t {TW['geometry']['t_mm'][0]}/{TW['geometry']['t_mm'][1]}, {TW['mass_kg']:.0f} kg, f1 {TW['f1_rigid_Hz']} Hz"],
             ["Foundation", f"spread footing {FND['firm soil (dense gravel, moraine)']['B']}–{FND['soft volcanic soil (loose ash, pumice sand)']['B']} m square, {FND['firm soil (dense gravel, moraine)']['concrete_m3']}–{FND['soft volcanic soil (loose ash, pumice sand)']['concrete_m3']} m³; rock plinth 2 m³"],
@@ -125,7 +125,7 @@ def summary(c):
                   "The 3P excitation crosses f1 at low speed, so the controller passes that speed band under torque."),
             ("table", table(rows_t, [50, 110], fs=8)),
             ("p", "<b>Loads.</b> The whole aeroelastic load set was rerun at 8 m hub height with stronger shear and turbulence and the stiff tower. " + sim +
-                  " Spindle, bearings and tower were re-checked with the larger of the 18 m and 8 m envelopes.")]
+                  " The 18 m controller tripped often in the stronger turbulence and once reached 220 rpm, so the 8 m controller has a faster speed loop (6 rad/s), a faster normal pitch rate (20°/s) and the trip at 165 rpm; peak 181 rpm (design 184). Blade, spindle, bearings, brake and tower were re-checked with the larger of the 18 m and 8 m envelopes; the brake grows to 14.4 kNm.")]
     paras(c, left, 16 * mm, 20 * mm, 190 * mm, 245 * mm)
     right = [("h2", "Energy at 8 m"),
              ("p", "Slower, more turbulent wind near the ground. Log wind profile per site roughness:"),
@@ -134,7 +134,7 @@ def summary(c):
              ("li", "Safety: lowest blade tip 4.0 m above ground. Fenced keep-out radius 5 m; ice-fall zone 24 m when icing is possible."),
              ("h2", "Decisions used in this book (doc 35 defaults, open for Martin)"),
              ("li", "D1 bedplate NP8-300 (136 kg) instead of NP1-300 (338 kg)."),
-             ("li", "D2 three calipers 4.4 kNm (third at 135°) instead of two stronger ones."),
+             ("li", "D2 three calipers 4.8 kNm (third at 135°) instead of two stronger ones."),
              ("li", "D3 plain carbon caps; D4 keep 28 turns; D5 crank r140 (pin plane moved to 150, clash-free)."),
              ("h2", "Main parts"),
              ("li", f"Blades 3 × {[p for p in PARTS['parts'] if p['pid'] == 'NM8-100-1'][0]['mass_kg']:.1f} kg; hub and pitch 337 kg budget; generator Rev D; NP8-300 bedplate; yaw ring Dpw 410."),
@@ -205,7 +205,7 @@ TEXTS = {
         "Check: air gap ≥ 1.4 mm at 8 positions, drum run-out ≤ 0.2 mm, back-EMF at 60 rpm vs generator_m8 (+3.4 % on Rev C)."],
     5: ["Fit the two side caliper brackets NP1-310 and the third bracket NM8-311 (4 × M16 through the front plate). Fit the three calipers; set pad gaps; check release on 24 V.",
         "Fit the lock pin holder with the two overspeed sensors; test the lock pin in all 12 disc holes.",
-        "Check: holding torque test 13.1 kNm (torque arm on the drum), each caliper alone ≥ 4.4 kNm; sensor pulses."],
+        "Check: holding torque test 14.4 kNm (torque arm on the drum), each caliper alone ≥ 4.8 kNm; sensor pulses."],
     6: ["Fit the pad units NY-410 (radius +25), yaw lock NY-430, encoder unit NY-440 and the cable hanger NY-460.",
         "Fit the cover arms, the lower GRP tray, the rear rail and the junction box; wire W1, W4, W5, W6.",
         "Check: pad clamping force, encoder zero at yaw 0°, cam switch at ±2.5 turns."],
@@ -257,7 +257,7 @@ def commissioning(c):
             ("h2", "Functional tests (wind below 8 m/s)"),
             ("li", "Safety chain: each trip input (overspeed × 2, E-stop, 24 V loss, vibration, converter fault, pitch fault) feathers the blades on supercap power and drops the brake after the delay; record the stop time."),
             ("li", "Feather on the supercap alone (mains off) from rated speed; brake alone from 100 rpm with the blades at −2°."),
-            ("li", f"Overspeed trip at {154.6:.0f} rpm checked by lowering the set point (test mode)."),
+            ("li", "8 m controller settings loaded: speed loop 6 rad/s, normal pitch rate 20°/s, overspeed trip 165 rpm (18 m: 4 rad/s, 15°/s, 155 rpm). Trip checked by lowering the set point (test mode)."),
             ("li", f"Yaw ±360° with the cam stop at ±2.5 turns; exclusion zone {TW['exclusion_zone_rpm'][0]:.0f}–{TW['exclusion_zone_rpm'][1]:.0f} rpm set in the controller (passed under torque)."),
             ("li", "Rotor balance at 120 rpm: nacelle 1P vibration, trial mass to ≤ 0.2 kg·m; pitch angle check (all three within 0.3°) with a camera at the tips."),
             ("li", f"Tower frequency (tap test): f1 must be ≥ {TW['f1_soft_ice_Hz']} Hz; if lower, widen the exclusion zone."),

@@ -722,7 +722,7 @@
   },
   {
    "pid": "NM8-915",
-   "name": "Spring-applied brake caliper 4.4 kNm (3 per disc, bought)",
+   "name": "Spring-applied brake caliper 4.8 kNm (3 per disc, bought)",
    "group": "drivetrain",
    "drawing": "NM8-910",
    "material": "bought, spring-applied",
@@ -762,7 +762,7 @@
   },
   {
    "pid": "NM8-915-T",
-   "name": "Spring-applied brake caliper 4.4 kNm, third (bought)",
+   "name": "Spring-applied brake caliper 4.8 kNm, third (bought)",
    "group": "drivetrain",
    "drawing": "NM8-910",
    "material": "bought",
@@ -1062,20 +1062,20 @@
   },
   {
    "pid": "NM8-400",
-   "name": "Tower 8 m, \u00d8420 \u2192 \u00d8400, t 10/8, one piece",
+   "name": "Tower 8 m, \u00d8400 \u2192 \u00d8400, t 10/8, one piece",
    "group": "tower",
    "drawing": "NM8-400",
    "material": "S355J2+N, hot-dip galvanised",
    "make_buy": "make",
    "qty": 1,
-   "mass_kg": 717.85,
+   "mass_kg": 699.84,
    "show": true,
    "step": 0,
    "bbox": [
-    -430,
-    350,
-    -310,
-    310,
+    -420,
+    340,
+    -300,
+    300,
     -7250,
     -360
    ]
@@ -1094,8 +1094,8 @@
    "bbox": [
     -100,
     100,
-    224,
-    230,
+    215,
+    221,
     -6705,
     -6355
    ]
@@ -1112,8 +1112,8 @@
    "show": true,
    "step": 0,
    "bbox": [
-    -510,
-    -280,
+    -500,
+    -270,
     -230,
     230,
     -7290,
@@ -1132,8 +1132,8 @@
    "show": false,
    "step": 0,
    "bbox": [
-    270,
-    3390,
+    260,
+    3380,
     -120,
     120,
     -7000,
@@ -1168,14 +1168,14 @@
    "material": "M24 8.8 HDG threaded rod, S355 template rings",
    "make_buy": "make",
    "qty": 1,
-   "mass_kg": 163.69,
+   "mass_kg": 161.72,
    "show": true,
    "step": 0,
    "bbox": [
-    -482,
-    310,
-    -310,
-    310,
+    -472,
+    300,
+    -300,
+    300,
     -8880,
     -7135
    ]
@@ -1307,11 +1307,11 @@
   "yaw": 288.1,
   "drivetrain": 440.0,
   "rotor": 454.8,
-  "tower": 758.6,
-  "foundation": 15043.7
+  "tower": 740.6,
+  "foundation": 15041.7
  },
  "head_kg": 1362.4,
- "tower": "stiff",
+ "tower": "stiff_final_sim8",
  "stretch": {
   "NP1-100": "stretched",
   "NP1-101": "moved",

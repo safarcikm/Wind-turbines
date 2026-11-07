@@ -162,7 +162,7 @@
  {
   "pos": "15",
   "pid": "NM8-915",
-  "name": "Spring-applied brake caliper 4.4 kNm (3 on the disc)",
+  "name": "Spring-applied brake caliper 4.8 kNm (3 on the disc)",
   "qty": "3",
   "make_buy": "buy",
   "material": "bought, spring-applied",
@@ -542,11 +542,11 @@
  {
   "pos": "49",
   "pid": "NM8-400",
-  "name": "Tower 8 m, \u00d8420 \u2192 \u00d8400, t 10/8, one piece",
+  "name": "Tower 8 m, \u00d8400 \u2192 \u00d8400, t 10/8, one piece",
   "qty": "1",
   "make_buy": "make",
   "material": "S355J2+N, hot-dip galvanised",
-  "mass": "717.9",
+  "mass": "699.8",
   "drawing": "NM8-400"
  },
  {
@@ -596,7 +596,7 @@
   "qty": "1",
   "make_buy": "make",
   "material": "M24 8.8 HDG threaded rod, S355 template rings",
-  "mass": "163.7",
+  "mass": "161.7",
   "drawing": "NM8-510"
  },
  {

@@ -2,13 +2,13 @@
   "gamma_f": 1.35,
   "ultimate_envelope": {
     "thrust": {
-      "characteristic": 6558.7,
-      "design": 8854.3,
-      "governing": "DLC 1.3 at 24 m/s, yaw 0, azimuth 0"
+      "characteristic": 5001.7,
+      "design": 6752.3,
+      "governing": "DLC 1.3 at 18 m/s, yaw 0, azimuth 0"
     },
     "Mflap0": {
-      "characteristic": 9852.2,
-      "design": 13300.5,
+      "characteristic": 9848.2,
+      "design": 13295.1,
       "governing": "DLC 7.1-parked-stuck-fine at 44.0 m/s, yaw 0, azimuth 0"
     },
     "Medge0": {
@@ -17,8 +17,8 @@
       "governing": "DLC 6.x-parked-Vref at 55.0 m/s, yaw 90, azimuth 0"
     },
     "Mres0": {
-      "characteristic": 11417.9,
-      "design": 15414.2,
+      "characteristic": 11417.0,
+      "design": 15413.0,
       "governing": "DLC 6.x-parked-Vref at 55.0 m/s, yaw 90, azimuth 0"
     },
     "Mtilt": {
@@ -32,9 +32,9 @@
       "governing": "DLC 7.1-parked-stuck-fine at 44.0 m/s, yaw 30, azimuth 60"
     },
     "Mbase": {
-      "characteristic": 51417.5,
-      "design": 69413.6,
-      "governing": "DLC 1.3 at 24 m/s, yaw 0, azimuth 0"
+      "characteristic": 50774.2,
+      "design": 68545.2,
+      "governing": "DLC 7.1-parked-stuck-fine at 44.0 m/s, yaw 8, azimuth 0"
     },
     "Qaero": {
       "characteristic": 10591.0,
@@ -44,158 +44,158 @@
     "Qgen": {
       "characteristic": 14334.2,
       "design": 19351.2,
-      "governing": "DLC 1.1 at 12 m/s, yaw 0, azimuth 0"
+      "governing": "DLC 1.1 at 18 m/s, yaw 0, azimuth 0"
     },
     "rpm": {
-      "characteristic": 219.6,
-      "design": 219.6,
-      "governing": "DLC 1.3 at 24 m/s, yaw 0, azimuth 0"
+      "characteristic": 180.8,
+      "design": 180.8,
+      "governing": "DLC 1.3 at 18 m/s, yaw 0, azimuth 0"
     },
     "Fimb": {
-      "characteristic": 8180.5,
-      "design": 11043.6,
+      "characteristic": 7978.2,
+      "design": 10770.5,
       "governing": "DLC 1.5-ice at 12 m/s, yaw 0, azimuth 0"
     }
   },
   "per_dlc_max": {
     "1.1": {
-      "thrust": 4698.5,
-      "Mflap0": 4762.1,
-      "Medge0": 2829.7,
-      "Mres0": 5059.8,
-      "Mtilt": 7795.9,
-      "Myaw": 6254.5,
-      "Mbase": 36885.7,
-      "Qaero": 5885.7,
+      "thrust": 4688.9,
+      "Mflap0": 4908.7,
+      "Medge0": 3010.3,
+      "Mres0": 5040.2,
+      "Mtilt": 6141.1,
+      "Myaw": 5812.0,
+      "Mbase": 37085.7,
+      "Qaero": 7438.3,
       "Qgen": 14334.2,
-      "rpm": 178.2,
+      "rpm": 174.3,
       "Fimb": 0
     },
     "1.3": {
-      "thrust": 6558.7,
-      "Mflap0": 6083.2,
-      "Medge0": 2798.3,
-      "Mres0": 6384.4,
-      "Mtilt": 5954.1,
-      "Myaw": 6543.5,
-      "Mbase": 51417.5,
-      "Qaero": 8262.1,
+      "thrust": 5001.7,
+      "Mflap0": 5261.4,
+      "Medge0": 2860.4,
+      "Mres0": 5488.9,
+      "Mtilt": 6425.0,
+      "Myaw": 6477.2,
+      "Mbase": 36982.4,
+      "Qaero": 6333.8,
       "Qgen": 14334.2,
-      "rpm": 219.6,
+      "rpm": 180.8,
       "Fimb": 0
     },
     "1.4-EOG": {
-      "thrust": 3399.1,
-      "Mflap0": 2896.3,
-      "Medge0": 1058.2,
-      "Mres0": 2915.3,
+      "thrust": 3398.9,
+      "Mflap0": 2896.2,
+      "Medge0": 1043.8,
+      "Mres0": 2915.2,
       "Mtilt": 1762.3,
       "Myaw": 651.1,
-      "Mbase": 28202.4,
-      "Qaero": 2009.9,
-      "Qgen": 1214.7,
-      "rpm": 141.4,
+      "Mbase": 28188.5,
+      "Qaero": 2010.0,
+      "Qgen": 1115.1,
+      "rpm": 140.0,
       "Fimb": 0
     },
     "1.5-ice": {
-      "thrust": 3251.9,
-      "Mflap0": 3101.4,
-      "Medge0": 1695.1,
-      "Mres0": 3134.6,
-      "Mtilt": 3610.7,
-      "Myaw": 3396.0,
-      "Mbase": 26505.8,
-      "Qaero": 2379.4,
+      "thrust": 3324.0,
+      "Mflap0": 3235.1,
+      "Medge0": 1692.9,
+      "Mres0": 3268.3,
+      "Mtilt": 3565.0,
+      "Myaw": 3666.1,
+      "Mbase": 33480.4,
+      "Qaero": 2709.3,
       "Qgen": 1239.2,
-      "rpm": 145.2,
-      "Fimb": 8180.5
+      "rpm": 143.4,
+      "Fimb": 7978.2
     },
     "2.1-runaway": {
-      "thrust": 3129.4,
-      "Mflap0": 4178.6,
-      "Medge0": 1873.1,
-      "Mres0": 4296.4,
-      "Mtilt": 5325.9,
-      "Myaw": 5881.7,
-      "Mbase": 28964.4,
-      "Qaero": 3518.3,
+      "thrust": 4198.6,
+      "Mflap0": 4610.9,
+      "Medge0": 1852.2,
+      "Mres0": 4723.3,
+      "Mtilt": 4308.8,
+      "Myaw": 4661.6,
+      "Mbase": 29186.8,
+      "Qaero": 3952.2,
       "Qgen": 14334.2,
-      "rpm": 154.3,
+      "rpm": 167.6,
       "Fimb": 0
     },
     "2.2-loss-torque-EOG": {
-      "thrust": 2375.0,
-      "Mflap0": 2247.2,
-      "Medge0": 1514.5,
-      "Mres0": 2298.0,
+      "thrust": 2374.1,
+      "Mflap0": 2246.6,
+      "Medge0": 1527.2,
+      "Mres0": 2297.3,
       "Mtilt": 1762.3,
       "Myaw": 651.1,
-      "Mbase": 21024.8,
-      "Qaero": 3744.1,
+      "Mbase": 20931.8,
+      "Qaero": 3719.7,
       "Qgen": 13095.0,
-      "rpm": 139.8,
+      "rpm": 135.7,
       "Fimb": 0
     },
     "2.2-loss-torque": {
-      "thrust": 3122.4,
-      "Mflap0": 3207.6,
-      "Medge0": 1827.0,
-      "Mres0": 3333.2,
-      "Mtilt": 4617.0,
-      "Myaw": 3695.5,
-      "Mbase": 25655.5,
-      "Qaero": 3177.2,
+      "thrust": 3052.7,
+      "Mflap0": 3242.4,
+      "Medge0": 1746.3,
+      "Mres0": 3308.3,
+      "Mtilt": 4180.4,
+      "Myaw": 3847.0,
+      "Mbase": 23237.8,
+      "Qaero": 2942.2,
       "Qgen": 13095.0,
-      "rpm": 140.5,
+      "rpm": 138.2,
       "Fimb": 0
     },
     "2.3-stuck-blade-stop": {
-      "thrust": 3053.4,
-      "Mflap0": 3720.1,
-      "Medge0": 2011.0,
-      "Mres0": 3770.7,
-      "Mtilt": 5211.6,
-      "Myaw": 4399.9,
-      "Mbase": 25258.7,
-      "Qaero": 3274.2,
+      "thrust": 3005.3,
+      "Mflap0": 3128.6,
+      "Medge0": 2157.6,
+      "Mres0": 3395.5,
+      "Mtilt": 4658.9,
+      "Myaw": 4072.1,
+      "Mbase": 28061.3,
+      "Qaero": 3548.7,
       "Qgen": 14334.2,
-      "rpm": 142.4,
+      "rpm": 139.7,
       "Fimb": 0
     },
     "5.1-estop": {
-      "thrust": 3059.9,
-      "Mflap0": 3279.0,
-      "Medge0": 2278.9,
-      "Mres0": 3993.2,
-      "Mtilt": 5633.5,
-      "Myaw": 4696.9,
-      "Mbase": 24610.0,
-      "Qaero": 3647.5,
+      "thrust": 2901.3,
+      "Mflap0": 3703.8,
+      "Medge0": 2095.7,
+      "Mres0": 3844.8,
+      "Mtilt": 5932.3,
+      "Myaw": 4690.6,
+      "Mbase": 27648.3,
+      "Qaero": 3825.4,
       "Qgen": 14334.2,
-      "rpm": 150.0,
+      "rpm": 142.8,
       "Fimb": 0
     },
     "6.x-parked-Vref": {
-      "thrust": 1171.9,
-      "Mflap0": 2966.3,
+      "thrust": 1169.6,
+      "Mflap0": 2965.2,
       "Medge0": 11353.7,
-      "Mres0": 11417.9,
+      "Mres0": 11417.0,
       "Mtilt": 4174.3,
       "Myaw": 1396.8,
-      "Mbase": 14033.7,
+      "Mbase": 15527.8,
       "Qaero": 10591.0,
       "Qgen": 0,
       "rpm": 0,
       "Fimb": 0
     },
     "7.1-parked-stuck-fine": {
-      "thrust": 4969.4,
-      "Mflap0": 9852.2,
+      "thrust": 4972.2,
+      "Mflap0": 9848.2,
       "Medge0": 5325.1,
-      "Mres0": 9866.4,
+      "Mres0": 9862.4,
       "Mtilt": 11858.4,
       "Myaw": 9193.0,
-      "Mbase": 48849.1,
+      "Mbase": 50774.2,
       "Qaero": 5203.8,
       "Qgen": 0,
       "rpm": 0,
@@ -205,69 +205,60 @@
   "fatigue_DEL": {
     "Mflap0": {
       "m": 10,
-      "DEL_1e7": 5248.4
+      "DEL_1e7": 5343.6
     },
     "Medge0": {
       "m": 10,
-      "DEL_1e7": 2528.2
+      "DEL_1e7": 2581.7
     },
     "thrust": {
       "m": 4,
-      "DEL_1e7": 5243.1
+      "DEL_1e7": 5479.2
     },
     "Mtilt": {
       "m": 4,
-      "DEL_1e7": 9396.7
+      "DEL_1e7": 9708.5
     },
     "Myaw": {
       "m": 4,
-      "DEL_1e7": 9425.1
+      "DEL_1e7": 9721.0
     },
     "Mbase": {
       "m": 4,
-      "DEL_1e7": 35545.2
+      "DEL_1e7": 39210.4
     },
     "Qaero": {
       "m": 4,
-      "DEL_1e7": 3875.2
+      "DEL_1e7": 4193.2
     }
   },
   "mean_power_W_by_wind": {
-    "4": 1125.0,
-    "6": 3557.0,
-    "8": 7570.0,
-    "10": 11207.0,
-    "12": 12699.0,
+    "4": 1129.0,
+    "6": 3553.0,
+    "8": 7574.0,
+    "10": 11213.0,
+    "12": 12928.0,
     "14": 13414.0,
-    "16": 12230.0,
-    "18": 8902.0,
-    "20": 8634.0,
-    "22": 8634.0,
-    "24": 10656.0,
-    "26": 9420.0,
-    "28": 7415.0,
-    "30": 6004.0
+    "16": 13539.0,
+    "18": 12289.0,
+    "20": 12262.0,
+    "22": 11609.0,
+    "24": 11575.0,
+    "26": 7114.0,
+    "28": 7951.0,
+    "30": 5955.0
   },
   "unintended_trips_in_DLC_1_1_1_3": [
-    "1.1 12 seed 0",
-    "1.1 16 seed 2",
-    "1.1 18 seed 0",
     "1.1 18 seed 2",
-    "1.1 20 seed 0",
-    "1.1 20 seed 1",
     "1.1 20 seed 2",
     "1.1 22 seed 0",
-    "1.1 22 seed 1",
     "1.1 22 seed 2",
     "1.1 24 seed 0",
     "1.1 24 seed 2",
     "1.1 26 seed 0",
+    "1.1 26 seed 1",
     "1.1 26 seed 2",
     "1.1 28 seed 0",
-    "1.1 28 seed 2",
-    "1.3 10.5 seed 100",
-    "1.3 10.5 seed 101",
-    "1.3 14 seed 100",
     "1.3 14 seed 101",
     "1.3 18 seed 100",
     "1.3 18 seed 101",

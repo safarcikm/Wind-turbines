@@ -298,7 +298,7 @@ def drivetrain_parts():
             p.pid = p.pid.replace("NS6-", "NM8-")
             p.drawing = "NM8-910"
         if p.pid == "NM8-915":
-            p.name = "Spring-applied brake caliper 4.4 kNm (3 per disc, bought)"
+            p.name = "Spring-applied brake caliper 4.8 kNm (3 per disc, bought)"
             p.mass_kg = 9.0 * 2
         if p.pid == "NP1-220F":
             p.mass_kg = 280 * 30 * 15 * 12 * 7.6e-6 + 3.5
@@ -335,7 +335,7 @@ def top_caliper():
         for zz in (160.0, 210.0):
             foot = foot.cut(cyl_x(xr - 1, xr + 26, FP.CLEAR["M16"] / 2, yy, zz))
     br = plate.fuse(web).fuse(foot).clean()
-    return [Part("NM8-915-T", "Spring-applied brake caliper 4.4 kNm, third (bought)", to_world(body), "drivetrain", "#b03a2e", "NM8-910",
+    return [Part("NM8-915-T", "Spring-applied brake caliper 4.8 kNm, third (bought)", to_world(body), "drivetrain", "#b03a2e", "NM8-910",
                  "bought", make_buy="buy", mass_kg=9.0, step=5),
             Part("NM8-311", "Third caliper bracket (135°)", to_world(br), "drivetrain", "#5d7d5d", "NM8-311",
                  "S355J2+N 25 plate, welded", step=5,

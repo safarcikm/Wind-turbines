@@ -38,7 +38,7 @@ LOADS = dict(
     F_STATIC=(41e3 * k_thr, 44e3 * k_thr),
     F_AX_PARKED=SLM["H_parked"]["F_x_shaft"] * 1e3,
     T_RATED=C.Q_RATED * 1.1,
-    T_BRAKE=13.1e3,
+    T_BRAKE=max(13.1e3, round(env("Qaero") * 1.005, -2)),   # doc 37: at 8 m the parked aero torque (design) is 14.3 kNm
     T_SLM_G=SLM["G_shutdown"]["M_x_shaft"] * 1e3,
     TILT_YAW=max(HY["yaw"]["M_tilt_kNm"].values()) * 1e3,
 )
