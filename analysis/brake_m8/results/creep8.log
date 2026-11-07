@@ -1,0 +1,12 @@
+3600_char {'worst_revs_300s': 39168.554, 'worst_max_rpm': 15630.79, 'cases_slipping': 19, 'worst_case': '6.x-parked-Vref yaw 30 az 60'}
+3600_design {'worst_revs_300s': 76318.293, 'worst_max_rpm': 30477.24, 'cases_slipping': 30, 'worst_case': '6.x-parked-Vref yaw 30 az 60'}
+4800_char {'worst_revs_300s': 16846.356, 'worst_max_rpm': 6702.56, 'cases_slipping': 7, 'worst_case': '6.x-parked-Vref yaw 30 az 60'}
+4800_design {'worst_revs_300s': 53993.774, 'worst_max_rpm': 21548.03, 'cases_slipping': 20, 'worst_case': '6.x-parked-Vref yaw 30 az 60'}
+6000_char {'worst_revs_300s': 253.004, 'worst_max_rpm': 303.12, 'cases_slipping': 4, 'worst_case': '6.x-parked-Vref yaw 30 az 60'}
+6000_design {'worst_revs_300s': 31669.255, 'worst_max_rpm': 12618.91, 'cases_slipping': 8, 'worst_case': '6.x-parked-Vref yaw 30 az 60'}
+7200_char {'worst_revs_300s': 7.844, 'worst_max_rpm': 50.2, 'cases_slipping': 2, 'worst_case': '6.x-parked-Vref yaw 30 az 60'}
+7200_design {'worst_revs_300s': 9690.88, 'worst_max_rpm': 3771.89, 'cases_slipping': 6, 'worst_case': '6.x-parked-Vref yaw 30 az 60'}
+9600_char {'worst_revs_300s': 0.012, 'worst_max_rpm': 2.55, 'cases_slipping': 1, 'worst_case': '6.x-parked-Vref yaw 30 az 60'}
+9600_design {'worst_revs_300s': 14.056, 'worst_max_rpm': 77.72, 'cases_slipping': 2, 'worst_case': '6.x-parked-Vref yaw 30 az 60'}
+14400_char {'worst_revs_300s': 0.0, 'worst_max_rpm': 0.0, 'cases_slipping': 0, 'worst_case': '6.x-parked-Vref yaw 0 az 0'}
+14400_design {'worst_revs_300s': 0.0, 'worst_max_rpm': 0.0, 'cases_slipping': 0, 'worst_case': '6.x-parked-Vref yaw 0 az 0'}
